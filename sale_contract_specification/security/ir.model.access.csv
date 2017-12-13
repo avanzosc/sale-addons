@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_condition_manager,sale.condition manager,model_sale_condition,sales_team.group_sale_manager,1,1,1,1
+access_sale_condition_user,sale.condition user,model_sale_condition,sales_team.group_sale_salesman,1,1,1,0
+access_sale_condition_portal,sale.condition portal,model_sale_condition,base.group_portal,1,0,0,0
+access_sale_condition_template_manager,sale.condition.template manager,model_sale_condition_template,sales_team.group_sale_manager,1,1,1,1
+access_sale_condition_template_user,sale.condition.template user,model_sale_condition_template,sales_team.group_sale_salesman,1,1,1,0
+access_sale_condition_template_portal,sale.condition.template portal,model_sale_condition_template,base.group_portal,1,0,0,0
+access_sale_order_condition_user,sale.order.condition user,model_sale_order_condition,sales_team.group_sale_salesman,1,1,1,1
+access_sale_order_condition_portal,sale.order.condition portal,model_sale_order_condition,base.group_portal,1,0,0,0
