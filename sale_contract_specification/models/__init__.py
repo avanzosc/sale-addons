@@ -1,7 +1,5 @@
 # Copyright 2017 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
-from . import sale_condition
-from . import sale_condition_template
 from . import sale_order
 from . import sale_order_condition

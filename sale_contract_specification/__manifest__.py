@@ -11,18 +11,14 @@
     'depends': [
         'sale',
         'sales_team',
+        'contract_specification',
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/sale_condition_views.xml',
-        'views/sale_condition_template_views.xml',
         'views/sale_order_condition_views.xml',
         'views/sale_order_views.xml',
         'views/sale_contract_specification_menu.xml',
         'views/sale_portal_templates.xml',
-    ],
-    'demo': [
-        'demo/sale_condition_demo.xml',
     ],
     'installable': True,
 }
