@@ -43,5 +43,5 @@ class TestSaleContractSpecification(common.SavepointCase):
         self.sale_order.condition_tmpl_id = self.template2
         self.sale_order._onchange_condition_tmpl_id()
         self.assertEqual(len(self.sale_order.condition_ids),
-                         len(self.template1.condition_ids) +
+                         (2 * len(self.template1.condition_ids)) +
                          len(self.template2.condition_ids))
