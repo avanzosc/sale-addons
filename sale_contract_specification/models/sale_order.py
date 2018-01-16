@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     condition_tmpl_id = fields.Many2one(
-        comodel_name='sale.condition.template',
+        comodel_name='contract.condition.template',
         string='Specification Template', copy=False, readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
     condition_ids = fields.One2many(
