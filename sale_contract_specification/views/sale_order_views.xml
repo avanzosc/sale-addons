@@ -6,22 +6,40 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page name="conditions" string="Sale Conditions">
+                <page name="draft_conditions" string="Draft Conditions"
+                      attrs="{'invisible': [('state','not in',('draft','sent','cancel'))]}">
+                    <group>
+                        <field name="draft_condition_tmpl_id" options="{'no_create_edit': True}" />
+                    </group>
+                    <field name="draft_condition_ids" context="{'default_sale_id': active_id}">
+                        <tree string="Draft Order Conditions"
+                              decoration-info="selected == True">
+                            <field name="selected" invisible="True" />
+                            <field name="sequence" />
+                            <field name="condition_id" />
+                            <field name="section_id" />
+                            <field name="type_id" />
+                            <field name="description" />
+                            <field name="comments" />
+                        </tree>
+                    </field>
+                </page>
+                <page name="conditions" string="Sale Conditions"
+                      attrs="{'invisible': [('state','in',('draft','sent','cancel'))]}">
                     <group>
                         <field name="condition_tmpl_id" options="{'no_create_edit': True}" />
                     </group>
                     <field name="condition_ids">
-                        <tree string="Sale Order Conditions">
+                        <tree string="Sale Order Conditions"
+                              decoration-info="selected == True">
+                            <field name="selected" invisible="True" />
+                            <field name="sequence" />
                             <field name="condition_id" />
+                            <field name="section_id" />
+                            <field name="type_id" />
                             <field name="description" />
+                            <field name="comments" />
                         </tree>
-                        <form string="Sale Order Condition">
-                            <group>
-                                <field name="condition_id" />
-                            </group>
-                            <separator string="Description" />
-                            <field name="description" />
-                        </form>
                     </field>
                 </page>
             </notebook>

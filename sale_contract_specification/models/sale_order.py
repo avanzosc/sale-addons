@@ -7,14 +7,37 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    def _domain_draft_condition_tmpl_id(self):
+        return []
+
+    def _domain_condition_tmpl_id(self):
+        return []
+
+    draft_condition_tmpl_id = fields.Many2one(
+        comodel_name='contract.condition.template',
+        string='Specification Template', copy=False)
+    draft_condition_ids = fields.One2many(
+        comodel_name='sale.draft.condition', inverse_name='sale_id',
+        string='Sale Conditions')
     condition_tmpl_id = fields.Many2one(
         comodel_name='contract.condition.template',
-        string='Specification Template', copy=False, readonly=True,
-        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
+        string='Specification Template', copy=False)
     condition_ids = fields.One2many(
         comodel_name='sale.order.condition', inverse_name='sale_id',
-        string='Sale Conditions', readonly=True,
-        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
+        string='Sale Conditions')
+
+    @api.onchange('draft_condition_tmpl_id')
+    def _onchange_draft_condition_tmpl_id(self):
+        if self.draft_condition_tmpl_id:
+            condition_ids = [
+                (0, 0, {'condition_id': x.condition_id.id,
+                        'description': x.description})
+                for x in self.draft_condition_ids]
+            condition_ids += [
+                (0, 0, {'condition_id': x.id,
+                        'description': x.description or x.name})
+                for x in self.draft_condition_tmpl_id.condition_ids]
+            self.draft_condition_ids = condition_ids
 
     @api.onchange('condition_tmpl_id')
     def _onchange_condition_tmpl_id(self):
