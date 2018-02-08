@@ -28,7 +28,8 @@ class SaleOrder(models.Model):
         string='Sale Conditions')
     condition_tmpl_id = fields.Many2one(
         comodel_name='contract.condition.template',
-        string='Specification Template', copy=False)
+        string='Specification Template', copy=False,
+        domain=lambda self: self._domain_condition_tmpl_id())
     condition_ids = fields.One2many(
         comodel_name='sale.order.condition', inverse_name='sale_id',
         string='Sale Conditions')
