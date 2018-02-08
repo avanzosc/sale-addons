@@ -8,14 +8,21 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     def _domain_draft_condition_tmpl_id(self):
-        return []
+        domain = []
+        domain += [('tmpl_model', '=', self._name)]
+        domain += [('tmpl_type', 'in', ('quotation', 'both'))]
+        return domain
 
     def _domain_condition_tmpl_id(self):
-        return []
+        domain = []
+        domain += [('tmpl_model', '=', self._name)]
+        domain += [('tmpl_type', 'in', ('order', 'both'))]
+        return domain
 
     draft_condition_tmpl_id = fields.Many2one(
         comodel_name='contract.condition.template',
-        string='Specification Template', copy=False)
+        string='Specification Template', copy=False,
+        domain=lambda self: self._domain_draft_condition_tmpl_id())
     draft_condition_ids = fields.One2many(
         comodel_name='sale.draft.condition', inverse_name='sale_id',
         string='Sale Conditions')
