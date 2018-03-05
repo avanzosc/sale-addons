@@ -46,7 +46,8 @@ class SaleOrder(models.Model):
                         'description': x.description or x.name})
                 for x in self.draft_condition_tmpl_id.condition_ids]
             self.draft_condition_ids = condition_ids
-            self.draft_condition_ids._onchange_condition_id()
+            for condition in self.draft_condition_ids:
+                condition._onchange_condition_id()
 
     @api.onchange('condition_tmpl_id')
     def _onchange_condition_tmpl_id(self):
@@ -60,4 +61,5 @@ class SaleOrder(models.Model):
                         'description': x.description or x.name})
                 for x in self.condition_tmpl_id.condition_ids]
             self.condition_ids = condition_ids
-            self.condition_ids._onchange_condition_id()
+            for condition in self.condition_ids:
+                condition._onchange_condition_id()
