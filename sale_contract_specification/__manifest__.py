@@ -5,7 +5,7 @@
     'name': 'Sale Contract Specification',
     'version': '11.0.1.0.1',
     'category': 'Sale Management',
-    'author': 'AvanzOsc',
+    'author': 'AvanzOSC',
     'license': 'AGPL-3',
     'summary': 'Define conditions and specifications in sale orders',
     'depends': [
