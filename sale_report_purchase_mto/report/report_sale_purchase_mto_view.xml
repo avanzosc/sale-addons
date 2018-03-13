@@ -2,8 +2,8 @@
 <openerp>
     <data>
         <record model="ir.ui.view" id="report_sale_mto_tree_view">
-            <field name="name">report.sale.mto.tree.view</field>
-            <field name="model">report.sale.mto</field>
+            <field name="name">report.sale.purchase.mto.tree.view</field>
+            <field name="model">report.sale.purchase.mto</field>
             <field name="arch" type="xml">
                 <tree string="Report Sale MTO">
                     <field name="sale_id" string="Sale Number"/>
@@ -23,8 +23,8 @@
         </record>
 
         <record model="ir.ui.view" id="report_sale_mto_search_view">
-            <field name="name">report.sale.mto.search.view</field>
-            <field name="model">report.sale.mto</field>
+            <field name="name">report.sale.purchase.mto.search.view</field>
+            <field name="model">report.sale.purchase.mto</field>
             <field name="arch" type="xml">
                 <search string="Report Sale MTO">
                 </search>
@@ -34,7 +34,7 @@
         <record id="act_report_sale_mto" model="ir.actions.act_window">
             <field name="name">Report Sale MTO</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">report.sale.mto</field>
+            <field name="res_model">report.sale.purchase.mto</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree</field>
         </record>
@@ -42,7 +42,7 @@
         <record id="act_report_sale_mto_by_sale" model="ir.actions.act_window">
             <field name="name">Report Sale MTO</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">report.sale.mto</field>
+            <field name="res_model">report.sale.purchase.mto</field>
             <field name="domain">[('sale_id', '=', active_id)]</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree</field>
