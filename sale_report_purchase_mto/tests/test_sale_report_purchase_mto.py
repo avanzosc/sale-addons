@@ -43,15 +43,10 @@ class TestSaleReportPurchaseMTO(common.TransactionCase):
         self.sale_order.action_button_confirm()
 
     def test_sale_report_mto(self):
+        self.assertFalse(report_lines)
         procurements = self.procurement_model.search(
             [('group_id', '=', self.sale_order.procurement_group_id.id)])
         procurements.run()
-        report_lines = self.sale_report_mto_model.search(
-            [('sale_id', '=', self.sale_order.id)])
-        self.assertFalse(report_lines)
-        purchases = procurements.mapped('purchase_id')
-        for purchase in purchases:
-            purchase.signal_workflow('purchase_confirm')
         report_lines = self.sale_report_mto_model.search(
             [('sale_id', '=', self.sale_order.id)])
         self.assertEqual(len(report_lines), 1)
