@@ -91,8 +91,7 @@ class ReportSalePurchaseMTO(models.Model):
                 left join purchase_order_line pol on
                 pol.id=proc.purchase_line_id
                 left join purchase_order po on po.id = pol.order_id
-                left join stock_move psm on psm.purchase_line_id = pol.id and
-                psm.picking_type_code ='incoming'
+                left join stock_move psm on psm.purchase_line_id = pol.id
                 left join stock_picking psp on psp.id=psm.picking_id
             where
                 proc.purchase_line_id is not null and
