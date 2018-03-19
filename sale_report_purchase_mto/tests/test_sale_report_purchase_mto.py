@@ -43,6 +43,8 @@ class TestSaleReportPurchaseMTO(common.TransactionCase):
         self.sale_order.action_button_confirm()
 
     def test_sale_report_mto(self):
+        report_lines = self.sale_report_mto_model.search(
+            [('sale_id', '=', self.sale_order.id)])
         self.assertFalse(report_lines)
         procurements = self.procurement_model.search(
             [('group_id', '=', self.sale_order.procurement_group_id.id)])
