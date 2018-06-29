@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-21 13:22+0000\n"
-"PO-Revision-Date: 2018-06-21 13:22+0000\n"
+"POT-Creation-Date: 2018-06-29 09:58+0000\n"
+"PO-Revision-Date: 2018-06-29 09:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_report_purchase_mto
+#: view:report.sale.purchase.mto:sale_report_purchase_mto.report_sale_mto_search_view
 #: field:report.sale.purchase.mto,sale_partner_id:0
 msgid "Customer"
 msgstr "Cliente"
@@ -132,6 +133,11 @@ msgid "Reception Scheduled Date"
 msgstr "Fecha prevista de recepción"
 
 #. module: sale_report_purchase_mto
+#: model:ir.ui.menu,name:sale_report_purchase_mto.menu_report_purchase_mto
+msgid "Report Purchase MTO"
+msgstr "Análisis de compras bajo pedido"
+
+#. module: sale_report_purchase_mto
 #: model:ir.actions.act_window,name:sale_report_purchase_mto.act_report_sale_mto
 #: model:ir.actions.act_window,name:sale_report_purchase_mto.act_report_sale_mto_by_sale
 #: model:ir.ui.menu,name:sale_report_purchase_mto.menu_report_sale_mto
@@ -192,6 +198,7 @@ msgid "Sale Requested Date"
 msgstr "Fecha de solicitud de venta"
 
 #. module: sale_report_purchase_mto
+#: view:report.sale.purchase.mto:sale_report_purchase_mto.report_sale_mto_search_view
 #: field:report.sale.purchase.mto,sale_user_id:0
 msgid "Sale Staff"
 msgstr "Comercial de venta"
@@ -218,6 +225,7 @@ msgid "Shipment Scheduled Date"
 msgstr "Fecha prevista de envío"
 
 #. module: sale_report_purchase_mto
+#: view:report.sale.purchase.mto:sale_report_purchase_mto.report_sale_mto_search_view
 #: field:report.sale.purchase.mto,purchase_partner_id:0
 msgid "Supplier"
 msgstr "Proveedor"

@@ -32,10 +32,18 @@
             <field name="model">report.sale.purchase.mto</field>
             <field name="arch" type="xml">
                 <search string="Report Sale MTO">
+                    <filter string="My" domain="[('sale_user_id','=',uid)]" name="my_sale_orders_filter"/>
                     <group expand="1" string="Group By...">
+                        <filter string="Sale Staff" name="group_sale_user_id"
+                                context="{'group_by': 'sale_user_id'}" />
+                        <filter string="Customer" name="group_sale_partner_id"
+                                context="{'group_by': 'sale_partner_id'}" />
+                        <filter string="Supplier" name="purchase_partner_id"
+                                context="{'group_by': 'purchase_partner_id'}" />
+                        <separator />
                         <filter string="Sale State" name="sale_state" context="{'group_by':'sale_state'}"/>
                         <filter string="Purchase State" name="purchase_state" context="{'group_by':'purchase_state'}"/>
-                      </group>
+                    </group>
                 </search>
             </field>
         </record>
@@ -58,8 +66,12 @@
         </record>
 
         <menuitem id="menu_report_sale_mto" name="Report Sale MTO"
-                action="act_report_sale_mto"
-                parent="base.next_id_64"/>
+                  action="act_report_sale_mto"
+                  parent="base.next_id_64"/>
+
+        <menuitem id="menu_report_purchase_mto" name="Report Purchase MTO"
+                  action="act_report_sale_mto"
+                  parent="base.next_id_73"/>
 
     </data>
 </openerp>
