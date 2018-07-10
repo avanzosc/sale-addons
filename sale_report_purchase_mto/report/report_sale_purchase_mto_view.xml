@@ -8,7 +8,7 @@
                 <tree string="Report Sale MTO">
                     <field name="sale_id" string="Sale Number"/>
                     <field name="sale_effective_date" />
-                    <field name="sale_user_id"/>
+                    <field name="customer_user_id"/>
                     <field name="sale_partner_id"/>
                     <field name="sale_state"/>
                     <field name="purchase_id" string="Purchase Number"/>
@@ -21,7 +21,7 @@
                     <field name="purchase_reception_date" />
                     <field name="incoming_date"/>
                     <field name="incoming_expected_date"/>
-                    <field name="sale_incoterm_id"/>
+                    <field name="purchase_incoterm_id"/>
                     <field name="reception_date"/>
                 </tree>
             </field>
@@ -32,10 +32,10 @@
             <field name="model">report.sale.purchase.mto</field>
             <field name="arch" type="xml">
                 <search string="Report Sale MTO">
-                    <filter string="My" domain="[('sale_user_id','=',uid)]" name="my_sale_orders_filter"/>
+                    <filter string="My" domain="[('customer_user_id','=',uid)]" name="my_sale_orders_filter"/>
                     <group expand="1" string="Group By...">
-                        <filter string="Sale Staff" name="group_sale_user_id"
-                                context="{'group_by': 'sale_user_id'}" />
+                        <filter string="Salesperson" name="group_customer_user_id"
+                                context="{'group_by': 'customer_user_id'}" />
                         <filter string="Customer" name="group_sale_partner_id"
                                 context="{'group_by': 'sale_partner_id'}" />
                         <filter string="Supplier" name="purchase_partner_id"

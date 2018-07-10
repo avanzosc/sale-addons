@@ -45,6 +45,8 @@ class ReportSalePurchaseMTO(models.Model):
                                    string='Sale Staff')
     sale_partner_id = fields.Many2one(comodel_name='res.partner',
                                       string='Customer')
+    customer_user_id = fields.Many2one(
+        comodel_name='res.users', string='Salesperson')
     purchase_date = fields.Date(string='Purchase Date')
     purchase_minimum_planned_date = fields.Date(
         string='Purchase Expected Date')
@@ -108,11 +110,12 @@ class ReportSalePurchaseMTO(models.Model):
                 ssp.min_date as shipment_min_date,
                 ssp.max_date as shipment_max_date,
                 psm.date_expected as incoming_expected_date,
-                psm.date as incoming_date
+                psm.date as incoming_date,
+                p.user_id as customer_user_id
             from
-                sale_order_line sol left join sale_order so on
-                so.id=sol.order_id left join procurement_order sproc on
-                sproc.sale_line_id=sol.id
+                sale_order_line sol
+                left join sale_order so on so.id=sol.order_id
+                left join procurement_order sproc on sproc.sale_line_id=sol.id
                 left join stock_move sm on sm.procurement_id=sproc.id
                 left join stock_picking ssp on ssp.id=sm.picking_id
                 left join procurement_order proc on proc.move_dest_id = sm.id
@@ -121,6 +124,7 @@ class ReportSalePurchaseMTO(models.Model):
                 left join purchase_order po on po.id = pol.order_id
                 left join stock_move psm on psm.purchase_line_id = pol.id
                 left join stock_picking psp on psp.id=psm.picking_id
+                left join res_partner p on p.id=so.partner_id
             where
                 ((psm.id is not null and psm.move_dest_id is not null) or
                  psm.id is null) and
