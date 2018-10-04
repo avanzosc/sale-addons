@@ -1,0 +1,120 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_pricelist_limit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-05 06:44+0000\n"
+"PO-Revision-Date: 2018-10-05 08:47+0100\n"
+"Last-Translator: Daniel <danielcampos@avanzosc.es>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: sale_pricelist_limit
+#: model:ir.model.fields,field_description:sale_pricelist_limit.field_product_pricelist_limit_amount
+msgid "Amount Limit"
+msgstr "Precio limite"
+
+#. module: sale_pricelist_limit
+#: model:ir.model.fields,help:sale_pricelist_limit.field_stock_picking_stock_return_confirm
+msgid ""
+"Check this field if the carrier has confirmed the picking of the material to "
+"return"
+msgstr ""
+"Marqué este campo si el transportista ha confirmado el albarán del material "
+"a devolver."
+
+#. module: sale_pricelist_limit
+#: model:ir.model,name:sale_pricelist_limit.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sale_pricelist_limit
+#: model:ir.model.fields,field_description:sale_pricelist_limit.field_product_pricelist_has_limit
+msgid "Limited"
+msgstr "Limitado"
+
+#. module: sale_pricelist_limit
+#: model:ir.model,name:sale_pricelist_limit.model_product_pricelist
+msgid "Pricelist"
+msgstr "Tarifa"
+
+#. module: sale_pricelist_limit
+#: model:ir.model.fields,field_description:sale_pricelist_limit.field_stock_move_product_price
+msgid "Product Price"
+msgstr "Precio producto"
+
+#. module: sale_pricelist_limit
+#: model:ir.model.fields,field_description:sale_pricelist_limit.field_product_pricelist_limit_qty
+msgid "Quantity Limit"
+msgstr "Cantidad limite"
+
+#. module: sale_pricelist_limit
+#: model:ir.model,name:sale_pricelist_limit.model_sale_order
+msgid "Quotation"
+msgstr "Presupuesto"
+
+#. module: sale_pricelist_limit
+#: model:ir.model.fields,field_description:sale_pricelist_limit.field_sale_order_no_discount_price
+msgid "Real price"
+msgstr "Precio real"
+
+#. module: sale_pricelist_limit
+#: model:ir.model.fields,field_description:sale_pricelist_limit.field_res_partner_remain_amount
+#: model:ir.model.fields,field_description:sale_pricelist_limit.field_res_users_remain_amount
+msgid "Remaining amount"
+msgstr "Importe restante"
+
+#. module: sale_pricelist_limit
+#: model:ir.model.fields,field_description:sale_pricelist_limit.field_res_partner_remain_quantity
+#: model:ir.model.fields,field_description:sale_pricelist_limit.field_res_users_remain_quantity
+msgid "Remaining quantity"
+msgstr "Cantidad restante"
+
+#. module: sale_pricelist_limit
+#: code:addons/sale_pricelist_limit/models/sale.py:36
+#, python-format
+msgid "Sale amount exceeded pricelist limit by: {}"
+msgstr "El importe de venta excede el limite de la tarifa en: {}"
+
+#. module: sale_pricelist_limit
+#: code:addons/sale_pricelist_limit/models/sale.py:40
+#, python-format
+msgid "Sale quantity exceeded pricelist limit by: {}"
+msgstr "La cantidad de venta excede el limite de la tarifa en: {}"
+
+#. module: sale_pricelist_limit
+#: model:ir.model,name:sale_pricelist_limit.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de ventas"
+
+#. module: sale_pricelist_limit
+#: model:ir.model,name:sale_pricelist_limit.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de stock"
+
+#. module: sale_pricelist_limit
+#: model:ir.model.fields,field_description:sale_pricelist_limit.field_stock_picking_stock_return_confirm
+msgid "Stock return"
+msgstr "Retorno de material"
+
+#. module: sale_pricelist_limit
+#: model:ir.model.fields,help:sale_pricelist_limit.field_stock_move_product_price
+msgid ""
+"The sale price is managed from the product template. Click on the 'Variant "
+"Prices' button to set the extra attribute prices."
+msgstr ""
+"El precio de venta se gestiona desde la plantilla del producto. Haga clic en "
+"el botón 'Precios variantes' para establecer los precios adicionales de los "
+"atributos."
+
+#. module: sale_pricelist_limit
+#: model:ir.model,name:sale_pricelist_limit.model_stock_picking
+msgid "Transfer"
+msgstr "Transferir"
