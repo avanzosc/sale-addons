@@ -21,14 +21,14 @@ class SaleOrder(models.Model):
     @api.multi
     def action_confirm(self):
         for order in self:
-            if order.partner_id.property_product_pricelist.has_limit:
+            if order.pricelist_id.has_limit:
                 limits = order.partner_id.check_actual_limits()
                 limit_credit = (
-                    order.partner_id.property_product_pricelist.limit_amount -
+                    order.pricelist_id.limit_amount -
                     (order.no_discount_price + limits['actual_amount']))
                 total_qty = sum(order.order_line.mapped('product_uom_qty'))
                 limit_qty = (
-                    order.partner_id.property_product_pricelist.limit_qty -
+                    order.pricelist_id.limit_qty -
                     (total_qty + limits['actual_qty']))
                 if limit_credit < 0:
                     raise exceptions.Warning(

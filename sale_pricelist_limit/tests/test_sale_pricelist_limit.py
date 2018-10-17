@@ -25,6 +25,14 @@ class TestSalePricelistLimit(common.TransactionCase):
             {'name': 'Test partner3',
              'ref': 'Test ref3',
              })
+        self.test_pricelist = self.partner1.property_product_pricelist.copy(
+            {'name': 'Test Pricelist',
+             'has_limit': True,
+             'limit_amount': 200,
+             'limit_qty': 4})
+        self.partner1.property_product_pricelist = self.test_pricelist
+        self.partner2.property_product_pricelist = self.test_pricelist
+        self.partner3.property_product_pricelist = self.test_pricelist
         self.product = self.env.ref('product.product_product_2')
         self.product2 = self.env.ref('product.product_product_4')
         self.product3 = product_obj.create(
@@ -46,14 +54,6 @@ class TestSalePricelistLimit(common.TransactionCase):
             'order_line': [(0, 0, {'product_id': self.product3.id,
                                    'product_uom_qty': 2})],
             })
-        self.test_pricelist = self.partner1.property_product_pricelist.copy(
-            {'name': 'Test Pricelist',
-             'has_limit': True,
-             'limit_amount': 200,
-             'limit_qty': 4})
-        self.partner1.property_product_pricelist = self.test_pricelist
-        self.partner2.property_product_pricelist = self.test_pricelist
-        self.partner3.property_product_pricelist = self.test_pricelist
 
     def test_sale_pricelist_limit(self):
         with self.assertRaises(UserError):
