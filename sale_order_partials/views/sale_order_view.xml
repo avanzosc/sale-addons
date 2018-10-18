@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+    <record model="ir.ui.view" id="upgradable_sale_order_search">
+        <field name="name">upgradable.sale.order.search</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="parent_order_id"/>
+            </field>
+            <filter string="Done" position="after">
+                <filter string="Upgrade" domain="[('upgrade','=',True)]"
+                        help="Upgradable sale orders"/>
+            </filter>
+            <filter string="Order Month" position="after">
+                <filter string="Grouped partials" domain="[]"
+                        context="{'group_by':'parent_order_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="upgradable_sale_order_form">
+        <field name="name">upgradable.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="child_order_ids" invisible="True"/>
+                <field name="parent_order_id" readonly="True"
+                       attrs="{'invisible': [('parent_order_id', '=', False)]}"/>
+            </field>
+            <xpath expr="//notebook[1]" position="before">
+                <group colspan="2">
+                    <field name="upgrade"
+                           attrs="{'invisible': [('parent_order_id', '!=', False)]}"/>
+                    <field name="served_quantity" attrs="{'invisible': [('upgrade', '=', False)]}"/>
+                    <field name="not_served_quantity" attrs="{'invisible': [('upgrade', '=', False)]}"/>
+                    <field name="served_quantity_percentage"
+                           attrs="{'invisible': [('upgrade', '=', False)]}"
+                           widget="progressbar"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale.sale_order_buttons">
+        <field name="name">sale.order.buttons</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <h1 position="after">
+                <div class="oe_right oe_button_box" name="buttons">
+                </div>
+            </h1>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="upgradable_sale_order_button_form">
+        <field name="name">upgradable.sale.order.button.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_buttons" />
+        <field name="arch" type="xml">
+            <div name="buttons" position="inside">
+                <button class="oe_stat_button"
+                        name="action_open_partial_sales"
+                        icon="fa-archive" type="object"
+                        string="Partial sales"
+                        attrs="{'invisible': [('upgrade', '=', False)]}">
+                </button>
+            </div>
+        </field>
+    </record>
+
+
+
+    <record model="ir.ui.view" id="upgradable_sale_order_tree">
+        <field name="name">upgradable.sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="upgrade" />
+            </field>
+        </field>
+    </record>
+
+    <!--<record  id="copy_upgrade_order" model="ir.actions.server">-->
+            <!--<field name="name">Copy upgradable order action</field>-->
+            <!--<field name="model_id" ref="model_sale_order"/>-->
+            <!--<field name="state">code</field>-->
+            <!--<field name="condition">True</field>-->
+            <!--<field name="code">if object: self.browse(cr,uid,context.get('active_ids', [])).action_create_order_from_upgrade()</field>-->
+        <!--</record>-->
+        <!--<record id="copy_upgrade_order_values" model="ir.values">-->
+            <!--<field name="name">Copy upgradable order action value</field>-->
+            <!--<field name="model">sale.order</field>-->
+            <!--<field name="key" >action</field>-->
+            <!--<field name="key2">client_action_multi</field>-->
+            <!--<field name="value" eval="'ir.actions.server,%d'%copy_upgrade_order"/>-->
+        <!--</record>-->
+    </data>
+</openerp>
