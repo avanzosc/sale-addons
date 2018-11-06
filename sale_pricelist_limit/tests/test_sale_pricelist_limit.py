@@ -46,29 +46,35 @@ class TestSalePricelistLimit(common.TransactionCase):
                                    'product_uom_qty': 5})],
             })
         self.sale_order2 = self.sale_order_model.create({
+            'partner_id': self.partner1.id,
+            'order_line': [(0, 0, {'product_id': self.product3.id,
+                                   'product_uom_qty': 5})],
+            })
+        self.sale_order3 = self.sale_order_model.create({
             'partner_id': self.partner3.id,
             'order_line': [(0, 0, {'product_id': self.product2.id})],
             })
-        self.sale_order3 = self.sale_order_model.create({
+        self.sale_order4 = self.sale_order_model.create({
             'partner_id': self.partner3.id,
             'order_line': [(0, 0, {'product_id': self.product3.id,
                                    'product_uom_qty': 2})],
             })
 
     def test_sale_pricelist_limit(self):
+        self.sale_order1.action_confirm()
         with self.assertRaises(UserError):
             # Quantity exceeded
-            self.sale_order1.action_confirm()
+            self.sale_order2.action_confirm()
         with self.assertRaises(UserError):
             # Amount exceeded
-            self.sale_order2.action_confirm()
+            self.sale_order3.action_confirm()
 
     def test_compute_remaining_credit(self):
         self.assertEqual(self.partner3.remain_quantity, 4,
                          'Error, remain quantity does not match ')
-        self.sale_order3.action_confirm()
-        picking = self.sale_order3.action_view_delivery()
-        picking = self.sale_order3.picking_ids[0]
+        self.sale_order4.action_confirm()
+        picking = self.sale_order4.action_view_delivery()
+        picking = self.sale_order4.picking_ids[0]
         picking.action_confirm()
         self.partner3._compute_remaining_credit()
         self.assertEqual(self.partner3.remain_quantity, 2,

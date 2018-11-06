@@ -13,7 +13,8 @@ class SaleOrder(models.Model):
     def _compute_real_price(self):
         for order in self:
             amount = 0
-            for line in order.order_line:
+            for line in order.order_line.filtered(
+                    lambda x: x.product_id.product_tmpl_id.type != 'service'):
                 amount = amount + \
                     line.product_id.lst_price * line.product_uom_qty
             order.no_discount_price = amount
@@ -26,7 +27,9 @@ class SaleOrder(models.Model):
                 limit_credit = (
                     order.pricelist_id.limit_amount -
                     (order.no_discount_price + limits['actual_amount']))
-                total_qty = sum(order.order_line.mapped('product_uom_qty'))
+                total_qty = sum(order.order_line.filtered(
+                    lambda x: x.product_id.product_tmpl_id.type != 'service').
+                    mapped('product_uom_qty'))
                 limit_qty = (
                     order.pricelist_id.limit_qty -
                     (total_qty + limits['actual_qty']))
