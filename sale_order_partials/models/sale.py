@@ -58,12 +58,17 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_create_order_from_upgrade(self, qty=None):
+        param_obj = self.env['sale.config.settings']
+        sale_type = param_obj._get_parameter('sale.type.id').value
         for record in self:
-            if record.upgrade:
-                new_record = record.copy({'parent_order_id': record.id})
+            if record.upgrade and record.invoiced:
+                new_record = record.copy({'parent_order_id': record.id,
+                                          'type_id': int(sale_type)})
                 if qty:
                     new_record.order_line[0].product_uom_qty = qty
+            elif not record.upgrade:
+                raise exceptions.Warning(
+                    _("The order %s is not upgradable. Edit order and check "
+                      "'Upgrade' field") % record.name)
             else:
-                raise exceptions.Warning(_("The order %s is not upgradable."
-                                         "Edit order and check 'Upgrade'field")
-                                         % record.name)
+                raise exceptions.Warning(_("There are unpaid invoices"))

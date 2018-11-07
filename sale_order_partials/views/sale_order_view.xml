@@ -17,6 +17,8 @@
             <filter string="Order Month" position="after">
                 <filter string="Grouped partials" domain="[]"
                         context="{'group_by':'parent_order_id'}"/>
+                <filter string="Sale type" domain="[]"
+                        context="{'group_by':'type_id'}"/>
             </filter>
         </field>
     </record>
@@ -82,23 +84,14 @@
         <field name="arch" type="xml">
             <field name="state" position="before">
                 <field name="upgrade" />
+                <field name="served_quantity"/>
+                <field name="not_served_quantity"/>
+                <field name="served_quantity_percentage"
+                       widget="progressbar"/>
             </field>
         </field>
     </record>
 
-    <!--<record  id="copy_upgrade_order" model="ir.actions.server">-->
-            <!--<field name="name">Copy upgradable order action</field>-->
-            <!--<field name="model_id" ref="model_sale_order"/>-->
-            <!--<field name="state">code</field>-->
-            <!--<field name="condition">True</field>-->
-            <!--<field name="code">if object: self.browse(cr,uid,context.get('active_ids', [])).action_create_order_from_upgrade()</field>-->
-        <!--</record>-->
-        <!--<record id="copy_upgrade_order_values" model="ir.values">-->
-            <!--<field name="name">Copy upgradable order action value</field>-->
-            <!--<field name="model">sale.order</field>-->
-            <!--<field name="key" >action</field>-->
-            <!--<field name="key2">client_action_multi</field>-->
-            <!--<field name="value" eval="'ir.actions.server,%d'%copy_upgrade_order"/>-->
-        <!--</record>-->
+
     </data>
 </openerp>

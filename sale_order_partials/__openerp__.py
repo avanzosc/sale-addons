@@ -8,6 +8,7 @@
     "depends": [
         "sale",
         "stock",
+        "sale_order_type"
     ],
     "author": "OdooMRP team, "
               "AvanzOSC, "
@@ -20,6 +21,7 @@
     "category": "",
     "summary": "",
     "data": ["views/sale_order_view.xml",
+             "views/res_config_view.xml",
              "wizard/duplicate_upgradable_sale_view.xml",
     ],
     "installable": True,
