@@ -65,7 +65,8 @@ class SaleOrder(models.Model):
                 new_record = record.copy({'parent_order_id': record.id,
                                           'type_id': int(sale_type)})
                 if qty:
-                    new_record.order_line[0].product_uom_qty = qty
+                    new_record.order_line[0].write({'product_uom_qty': qty,
+                                                    'discount': 100.})
             elif not record.upgrade:
                 raise exceptions.Warning(
                     _("The order %s is not upgradable. Edit order and check "
