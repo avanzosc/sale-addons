@@ -36,14 +36,16 @@ class ResPartner(models.Model):
             ('location_dest_id', 'not in', internal_ids),
             ('state', '!=', 'cancel'),
             ('sale_line_id', '!=', False)]).filtered(
-            lambda x: x.sale_line_id.order_id.pricelist_id.has_limit)
+            lambda x: x.sale_line_id.order_id.pricelist_id.has_limit and
+            x.product_id.product_tmpl_id.type != 'service')
         negative_amount = sum([x.product_price for x in negative_moves])
         negative_qty = sum([x.product_uom_qty for x in negative_moves])
         positive_moves = move_obj.search([
             ('partner_id', '=', self.id),
             ('location_id', 'not in', internal_ids),
             ('location_dest_id', 'in', internal_ids),
-            ('state', '!=', 'cancel')])
+            ('state', '!=', 'cancel')]).filtered(
+                lambda x: x.product_id.product_tmpl_id.type != 'service')
         positive_amount = sum([x.product_price for x in positive_moves
                                if x.picking_id.stock_return_confirm])
         positive_qty = sum([x.product_uom_qty for x in positive_moves
