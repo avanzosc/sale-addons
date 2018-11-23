@@ -8,7 +8,7 @@ from openerp.addons import decimal_precision as dp
 class DuplicateUpgradableSale(models.TransientModel):
     _name = "duplicate.upgradable.sale"
 
-    reserved_quantity = fields.Float(digits=dp.get_precision(
+    in_process_quantity = fields.Float(digits=dp.get_precision(
         'Product Unit of Measure'))
     not_reserved_quantity = fields.Float(digits=dp.get_precision(
         'Product Unit of Measure'))
@@ -22,11 +22,10 @@ class DuplicateUpgradableSale(models.TransientModel):
         order.ensure_one()
         if not order.upgrade:
             raise exceptions.Warning(_("Order not upgradable"))
-        reserved_qty = sum(order.mapped(
-            "child_order_ids.order_line.product_uom_qty"))
+        reserved_qty = order.reserved_child_qty()
         total = order.order_line[0].product_uom_qty
         res.update(
-            {'reserved_quantity': reserved_qty,
+            {'in_process_quantity': reserved_qty,
              'not_reserved_quantity': total - reserved_qty}
         )
         return res

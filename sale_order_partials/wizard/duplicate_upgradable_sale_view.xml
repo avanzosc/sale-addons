@@ -7,7 +7,7 @@
                     <field name="arch" type="xml">
                         <form string="Duplicate upgradable order">
                             <group>
-                                <field name="reserved_quantity" readonly="1"/>
+                                <field name="in_process_quantity" readonly="1"/>
                                 <field name="not_reserved_quantity" readonly="1"/>
                                 <field name="quantity" />
                             </group>

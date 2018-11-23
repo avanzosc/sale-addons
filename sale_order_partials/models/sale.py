@@ -17,6 +17,8 @@ class SaleOrder(models.Model):
                                    compute="_compute_line_quantities")
     not_served_quantity = fields.Float(digits=dp.get_precision(
         'Product Unit of Measure'), compute="_compute_line_quantities")
+    reserved_qty = fields.Float(digits=dp.get_precision(
+        'Product Unit of Measure'), compute="_compute_line_quantities")
     served_quantity_percentage = fields.Float(digits=dp.get_precision(
         'Product Unit of Measure'), compute="_compute_line_quantities")
     upgrade = fields.Boolean(string="Upgrade", copy=False)
@@ -36,10 +38,11 @@ class SaleOrder(models.Model):
                 total = record.order_line[0].product_uom_qty
                 moves = record.child_order_ids.mapped(
                     'picking_ids.move_lines').filtered(
-                        lambda x: x.state == 'confirmed')
+                        lambda x: x.state == 'done')
                 served_qty = sum(moves.mapped("product_uom_qty"))
                 not_served_qty = total - served_qty
                 record.served_quantity = served_qty
+                record.reserved_qty = record.reserved_child_qty() - served_qty
                 record.not_served_quantity = not_served_qty
                 record.served_quantity_percentage = (
                         served_qty / total * 100)
@@ -73,3 +76,12 @@ class SaleOrder(models.Model):
                       "'Upgrade' field") % record.name)
             else:
                 raise exceptions.Warning(_("There are unpaid invoices"))
+
+    @api.multi
+    def reserved_child_qty(self):
+        self.ensure_one()
+        not_canceled_children = self.child_order_ids.filtered(
+            lambda x: x.state != "cancel")
+        reserved_qty = sum(not_canceled_children.mapped(
+            "order_line.product_uom_qty"))
+        return reserved_qty

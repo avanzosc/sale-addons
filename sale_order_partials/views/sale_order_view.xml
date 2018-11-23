@@ -38,7 +38,16 @@
                     <field name="upgrade"
                            attrs="{'invisible': [('parent_order_id', '!=', False)]}"/>
                     <field name="served_quantity" attrs="{'invisible': [('upgrade', '=', False)]}"/>
-                    <field name="not_served_quantity" attrs="{'invisible': [('upgrade', '=', False)]}"/>
+                    <label for="not_served_quantity"/>
+                    <div>
+                        <field name="not_served_quantity"
+                               attrs="{'invisible': [('upgrade', '=', False)]}"
+                               class="oe_inline"/>
+                        (<field name="reserved_qty"
+                               attrs="{'invisible': [('upgrade', '=', False)]}"
+                               class="oe_inline"
+                               />)
+                    </div>
                     <field name="served_quantity_percentage"
                            attrs="{'invisible': [('upgrade', '=', False)]}"
                            widget="progressbar"/>
@@ -85,12 +94,30 @@
             <field name="state" position="before">
                 <field name="upgrade" />
                 <field name="served_quantity"/>
+                <field name="reserved_qty"/>
                 <field name="not_served_quantity"/>
                 <field name="served_quantity_percentage"
                        widget="progressbar"/>
             </field>
         </field>
     </record>
+
+    <record model="ir.ui.view" id="tf_view_picking_search">
+        <field name="name">tf.view.picking.search</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+                <filter name="backorder" position="after">
+                    <filter string="Delivery Day" domain="[]"
+                            context="{'group_by': 'tf_fecha_entrega:year'}" />
+                    <filter string="Delivery Day" domain="[]"
+                            context="{'group_by': 'tf_fecha_entrega:month'}" />
+                    <filter string="Day" domain="[]"
+                            context="{'group_by': 'tf_fecha_entrega:day'}" />
+                </filter>
+        </field>
+    </record>
+
 
 
     </data>
