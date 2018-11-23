@@ -38,7 +38,7 @@
                     <field name="upgrade"
                            attrs="{'invisible': [('parent_order_id', '!=', False)]}"/>
                     <field name="served_quantity" attrs="{'invisible': [('upgrade', '=', False)]}"/>
-                    <label for="not_served_quantity"/>
+                    <label for="not_served_quantity" attrs="{'invisible': [('upgrade', '=', False)]}"/>
                     <div>
                         <field name="not_served_quantity"
                                attrs="{'invisible': [('upgrade', '=', False)]}"
