@@ -45,7 +45,7 @@ class SaleOrder(models.Model):
                 record.reserved_qty = record.reserved_child_qty() - served_qty
                 record.not_served_quantity = not_served_qty
                 record.served_quantity_percentage = (
-                        served_qty / total * 100)
+                    served_qty / total * 100)
 
     @api.constrains("order_line", "upgrade")
     def check_sale_upgradable_has_one_line(self):
@@ -53,16 +53,11 @@ class SaleOrder(models.Model):
             raise exceptions.Warning('Sale upgrades can only have one '
                                      'order line')
 
-    @api.onchange("upgrade")
-    def onchange_upgrade(self):
-        if self.upgrade:
-            #TODO make to stock bezela markau
-            pass
-
     @api.multi
     def action_create_order_from_upgrade(self, qty=None):
         param_obj = self.env['sale.config.settings']
-        sale_type = param_obj._get_parameter('sale.type.id').value
+        sale_type_param = param_obj._get_parameter('sale.type.id')
+        sale_type = sale_type_param and sale_type_param.value
         for record in self:
             if record.upgrade and record.invoiced:
                 new_record = record.copy({'parent_order_id': record.id,
