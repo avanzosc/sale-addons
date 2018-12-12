@@ -34,6 +34,11 @@ class AccountAnalyticAccount(models.Model):
                     lambda x: x.price_unit):
                 line.price_unit = (line.price_unit +
                                    (line.price_unit * increase))
+        if (self.recurring_rule_type == 'monthly' and
+                self.recurring_interval > 1):
+            self.recurring_next_date = (
+                fields.Date.from_string(self.date_start) +
+                relativedelta(months=self.recurring_interval - 1))
         self.set_open()
         if origin_sale:
             self._duplicate_sale_order_from_contract(origin_sale,
