@@ -25,7 +25,7 @@ class TestSaleOrderRenovateContract(common.TransactionCase):
                         'date': '2025-12-31',
                         'type': 'contract',
                         'recurring_invoices': True,
-                        'recurring_interval': 1,
+                        'recurring_interval': 3,
                         'recurring_rule_type': 'monthly',
                         'recurring_next_date': '2025-01-15',
                         'recurring_invoice_line_ids': [(0, 0, line_vals)]}
@@ -83,6 +83,9 @@ class TestSaleOrderRenovateContract(common.TransactionCase):
         self.assertEqual(
             account.date, '2026-12-31',
             'Error in date end of renovate contract')
+        self.assertEqual(
+            account.recurring_next_date, '2026-03-01',
+            'Error in recurring next date of renovate contract')
         cond = [('project_id', '=', account.id)]
         sale = self.sale_model.search(cond, limit=1)
         self.assertNotEqual(len([sale]), 0, 'New sale not found')
