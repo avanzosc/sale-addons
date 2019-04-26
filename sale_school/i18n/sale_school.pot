@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_school
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-25 10:11+0000\n"
+"PO-Revision-Date: 2019-04-25 10:11+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line__originator_id
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_line_view_search
+msgid "Originator"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line__payer_id
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__payer_id
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_line_view_search
+msgid "Payer"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_sale_order_line_payer
+msgid "Payer per Sale Line"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line__payer_ids
+msgid "Payers"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__pay_percentage
+msgid "Percentage"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__line_id
+msgid "Sale Line"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line__total_percentage
+msgid "Total Percentage"
+msgstr ""
+

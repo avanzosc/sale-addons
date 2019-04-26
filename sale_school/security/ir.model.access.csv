@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_line_payer_all,sale_order_line_payer all,model_sale_order_line_payer,,1,0,0,0
+access_sale_order_line_payer_manager,sale_order_line_payer manager,model_sale_order_line_payer,sales_team.group_sale_salesman,1,1,1,1
+
+
