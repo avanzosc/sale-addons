@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="crm_lead_future_student_tree_view_inh_sale_school" model="ir.ui.view">
+        <field name="model">crm.lead.future.student</field>
+        <field name="inherit_id" ref="crm_school.crm_lead_future_student_tree_view" />
+        <field name="arch" type="xml">
+            <field name="academic_year_id" position="after">
+                <field name="sale_order_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="crm_lead_future_student_search_view_inh_sale_school" model="ir.ui.view">
+        <field name="model">crm.lead.future.student</field>
+        <field name="inherit_id" ref="crm_school.crm_lead_future_student_search_view" />
+        <field name="arch" type="xml">
+            <field name="academic_year_id" position="after">
+                 <field name="sale_order_id" />
+                  <separator/>
+                  <filter string="With sale order" name="with_sale_order"
+                          domain="[('sale_order_id', '!=', False)]"/>
+                  <filter string="Without sale order" name="without_sale_order"
+                          domain="[('sale_order_id', '=', False)]"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="crm_lead_future_student_form_view_inh_sale_school" model="ir.ui.view">
+        <field name="model">crm.lead.future.student</field>
+        <field name="inherit_id" ref="crm_school.crm_lead_future_student_form_view" />
+        <field name="arch" type="xml">
+            <field name="year_birth" position="after">
+                <field name="sale_order_id" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

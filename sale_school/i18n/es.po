@@ -93,3 +93,36 @@ msgstr "Línea de pedido de venta"
 msgid "Total Percentage"
 msgstr "Porcentaje total"
 
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order__child_id
+#: model_terms:ir.ui.view,arch_db:sale_school.view_sales_order_filter_inh_sale_school
+msgid "Child"
+msgstr "Hijo"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order__school_id
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_template__school_id
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_template_view_search_inh_sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.view_sales_order_filter_inh_sale_school
+msgid "School"
+msgstr "Colegio"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order__course_id
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_template__course_id
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_template_view_search_inh_sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.view_sales_order_filter_inh_sale_school
+msgid "Initial school course"
+msgstr "Curso escolar inicial"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order__academic_year_id
+#: model_terms:ir.ui.view,arch_db:sale_school.view_sales_order_filter_inh_sale_school
+msgid "Academic year"
+msgstr "Año académico"
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_sale_order
+msgid "Sale Order"
+msgstr "Pedido de venta"
+

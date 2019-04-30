@@ -29,6 +29,68 @@
                     </field>
                 </group>
             </xpath>
+            <notebook position="before">
+                <group>
+                    <group>
+                        <field name="child_id" />
+                        <field name="course_id" />
+                        <field name="opportunity_id" />
+                    </group>
+                    <group>
+                        <field name="school_id" />
+                        <field name="academic_year_id" />
+                    </group>
+                </group>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="view_order_tree_inh_sale_school" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="opportunity_id" />
+                <field name="child_id" />
+                <field name="course_id" />
+                <field name="school_id" />
+                <field name="academic_year_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_quotation_inh_sale_school" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="opportunity_id" />
+                <field name="child_id" />
+                <field name="course_id" />
+                <field name="school_id" />
+                <field name="academic_year_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter_inh_sale_school" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="analytic_account_id" position="after">
+                <field name="opportunity_id" />
+                <field name="child_id" />
+                <field name="course_id" />
+                <field name="school_id" />
+                <field name="academic_year_id" />
+            </field>
+            <filter name="customer" position="after">
+                <filter name="opportunity_id" string="Opportunity" domain="[]" context="{'group_by':'opportunity_id'}"/>
+                <filter name="child_id" string="Child" domain="[]" context="{'group_by':'child_id'}"/>
+                <filter name="course_id" string="Initial school course" domain="[]" context="{'group_by':'course_id'}"/>
+                <filter name="school_id" string="School" domain="[]" context="{'group_by':'school_id'}"/>
+                <filter name="academic_year_id" string="Academic year" domain="[]" context="{'group_by':'academic_year_id'}"/>
+            </filter>
         </field>
     </record>
 
@@ -47,6 +109,7 @@
                         <field name="pay_percentage" />
                     </tree>
                 </field>
+                <field name="total_percentage" />
             </field>
         </field>
     </record>
@@ -58,6 +121,7 @@
             <field name="name" position="after">
                 <field name="originator_id" />
                 <field name="payer_ids" />
+                <field name="total_percentage" />
             </field>
         </field>
     </record>
