@@ -1,0 +1,125 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_crm_school
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-03 07:12+0000\n"
+"PO-Revision-Date: 2019-05-03 07:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__academic_year_id
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
+msgid "Academic year"
+msgstr "Año académico"
+
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__child_id
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
+msgid "Child"
+msgstr "Hijo"
+
+#. module: sale_crm_school
+#: model:ir.model,name:sale_crm_school.model_crm_lead_future_student
+msgid "Future student from leads"
+msgstr "Futuro estudiante desde iniciativa"
+
+#. module: sale_crm_school
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.product_category_search_view_inh_sale_crm_school
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.sale_order_template_view_search_inh_sale_crm_school
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__course_id
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_template__course_id
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.sale_order_template_view_search_inh_sale_crm_school
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
+msgid "Initial school course"
+msgstr "Curso escolar inicial"
+
+#. module: sale_crm_school
+#: model:ir.model,name:sale_crm_school.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Iniciativa/Oportunidad"
+
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__opportunity_id
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
+msgid "Opportunity"
+msgstr "Oportunidad"
+
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_product_category__originator_id
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.product_category_search_view_inh_sale_crm_school
+msgid "Originator"
+msgstr "Ordenante"
+
+#. module: sale_crm_school
+#: model:ir.model,name:sale_crm_school.model_product_category
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: sale_crm_school
+#: model:ir.model,name:sale_crm_school.model_sale_order_template
+msgid "Quotation Template"
+msgstr "Plantilla de presupuesto"
+
+#. module: sale_crm_school
+#: model:ir.model,name:sale_crm_school.model_sale_order
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_crm_lead_future_student__sale_order_id
+msgid "Sale order"
+msgstr "Pedido de venta"
+
+#. module: sale_crm_school
+#: code:addons/sale_crm_school/models/crm_lead.py:34
+#, python-format
+msgid "Sale orders"
+msgstr "Pedidos de venta"
+
+#. module: sale_crm_school
+#: model:ir.model,name:sale_crm_school.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__school_id
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_template__school_id
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.sale_order_template_view_search_inh_sale_crm_school
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
+msgid "School"
+msgstr "Colegio"
+
+#. module: sale_crm_school
+#: code:addons/sale_crm_school/models/sale_order.py:31
+#, python-format
+msgid "The payers do not add 100%"
+msgstr "Los pagadores no suman el 100%"
+
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_line__total_percentage
+msgid "Total Percentage"
+msgstr "Porcentaje total"
+
+#. module: sale_crm_school
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.crm_lead_future_student_search_view_inh_sale_crm_school
+msgid "With sale order"
+msgstr "Con pedido de venta"
+
+#. module: sale_crm_school
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.crm_lead_future_student_search_view_inh_sale_crm_school
+msgid "Without sale order"
+msgstr "Sin pedido de venta"
+

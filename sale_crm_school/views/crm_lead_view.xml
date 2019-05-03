@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="crm_case_form_view_oppor_inh_sale_crm_school" model="ir.ui.view">
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[1]" position="attributes">
+                <attribute name="type">object</attribute>
+                <attribute name="name">create_sale_order_for_student</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_case_form_view_oppor_inh2_sale_crm_school" model="ir.ui.view">
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm_school.crm_case_form_view_oppor_inh_crm_school" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='future_student_ids']/tree/field[@name='academic_year_id']" position="after">
+                <field name="sale_order_id" />
+            </xpath>
+            <xpath expr="//field[@name='future_student_ids']/form//field[@name='year_birth']" position="after">
+                <field name="sale_order_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_case_form_view_leads_inh_sale_crm_school" model="ir.ui.view">
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm_school.crm_case_form_view_leads_inh_crm_school" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='future_student_ids']/tree/field[@name='academic_year_id']" position="after">
+                <field name="sale_order_id" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
