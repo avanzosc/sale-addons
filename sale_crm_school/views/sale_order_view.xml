@@ -9,7 +9,6 @@
                     <group>
                         <field name="child_id" />
                         <field name="course_id" />
-                        <field name="opportunity_id" />
                     </group>
                     <group>
                         <field name="school_id" />

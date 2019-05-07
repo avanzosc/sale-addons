@@ -8,8 +8,6 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    opportunity_id = fields.Many2one(
-        comodel_name='crm.lead', string='Opportunity')
     child_id = fields.Many2one(
         comodel_name='res.partner', string='Child',
         domain=[('educational_category', '=', 'student')])
