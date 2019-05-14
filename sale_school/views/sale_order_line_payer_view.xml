@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+        <record id="sale_order_line_payer_tree_view" model="ir.ui.view">
+            <field name="name">sale.order.line.payer.tree.view</field>
+            <field name="model">sale.order.line.payer</field>
+            <field name="arch" type="xml">
+                <tree string="Payers" editable="top">
+                    <field name="line_id" invisible="1"/>
+                    <field name="payer_id" />
+                    <field name="pay_percentage" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="sale_order_line_payer_form_view" model="ir.ui.view">
+            <field name="name">sale.order.line.payer.form.view</field>
+            <field name="model">sale.order.line.payer</field>
+            <field name="arch" type="xml">
+                <form string="Payer">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="line_id" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="payer_id" />
+                            </group>
+                            <group>
+                                <field name="pay_percentage" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+</odoo>
