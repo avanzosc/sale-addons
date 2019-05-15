@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="sale_order_view_form" model="ir.ui.view">
+    <record id="view_order_form" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/tree/field[@name='name']"
                    position="after">
-                <field name="originator_id" />
+                <field name="originator_id" readonly="1"/>
                 <field name="payer_ids" widget="many2many_tags"
                        context="{'default_line_id': active_id}" />
                 <field name="total_percentage" invisible="True" />
@@ -18,15 +18,9 @@
             <xpath expr="//field[@name='order_line']/form//field[@name='name']"
                    position="after">
                 <group>
-                    <field name="originator_id" />
+                    <field name="originator_id" readonly="1"/>
                     <field name="payer_ids"
-                           context="{'default_line_id': active_id}">
-                        <tree editable="top">
-                            <field name="line_id" invisible="True" />
-                            <field name="payer_id" />
-                            <field name="pay_percentage" />
-                        </tree>
-                    </field>
+                           context="{'default_line_id': active_id}" />
                 </group>
             </xpath>
         </field>
@@ -38,15 +32,9 @@
                ref="sale.sale_order_line_view_form_readonly" />
         <field name="arch" type="xml">
             <field name="order_partner_id" position="after">
-                <field name="originator_id" />
+                <field name="originator_id" readonly="1"/>
                 <field name="payer_ids"
-                       context="{'default_line_id': active_id}">
-                    <tree editable="top">
-                        <field name="line_id" invisible="True" />
-                        <field name="payer_id" />
-                        <field name="pay_percentage" />
-                    </tree>
-                </field>
+                       context="{'default_line_id': active_id}" />
             </field>
         </field>
     </record>
@@ -56,13 +44,13 @@
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="originator_id" />
+                <field name="originator_id" readonly="1"/>
                 <field name="payer_ids" />
             </field>
         </field>
     </record>
 
-    <record id="sale_order_line_view_search" model="ir.ui.view">
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
         <field name="arch" type="xml">

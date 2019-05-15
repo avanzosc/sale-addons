@@ -8,7 +8,8 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     originator_id = fields.Many2one(
-        comodel_name='res.company', string='Originator')
+        comodel_name='res.company', string='Originator',
+        related='product_id.company_id', store=True)
     payer_id = fields.Many2one(
         comodel_name='res.partner', string='Payer')
     payer_ids = fields.One2many(

@@ -3,7 +3,7 @@
 
 {
     "name": "Sales for School",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.1.0",
     "category": "Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -14,6 +14,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/sale_order_view.xml",
+        "views/sale_order_line_payer_view.xml"
     ],
     "installable": True,
 }
