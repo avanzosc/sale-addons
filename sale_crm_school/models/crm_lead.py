@@ -40,22 +40,15 @@ class CrmLead(models.Model):
 
     @api.multi
     def _get_vals_for_sale_order(self, future):
-        template_obj = self.env['sale.order.template']
         vals = {'partner_id': self.partner_id.id,
                 'opportunity_id': self.id,
                 'child_id': future.child_id.id,
                 'course_id': future.course_id.id,
-                'school_id': future.school_id.id}
+                'school_id': future.school_id.id,
+                'sale_order_template_id':
+                future.course_id.sale_order_template_id.id}
         if future.academic_year_id:
             vals['academic_year_id'] = future.academic_year_id.id
-        cond = [('course_id', '=', future.course_id.id),
-                ('school_id', '=', future.school_id.id)]
-        template = template_obj.search(cond, limit=1)
-        if not template:
-            cond = [('course_id', '=', future.course_id.id)]
-            template = template_obj.search(cond, limit=1)
-        if template:
-            vals['sale_order_template_id'] = template.id
         return vals
 
     @api.multi

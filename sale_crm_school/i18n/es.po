@@ -123,3 +123,8 @@ msgstr "Con pedido de venta"
 msgid "Without sale order"
 msgstr "Sin pedido de venta"
 
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_education_course__sale_order_template_id
+msgid "Quotation template"
+msgstr "Plantilla de presupuesto"
+
