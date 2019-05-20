@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_course_view_tree_inh_sale_crm_school" model="ir.ui.view">
+        <field name="model">education.course</field>
+        <field name="inherit_id" ref="education.education_course_view_tree" />
+        <field name="arch" type="xml">
+            <field name="description" position="after">
+                <field name="sale_order_template_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="education_course_view_form_inh_sale_crm_school" model="ir.ui.view">
+        <field name="model">education.course</field>
+        <field name="inherit_id" ref="education.education_course_view_form" />
+        <field name="arch" type="xml">
+            <field name="description" position="after">
+                <field name="sale_order_template_id" required="1" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

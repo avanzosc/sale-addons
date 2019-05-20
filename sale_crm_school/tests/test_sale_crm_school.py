@@ -46,10 +46,12 @@ class TestSaleCrmSchool(TransactionCase):
             'plan_id': self.education_plan.id}
         self.education_level = self.education_level_model.create(
             education_level_vals)
+        sale_template = self.sale_template_model.search([], limit=1)
         education_course_vals = {
             'education_code': 'C1',
             'level_id': self.education_level.id,
-            'description': 'Course 1'}
+            'description': 'Course 1',
+            'sale_order_template_id': sale_template.id}
         self.education_course = self.education_course_model.create(
             education_course_vals)
         date_from = "{}-01-01".format(
@@ -78,8 +80,6 @@ class TestSaleCrmSchool(TransactionCase):
             'partner_id': self.family.id,
             'future_student_ids': [(0, 0, future_student_vals)]}
         self.lead = self.lead_model.create(lead_vals)
-        sale_template = self.sale_template_model.search([], limit=1)
-        sale_template.course_id = self.education_course.id
         p = sale_template.sale_order_template_line_ids[0].product_id
         p.originator_id = 1
         family_vals = {
