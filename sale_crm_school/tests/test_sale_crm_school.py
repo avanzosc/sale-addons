@@ -50,10 +50,10 @@ class TestSaleCrmSchool(TransactionCase):
         education_course_vals = {
             'education_code': 'C1',
             'level_id': self.education_level.id,
-            'description': 'Course 1',
-            'sale_order_template_id': sale_template.id}
+            'description': 'Course 1'}
         self.education_course = self.education_course_model.create(
             education_course_vals)
+        sale_template.course_id = self.education_course.id
         date_from = "{}-01-01".format(
             fields.Date.from_string(fields.Date.today()).year)
         date_from = fields.Date.from_string(date_from)

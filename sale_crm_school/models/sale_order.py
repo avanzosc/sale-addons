@@ -34,3 +34,10 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     total_percentage = fields.Float(store=True)
+
+
+class SaleOrderTemplate(models.Model):
+    _inherit = 'sale.order.template'
+
+    course_id = fields.Many2one(
+        comodel_name='education.course', string='Course')

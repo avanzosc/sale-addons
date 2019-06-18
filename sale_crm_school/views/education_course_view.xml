@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="education_course_view_tree_inh_sale_crm_school" model="ir.ui.view">
+    <record id="education_course_view_tree" model="ir.ui.view">
         <field name="model">education.course</field>
         <field name="inherit_id" ref="education.education_course_view_tree" />
         <field name="arch" type="xml">
@@ -10,13 +10,24 @@
         </field>
     </record>
 
-    <record id="education_course_view_form_inh_sale_crm_school" model="ir.ui.view">
+    <record id="education_course_view_form" model="ir.ui.view">
         <field name="model">education.course</field>
         <field name="inherit_id" ref="education.education_course_view_form" />
         <field name="arch" type="xml">
             <field name="description" position="after">
-                <field name="sale_order_template_id" required="1" />
+                <field name="sale_order_template_id" readonly="1"/>
             </field>
+        </field>
+    </record>
+
+    <record id="education_course_view_search" model="ir.ui.view">
+        <field name="model">education.course</field>
+        <field name="inherit_id" ref="education.education_course_view_search" />
+        <field name="arch" type="xml">
+                <filter name="inactive" position="after">
+                    <filter string="Without course" name="without_course"
+                        domain="[('sale_order_template_id','=',False)]" />
+                </filter>
         </field>
     </record>
 

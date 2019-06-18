@@ -19,122 +19,122 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__academic_year_id
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
 msgid "Academic year"
-msgstr "Año académico"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__child_id
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
 msgid "Child"
-msgstr "Hijo"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_education_course
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_template__course_id
 msgid "Course"
-msgstr "Curso"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_crm_lead_future_student
 msgid "Future student from leads"
-msgstr "Futuro estudiante desde iniciativa"
+msgstr ""
 
 #. module: sale_crm_school
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.product_category_search_view_inh_sale_crm_school
 msgid "Group By"
-msgstr "Agrupar por"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__course_id
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
 msgid "Initial school course"
-msgstr "Curso escolar inicial"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_crm_lead
 msgid "Lead/Opportunity"
-msgstr "Iniciativa/Oportunidad"
+msgstr ""
 
 #. module: sale_crm_school
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
 msgid "Opportunity"
-msgstr "Oportunidad"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_product_category__originator_id
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.product_category_search_view_inh_sale_crm_school
 msgid "Originator"
-msgstr "Ordenante"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_product_category
 msgid "Product Category"
-msgstr "Categoría de producto"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_sale_order_template
 msgid "Quotation Template"
-msgstr "Plantilla de presupuesto"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_education_course__sale_order_template_id
 msgid "Quotation template"
-msgstr "Plantilla de presupuesto"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_education_course__sale_order_template_ids
 msgid "Quotation templates"
-msgstr "Plantillas presupuesto"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_sale_order
 msgid "Sale Order"
-msgstr "Pedido de venta"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_crm_lead_future_student__sale_order_id
 msgid "Sale order"
-msgstr "Pedido de venta"
+msgstr ""
 
 #. module: sale_crm_school
 #: code:addons/sale_crm_school/models/crm_lead.py:34
 #, python-format
 msgid "Sale orders"
-msgstr "Pedidos de venta"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea de pedido de venta"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__school_id
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
 msgid "School"
-msgstr "Escuela"
+msgstr ""
 
 #. module: sale_crm_school
 #: code:addons/sale_crm_school/models/sale_order.py:29
 #, python-format
 msgid "The payers do not add 100%"
-msgstr "Los pagadores no suman el 100%"
+msgstr ""
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_line__total_percentage
 msgid "Total Percentage"
-msgstr "Porcentaje total"
+msgstr ""
 
 #. module: sale_crm_school
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.crm_lead_future_student_search_view_inh_sale_crm_school
 msgid "With sale order"
-msgstr "Con pedido de venta"
+msgstr ""
 
 #. module: sale_crm_school
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.education_course_view_search
 msgid "Without course"
-msgstr "Sin curso"
+msgstr ""
 
 #. module: sale_crm_school
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.crm_lead_future_student_search_view_inh_sale_crm_school
 msgid "Without sale order"
-msgstr "Sin pedido de venta"
+msgstr ""
 
