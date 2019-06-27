@@ -18,11 +18,12 @@ Sale utilities
 * In sales orders, filter shipping and invoicing addresses by partner.
 
 * In sales orders, invoiced and shipped computed fields to new api.
-	- Invoiced: When all invoices related to the sale order are in state paid
-	this check will be set as True.
-	- Shipped: When all pickings related to the sale order are in state done or
-	cancel and there is almost one picking in done state, this check will be set
-	as True.
+
+* Invoiced: When all invoices related to the sale order are in state paid
+  this check will be set as True.
+* Shipped: When all pickings related to the sale order are in state done or
+  cancel and there is almost one picking in done state, this check will be set
+  as True.
 
 * In sales orders tree, invoiced and shipped fields visible.
 

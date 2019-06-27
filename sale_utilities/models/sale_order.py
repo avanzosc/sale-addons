@@ -43,3 +43,11 @@ class SaleOrder(models.Model):
             pool._store_function[model] = [
                 x for x in store if x[0] != 'sale.order' and
                 x[1] != 'shipped' and x[1] != 'invoiced']
+
+
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    salesman_id = fields.Many2one(
+        string='Salesperson', comodel_name='res.users',
+        related='order_id.user_id', store=True)
