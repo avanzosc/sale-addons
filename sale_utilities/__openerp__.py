@@ -13,12 +13,14 @@
     ],
     "category": "Sales Management",
     "depends": [
-        "sale_stock"
+        "sale_stock",
+        "sale_order_line_view",
     ],
     "data": [
         "security/res_partner_saleperson_rule.xml",
         "views/res_partner_view.xml",
         "views/sale_order_view.xml",
+        "views/sale_order_line_view.xml",
     ],
     "installable": True,
 }

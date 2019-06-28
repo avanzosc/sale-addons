@@ -14,6 +14,7 @@ class WizDeleteSaleLine(models.TransientModel):
 
     @api.model
     def default_get(self, var_fields):
+        res = super(WizDeleteSaleLine, self).default_get(var_fields)
         sale_obj = self.env['sale.order']
         vals = []
         for sale in sale_obj.browse(self.env.context.get('active_ids')):
@@ -25,7 +26,8 @@ class WizDeleteSaleLine(models.TransientModel):
                              'price_unit': line.price_unit,
                              'price_subtotal': line.price_subtotal}
                 vals.append(line_vals)
-        return {'lines': vals}
+        res.update({'lines': vals})
+        return res
 
     @api.multi
     def button_delete_sale_lines(self):

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,19 +18,14 @@
 
 {
     "name": "Sale Invoice Group",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
+    "license": "AGPL-3",
     "depends": [
         "stock_invoicing_type",
     ],
     "author": "OdooMRP team",
     "website": "www.odoomrp.com",
     "category": "Accounting & Finance",
-    "description": """
-This module allows to assign an invoicing group to each partner in which you
-define a stand-by period between the delivery order and the invoicing. You
-won't be able then of invoicing pickings of that partner if the period is not
-due.
-    """,
     "data": [
         "security/ir.model.access.csv",
         "views/account_invoice_group_view.xml",

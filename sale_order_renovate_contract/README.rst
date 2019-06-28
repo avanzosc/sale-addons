@@ -12,7 +12,7 @@ Sale order renovate contract
   0.014
 * New wizard in analytic accounts for increase price unit of contract invoice
   lines.
-.
+
 Credits
 =======
 
