@@ -138,3 +138,8 @@ msgstr ""
 msgid "Without sale order"
 msgstr ""
 
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_product_category__center_id
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.product_category_search_view_inh_sale_crm_school
+msgid "Center"
+msgstr ""

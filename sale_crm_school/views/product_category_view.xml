@@ -6,9 +6,12 @@
         <field name="arch" type="xml">
             <field name="parent_id" position="after">
                 <field name="originator_id" />
+                <field name="center_id" />
                 <group expand="1" string="Group By">
                     <filter string="Originator" name="originator_group"
                             domain="[]" context="{'group_by':'originator_id'}"/>
+                    <filter string="Center" name="center_group"
+                            domain="[]" context="{'group_by':'center_id'}"/>
                 </group>
             </field>
         </field>
@@ -20,6 +23,7 @@
         <field name="arch" type="xml">
             <field name="parent_id" position="after">
                 <field name="originator_id" />
+                <field name="center_id" />
             </field>
         </field>
     </record>
@@ -30,6 +34,7 @@
         <field name="arch" type="xml">
             <field name="display_name" position="after">
                 <field name="originator_id" />
+                <field name="center_id"/>
             </field>
         </field>
     </record>
