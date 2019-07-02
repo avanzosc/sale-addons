@@ -8,3 +8,6 @@ class ProductCategory(models.Model):
 
     originator_id = fields.Many2one(
         comodel_name='res.company', string='Originator')
+    center_id = fields.Many2one(
+        comodel_name='res.partner', string='Center',
+        domain=[('educational_category', '=', 'school')])

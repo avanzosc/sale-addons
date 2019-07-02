@@ -21,6 +21,7 @@
         "views/product_category_view.xml",
         "views/education_course_view.xml",
         "views/sale_order_template_view.xml",
+        "views/product_view.xml",
     ],
     "installable": True,
 }
