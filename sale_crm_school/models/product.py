@@ -9,4 +9,4 @@ class ProductTemplate(models.Model):
 
     center_id = fields.Many2one(
         relation='res.partner', string='Center', readonly=True,
-        related='categ_id.center_id')
+        related='categ_id.center_id', store=True)
