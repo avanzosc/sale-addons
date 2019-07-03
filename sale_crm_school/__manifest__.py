@@ -12,6 +12,7 @@
         "sale_school",
         "sale_crm",
         "sale_management",
+        "contacts_school",
         "crm_school",
     ],
     "data": [

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 13:01+0000\n"
-"PO-Revision-Date: 2019-06-17 13:01+0000\n"
+"POT-Creation-Date: 2019-07-02 11:53+0000\n"
+"PO-Revision-Date: 2019-07-02 11:53+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
 msgid "Academic year"
 msgstr "Año académico"
+
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_product_category__center_id
+#: model:ir.model.fields,field_description:sale_crm_school.field_product_product__center_id
+#: model:ir.model.fields,field_description:sale_crm_school.field_product_template__center_id
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.product_category_search_view_inh_sale_crm_school
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.product_template_view_search
+msgid "Center"
+msgstr "Centro educativo"
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__child_id
@@ -71,6 +80,11 @@ msgid "Product Category"
 msgstr "Categoría de producto"
 
 #. module: sale_crm_school
+#: model:ir.model,name:sale_crm_school.model_product_template
+msgid "Product Template"
+msgstr "Plantilla del producto"
+
+#. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_sale_order_template
 msgid "Quotation Template"
 msgstr "Plantilla de presupuesto"
@@ -110,7 +124,7 @@ msgstr "Línea de pedido de venta"
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__school_id
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
 msgid "School"
-msgstr "Escuela"
+msgstr "Colegio"
 
 #. module: sale_crm_school
 #: code:addons/sale_crm_school/models/sale_order.py:29
@@ -138,8 +152,3 @@ msgstr "Sin curso"
 msgid "Without sale order"
 msgstr "Sin pedido de venta"
 
-#. module: sale_crm_school
-#: model:ir.model.fields,field_description:sale_crm_school.field_product_category__center_id
-#: model_terms:ir.ui.view,arch_db:sale_crm_school.product_category_search_view_inh_sale_crm_school
-msgid "Center"
-msgstr "Colegio"

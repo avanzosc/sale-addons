@@ -6,8 +6,11 @@
 Opportunity to quotation for school
 ===================================
 
-* By clicking "New budget" on opportunities, create a sales order for each
-  future student.
+By clicking "New budget" on opportunities, create a sales order for each
+future student.
+
+You can configure in product categories which education center do they
+belong to.
 
 
 Bug Tracker
