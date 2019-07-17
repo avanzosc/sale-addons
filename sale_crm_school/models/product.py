@@ -8,5 +8,5 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     center_id = fields.Many2one(
-        relation='res.partner', string='Center', readonly=True,
-        related='categ_id.center_id', store=True)
+        comodel_name='res.partner', string='Center',
+        domain=[('educational_category', '=', 'school')])

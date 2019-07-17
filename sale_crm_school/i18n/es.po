@@ -69,12 +69,6 @@ msgid "Opportunity"
 msgstr "Oportunidad"
 
 #. module: sale_crm_school
-#: model:ir.model.fields,field_description:sale_crm_school.field_product_category__originator_id
-#: model_terms:ir.ui.view,arch_db:sale_crm_school.product_category_search_view_inh_sale_crm_school
-msgid "Originator"
-msgstr "Ordenante"
-
-#. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_product_category
 msgid "Product Category"
 msgstr "Categoría de producto"

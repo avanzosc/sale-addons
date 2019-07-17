@@ -39,5 +39,16 @@ class SaleOrderLine(models.Model):
 class SaleOrderTemplate(models.Model):
     _inherit = 'sale.order.template'
 
+    school_id = fields.Many2one(
+        comodel_name='res.partner', string='School',
+        domain=[('educational_category', '=', 'school')])
     course_id = fields.Many2one(
         comodel_name='education.course', string='Course')
+
+
+class SaleOrderTemplateLine(models.Model):
+    _inherit = "sale.order.template.line"
+
+    company_id = fields.Many2one(
+        string='Company', comodel_name='res.company',
+        related='product_id.company_id', store=True)
