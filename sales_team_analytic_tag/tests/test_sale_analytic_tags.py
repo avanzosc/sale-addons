@@ -26,6 +26,8 @@ class TestSaleAnalyticTags(common.SavepointCase):
             'team_type': 'sales',
             'analytic_tag_ids': [(6, 0, [cls.tag1.id, cls.tag2.id])]
         })
+        cls.default_team = cls.env['crm.team']._get_default_team_id()
+        cls.default_team.analytic_tag_ids = [cls.tag2.id]
         cls.partner = cls.partner_model.create({
             'name': 'Partner1',
         })
@@ -57,3 +59,7 @@ class TestSaleAnalyticTags(common.SavepointCase):
                     'id': self.sale_order.id}).create(line_vals)
         self.assertEqual(line.analytic_tag_ids.ids,
                          self.team.analytic_tag_ids.ids)
+        self.sale_order.team_id = self.default_team.id
+        line2 = self.env['sale.order.line'].with_context({}).create(line_vals)
+        self.assertEqual(line2.analytic_tag_ids.ids,
+                         self.default_team.analytic_tag_ids.ids)

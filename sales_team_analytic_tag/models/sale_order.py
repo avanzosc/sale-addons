@@ -11,6 +11,9 @@ class SaleOrderLine(models.Model):
         sale_obj = self.env['sale.order']
         context_data = self.env.context.get('params', {})
         tag_ids = {}
+        if not context_data:
+            tag_ids = self.env['crm.team']._get_default_team_id().\
+                analytic_tag_ids.ids
         if 'model' in context_data and context_data['model'] == 'sale.order':
             sale = sale_obj.browse(context_data['id'])
             tag_ids = sale.team_id.analytic_tag_ids.ids
