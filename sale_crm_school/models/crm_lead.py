@@ -44,20 +44,22 @@ class CrmLead(models.Model):
                 'opportunity_id': self.id,
                 'child_id': future.child_id.id,
                 'course_id': future.course_id.id,
-                'school_id': future.school_id.id,
-                'sale_order_template_id':
-                future.course_id.sale_order_template_id.id}
+                'school_id': future.school_id.id}
         if future.academic_year_id:
             vals['academic_year_id'] = future.academic_year_id.id
+        cond = [('school_id', '=', future.school_id.id),
+                ('course_id', '=', future.course_id.id)]
+        template = self.env['sale.order.template'].search(cond, limit=1)
+        if template:
+            vals['sale_order_template_id'] = template.id
         return vals
 
     @api.multi
     def _put_payer_information_in_sale_order(self, future, sale):
         for line in sale.order_line:
             vals = {}
-            if line.product_id.categ_id.originator_id:
-                vals['originator_id'] = (
-                    line.product_id.categ_id.originator_id)
+            if line.product_id.company_id:
+                vals['originator_id'] = line.product_id.company_id.id
             payers = future.child_id.mapped('child2_ids').filtered(
                 lambda l: l.payer)
             vals2 = []
