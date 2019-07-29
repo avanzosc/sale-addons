@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="duplicate_upgradable_sale_form">
+                    <field name="name">duplicate.upgradable.sale.form</field>
+                    <field name="model">duplicate.upgradable.sale</field>
+                    <field name="arch" type="xml">
+                        <form string="Duplicate upgradable order">
+                            <group>
+                                <field name="in_process_quantity" readonly="1"/>
+                                <field name="not_reserved_quantity" readonly="1"/>
+                                <field name="quantity" />
+                            </group>
+                             <footer>
+                              <button name="action_duplicate" string="Confirm"
+                                      type="object" class="oe_highlight"/>
+                              or
+                              <button string="Cancel" class="oe_link" special="cancel" />
+                          </footer>
+                        </form>
+                    </field>
+                </record>
+
+                <act_window id="wiz_duplicate_upgradable_order"
+                            name="Duplicate upgradable order"
+                            res_model="duplicate.upgradable.sale"
+                            src_model="sale.order"
+                            view_type="form"
+                            view_mode="form"
+                            view_id="duplicate_upgradable_sale_form"
+                            target="new"
+                            key2="client_action_multi"/>
+
+    </data>
+</openerp>
