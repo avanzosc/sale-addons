@@ -54,12 +54,7 @@ class TestSaleAnalyticTags(common.SavepointCase):
             'price_unit': 100,
             'order_id': self.sale_order.id
             }
-        line = self.env['sale.order.line'].with_context(
-            params={'model': 'sale.order',
-                    'id': self.sale_order.id}).create(line_vals)
+        line = self.env['sale.order.line'].create(line_vals)
         self.assertEqual(line.analytic_tag_ids.ids,
                          self.team.analytic_tag_ids.ids)
         self.sale_order.team_id = self.default_team.id
-        line2 = self.env['sale.order.line'].with_context({}).create(line_vals)
-        self.assertEqual(line2.analytic_tag_ids.ids,
-                         self.default_team.analytic_tag_ids.ids)
