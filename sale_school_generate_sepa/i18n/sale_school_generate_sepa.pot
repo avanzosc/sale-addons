@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_school_generate_sepa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-02 07:24+0000\n"
+"PO-Revision-Date: 2019-09-02 07:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_school_generate_sepa
+#: model:ir.model.fields,field_description:sale_school_generate_sepa.field_sale_order__sepa_count
+msgid "# SEPA"
+msgstr ""
+
+#. module: sale_school_generate_sepa
+#: model:ir.model,name:sale_school_generate_sepa.model_account_banking_mandate
+msgid "A generic banking mandate"
+msgstr ""
+
+#. module: sale_school_generate_sepa
+#: model:ir.model.fields,field_description:sale_school_generate_sepa.field_sale_order__account_banking_mandate_ids
+msgid "Account banking mandate"
+msgstr ""
+
+#. module: sale_school_generate_sepa
+#: model_terms:ir.ui.view,arch_db:sale_school_generate_sepa.view_order_form
+msgid "SEPA Mandantes"
+msgstr ""
+
+#. module: sale_school_generate_sepa
+#: model:ir.model,name:sale_school_generate_sepa.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_school_generate_sepa
+#: model:ir.model.fields,field_description:sale_school_generate_sepa.field_account_banking_mandate__sale_order_id
+msgid "Sale order"
+msgstr ""
+
+#. module: sale_school_generate_sepa
+#: model:ir.model,name:sale_school_generate_sepa.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
