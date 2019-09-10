@@ -103,3 +103,9 @@ class TestSaleCrmSchool(TransactionCase):
         sale.order_line[0].total_percentage = 100.0
         sale.action_confirm()
         self.assertEqual(sale.state, 'sale')
+        sale.order_line[0].payer_ids[0].child_id = self.student.id
+        self.student.child2_ids.write(
+            {'payer': True})
+        sale.order_line[0].payer_ids[0].onchange_child_id()
+        self.assertEqual(sale.order_line[0].payer_ids[0].allowed_payers_ids,
+                         self.student.child2_ids[0].responsible_id)

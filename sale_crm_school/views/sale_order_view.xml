@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+
     <record id="sale_order_view_form_inh_sale_crm_school" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
+        <field eval="30" name="priority"/>
         <field name="arch" type="xml">
+            <field name="order_line" position="attributes">
+                <attribute name="context">{'default_child_id': child_id}</attribute>
+            </field>
             <notebook position="before">
                 <group>
                     <group>
@@ -16,6 +21,22 @@
                     </group>
                 </group>
             </notebook>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='originator_id']" position="before">
+                <field name="child_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='payer_ids']" position="replace">
+                <field name="child_id" invisible="1"/>
+                <field name="payer_ids"
+                    context="{'default_line_id': active_id, 'default_child_id': child_id}" >
+                    <tree string="Payers" editable="top">
+                        <field name="line_id" invisible="1"/>
+                        <field name="child_id" invisible="1"/>
+                        <field name="allowed_payers_ids" widget="many2many_tags" invisible="1"/>
+                        <field name="payer_id" domain="[('id', 'in', allowed_payers_ids)]"/>
+                        <field name="pay_percentage" />
+                    </tree>
+                </field>
+            </xpath>
         </field>
     </record>
 
