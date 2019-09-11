@@ -40,13 +40,20 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     def _generate_sepa_mandate(self):
+        mandate_obj = self.env['account.banking.mandate']
         for payer in self.mapped('payer_ids').filtered(
                 lambda x: x.payer_id and x.payer_id.bank_ids):
             bank = ((payer.payer_id.mapped('bank_ids').filtered(
                 lambda x: x.use_default)) or (payer.payer_id.bank_ids[0]))
-            vals = self._prepare_vals_for_create_sepa(payer, bank)
-            mandate = self.env['account.banking.mandate'].create(vals)
-            mandate.validate()
+            cond = [('company_id', '=', self.originator_id.id),
+                    ('partner_id', '=', payer.id),
+                    ('state', 'not in', ('expired', 'cancel'))]
+            mandate = mandate_obj.search(cond, limit=1)
+            if not mandate:
+                vals = self._prepare_vals_for_create_sepa(payer, bank)
+                mandate = mandate_obj.create(vals)
+            if mandate.state == 'draft':
+                mandate.validate()
 
     def _prepare_vals_for_create_sepa(self, payer, bank):
         vals = {
