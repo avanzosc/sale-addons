@@ -34,6 +34,8 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     total_percentage = fields.Float(store=True)
+    child_id = fields.Many2one(
+        comodel_name='res.partner', string='Child')
 
 
 class SaleOrderTemplate(models.Model):
@@ -52,3 +54,24 @@ class SaleOrderTemplateLine(models.Model):
     company_id = fields.Many2one(
         string='Company', comodel_name='res.company',
         related='product_id.company_id', store=True)
+
+
+class SaleOrderLinePayer(models.Model):
+    _inherit = "sale.order.line.payer"
+
+    @api.onchange('child_id')
+    def onchange_child_id(self):
+        for line in self:
+            payers = []
+            if line.child_id:
+                families = line.child_id.child2_ids.filtered(lambda c: c.payer)
+                payers = families.mapped('responsible_id')
+            line.allowed_payers_ids = (
+                [(6, 0, payers.ids)] if payers else [(6, 0, [])])
+
+    child_id = fields.Many2one(
+        comodel_name='res.partner', string='Child')
+    allowed_payers_ids = fields.Many2many(
+        string='Allowed payers', comodel_name='res.partner',
+        relation='rel_sale_order_line_payers', column1='sale_order_line_id',
+        column2='sale_order_line_payer_id')
