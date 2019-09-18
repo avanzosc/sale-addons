@@ -46,7 +46,7 @@ class SaleOrderLine(models.Model):
             bank = ((payer.payer_id.mapped('bank_ids').filtered(
                 lambda x: x.use_default)) or (payer.payer_id.bank_ids[0]))
             cond = [('company_id', '=', self.originator_id.id),
-                    ('partner_id', '=', payer.id),
+                    ('partner_id', '=', payer.payer_id.id),
                     ('state', 'not in', ('expired', 'cancel'))]
             mandate = mandate_obj.search(cond, limit=1)
             if not mandate:
@@ -62,7 +62,7 @@ class SaleOrderLine(models.Model):
             'format': 'sepa',
             'type': 'recurrent',
             'partner_bank_id': bank.id,
-            'partner_id': payer.id,
+            'partner_id': payer.payer_id.id,
             'scheme': 'CORE',
             'recurrent_sequence_type': 'recurring',
             'signature_date':
