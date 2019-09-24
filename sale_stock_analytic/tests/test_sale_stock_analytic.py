@@ -14,8 +14,8 @@ class TestSaleStockAnalytic(TransactionCase):
         line_vals = {
             'product_id': self.product.id,
             'name': self.product.name,
-            'quantity': 1,
-            'uom_id': self.product.uom_id.id,
+            'product_uom_qty': 1,
+            'product_uom': self.product.uom_id.id,
             'price_unit': 100}
         sale_vals['order_line'] = [(0, 0, line_vals)]
         self.sale = self.env['sale.order'].create(sale_vals)
