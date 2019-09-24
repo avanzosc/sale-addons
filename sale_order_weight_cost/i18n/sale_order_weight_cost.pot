@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-08 07:56+0000\n"
-"PO-Revision-Date: 2019-07-08 07:56+0000\n"
+"POT-Creation-Date: 2019-09-23 13:15+0000\n"
+"PO-Revision-Date: 2019-09-23 13:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_order_weight_cost
+#: model_terms:ir.ui.view,arch_db:sale_order_weight_cost.sale_order_form_inh_project
+msgid "<span>m³</span>"
+msgstr ""
 
 #. module: sale_order_weight_cost
 #: model:ir.model.fields,field_description:sale_order_weight_cost.field_sale_order_line__cost
@@ -26,7 +31,27 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_order_weight_cost
+#: model:ir.model.fields,help:sale_order_weight_cost.field_sale_order_line__volume
+msgid "The volume in m3."
+msgstr ""
+
+#. module: sale_order_weight_cost
+#: model:ir.model.fields,field_description:sale_order_weight_cost.field_sale_order_line__volume
+msgid "Volume"
+msgstr ""
+
+#. module: sale_order_weight_cost
 #: model:ir.model.fields,field_description:sale_order_weight_cost.field_sale_order_line__weight
 msgid "Weight"
+msgstr ""
+
+#. module: sale_order_weight_cost
+#: model:ir.model.fields,field_description:sale_order_weight_cost.field_sale_order_line__weight_uom_id
+msgid "Weight Unit of Measure"
+msgstr ""
+
+#. module: sale_order_weight_cost
+#: model:ir.model.fields,field_description:sale_order_weight_cost.field_sale_order_line__weight_uom_name
+msgid "Weight unit of measure label"
 msgstr ""
 
