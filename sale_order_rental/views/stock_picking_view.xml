@@ -10,8 +10,8 @@
             <field name="rental_days" />
         </field>
         <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="after">
-            <field name="expected_delivery_date"/>
-            <field name="expected_end_date"/>
+            <field name="expected_delivery_date" readonly="0"/>
+            <field name="expected_end_date" readonly="0"/>
             <field name="rental_days" />
         </xpath>
       </field>

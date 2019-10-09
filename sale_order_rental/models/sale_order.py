@@ -1,6 +1,6 @@
 # Copyright 2019 Oihana Larrañaga - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -8,114 +8,79 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     expected_delivery_date = fields.Date(
-        string='Expected delivery date')
+        string='Expected Delivery Date', compute='_compute_rental_days',
+        inverse='_inverse_expected_dates', store=True)
     expected_end_date = fields.Date(
-        string='Expected end date')
+        string='Expected Return Date', compute='_compute_rental_days',
+        inverse='_inverse_expected_dates', store=True)
     rental_days = fields.Integer(
-        string='Rental days', compute='_compute_rental_days', store=True)
+        string='Rental Days', compute='_compute_rental_days', store=True)
 
-    @api.depends('expected_delivery_date', 'expected_end_date')
+    @api.depends('order_line.expected_delivery_date',
+                 'order_line.expected_end_date')
     def _compute_rental_days(self):
-        for order in self:
-                order.rental_days = 0
+        for order in self.filtered('order_line'):
+            lines = order.order_line.filtered(
+                lambda l: l.expected_delivery_date and l.expected_end_date)
+            if lines:
+                order.expected_delivery_date = min(lines.mapped(
+                    'expected_delivery_date'))
+                order.expected_end_date = max(lines.mapped(
+                    'expected_end_date'))
                 if order.expected_delivery_date and order.expected_end_date:
-                    order.rental_days = abs(
-                        order.expected_end_date-order.expected_delivery_date
-                        ).days + 1
+                    order.rental_days = ((
+                        order.expected_end_date -
+                        order.expected_delivery_date).days + 1)
 
     @api.onchange('expected_delivery_date')
-    def onchange_expected_delivery_date(self):
+    def _onchange_expected_delivery_date(self):
         self.commitment_date = (fields.Datetime.to_datetime(
             self.expected_delivery_date) if self.expected_delivery_date else
-            False)
-        if self.expected_delivery_date:
-            self.order_line.write({'expected_delivery_date':
-                                   self.expected_delivery_date})
-        if not self.expected_delivery_date:
-            self.order_line.write({'expected_delivery_date': False})
+            self.commitment_date)
 
-    @api.onchange('expected_end_date')
-    def onchange_expected_end_date(self):
-        if (self.expected_delivery_date and self.expected_end_date and
-                self.expected_delivery_date > self.expected_end_date):
-            raise ValidationError(
-                _('Expected end date must be greater than expected delivery '
-                  'date'))
-        if self.expected_end_date:
-            self.order_line.write({'expected_end_date':
-                                   self.expected_end_date})
-        if not self.expected_end_date:
-            self.order_line.write({'expected_end_date': False})
+    @api.multi
+    def _inverse_expected_dates(self):
+        for order in self:
+            order_lines = order.order_line.filtered(
+                lambda l: l.expected_delivery_date and l.expected_end_date)
+            order_lines.write({
+                'expected_delivery_date': order.expected_delivery_date,
+                'expected_end_date': order.expected_end_date,
+            })
 
     @api.multi
     def action_confirm(self):
+        for order in self:
+            if ((not order.expected_delivery_date and any(order.mapped(
+                    'order_line.expected_delivery_date'))) or
+                    (not order.expected_end_date and any(order.mapped(
+                    'order_line.expected_end_date')))):
+                raise ValidationError(_('Missing dates'))
         res = super(SaleOrder, self).action_confirm()
-        for sale in self:
-            for picking in sale.picking_ids.filtered(
-                    lambda l: l.expected_end_date):
-                vals = {
-                    'location_id': picking.location_dest_id.id,
-                    'location_dest_id': picking.location_id.id,
-                    'picking_type_id':
-                    picking.picking_type_id.return_picking_type_id.id}
-                if picking.expected_end_date:
-                    vals['scheduled_date'] = (
-                        "{} 08:00:00".format(picking.expected_end_date))
-                new_picking = picking.copy(vals)
-                for move in new_picking.move_lines:
-                    if move.expected_end_date:
-                        vals = {
-                            'location_id': new_picking.location_id.id,
-                            'location_dest_id':
-                            new_picking.location_dest_id.id}
-                        if move.expected_end_date:
-                            vals['date_expected'] = (
-                                "{} 08:00:00".format(move.expected_end_date))
-                        move.write(vals)
-                        move._action_confirm()
-                    if not move.expected_end_date:
-                        move.unlink()
+        for order in self:
+            if any(order.mapped('order_line.rental_days')):
+                for picking in order.picking_ids.filtered(
+                        lambda p: p.state not in ('done', 'cancel')):
+                    picking._return_rental()
         return res
-
-    @api.multi
-    def _prepare_invoice(self):
-        invoice_vals = super(SaleOrder, self)._prepare_invoice()
-        invoice_vals['sale_order_id'] = self.id
-        return invoice_vals
 
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     expected_delivery_date = fields.Date(
-        string='Expected delivery date')
+        string='Expected Delivery Date')
     expected_end_date = fields.Date(
-        string='Expected end date', )
+        string='Expected Return Date')
     rental_days = fields.Integer(
-        string='Rental days', compute='_compute_rental_days', store=True)
+        string='Rental Days', compute='_compute_rental_days', store=True)
 
     @api.depends('expected_delivery_date', 'expected_end_date')
     def _compute_rental_days(self):
-        for line in self.filtered(lambda l: l.expected_delivery_date and
-                                  l.expected_end_date):
-            if line.expected_delivery_date > line.expected_end_date:
-                raise ValidationError(
-                    _('Expected end date must be greater than expected '
-                      'delivery date'))
-            else:
-                line.rental_days = abs(
-                    line.expected_end_date - line.expected_delivery_date
-                    ).days + 1
-
-    @api.multi
-    @api.onchange('product_id')
-    def product_id_change(self):
-        result = super(SaleOrderLine, self).product_id_change()
-        if self.order_id.expected_delivery_date:
-            self.expected_delivery_date = self.order_id.expected_delivery_date
-        if self.order_id.expected_end_date:
-            self.expected_end_date = self.order_id.expected_end_date
-        return result
+        for line in self.filtered(
+                lambda l: l.expected_delivery_date and l.expected_end_date):
+            line.rental_days = (
+                line.expected_end_date - line.expected_delivery_date).days + 1
 
     @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id',
                  'rental_days')
@@ -137,14 +102,15 @@ class SaleOrderLine(models.Model):
             else:
                 super(SaleOrderLine, line)._compute_amount()
 
-    @api.multi
-    def invoice_line_create_vals(self, invoice_id, qty):
-        res = super(
-            SaleOrderLine, self).invoice_line_create_vals(invoice_id, qty)
-        for result in res:
-            if result.get('sale_line_ids', False):
-                a = result.get('sale_line_ids')
-                sale_line_id = a[0][2][0]
-                if sale_line_id:
-                    result['sale_order_line_id'] = sale_line_id
-        return res
+    @api.constrains('expected_delivery_date', 'expected_end_date')
+    def _check_expected_dates(self):
+        for line in self.filtered(
+                lambda l: l.expected_delivery_date or l.expected_end_date):
+            if ((line.expected_delivery_date and not line.expected_end_date)
+                    or (line.expected_end_date and
+                        not line.expected_delivery_date)):
+                raise ValidationError(_('There must be expected delivery '
+                                        'date and expected end date.'))
+            if line.expected_delivery_date > line.expected_end_date:
+                raise ValidationError(_('Expected end date must be after '
+                                        'expected delivery date.'))
