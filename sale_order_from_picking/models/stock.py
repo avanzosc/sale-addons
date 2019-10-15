@@ -20,8 +20,9 @@ class StockPicking(models.Model):
                 'product_id': line.product_id.id,
                 'name': line.name,
                 'uom_id': line.product_id.uom_id.id,
-                'quantity': line.product_uom_qty,
-                'order_id': sale.id
+                'product_uom_qty': line.product_uom_qty,
+                'order_id': sale.id,
+                'stock_move_id': line.id,
                 }
             sale_line_obj.create(sale_line_data)
         view = self.env.ref('sale.view_order_form')
