@@ -8,6 +8,7 @@
         "sale",
         "stock",
         "analytic",
+        "sale_analytic",
     ],
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",
