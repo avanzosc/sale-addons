@@ -59,19 +59,19 @@ class SaleOrderTemplateLine(models.Model):
 class SaleOrderLinePayer(models.Model):
     _inherit = "sale.order.line.payer"
 
-    @api.onchange('child_id')
-    def onchange_child_id(self):
-        for line in self:
-            payers = []
-            if line.child_id:
-                families = line.child_id.child2_ids.filtered(lambda c: c.payer)
-                payers = families.mapped('responsible_id')
-            line.allowed_payers_ids = (
-                [(6, 0, payers.ids)] if payers else [(6, 0, [])])
-
     child_id = fields.Many2one(
-        comodel_name='res.partner', string='Child')
+        comodel_name='res.partner', string='Child', required=True)
     allowed_payers_ids = fields.Many2many(
         string='Allowed payers', comodel_name='res.partner',
-        relation='rel_sale_order_line_payers', column1='sale_order_line_id',
-        column2='sale_order_line_payer_id')
+        compute='_compute_allowed_payer_ids')
+
+    @api.multi
+    @api.depends('child_id', 'child_id.child2_ids',
+                 'child_id.child2_ids.payer',
+                 'child_id.child2_ids.responsible_id')
+    def _compute_allowed_payer_ids(self):
+        for line in self:
+            possible_payers = line.child_id.child2_ids.filtered(
+                lambda f: f.payer)
+            line.allowed_payers_ids = [
+                (6, 0, possible_payers.mapped('responsible_id').ids)]

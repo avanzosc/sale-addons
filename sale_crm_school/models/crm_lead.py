@@ -3,6 +3,8 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import Warning
+from odoo.models import expression
+from odoo.tools.safe_eval import safe_eval
 
 
 class CrmLead(models.Model):
@@ -20,28 +22,29 @@ class CrmLead(models.Model):
         ])
         if not academic_years:
             raise Warning(_('There are no valid academic years'))
-        sales = self.env['sale.order'].search([
-            ('academic_year_id', 'in', academic_years.ids),
-            ('state', 'in', ['draft', 'sent']),
-        ])
-        for opor in self:
-            futures = opor.mapped('future_student_ids').filtered(
-                lambda l: l.child_id and not l.sale_order_id and
-                l.academic_year_id in academic_years)
-            for future in futures:
-                vals = opor._get_vals_for_sale_order(future)
-                sale = self.env['sale.order'].create(vals)
-                sale.onchange_sale_order_template_id()
-                future.sale_order_id = sale.id
-                future.child_id.educational_category = 'student'
-                opor._put_payer_information_in_sale_order(future, sale)
-                sales += sale
-        return {'name': _('Sale orders'),
-                'type': 'ir.actions.act_window',
-                'view_mode': 'tree,form',
-                'view_type': 'form',
-                'res_model': 'sale.order',
-                'domain': [('id', 'in', sales.ids)]}
+        sales = self.env['sale.order']
+        futures = self.mapped('future_student_ids').filtered(
+            lambda l: l.child_id and not l.sale_order_id and
+            l.academic_year_id in academic_years)
+        if not futures:
+            raise Warning(_('There are not future student to register.'))
+        for future in futures:
+            vals = future.crm_lead_id._get_vals_for_sale_order(future)
+            future.sale_order_id = sales.create(vals)
+            future.sale_order_id.onchange_sale_order_template_id()
+            future.child_id.educational_category = 'student'
+            future.crm_lead_id._put_payer_information_in_sale_order(
+                future, future.sale_order_id)
+            sales += future.sale_order_id
+        action = self.env.ref('sale.action_quotations_with_onboarding')
+        action_dict = action.read()[0] if action else {}
+        domain = expression.AND([
+            [('id', 'in', sales.ids)],
+            safe_eval(action.domain or '[]')])
+        action_dict.update({
+            'domain': domain,
+        })
+        return action_dict
 
     @api.multi
     def _get_vals_for_sale_order(self, future):
@@ -69,9 +72,12 @@ class CrmLead(models.Model):
                 lambda l: l.payer)
             vals2 = []
             for payer in payers:
-                vals2.append((0, 0,
-                              {'payer_id': payer.responsible_id.id,
-                               'pay_percentage': payer.payment_percentage}))
+                vals2.append(
+                    (0, 0, {
+                        'child_id': future.child_id.id,
+                        'payer_id': payer.responsible_id.id,
+                        'pay_percentage': payer.payment_percentage,
+                    }))
             if vals2:
                 vals['payer_ids'] = vals2
             line.write(vals)
