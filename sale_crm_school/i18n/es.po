@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-02 11:53+0000\n"
-"PO-Revision-Date: 2019-07-02 11:53+0000\n"
+"POT-Creation-Date: 2019-10-23 13:41+0000\n"
+"PO-Revision-Date: 2019-10-23 13:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,19 +22,29 @@ msgid "Academic year"
 msgstr "Año académico"
 
 #. module: sale_crm_school
-#: model:ir.model.fields,field_description:sale_crm_school.field_product_category__center_id
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_line_payer__allowed_payers_ids
+msgid "Allowed payers"
+msgstr "Pagadores permitidos"
+
+#. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_product_product__center_id
 #: model:ir.model.fields,field_description:sale_crm_school.field_product_template__center_id
-#: model_terms:ir.ui.view,arch_db:sale_crm_school.product_category_search_view_inh_sale_crm_school
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.product_template_view_search
 msgid "Center"
 msgstr "Centro educativo"
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__child_id
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_line__child_id
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_line_payer__child_id
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
 msgid "Child"
 msgstr "Hijo"
+
+#. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_template_line__company_id
+msgid "Company"
+msgstr "Compañía"
 
 #. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_education_course
@@ -46,11 +56,6 @@ msgstr "Curso"
 #: model:ir.model,name:sale_crm_school.model_crm_lead_future_student
 msgid "Future student from leads"
 msgstr "Futuro estudiante desde iniciativa"
-
-#. module: sale_crm_school
-#: model_terms:ir.ui.view,arch_db:sale_crm_school.product_category_search_view_inh_sale_crm_school
-msgid "Group By"
-msgstr "Agrupar por"
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__course_id
@@ -69,19 +74,29 @@ msgid "Opportunity"
 msgstr "Oportunidad"
 
 #. module: sale_crm_school
-#: model:ir.model,name:sale_crm_school.model_product_category
-msgid "Product Category"
-msgstr "Categoría de producto"
+#: model:ir.model,name:sale_crm_school.model_sale_order_line_payer
+msgid "Payer per Sale Line"
+msgstr "Pagador por línea de venta"
+
+#. module: sale_crm_school
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.sale_order_view_form_inh_sale_crm_school
+msgid "Payers"
+msgstr "Pagadores"
 
 #. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_product_template
 msgid "Product Template"
-msgstr "Plantilla del producto"
+msgstr "Plantilla de producto"
 
 #. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_sale_order_template
 msgid "Quotation Template"
 msgstr "Plantilla de presupuesto"
+
+#. module: sale_crm_school
+#: model:ir.model,name:sale_crm_school.model_sale_order_template_line
+msgid "Quotation Template Line"
+msgstr "Linea de plantilla de presupuesto"
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_education_course__sale_order_template_id
@@ -104,7 +119,7 @@ msgid "Sale order"
 msgstr "Pedido de venta"
 
 #. module: sale_crm_school
-#: code:addons/sale_crm_school/models/crm_lead.py:34
+#: code:addons/sale_crm_school/models/crm_lead.py:39
 #, python-format
 msgid "Sale orders"
 msgstr "Pedidos de venta"
@@ -116,6 +131,7 @@ msgstr "Línea de pedido de venta"
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__school_id
+#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_template__school_id
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
 msgid "School"
 msgstr "Colegio"
@@ -125,6 +141,19 @@ msgstr "Colegio"
 #, python-format
 msgid "The payers do not add 100%"
 msgstr "Los pagadores no suman el 100%"
+
+#. module: sale_crm_school
+#: code:addons/sale_crm_school/models/crm_lead.py:22
+#: code:addons/sale_crm_school/models/crm_lead.py:24
+#, python-format
+msgid "There are no valid academic years"
+msgstr "No hay año académico válido."
+
+#. module: sale_crm_school
+#: code:addons/sale_crm_school/models/crm_lead.py:30
+#, python-format
+msgid "There are not future student to register."
+msgstr "No hay alumnos a registrar."
 
 #. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_line__total_percentage

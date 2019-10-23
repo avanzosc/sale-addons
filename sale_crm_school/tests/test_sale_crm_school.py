@@ -106,6 +106,7 @@ class TestSaleCrmSchool(common.SavepointCase):
         sales = self.lead.mapped('future_student_ids.sale_order_id')
         self.assertIn(('id', 'in', sales.ids), res.get('domain'))
         for sale in sales:
+            self.assertEquals(sale.state, 'draft')
             line = sale.order_line[:1]
             self.assertEquals(len(line.payer_ids), 1)
             payer_line = line.payer_ids[:1]
@@ -118,3 +119,4 @@ class TestSaleCrmSchool(common.SavepointCase):
             payer_line.pay_percentage = 100.0
             self.assertEquals(line.total_percentage, 100.0)
             sale.action_confirm()
+            self.assertNotEquals(sale.state, 'draft')
