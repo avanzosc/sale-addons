@@ -1,111 +1,122 @@
 # Copyright 2019 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo.tests.common import TransactionCase
-from odoo import fields
-from odoo.exceptions import ValidationError
+from odoo.tests import common
+from odoo import exceptions, fields
 
 
-class TestSaleCrmSchool(TransactionCase):
+@common.at_install(False)
+@common.post_install(True)
+class TestSaleCrmSchool(common.SavepointCase):
 
-    def setUp(self):
-        super(TestSaleCrmSchool, self).setUp()
-        self.partner_model = self.env['res.partner']
-        self.lead_model = self.env['crm.lead']
-        self.education_plan_model = self.env['education.plan']
-        self.education_level_model = self.env['education.level']
-        self.education_course_model = self.env['education.course']
-        self.academic_year_model = self.env['education.academic_year']
-        self.sale_template_model = self.env['sale.order.template']
-        self.sale_order_model = self.env['sale.order']
-        self.family_obj = self.env['res.partner.family']
+    @classmethod
+    def setUpClass(cls):
+        super(TestSaleCrmSchool, cls).setUpClass()
+        cls.partner_model = cls.env['res.partner']
+        cls.lead_model = cls.env['crm.lead']
+        cls.education_plan_model = cls.env['education.plan']
+        cls.education_level_model = cls.env['education.level']
+        cls.education_course_model = cls.env['education.course']
+        cls.academic_year_model = cls.env['education.academic_year']
+        cls.sale_template_model = cls.env['sale.order.template']
+        cls.sale_order_model = cls.env['sale.order']
+        cls.family_obj = cls.env['res.partner.family']
         school_vals = {
             'name': 'School for test sale_crm_school',
             'educational_category': 'school'}
-        self.school = self.partner_model.create(school_vals)
+        cls.school = cls.partner_model.create(school_vals)
         student_vals = {
             'name': 'Student for test sale_crm_school',
             'educational_category': 'student'}
-        self.student = self.partner_model.create(student_vals)
+        cls.student = cls.partner_model.create(student_vals)
         family_vals = {
             'name': 'Family for test sale_crm_school',
             'educational_category': 'family'}
-        self.family = self.partner_model.create(family_vals)
+        cls.family = cls.partner_model.create(family_vals)
         progenitor_vals = {
             'name': 'Progenitor for test sale_crm_school',
             'educational_category': 'progenitor'}
-        self.progenitor = self.partner_model.create(progenitor_vals)
+        cls.progenitor = cls.partner_model.create(progenitor_vals)
         education_plan_vals = {
             'description': 'Education plan for test sale_crm_school',
             'education_code': 'code-1'}
-        self.education_plan = self.education_plan_model.create(
+        cls.education_plan = cls.education_plan_model.create(
             education_plan_vals)
         education_level_vals = {
             'education_code': 'level-1',
             'description': 'Level for test sale_crm_school',
             'short_description': 'L-1',
-            'plan_id': self.education_plan.id}
-        self.education_level = self.education_level_model.create(
+            'plan_id': cls.education_plan.id}
+        cls.education_level = cls.education_level_model.create(
             education_level_vals)
-        sale_template = self.sale_template_model.search([], limit=1)
+        sale_template = cls.sale_template_model.search([], limit=1)
         education_course_vals = {
             'education_code': 'C1',
-            'level_id': self.education_level.id,
+            'level_id': cls.education_level.id,
             'description': 'Course 1'}
-        self.education_course = self.education_course_model.create(
+        cls.education_course = cls.education_course_model.create(
             education_course_vals)
         sale_template.write(
-            {'course_id': self.education_course.id,
-             'school_id': self.school.id})
-        date_from = "{}-01-01".format(
-            fields.Date.from_string(fields.Date.today()).year)
-        date_from = fields.Date.from_string(date_from)
-        date_to = "{}-12-31".format(
-            int(fields.Date.from_string(fields.Date.today()).year)
-            + 1)
-        date_to = fields.Date.from_string(date_to)
-        academic_year_vals = {
-            'name': 'BBBBB2020',
+            {'course_id': cls.education_course.id,
+             'school_id': cls.school.id})
+        today = fields.Date.today()
+        date_from = today.replace(month=1, day=1)
+        date_to = today.replace(year=today.year + 1, month=12, day=31)
+        cls.academic_year_vals = {
+            'name': '{}-{}'.format(date_to.year, date_from.year),
             'date_start': date_from,
-            'date_end': date_to}
-        self.academic_year = self.academic_year_model.create(
-            academic_year_vals)
+            'date_end': date_to,
+        }
         future_student_vals = {
             'name': 'Student for test sale_crm_school',
-            'child_id': self.student.id,
+            'child_id': cls.student.id,
             'birth_date': '2015-01-01',
             'gender': 'male',
-            'school_id': self.school.id,
-            'course_id': self.education_course.id,
-            'academic_year_id': self.academic_year.id}
+            'school_id': cls.school.id,
+            'course_id': cls.education_course.id,
+        }
         lead_vals = {
             'name': 'Lead for test sale_crm_school',
-            'partner_id': self.family.id,
+            'partner_id': cls.family.id,
             'future_student_ids': [(0, 0, future_student_vals)]}
-        self.lead = self.lead_model.create(lead_vals)
+        cls.lead = cls.lead_model.create(lead_vals)
         p = sale_template.sale_order_template_line_ids[0].product_id
         p.originator_id = 1
         family_vals = {
-            'child2_id': self.student.id,
-            'responsible_id': self.progenitor.id,
-            'family_id': self.family.id,
+            'child2_id': cls.student.id,
+            'responsible_id': cls.progenitor.id,
+            'family_id': cls.family.id,
             'payer': True,
             'payment_percentage': 100.0}
-        self.family_obj.create(family_vals)
+        cls.family_obj.create(family_vals)
 
     def test_sale_crm_school(self):
+        with self.assertRaises(exceptions.Warning):
+            self.lead.create_sale_order_for_student()
+        academic_year = self.academic_year_model.create(
+            self.academic_year_vals)
+        with self.assertRaises(exceptions.Warning):
+            self.lead.create_sale_order_for_student()
+        self.lead.future_student_ids.write({
+            'academic_year_id': academic_year.id,
+        })
         res = self.lead.create_sale_order_for_student()
-        sale = self.sale_order_model.search(res.get('domain'))
-        self.assertEqual(sale.child_id.id, self.student.id)
-        self.assertEqual(len(sale.order_line[0].payer_ids), 1)
-        sale.order_line[0].total_percentage = 50
-        with self.assertRaises(ValidationError):
+        for future_student in self.lead.future_student_ids:
+            self.assertEquals(future_student.sale_order_id.child_id,
+                              future_student.child_id)
+        sales = self.lead.mapped('future_student_ids.sale_order_id')
+        self.assertIn(('id', 'in', sales.ids), res.get('domain'))
+        for sale in sales:
+            self.assertEquals(sale.state, 'draft')
+            line = sale.order_line[:1]
+            self.assertEquals(len(line.payer_ids), 1)
+            payer_line = line.payer_ids[:1]
+            self.assertEquals(payer_line.child_id, sale.child_id)
+            self.assertIn(payer_line.payer_id, payer_line.allowed_payers_ids)
+            payer_line.pay_percentage = 50.0
+            self.assertNotEquals(line.total_percentage, 100.0)
+            with self.assertRaises(exceptions.ValidationError):
+                sale.action_confirm()
+            payer_line.pay_percentage = 100.0
+            self.assertEquals(line.total_percentage, 100.0)
             sale.action_confirm()
-        sale.order_line[0].total_percentage = 100.0
-        sale.action_confirm()
-        self.assertEqual(sale.state, 'sale')
-        sale.order_line[0].payer_ids[0].child_id = self.student.id
-        self.student.child2_ids.write(
-            {'payer': True})
-        sale.order_line[0].payer_ids[0].onchange_child_id()
-        self.assertEqual(sale.order_line[0].payer_ids[0].allowed_payers_ids,
-                         self.student.child2_ids[0].responsible_id)
+            self.assertNotEquals(sale.state, 'draft')
