@@ -43,28 +43,34 @@ class SaleOrderLine(models.Model):
         mandate_obj = self.env['account.banking.mandate']
         for payer in self.mapped('payer_ids').filtered(
                 lambda x: x.payer_id and x.payer_id.bank_ids):
-            bank = ((payer.payer_id.mapped('bank_ids').filtered(
-                lambda x: x.use_default)) or (payer.payer_id.bank_ids[0]))
-            cond = [('company_id', '=', self.originator_id.id),
-                    ('partner_id', '=', payer.payer_id.id),
-                    ('state', 'not in', ('expired', 'cancel'))]
-            mandate = mandate_obj.search(cond, limit=1)
-            if not mandate:
-                vals = self._prepare_vals_for_create_sepa(payer, bank)
-                mandate = mandate_obj.create(vals)
-            if mandate.state == 'draft':
-                mandate.validate()
+            banks = payer.payer_id.mapped('bank_ids').filtered(
+                lambda b: not b.company_id or b.company_id ==
+                self.originator_id)
+            bank = banks.filtered('use_default') or banks[:1]
+            if bank:
+                cond = [('partner_bank_id', '=', bank.id),
+                        ('company_id', '=', self.originator_id.id),
+                        ('partner_id', '=', payer.payer_id.id),
+                        ('state', 'not in', ('expired', 'cancel'))]
+                mandate = mandate_obj.search(cond, limit=1)
+                if not mandate:
+                    vals = self._prepare_vals_for_create_sepa(payer, bank)
+                    mandate = mandate_obj.create(vals)
+                if mandate.state == 'draft':
+                    mandate.validate()
 
     def _prepare_vals_for_create_sepa(self, payer, bank):
         vals = {
             'sale_order_id': self.order_id.id,
-            'company_id': self.originator_id.id,
+            'company_id': (bank.company_id.id or self.originator_id.id or
+                           self.env['res.company']._company_default_get(
+                               'account.banking.mandate').id),
             'format': 'sepa',
             'type': 'recurrent',
             'partner_bank_id': bank.id,
             'partner_id': payer.payer_id.id,
             'scheme': 'CORE',
             'recurrent_sequence_type': 'recurring',
-            'signature_date':
-            fields.Date.to_string(fields.Date.context_today(self))}
+            'signature_date': fields.Date.context_today(self),
+        }
         return vals
