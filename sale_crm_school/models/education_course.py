@@ -16,5 +16,4 @@ class EducationCourse(models.Model):
     @api.depends('sale_order_template_ids')
     def _compute_sale_order_template_id(self):
         for course in self.filtered(lambda c: c.sale_order_template_ids):
-            course.sale_order_template_id = (
-                course.sale_order_template_ids[0].id)
+            course.sale_order_template_id = course.sale_order_template_ids[:1]

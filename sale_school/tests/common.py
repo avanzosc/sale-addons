@@ -41,12 +41,13 @@ class TestSaleSchoolCommon(common.SavepointCase):
             'name': 'Test Service'
         })
         cls.sale_order = cls.sale_order_model.create({
-            'partner_id': cls.student.id,
+            'partner_id': cls.family.id,
+            'child_id': cls.student.id,
             'order_line': [(0, 0, {
                 'product_id': cls.service.id,
                 'payer_ids': [(0, 0, {
                     'payer_id': cls.progenitor.id,
-                    'pay_percentage': 100.0,
+                    'pay_percentage': 50.0,
                 })]
             })]
         })

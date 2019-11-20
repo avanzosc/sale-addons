@@ -10,10 +10,12 @@
     "website": "http://www.avanzosc.es",
     "depends": [
         "sale",
+        "contacts_school",
     ],
     "data": [
         "security/ir.model.access.csv",
         "views/sale_order_view.xml",
+        "views/sale_order_line_view.xml",
         "views/sale_order_line_payer_view.xml"
     ],
     "installable": True,
