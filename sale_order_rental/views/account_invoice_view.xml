@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_invoice_view_form" model="ir.ui.view">
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form" />
+        <field name="arch" type="xml">
+            <field name="date_due" position="after">
+                <field name="sale_expected_delivery_date" />
+                <field name="sale_expected_end_date" />
+                <field name="rental_days" />
+            </field>
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='uom_id']" position="after">
+                <field name="sale_expected_delivery_date" />
+                <field name="sale_expected_end_date" />
+                <field name="rental_days" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
