@@ -6,37 +6,12 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field eval="30" name="priority"/>
         <field name="arch" type="xml">
-            <field name="order_line" position="attributes">
-                <attribute name="context">{'default_child_id': child_id}</attribute>
+            <field name="child_id" position="after">
+                <field name="course_id" />
             </field>
-            <notebook position="before">
-                <group>
-                    <group>
-                        <field name="child_id" />
-                        <field name="course_id" />
-                    </group>
-                    <group>
-                        <field name="school_id" />
-                        <field name="academic_year_id" />
-                    </group>
-                </group>
-            </notebook>
-            <xpath expr="//field[@name='order_line']/tree//field[@name='originator_id']" position="before">
-                <field name="child_id" invisible="1"/>
-            </xpath>
-            <xpath expr="//field[@name='order_line']/form//field[@name='payer_ids']" position="replace">
-                <field name="child_id" invisible="1"/>
-                <field name="payer_ids"
-                    context="{'default_line_id': active_id, 'default_child_id': child_id}" >
-                    <tree string="Payers" editable="top">
-                        <field name="line_id" invisible="1"/>
-                        <field name="child_id" invisible="1"/>
-                        <field name="allowed_payers_ids" widget="many2many_tags" invisible="1"/>
-                        <field name="payer_id" domain="[('id', 'in', allowed_payers_ids)]"/>
-                        <field name="pay_percentage" />
-                    </tree>
-                </field>
-            </xpath>
+            <field name="school_id" position="after">
+                <field name="academic_year_id" />
+            </field>
         </field>
     </record>
 
@@ -46,9 +21,7 @@
         <field name="arch" type="xml">
             <field name="user_id" position="after">
                 <field name="opportunity_id" />
-                <field name="child_id" />
                 <field name="course_id" />
-                <field name="school_id" />
                 <field name="academic_year_id" />
             </field>
         </field>
@@ -60,9 +33,7 @@
         <field name="arch" type="xml">
             <field name="user_id" position="after">
                 <field name="opportunity_id" />
-                <field name="child_id" />
                 <field name="course_id" />
-                <field name="school_id" />
                 <field name="academic_year_id" />
             </field>
         </field>
@@ -74,38 +45,14 @@
         <field name="arch" type="xml">
             <field name="analytic_account_id" position="after">
                 <field name="opportunity_id" />
-                <field name="child_id" />
                 <field name="course_id" />
-                <field name="school_id" />
                 <field name="academic_year_id" />
             </field>
             <filter name="customer" position="after">
                 <filter name="opportunity_id" string="Opportunity" domain="[]" context="{'group_by':'opportunity_id'}"/>
-                <filter name="child_id" string="Child" domain="[]" context="{'group_by':'child_id'}"/>
                 <filter name="course_id" string="Initial school course" domain="[]" context="{'group_by':'course_id'}"/>
-                <filter name="school_id" string="School" domain="[]" context="{'group_by':'school_id'}"/>
                 <filter name="academic_year_id" string="Academic year" domain="[]" context="{'group_by':'academic_year_id'}"/>
             </filter>
-        </field>
-    </record>
-
-    <record id="sale_order_line_view_form_inh_sale_crm_school" model="ir.ui.view">
-        <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale_school.sale_order_line_view_form" />
-        <field name="arch" type="xml">
-            <field name="payer_ids" position="after">
-                <field name="total_percentage" />
-            </field>
-        </field>
-    </record>
-
-    <record id="sale_order_line_view_tree_inh_sale_crm_school" model="ir.ui.view">
-        <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale_school.sale_order_line_view_tree" />
-        <field name="arch" type="xml">
-            <field name="payer_ids" position="after">
-                <field name="total_percentage" />
-            </field>
         </field>
     </record>
 
