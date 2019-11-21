@@ -4,14 +4,13 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/tree//field[@name='name']"
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom']"
                    position="after">
                 <field name="weight"/>
-                <field name="cost"/>
+                <field name="weight_uom_id" groups="uom.group_uom" />
             </xpath>
             <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']"
-                   position="after">
-                <field name="cost"/>
+                   position="before">
                 <label for="weight"/>
                 <div class="o_row" name="weight">
                     <field name="weight"/>
@@ -22,6 +21,30 @@
                     <field name="volume"/>
                     <span>m³</span>
                 </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_line_form_view_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="groups_id"
+               eval="[(4, ref('sale_order_weight_cost.sale_order_weight_show_cost'))]" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
+                <field name="cost" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_line_tree_view_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="groups_id"
+               eval="[(4, ref('sale_order_weight_cost.sale_order_weight_show_cost'))]" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+                <field name="cost" />
             </xpath>
         </field>
     </record>

@@ -12,6 +12,7 @@
     "website": "http://www.avanzosc.es",
     "category": "Sales Management",
     "data": [
+        "security/sale_order_weight_groups.xml",
         "views/sale_order_line_views.xml",
     ],
     "installable": True,

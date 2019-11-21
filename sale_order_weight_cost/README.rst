@@ -6,7 +6,11 @@
 Sale order weight cost
 ======================
 
-* This module put the weight and the cost product in sale order lines.
+This module show the weight and the cost product in sale order lines.
+
+In order to be able to view the cost in sale order lines, if there is not
+sale_margin module installed, you must select the **Show product cost in sale
+lines** group
 
 
 Bug Tracker
