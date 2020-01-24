@@ -8,8 +8,9 @@
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",
     "depends": [
-        "sale_crm_school",
-        "account_banking_sepa_direct_debit"
+        "sale_school",
+        "account_banking_sepa_direct_debit",
+        "account_banking_mandate_usability",
     ],
     "data": [
         "views/sale_order_view.xml",
