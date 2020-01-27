@@ -10,10 +10,12 @@
             <notebook position="before">
                 <group>
                     <group>
-                        <field name="child_id" />
+                        <field name="child_id"
+                               options="{'no_create': True, 'no_open': True}" />
                     </group>
                     <group>
-                        <field name="school_id" />
+                        <field name="school_id"
+                               options="{'no_create': True, 'no_open': True}"/>
                     </group>
                 </group>
             </notebook>
@@ -35,15 +37,7 @@
                     <field name="originator_id" readonly="1"/>
                     <field name="child_id" invisible="1"/>
                     <field name="payer_ids"
-                           context="{'default_line_id': active_id, 'default_child_id': child_id}">
-                        <tree string="Payers" editable="top">
-                            <field name="line_id" invisible="1"/>
-                            <field name="child_id" invisible="1"/>
-                            <field name="allowed_payers_ids" widget="many2many_tags" invisible="1"/>
-                            <field name="payer_id" domain="[('id', 'in', allowed_payers_ids)]"/>
-                            <field name="pay_percentage" />
-                        </tree>
-                    </field>
+                           context="{'default_line_id': active_id, 'default_child_id': child_id}" />
                 </group>
             </xpath>
         </field>

@@ -6,8 +6,11 @@
         <field name="arch" type="xml">
             <tree string="Payers" editable="top">
                 <field name="line_id" invisible="1"/>
-                <field name="payer_id" />
+                <field name="payer_id" domain="[('id', 'in', allowed_payers_ids)]"
+                       options="{'no_create': True, 'no_open': True}" />
                 <field name="pay_percentage" />
+                <field name="child_id" invisible="1" />
+                <field name="allowed_payers_ids" widget="many2many_tags" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -25,7 +28,10 @@
                     </div>
                     <group>
                         <group>
-                            <field name="payer_id" />
+                            <field name="child_id" invisible="1" />
+                            <field name="payer_id" domain="[('id', 'in', allowed_payers_ids)]"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="allowed_payers_ids" widget="many2many_tags" invisible="1" />
                         </group>
                         <group>
                             <field name="pay_percentage" />
