@@ -5,12 +5,12 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field eval="10" name="priority"/>
         <field name="arch" type="xml">
-            <button name= "action_view_invoice" position="before">
-                <button string="SEPA Mandantes" type="object"
-                     name= "action_view_sepa_from_sale_order"
-                     class="oe_stat_button" icon="fa-arrows-v"
-                     groups="account_payment_order.group_account_payment,base.group_user">
-                        <field name="sepa_count" nolabel="1" />
+            <button name="action_view_invoice" position="before">
+                <button type="object"
+                        name="action_view_sepa_from_sale_order"
+                        class="oe_stat_button" icon="fa-arrows-v"
+                        groups="account_payment_order.group_account_payment,base.group_user">
+                        <field name="sepa_count" string="Mandantes" widget="statinfo" />
                 </button>
             </button>
         </field>
