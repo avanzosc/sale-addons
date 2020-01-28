@@ -13,7 +13,7 @@ class TestSaleCrmSchool(TestSaleCrmSchoolCommon):
         with self.assertRaises(Warning):
             self.lead.create_sale_order_for_student()
         academic_year = self.academic_year_model.create(
-            self.academic_year_vals)
+            self.next_academic_year_vals)
         with self.assertRaises(Warning):
             self.lead.create_sale_order_for_student()
         self.lead.future_student_ids.write({
