@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_course_view_form" model="ir.ui.view">
+        <field name="model">education.course</field>
+        <field name="inherit_id" ref="education.education_course_view_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="button_open_sale_order_templates" type="object"
+                        class="oe_stat_button" icon="fa-usd" groups="sales_team.group_sale_salesman">
+                    <field name="sale_order_template_count" string="Sale Templates"
+                           widget="statinfo" />
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <record id="education_course_view_search" model="ir.ui.view">
+        <field name="model">education.course</field>
+        <field name="inherit_id" ref="education.education_course_view_search" />
+        <field name="arch" type="xml">
+            <filter name="inactive" position="after">
+                <filter string="Without Quotation Template"
+                        name="without_templates"
+                        domain="[('sale_order_template_ids','=',[])]" />
+            </filter>
+        </field>
+    </record>
+</odoo>

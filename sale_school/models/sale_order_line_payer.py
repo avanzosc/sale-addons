@@ -15,7 +15,7 @@ class SaleOrderLinePayer(models.Model):
         comodel_name='res.partner', string='Payer', required=True)
     pay_percentage = fields.Float(string='Percentage', required=True)
     child_id = fields.Many2one(
-        comodel_name='res.partner', string='Child',
+        comodel_name='res.partner', string='Student',
         compute='_compute_allowed_payer_ids', store=True)
     allowed_payers_ids = fields.Many2many(
         string='Allowed payers', comodel_name='res.partner',

@@ -32,3 +32,29 @@ class TestSaleSchool(TestSaleSchoolCommon):
             'pay_percentage': 100.0,
         })
         self.sale_order.action_confirm()
+
+    def test_sale_order_onchange(self):
+        self.student.property_product_pricelist = self.student_pricelist
+        self.assertNotEquals(
+            self.student_pricelist, self.family_pricelist)
+        self.assertNotEquals(
+            self.student.property_product_pricelist,
+            self.family.property_product_pricelist)
+        self.assertEquals(
+            self.sale_order.pricelist_id,
+            self.sale_order.partner_id.property_product_pricelist)
+        self.assertFalse(self.sale_order.sale_order_template_id)
+        self.sale_order.onchange_school_course()
+        self.assertEquals(
+            self.sale_order.sale_order_template_id, self.sale_template)
+        self.sale_order.onchange_partner_id()
+        self.assertEquals(
+            self.sale_order.pricelist_id, self.student_pricelist)
+        self.assertNotEquals(
+            self.sale_order.pricelist_id, self.family_pricelist)
+
+    def test_sale_template(self):
+        self.assertEquals(self.edu_course.sale_order_template_count, 1)
+        action_dict = self.edu_course.button_open_sale_order_templates()
+        self.assertIn(
+            ("course_id", "=", self.edu_course.id), action_dict.get("domain"))

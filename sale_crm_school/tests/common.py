@@ -39,7 +39,7 @@ class TestSaleCrmSchoolCommon(TestSaleSchoolCommon):
         cls.sale_template = cls.sale_template_model.create({
             'name': 'Test Template',
             'course_id': cls.education_course.id,
-            'school_id': cls.school.id,
+            'school_id': cls.edu_partner.id,
             'sale_order_template_line_ids': [(0, 0, {
                 'product_id': cls.service.id,
                 'name': cls.service.name,
@@ -61,8 +61,8 @@ class TestSaleCrmSchoolCommon(TestSaleSchoolCommon):
             'child_id': cls.student.id,
             'birth_date': '2015-01-01',
             'gender': 'male',
-            'school_id': cls.school.id,
-            'course_id': cls.education_course.id,
+            'school_id': cls.edu_partner.id,
+            'course_id': cls.edu_course.id,
         }
         lead_vals = {
             'name': 'Lead for test sale_crm_school',
