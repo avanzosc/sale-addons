@@ -44,10 +44,10 @@ msgstr ""
 #. module: sale_school_generate_sepa
 #: model:ir.model,name:sale_school_generate_sepa.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Salmenta eskaera "
 
 #. module: sale_school_generate_sepa
 #: model:ir.model,name:sale_school_generate_sepa.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Salmenta-eskaera lerroa"
 

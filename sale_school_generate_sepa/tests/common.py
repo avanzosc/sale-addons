@@ -9,14 +9,6 @@ class TestSaleSchoolGenerateSepaCommon(TestSaleSchoolCommon):
     @classmethod
     def setUpClass(cls):
         super(TestSaleSchoolGenerateSepaCommon, cls).setUpClass()
-        cls.bank = cls.env["res.partner.bank"].create({
-            "acc_number": "ES3600443270176913241920",
-            "partner_id": cls.progenitor.id,
-            "use_default": True,
-        })
-        cls.progenitor.responsible_ids.filtered("payer").write({
-            "bank_id": cls.bank.id,
-        })
         payer_line = cls.sale_order.order_line[:1].payer_ids[:1]
         payer_line.write({
             "pay_percentage": 100.0,
