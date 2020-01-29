@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="view_order_form" model="ir.ui.view">
+    <record id="sale_order_view_form" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="order_line" position="attributes">
                 <attribute name="context">{'default_child_id': child_id}</attribute>
             </field>
-            <notebook position="before">
-                <group>
-                    <group>
-                        <field name="child_id"
-                               options="{'no_create': True, 'no_open': True}" />
-                    </group>
-                    <group>
-                        <field name="school_id"
-                               options="{'no_create': True, 'no_open': True}"/>
-                    </group>
-                </group>
-            </notebook>
+            <field name="partner_id" position="before">
+                <field name="child_id"
+                       options="{'no_create': True}" />
+            </field>
+            <field name="partner_id" position="attributes">
+                <attribute name="attrs">{'readonly': [('child_id','!=',False)]}</attribute>
+            </field>
             <xpath expr="//field[@name='order_line']/tree/field[@name='name']"
                    position="after">
                 <field name="originator_id" readonly="1"/>
@@ -43,13 +38,35 @@
         </field>
     </record>
 
+    <record id="sale_order_quote_view_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_management.sale_order_form_quote" />
+        <field name="arch" type="xml">
+            <field name="sale_order_template_id" position="attributes">
+                <attribute name="domain">['|',("school_id","=",school_id),("school_id","=",False),"|",("course_id","=",course_id),("course_id","=",False)]</attribute>
+            </field>
+            <field name="sale_order_template_id" position="before">
+                <field name="academic_year_id"
+                       options="{'no_create': True, 'no_open': True}" />
+                <field name="school_id"
+                       options="{'no_create': True, 'no_open': True}"/>
+                <field name="course_id"
+                       options="{'no_create': True, 'no_open': True}" />
+            </field>
+        </field>
+    </record>
+
     <record id="sale_order_view_tree" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
-            <field name="user_id" position="after">
+            <field name="partner_id" position="before">
                 <field name="child_id" />
+            </field>
+            <field name="user_id" position="after">
+                <field name="academic_year_id" />
                 <field name="school_id" />
+                <field name="course_id" />
             </field>
         </field>
     </record>
@@ -58,9 +75,13 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
-            <field name="user_id" position="after">
+            <field name="partner_id" position="before">
                 <field name="child_id" />
+            </field>
+            <field name="user_id" position="after">
+                <field name="academic_year_id" />
                 <field name="school_id" />
+                <field name="course_id" />
             </field>
         </field>
     </record>
@@ -71,11 +92,15 @@
         <field name="arch" type="xml">
             <field name="analytic_account_id" position="after">
                 <field name="child_id" />
+                <field name="academic_year_id" />
                 <field name="school_id" />
+                <field name="course_id" />
             </field>
             <filter name="customer" position="after">
-                <filter name="child_id" string="Child" domain="[]" context="{'group_by':'child_id'}"/>
+                <filter name="child_id" string="Student" domain="[]" context="{'group_by':'child_id'}"/>
+                <filter name="academic_year_id" string="Academic Year" domain="[]" context="{'group_by':'academic_year_id'}"/>
                 <filter name="school_id" string="School" domain="[]" context="{'group_by':'school_id'}"/>
+                <filter name="course_id" string="Course" domain="[]" context="{'group_by':'course_id'}"/>
             </filter>
         </field>
     </record>

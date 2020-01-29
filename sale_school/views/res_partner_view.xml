@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="product.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <field name="property_product_pricelist" position="attributes">
+                <attribute name="attrs" />
+            </field>
+            <field name="property_product_pricelist" position="attributes">
+                <attribute name="attrs" />
+            </field>
+            <div name="parent_pricelists" position="attributes">
+                <attribute name="attrs" />
+                <attribute name="invisible">True</attribute>
+            </div>
+        </field>
+    </record>
+</odoo>

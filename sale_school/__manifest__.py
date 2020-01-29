@@ -3,20 +3,28 @@
 
 {
     "name": "Sales for School",
-    "version": "12.0.1.1.0",
+    "version": "12.0.2.0.0",
     "category": "Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",
     "depends": [
         "sale",
+        "sale_management",
+        "sales_team",
         "contacts_school",
+        "education",
+        "product",
     ],
     "data": [
         "security/ir.model.access.csv",
+        "views/education_course_view.xml",
+        "views/product_view.xml",
+        "views/res_partner_view.xml",
         "views/sale_order_view.xml",
         "views/sale_order_line_view.xml",
-        "views/sale_order_line_payer_view.xml"
+        "views/sale_order_line_payer_view.xml",
+        "views/sale_order_template_view.xml",
     ],
     "installable": True,
 }

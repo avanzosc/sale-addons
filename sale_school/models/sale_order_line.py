@@ -17,7 +17,7 @@ class SaleOrderLine(models.Model):
         string='Total Percentage', compute='_compute_total_percentage',
         store=True)
     child_id = fields.Many2one(
-        comodel_name='res.partner', string='Child',
+        comodel_name='res.partner', string='Student',
         related='order_id.child_id')
 
     @api.depends('payer_ids', 'payer_ids.pay_percentage')
