@@ -3,6 +3,7 @@
 
 from .common import TestSaleSchoolGenerateSepaCommon
 from odoo.tests import common
+from odoo.exceptions import ValidationError
 
 
 @common.at_install(False)
@@ -26,7 +27,7 @@ class TestSaleSchoolGenerateSepa(TestSaleSchoolGenerateSepaCommon):
 
     def test_sale_school_generate_sepa2(self):
         mandate_wiz = self.env["res.partner.bank.mandate.generator"].create({
-            "bank_ids": [(6, 0, self.bank.ids)],
+            "bank_ids": [(6, 0, self.progenitor.bank_ids.ids)],
             "mandate_format": "sepa",
             "mandate_type": "recurrent",
             "mandate_scheme": "CORE",
@@ -42,3 +43,16 @@ class TestSaleSchoolGenerateSepa(TestSaleSchoolGenerateSepaCommon):
         for mandate in self.sale_order._find_payer_mandates():
             self.assertTrue(mandate.signature_date)
             self.assertEquals(mandate.state, "valid")
+
+    def test_sale_school_no_bank(self):
+        self.progenitor.responsible_ids.write({
+            "bank_id": False,
+        })
+        self.assertFalse(self.sale_order.sepa_count)
+        with self.assertRaises(ValidationError):
+            self.sale_order.action_confirm()
+        self.progenitor.bank_ids[:1].write({
+            "use_default": True,
+        })
+        self.sale_order.action_confirm()
+        self.assertEquals(self.sale_order.sepa_count, 1)

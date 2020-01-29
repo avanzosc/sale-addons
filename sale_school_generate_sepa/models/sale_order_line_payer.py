@@ -1,7 +1,8 @@
 # Copyright 2020 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class SaleOrderLinePayer(models.Model):
@@ -12,7 +13,11 @@ class SaleOrderLinePayer(models.Model):
         self.ensure_one()
         bank = self._find_payer_bank()
         mandate = self._find_mandate(bank=bank)
-        if bank and not mandate:
+        if not bank:
+            raise ValidationError(
+                _("Payer {} must have at least a bank account to use as"
+                  " default!".format(self.payer_id.display_name)))
+        elif bank and not mandate:
             wiz_obj = self.env["res.partner.bank.mandate.generator"]
             mandate_wiz = wiz_obj.create({
                 "bank_ids": [(6, 0, bank.ids)],
