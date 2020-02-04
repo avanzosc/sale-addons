@@ -13,3 +13,4 @@ class TestSaleSchoolGenerateSepaCommon(TestSaleSchoolCommon):
         payer_line.write({
             "pay_percentage": 100.0,
         })
+        payer_line._onchange_payer_id()
