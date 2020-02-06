@@ -26,14 +26,14 @@
                    position="attributes">
                 <attribute name="decoration-danger">total_percentage != 100.0</attribute>
             </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='product_id']">
+                <field name="originator_id" readonly="True" />
+            </xpath>
             <xpath expr="//field[@name='order_line']/form//field[@name='name']"
                    position="after">
-                <group>
-                    <field name="originator_id" readonly="1"/>
-                    <field name="child_id" invisible="1"/>
-                    <field name="payer_ids"
-                           context="{'default_line_id': active_id, 'default_child_id': child_id}" />
-                </group>
+                <field name="child_id" invisible="True" />
+                <field name="payer_ids" nolabel="True"
+                       context="{'default_line_id': active_id, 'default_child_id': child_id}" />
             </xpath>
         </field>
     </record>

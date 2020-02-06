@@ -6,36 +6,40 @@ from odoo.exceptions import ValidationError
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     child_id = fields.Many2one(
-        comodel_name='res.partner', string='Student',
-        domain=[('educational_category', '=', 'student')],
+        comodel_name="res.partner", string="Student",
+        domain=[("educational_category", "=", "student")],
         index=True, readonly=True,
-        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
-        change_default=True, track_visibility='always', track_sequence=1)
+        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
+        change_default=True, track_visibility="always", track_sequence=1)
     school_id = fields.Many2one(
-        comodel_name='res.partner', string='School',
-        domain=[('educational_category', '=', 'school')],
+        comodel_name="res.partner", string="School",
+        domain=[("educational_category", "=", "school")],
         index=True, readonly=True,
-        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
+        states={"draft": [("readonly", False)], "sent": [("readonly", False)]})
     course_id = fields.Many2one(
-        comodel_name='education.course', string='Course',
+        comodel_name="education.course", string="Course",
         index=True, readonly=True,
-        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
+        states={"draft": [("readonly", False)], "sent": [("readonly", False)]})
     academic_year_id = fields.Many2one(
-        comodel_name='education.academic_year', string='Academic year',
+        comodel_name="education.academic_year", string="Academic year",
         index=True, readonly=True,
-        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
+        states={"draft": [("readonly", False)], "sent": [("readonly", False)]})
 
     @api.multi
     def action_confirm(self):
         for sale in self:
-            lines = sale.mapped('order_line').filtered(
-                lambda x: x.total_percentage != 100.0)
+            order_lines = sale.mapped("order_line")
+            lines = order_lines.filtered(lambda x: x.total_percentage != 100.0)
             if lines:
                 raise ValidationError(
-                    _('The payers do not add 100%'))
+                    _("The payers do not add 100%"))
+            payers = order_lines.mapped("payer_ids")
+            if any(payers.filtered(lambda p: not p.bank_id)):
+                raise ValidationError(
+                    _("There must be a bank account defined per payer!"))
         return super(SaleOrder, self).action_confirm()
 
     @api.multi

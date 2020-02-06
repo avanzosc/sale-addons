@@ -31,6 +31,9 @@ class TestSaleSchool(TestSaleSchoolCommon):
         payer_line.write({
             'pay_percentage': 100.0,
         })
+        with self.assertRaises(ValidationError):
+            self.sale_order.action_confirm()
+        payer_line._onchange_payer_id()
         self.sale_order.action_confirm()
 
     def test_sale_order_onchange(self):
