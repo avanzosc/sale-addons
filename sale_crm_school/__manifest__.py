@@ -17,7 +17,6 @@
     "data": [
         "views/crm_lead_view.xml",
         "views/crm_lead_future_student_view.xml",
-        "views/product_view.xml",
     ],
     "installable": True,
 }
