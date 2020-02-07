@@ -5,13 +5,15 @@
         <field name="arch" type="xml">
             <tree string="Payers" editable="top"
                   decoration-warning="not bank_id">
-                <field name="line_id" invisible="1"/>
+                <field name="line_id" invisible="True" />
+                <field name="originator_id" invisible="True" />
                 <field name="payer_id" domain="[('id', 'in', allowed_payers_ids)]"
                        options="{'no_create': True, 'no_open': True}" />
                 <field name="pay_percentage" />
-                <field name="child_id" invisible="1" />
+                <field name="child_id" invisible="True" />
                 <field name="allowed_payers_ids" widget="many2many_tags" invisible="1"/>
-                <field name="bank_id" domain="[('partner_id', '=', payer_id)]"
+                <field name="bank_id"
+                       domain="[('partner_id','=',payer_id),'|',('company_id','=',originator_id),('company_id','=',False)]"
                        options="{'no_create': True, 'no_open': True}" />
             </tree>
         </field>
