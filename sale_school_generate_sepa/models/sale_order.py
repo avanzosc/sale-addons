@@ -9,7 +9,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     sepa_count = fields.Integer(
-        string="# SEPA", compute='_compute_sepa_count')
+        string="# SEPA", compute='_compute_sepa_count', compute_sudo=True)
 
     @api.multi
     def _compute_sepa_count(self):

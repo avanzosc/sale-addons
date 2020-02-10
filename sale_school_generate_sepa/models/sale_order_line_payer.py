@@ -13,15 +13,16 @@ class SaleOrderLinePayer(models.Model):
         mandate = self._find_mandate()
         if not mandate:
             wiz_obj = self.env["res.partner.bank.mandate.generator"]
-            mandate_wiz = wiz_obj.create({
-                "bank_ids": [(6, 0, self.bank_id.ids)],
-                "mandate_format": "sepa",
-                "mandate_type": "recurrent",
-                "mandate_scheme": "CORE",
-                "mandate_recurrent_sequence_type": "recurring",
-                "signed": True,
-                "validate": True,
-            })
+            mandate_wiz = wiz_obj.with_context(
+                force_company=self.line_id.originator_id.id).create({
+                    "bank_ids": [(6, 0, self.bank_id.ids)],
+                    "mandate_format": "sepa",
+                    "mandate_type": "recurrent",
+                    "mandate_scheme": "CORE",
+                    "mandate_recurrent_sequence_type": "recurring",
+                    "signed": True,
+                    "validate": True,
+                })
             mandate_wiz.button_generate_mandates()
         else:
             if not mandate.signature_date:
@@ -32,10 +33,10 @@ class SaleOrderLinePayer(models.Model):
     @api.multi
     def _find_mandate(self):
         self.ensure_one()
-        mandates = self.bank_id.mandate_ids.filtered(
-            lambda m: m.state == "valid")
+        bank_mandates = (
+            self.bank_id.mandate_ids.sorted("signature_date", reverse=True)
+            .filtered(lambda m: m.company_id == self.line_id.originator_id))
+        mandates = bank_mandates.filtered(lambda m: m.state == "valid")
         if not mandates:
-            mandates = (
-                self.bank_id.mandate_ids.sorted("signature_date", reverse=True)
-                .filtered(lambda m: m.state == "draft"))
+            mandates = bank_mandates.filtered(lambda m: m.state == "draft")
         return mandates and mandates[:1]
