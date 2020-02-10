@@ -28,6 +28,13 @@ class SaleOrder(models.Model):
         index=True, readonly=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]})
 
+    @api.model
+    def create(self, values):
+        if values.get("child_id") and not values.get("partner_id"):
+            child = self.env["res.partner"].browse(values.get("child_id"))
+            values["partner_id"] = child.parent_id.id or child.id
+        return super(SaleOrder, self).create(values)
+
     @api.multi
     def action_confirm(self):
         for sale in self:

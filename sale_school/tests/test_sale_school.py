@@ -61,3 +61,7 @@ class TestSaleSchool(TestSaleSchoolCommon):
         action_dict = self.edu_course.button_open_sale_order_templates()
         self.assertIn(
             ("course_id", "=", self.edu_course.id), action_dict.get("domain"))
+
+    def test_sale_order_no_partner(self):
+        sale_order = self.sale_order.copy(default={'partner_id': False})
+        self.assertEquals(sale_order.partner_id, sale_order.child_id.parent_id)
