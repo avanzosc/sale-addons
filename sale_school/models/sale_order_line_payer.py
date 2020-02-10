@@ -11,6 +11,9 @@ class SaleOrderLinePayer(models.Model):
     line_id = fields.Many2one(
         comodel_name="sale.order.line", string="Sale Line", required=True,
         ondelete="cascade")
+    originator_id = fields.Many2one(
+        comodel_name="res.company", string="Originator",
+        related="line_id.originator_id", store=True)
     payer_id = fields.Many2one(
         comodel_name="res.partner", string="Payer", required=True)
     pay_percentage = fields.Float(string="Percentage", required=True)
