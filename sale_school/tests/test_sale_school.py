@@ -65,3 +65,34 @@ class TestSaleSchool(TestSaleSchoolCommon):
     def test_sale_order_no_partner(self):
         sale_order = self.sale_order.copy(default={'partner_id': False})
         self.assertEquals(sale_order.partner_id, sale_order.child_id.parent_id)
+
+    def test_course_change_template(self):
+        changes = course_change_obj = self.env["education.course.change"]
+        templates = tmpl_obj = self.env["sale.order.template"]
+        next_course = self.edu_course.copy(default={"education_code": "NEXT"})
+        self.assertEquals(next_course.sale_order_template_count, 0)
+        self.assertEquals(self.edu_course.sale_order_template_count, 1)
+        changes |= course_change_obj.create({
+            "school_id": self.edu_partner.id,
+            "course_id": self.edu_course.id,
+            "next_school_id": self.edu_partner.id,
+            "next_course_id": next_course.id,
+        })
+        self.assertEquals(self.edu_course.sale_order_template_count, 1)
+        templates |= tmpl_obj.search([
+            ("school_id", "=", self.edu_partner.id),
+            ("course_id", "=", self.edu_course.id),
+        ])
+        changes |= course_change_obj.create({
+            "school_id": self.edu_partner.id,
+            "course_id": next_course.id,
+            "next_school_id": self.edu_partner.id,
+            "next_course_id": self.edu_course.id,
+        })
+        templates |= tmpl_obj.search([
+            ("school_id", "=", self.edu_partner.id),
+            ("course_id", "=", next_course.id),
+        ])
+        action_dict = changes.create_sale_order_template()
+        self.assertEquals(next_course.sale_order_template_count, 1)
+        self.assertIn(("id", "in", templates.ids), action_dict.get("domain"))
