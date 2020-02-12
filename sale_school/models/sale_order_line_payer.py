@@ -24,7 +24,9 @@ class SaleOrderLinePayer(models.Model):
         string="Allowed payers", comodel_name="res.partner",
         compute="_compute_allowed_payer_ids", store=True)
     bank_id = fields.Many2one(
-        comodel_name="res.partner.bank", string="Bank Account")
+        comodel_name="res.partner.bank", string="Bank Account",
+        domain="['|',('company_id','=',originator_id),"
+               "('company_id','=',False)]")
 
     @api.multi
     @api.depends(

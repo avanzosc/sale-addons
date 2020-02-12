@@ -1,4 +1,5 @@
 from . import education_course
+from . import education_course_change
 from . import product
 from . import sale_order
 from . import sale_order_line
