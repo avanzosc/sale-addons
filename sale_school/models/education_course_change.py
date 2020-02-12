@@ -18,7 +18,7 @@ class EducationCourseChange(models.Model):
                 ("course_id", "=", record.course_id.id),
             ])
             if not sale_tmpl:
-                tmpl_obj.create({
+                sale_tmpl = tmpl_obj.create({
                     "name": "{} - {}".format(
                         record.school_id.name, record.course_id.display_name),
                     "school_id": record.school_id.id,

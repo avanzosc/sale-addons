@@ -89,10 +89,11 @@ class TestSaleSchool(TestSaleSchoolCommon):
             "next_school_id": self.edu_partner.id,
             "next_course_id": self.edu_course.id,
         })
+        action_dict = changes.create_sale_order_template()
         templates |= tmpl_obj.search([
             ("school_id", "=", self.edu_partner.id),
             ("course_id", "=", next_course.id),
         ])
-        action_dict = changes.create_sale_order_template()
         self.assertEquals(next_course.sale_order_template_count, 1)
+        self.assertEquals(len(templates), 2)
         self.assertIn(("id", "in", templates.ids), action_dict.get("domain"))
