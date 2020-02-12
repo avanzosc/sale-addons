@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models, _
-from odoo.exceptions import Warning
+from odoo.exceptions import UserError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
@@ -21,13 +21,13 @@ class CrmLead(models.Model):
             ('date_end', '<=', date_to),
         ])
         if not academic_years:
-            raise Warning(_('There are no valid academic years'))
+            raise UserError(_('There are no valid academic years'))
         sales = self.env['sale.order']
         futures = self.mapped('future_student_ids').filtered(
             lambda l: l.child_id and not l.sale_order_id and
             l.academic_year_id in academic_years)
         if not futures:
-            raise Warning(_('There are not future student to register.'))
+            raise UserError(_('There are not future student to register.'))
         for future in futures:
             vals = future.crm_lead_id._get_vals_for_sale_order(future)
             future.sale_order_id = sales.create(vals)
