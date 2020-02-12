@@ -2,7 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from .common import TestSaleCrmSchoolCommon
 from odoo.tests import common
-from odoo.exceptions import Warning
+from odoo.exceptions import UserError
 
 
 @common.at_install(False)
@@ -10,11 +10,11 @@ from odoo.exceptions import Warning
 class TestSaleCrmSchool(TestSaleCrmSchoolCommon):
 
     def test_sale_crm_school(self):
-        with self.assertRaises(Warning):
+        with self.assertRaises(UserError):
             self.lead.create_sale_order_for_student()
         academic_year = self.academic_year_model.create(
             self.next_academic_year_vals)
-        with self.assertRaises(Warning):
+        with self.assertRaises(UserError):
             self.lead.create_sale_order_for_student()
         self.lead.future_student_ids.write({
             'academic_year_id': academic_year.id,
