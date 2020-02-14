@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_view_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="groups_id" eval="[(4, ref('stock.group_adv_location'))]" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree//field[@name='state']" position="before">
+                <field name="product_route_ids" widget="many2many_tags" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
