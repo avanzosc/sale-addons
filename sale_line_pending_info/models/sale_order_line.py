@@ -39,3 +39,6 @@ class SaleOrderLine(models.Model):
     amount_pending_invoicing = fields.Monetary(
         string='Amount pending invoicing', copy=False,
         compute='_compute_qty_amount_pending_invoicing', store=True)
+    team_id = fields.Many2one(
+        string='Sales team', comodel_name='crm.team', store=True,
+        related='order_id.team_id')
