@@ -4,6 +4,9 @@
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale_order_line_input.view_sales_order_line_input_tree" />
         <field name="arch" type="xml">
+            <field name="order_id" position="after">
+                <field name="team_id" />
+            </field>
             <field name="qty_delivered" position="after">
                 <field name="qty_pending_delivery" sum="Pending delivery"/>
             </field>
@@ -30,6 +33,18 @@
                 <field name="amount_pending_delivery" widget="monetary"/>
                 <field name="amount_pending_invoicing" widget="monetary"/>
             </field>
+        </field>
+    </record>
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <field name="salesman_id" position="before">
+                <field name="team_id" />
+            </field>
+            <filter name="salesperson" position="before">
+                <filter string="Sales team" name="salesteam" domain="[]" context="{'group_by':'team_id'}"/>
+            </filter>
         </field>
     </record>
 </odoo>
