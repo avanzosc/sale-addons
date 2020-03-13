@@ -8,14 +8,36 @@
                 <field name="school_id" />
                 <field name="course_id" />
             </div>
+            <field name="sale_order_template_line_ids" position="attributes">
+                <attribute name="context">{'default_school_id': school_id}</attribute>
+            </field>
+            <field name="sale_order_template_option_ids" position="attributes">
+                <attribute name="context">{'default_school_id': school_id}</attribute>
+            </field>
             <xpath expr="//field[@name='sale_order_template_line_ids']/form//field[@name='product_id']" position="before">
                 <field name="company_id" readonly="1"/>
+                <field name="school_id" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_line_ids']/form//field[@name='product_id']" position="attributes">
+                <attribute name="domain">[('product_tmpl_id.center_id', '=', school_id)]</attribute>
             </xpath>
             <xpath expr="//field[@name='sale_order_template_line_ids']/tree//field[@name='product_id']" position="before">
                 <field name="company_id" />
+                <field name="school_id" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_line_ids']/tree//field[@name='product_id']" position="attributes">
+                <attribute name="domain">[('product_tmpl_id.center_id', '=', school_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_option_ids']/tree//field[@name='product_id']" position="before">
+                <field name="company_id" />
+                <field name="school_id" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_option_ids']/tree//field[@name='product_id']" position="attributes">
+                <attribute name="domain">[('product_tmpl_id.center_id', '=', school_id)]</attribute>
             </xpath>
         </field>
     </record>
+
     <record id="sale_order_template_view_tree" model="ir.ui.view">
         <field name="model">sale.order.template</field>
         <field name="inherit_id" ref="sale_management.sale_order_template_view_tree" />
