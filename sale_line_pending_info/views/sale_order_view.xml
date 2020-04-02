@@ -14,10 +14,8 @@
                     attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}" />
             </xpath>
             <xpath expr="//field[@name='order_line']//tree//field[@name='discount']" position="after">
-                <field name="amount_pending_delivery" widget="monetary"
-                    groups="account.group_show_line_subtotals_tax_excluded"/>
-                <field name="amount_pending_invoicing" widget="monetary"
-                    groups="account.group_show_line_subtotals_tax_excluded"/>
+                <field name="amount_pending_delivery" widget="monetary" />
+                <field name="amount_pending_invoicing" widget="monetary"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/form//field[@name='qty_delivered']/.." position="after">
                 <label for="qty_pending_delivery" string="Pending delivery qty"
@@ -33,6 +31,34 @@
                     <field name="qty_pending_invoicing" attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"/>
                 </div>
             </xpath>
+        </field>
+    </record>
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="total_qty_pending_delivery" sum="Pending delivery"/>
+                <field name="total_amount_pending_delivery"
+                    widget="monetary" sum="Sum Tot amount pending delivery"/>
+                <field name="total_qty_pending_invoicing" sum="Pending invoicing"/>
+                <field name="total_amount_pending_invoicing"
+                    widget="monetary" sum="Sum tot amount pending invoicing"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="total_qty_pending_delivery" sum="Pending delivery"/>
+                <field name="total_amount_pending_delivery"
+                    widget="monetary" sum="Sum Tot amount pending delivery"/>
+                <field name="total_qty_pending_invoicing" sum="Pending invoicing"/>
+                <field name="total_amount_pending_invoicing"
+                    widget="monetary" sum="Sum tot amount pending invoicing"/>
+            </field>
         </field>
     </record>
 </odoo>
