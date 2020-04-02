@@ -8,6 +8,7 @@ Sale line pending info
 
 * In sale lines new fields: Pending delivery qty, amount pending delivery,
   pending invoicing qty, amount pending invoicing.
+* In sale order totals for sale lines new fields.
 
 Bug Tracker
 ===========
