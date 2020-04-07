@@ -27,6 +27,16 @@ class SaleOrder(models.Model):
             sale.total_qty_pending_invoicing = sum(
                 sale.order_line.mapped('qty_pending_invoicing'))
 
+    @api.multi
+    @api.depends('order_line', 'order_line.qty_shipped_pending_invoicing',
+                 'order_line.amount_pending_invoicing')
+    def _compute_total_qty_shipped_pending_invoicing(self):
+        for sale in self:
+            sale.total_qty_shipped_pending_invoicing = sum(
+                sale.order_line.mapped('qty_shipped_pending_invoicing'))
+            sale.total_amount_shipped_pending_invoicing = sum(
+                sale.order_line.mapped('amount_shipped_pending_invoicing'))
+
     total_qty_pending_delivery = fields.Float(
         string='Total pending delivery qty', copy=False,
         digits=dp.get_precision('Product Unit of Measure'),
@@ -41,6 +51,13 @@ class SaleOrder(models.Model):
     total_amount_pending_invoicing = fields.Monetary(
         string='Total amount pending invoicing', copy=False,
         compute='_compute_total_qty_amount_pending_invoicing', store=True)
+    total_qty_shipped_pending_invoicing = fields.Float(
+        string='Total Qty shipped pending invoicing', copy=False,
+        digits=dp.get_precision('Product Unit of Measure'),
+        compute='_compute_total_qty_shipped_pending_invoicing', store=True)
+    total_amount_shipped_pending_invoicing = fields.Monetary(
+        string='Total amount shipped pending invoicing', copy=False,
+        compute='_compute_total_qty_shipped_pending_invoicing', store=True)
 
 
 class SaleOrderLine(models.Model):
@@ -68,6 +85,17 @@ class SaleOrderLine(models.Model):
                 amount -= (amount * line.discount) / 100
             line.amount_pending_invoicing = amount
 
+    @api.multi
+    @api.depends('qty_delivered', 'qty_invoiced', 'discount', 'price_unit')
+    def _compute_qty_shipped_pending_invoicing(self):
+        for line in self:
+            qty = line.qty_delivered - line.qty_invoiced
+            line.qty_shipped_pending_invoicing = qty
+            amount = qty * line.price_unit
+            if line.discount:
+                amount -= (amount * line.discount) / 100
+            line.amount_shipped_pending_invoicing = amount
+
     qty_pending_delivery = fields.Float(
         string='Pending delivery qty', copy=False,
         digits=dp.get_precision('Product Unit of Measure'),
@@ -82,6 +110,13 @@ class SaleOrderLine(models.Model):
     amount_pending_invoicing = fields.Monetary(
         string='Amount pending invoicing', copy=False,
         compute='_compute_qty_amount_pending_invoicing', store=True)
+    qty_shipped_pending_invoicing = fields.Float(
+        string='Qty shipped pending invoicing', copy=False,
+        digits=dp.get_precision('Product Unit of Measure'),
+        compute='_compute_qty_shipped_pending_invoicing', store=True)
+    amount_shipped_pending_invoicing = fields.Monetary(
+        string='Amount shipped pending invoicing', copy=False,
+        compute='_compute_qty_shipped_pending_invoicing', store=True)
     team_id = fields.Many2one(
         string='Sales team', comodel_name='crm.team', store=True,
         related='order_id.team_id')
