@@ -30,6 +30,13 @@ class TestSaleLinePendingInfo(common.SavepointCase):
             if line.discount:
                 amount -= (amount * line.discount) / 100
             self.assertEquals(line.amount_pending_invoicing, amount)
+            self.assertEquals(
+                line.qty_shipped_pending_invoicing,
+                line.qty_delivered - line.qty_invoiced)
+            amount = line.qty_shipped_pending_invoicing * line.price_unit
+            if line.discount:
+                amount -= (amount * line.discount) / 100
+            self.assertEquals(line.amount_shipped_pending_invoicing, amount)
         self.assertEquals(
             sale.total_qty_pending_delivery,
             sum(sale.order_line.mapped('qty_pending_delivery')))
@@ -42,6 +49,12 @@ class TestSaleLinePendingInfo(common.SavepointCase):
         self.assertEquals(
             sale.total_amount_pending_invoicing,
             sum(sale.order_line.mapped('amount_pending_invoicing')))
+        self.assertEquals(
+            sale.total_qty_shipped_pending_invoicing,
+            sum(sale.order_line.mapped('qty_shipped_pending_invoicing')))
+        self.assertEquals(
+            sale.total_amount_shipped_pending_invoicing,
+            sum(sale.order_line.mapped('amount_shipped_pending_invoicing')))
         res = self.report_model._query(
             with_clause='', fields=None, groupby='', from_clause='')
         self.assertIn('as qty_pending_delivery', res)
