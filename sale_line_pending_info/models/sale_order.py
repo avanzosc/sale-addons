@@ -89,11 +89,13 @@ class SaleOrderLine(models.Model):
     @api.depends('qty_delivered', 'qty_invoiced', 'discount', 'price_unit')
     def _compute_qty_shipped_pending_invoicing(self):
         for line in self:
+            amount = 0
             qty = line.qty_delivered - line.qty_invoiced
-            line.qty_shipped_pending_invoicing = qty
-            amount = qty * line.price_unit
-            if line.discount:
-                amount -= (amount * line.discount) / 100
+            if qty > 0:
+                amount = qty * line.price_unit
+                amount -= (
+                    (amount * line.discount) / 100 if line.discount else 0)
+            line.qty_shipped_pending_invoicing = qty if qty > 0 else 0
             line.amount_shipped_pending_invoicing = amount
 
     qty_pending_delivery = fields.Float(
