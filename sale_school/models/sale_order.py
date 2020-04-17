@@ -27,6 +27,10 @@ class SaleOrder(models.Model):
         comodel_name="education.academic_year", string="Academic year",
         index=True, readonly=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]})
+    edu_group_id = fields.Many2one(
+        comodel_name="education.group", string="Education Group",
+        index=True, readonly=True,
+        states={"draft": [("readonly", False)], "sent": [("readonly", False)]})
 
     @api.model
     def create(self, values):
@@ -47,7 +51,10 @@ class SaleOrder(models.Model):
             if any(payers.filtered(lambda p: not p.bank_id)):
                 raise ValidationError(
                     _("There must be a bank account defined per payer!"))
-        return super(SaleOrder, self).action_confirm()
+        res = super(SaleOrder, self).action_confirm()
+        for sale in self.filtered("edu_group_id"):
+            sale.edu_group_id.student_ids = [(4, sale.child_id.id)]
+        return res
 
     @api.multi
     @api.onchange("partner_id", "child_id")
@@ -68,3 +75,10 @@ class SaleOrder(models.Model):
                 ("course_id", "=", sale.course_id.id),
             ])
             sale.sale_order_template_id = template[:1]
+
+    @api.multi
+    def action_cancel(self):
+        res = super(SaleOrder, self).action_cancel()
+        for sale in self.filtered("edu_group_id"):
+            sale.edu_group_id.student_ids = [(5, sale.child_id.id)]
+        return res

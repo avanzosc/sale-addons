@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-29 10:54+0000\n"
-"PO-Revision-Date: 2020-01-29 10:54+0000\n"
+"POT-Creation-Date: 2020-04-17 15:58+0000\n"
+"PO-Revision-Date: 2020-04-17 15:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,6 +36,11 @@ msgid "Allowed payers"
 msgstr "Pagadores permitidos"
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__bank_id
+msgid "Bank Account"
+msgstr "Cuenta bancaria"
+
+#. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_product_product__center_id
 #: model:ir.model.fields,field_description:sale_school.field_product_template__center_id
 #: model_terms:ir.ui.view,arch_db:sale_school.product_template_view_search
@@ -44,6 +49,7 @@ msgstr "Centro educativo"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template_line__company_id
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_template_option__company_id
 msgid "Company"
 msgstr "Compañía"
 
@@ -54,6 +60,16 @@ msgstr "Compañía"
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Course"
 msgstr "Curso"
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_education_course_change
+msgid "Course Change"
+msgstr "Cambio de curso"
+
+#. module: sale_school
+#: model:ir.actions.server,name:sale_school.education_course_change_create_template_action
+msgid "Create Sale Template from Course Change"
+msgstr "Crear plantilla de presupuesto desde cambio de curso"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__create_uid
@@ -69,6 +85,17 @@ msgstr "Creado el"
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_template_line__school_id
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_template_option__school_id
+msgid "Education Center"
+msgstr "Centro educativo"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order__edu_group_id
+msgid "Education Group"
+msgstr "Grupo educativo"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__id
@@ -92,6 +119,7 @@ msgstr "Última actualización el"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line__originator_id
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__originator_id
 #: model_terms:ir.ui.view,arch_db:sale_school.view_sales_order_line_filter
 msgid "Originator"
 msgstr "Ordenante"
@@ -132,6 +160,11 @@ msgstr "Plantilla de presupuesto"
 #: model:ir.model,name:sale_school.model_sale_order_template_line
 msgid "Quotation Template Line"
 msgstr "Linea de plantilla de presupuesto"
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_sale_order_template_option
+msgid "Quotation Template Option"
+msgstr "Opción de plantilla de presupuesto"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_course__sale_order_template_ids
@@ -179,11 +212,18 @@ msgid "Template must be unique per school and course!"
 msgstr "¡La plantilla debe ser única por centro educativo y curso!"
 
 #. module: sale_school
-#: code:addons/sale_school/models/sale_order.py:25
-#: code:addons/sale_school/models/sale_order.py:38
+#: code:addons/sale_school/models/sale_order.py:45
+#: code:addons/sale_school/models/sale_order.py:49
 #, python-format
 msgid "The payers do not add 100%"
 msgstr "Los pagadores no suman 100%"
+
+#. module: sale_school
+#: code:addons/sale_school/models/sale_order.py:49
+#: code:addons/sale_school/models/sale_order.py:53
+#, python-format
+msgid "There must be a bank account defined per payer!"
+msgstr "¡Debe haber una cuenta bancaria definida por pagador!"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line__total_percentage

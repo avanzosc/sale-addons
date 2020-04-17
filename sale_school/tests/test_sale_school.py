@@ -35,6 +35,11 @@ class TestSaleSchool(TestSaleSchoolCommon):
             self.sale_order.action_confirm()
         payer_line._onchange_payer_id()
         self.sale_order.action_confirm()
+        self.assertIn(
+            self.sale_order.child_id, self.sale_order.edu_group_id.student_ids)
+        self.sale_order.action_cancel()
+        self.assertNotIn(
+            self.sale_order.child_id, self.sale_order.edu_group_id.student_ids)
 
     def test_sale_order_onchange(self):
         self.student.property_product_pricelist = self.student_pricelist

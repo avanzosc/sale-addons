@@ -53,12 +53,21 @@ class TestSaleSchoolCommon(TestEducationCommon):
         cls.service = cls.product_model.create({
             "name": "Test Service",
         })
+        cls.edu_group = cls.group_model.create({
+            "education_code": "TEST",
+            "description": "Test Education Group",
+            "center_id": cls.edu_partner.id,
+            "course_id": cls.edu_course.id,
+            "academic_year_id": cls.academic_year.id,
+            "level_id": cls.edu_level.id,
+        })
         cls.sale_order = cls.sale_order_model.create({
             "partner_id": cls.family.id,
             "child_id": cls.student.id,
             "school_id": cls.edu_partner.id,
             "course_id": cls.edu_course.id,
             "academic_year_id": cls.academic_year.id,
+            "edu_group_id": cls.edu_group.id,
             "order_line": [(0, 0, {
                 "product_id": cls.service.id,
                 "payer_ids": [(0, 0, {
