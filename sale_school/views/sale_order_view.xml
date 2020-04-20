@@ -52,6 +52,9 @@
                        options="{'no_create': True, 'no_open': True}"/>
                 <field name="course_id"
                        options="{'no_create': True, 'no_open': True}" />
+                <field name="edu_group_id"
+                       options="{'no_create': True, 'no_open': True}"
+                       domain="[('academic_year_id','=',academic_year_id),('center_id','=',school_id),('course_id','=',course_id)]" />
             </field>
         </field>
     </record>
