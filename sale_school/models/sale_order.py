@@ -78,7 +78,14 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_cancel(self):
+        edu_group_obj = self.env["education.group"]
         res = super(SaleOrder, self).action_cancel()
-        for sale in self.filtered("edu_group_id"):
-            sale.edu_group_id.student_ids = [(5, sale.child_id.id)]
+        for sale in self:
+            edu_groups = edu_group_obj.search([
+                ("academic_year_id", "=", sale.academic_year_id.id),
+                ("center_id", "=", sale.school_id.id),
+                ("course_id", "=", sale.course_id.id),
+            ])
+            for edu_group in edu_groups:
+                edu_group.student_ids = [(5, sale.child_id.id)]
         return res

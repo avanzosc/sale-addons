@@ -61,6 +61,11 @@ class TestSaleSchoolCommon(TestEducationCommon):
             "academic_year_id": cls.academic_year.id,
             "level_id": cls.edu_level.id,
         })
+        cls.edu_group2 = cls.edu_group.copy(default={
+            "education_code": "TEST2",
+            "description": "Test Education Group (2)",
+            "academic_year_id": cls.edu_group.academic_year_id.id,
+        })
         cls.sale_order = cls.sale_order_model.create({
             "partner_id": cls.family.id,
             "child_id": cls.student.id,
