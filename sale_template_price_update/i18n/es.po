@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_template_price_update
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-24 11:47+0000\n"
+"PO-Revision-Date: 2020-04-24 11:47+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_template_price_update
+#: model:ir.model,name:sale_template_price_update.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de Configuración"
+
+#. module: sale_template_price_update
+#: model:ir.model.fields,help:sale_template_price_update.field_res_config_settings__automatic_price_update
+msgid "If this check is marked it will update the prices in the related quotation templates"
+msgstr "Si está marcado los precios serán actualizados en las plantillas donde esté el producto"
+
+#. module: sale_template_price_update
+#: model:ir.model,name:sale_template_price_update.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_template_price_update
+#: model:ir.model,name:sale_template_price_update.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: sale_template_price_update
+#: model:ir.model,name:sale_template_price_update.model_sale_order_template
+msgid "Quotation Template"
+msgstr "Plantilla de presupuesto"
+
+#. module: sale_template_price_update
+#: model:ir.model,name:sale_template_price_update.model_sale_order_template_line
+msgid "Quotation Template Line"
+msgstr "Linea de plantilla de presupuesto"
+
+#. module: sale_template_price_update
+#: model:ir.model,name:sale_template_price_update.model_sale_order_template_option
+msgid "Quotation Template Option"
+msgstr "Opción de plantilla de presupuesto"
+
+#. module: sale_template_price_update
+#: model:ir.actions.server,name:sale_template_price_update.sale_order_template_price_update
+msgid "Update Products Price"
+msgstr "Actualizar precios de productos"
+
+#. module: sale_template_price_update
+#: model:ir.model.fields,field_description:sale_template_price_update.field_res_config_settings__automatic_price_update
+msgid "Update Quotation Template Prices"
+msgstr "Actualizar los precios en las plantillas"
+
+#. module: sale_template_price_update
+#: model_terms:ir.ui.view,arch_db:sale_template_price_update.res_config_settings_view_form
+msgid "When updating a product price update related sale templates"
+msgstr "Al actualizar el precio de producto actualizar las plantillas de presupuesto que lo contengan"
+
