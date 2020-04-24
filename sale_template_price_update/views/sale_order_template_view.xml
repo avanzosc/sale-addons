@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_template_price_update" model="ir.actions.server">
+        <field name="name">Update Products Price</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="sale_management.model_sale_order_template"/>
+        <field name="binding_model_id" ref="sale_management.model_sale_order_template"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.update_price()
+        </field>
+    </record>
+</odoo>
