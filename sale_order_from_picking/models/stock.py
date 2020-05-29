@@ -1,11 +1,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 # Copyright (c) 2019 Daniel Campos <danielcampos@avanzosc.es> - Avanzosc S.L.
 
-from odoo import api, exceptions, models, _
+from odoo import api, exceptions, fields, models, _
 
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
+
+    sale_order_id = fields.Many2one(comodel_name='sale.order',
+                                    string='Generated sale Order')
 
     @api.multi
     def create_sale_order(self):
@@ -25,6 +28,7 @@ class StockPicking(models.Model):
                 'stock_move_id': line.id,
                 }
             sale_line_obj.create(sale_line_data)
+        self.sale_order_id = sale.id
         view = self.env.ref('sale.view_order_form')
         return {
             'name': _('View Sale'),
