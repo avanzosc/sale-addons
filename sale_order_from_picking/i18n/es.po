@@ -37,3 +37,8 @@ msgstr "Tranferir"
 #, python-format
 msgid "View Sale"
 msgstr "View Sale"
+
+#. module: sale_order_from_picking
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_stock_picking__sale_order_id
+msgid "Generated sale Order"
+msgstr "Pedido de venta generado"
