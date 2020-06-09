@@ -9,8 +9,8 @@ class SaleOrderLine(models.Model):
     @api.multi
     def copy_sale_order_line(self):
         for line in self:
-            return line.copy(
-                {'name': self.name,
-                 'order_id': self.order_id.id,
-                 'product_id': self.product_id.id,
+            line.copy(
+                {'name': line.name,
+                 'order_id': line.order_id.id,
+                 'product_id': line.product_id.id,
                  })
