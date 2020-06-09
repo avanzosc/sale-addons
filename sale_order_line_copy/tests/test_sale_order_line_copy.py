@@ -12,6 +12,7 @@ class SaleOrderLineProductConfiguratorTest(common.SavepointCase):
         cls.product_model = cls.env['product.product']
         cls.partner_model = cls.env['res.partner']
         cls.uom_unit = cls.env.ref('uom.product_uom_unit')
+        cls.sale_line_obj = cls.env['sale.order.line']
         cls.partner = cls.partner_model.create({
             'name': 'Partner1',
         })
@@ -23,15 +24,17 @@ class SaleOrderLineProductConfiguratorTest(common.SavepointCase):
         })
         cls.product = cls.product_model.create({
             'name': 'Product',
-            'type': 'product',
             'default_code': 'P1',
             'uom_id': cls.uom_unit.id,
         })
-        cls.sale_order.order_line.new({'name': 'test',
-                                       'product_id': cls.product.id,
-                                       'product_uom_qty': 2,
-                                       })
+
 
     def test_copy_sale_order_line(self):
-        self.sale_order.order_line[0].copy_sale_order_line()
+        new_line = self.sale_line_obj.new({'name': 'test',
+                                           'order_id': self.sale_order.id,
+                                           'product_id': self.product.id,
+                                           'product_uom_qty': 2,
+                                           })
+        self.sale_order.order_line = new_line
+        self.sale_order.order_line.copy_sale_order_line()
         self.assertEqual(len(self.sale_order.order_line), 2)
