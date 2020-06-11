@@ -54,6 +54,11 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self).action_confirm()
         for sale in self.filtered("edu_group_id"):
             sale.edu_group_id.student_ids = [(4, sale.child_id.id)]
+            sale.child_id.write({
+                "current_group_id": sale.edu_group_id.id,
+                "current_center_id": sale.edu_group_id.center_id.id,
+                "current_course_id": sale.edu_group_id.course_id.id,
+            })
         return res
 
     @api.multi
@@ -88,4 +93,5 @@ class SaleOrder(models.Model):
             ])
             for edu_group in edu_groups:
                 edu_group.student_ids = [(5, sale.child_id.id)]
+            sale.child_id.update_current_group_id()
         return res
