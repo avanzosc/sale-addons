@@ -30,7 +30,6 @@ class SaleOrderLineProductConfiguratorTest(common.SavepointCase):
             'uom_id': cls.uom_unit.id,
         })
 
-
     def test_copy_sale_order_line(self):
         new_line = self.sale_line_obj.new({'name': 'test',
                                            'order_id': self.sale_order.id,
