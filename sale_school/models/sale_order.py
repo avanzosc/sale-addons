@@ -74,12 +74,29 @@ class SaleOrder(models.Model):
     @api.onchange("school_id", "course_id")
     def onchange_school_course(self):
         template_obj = self.env["sale.order.template"]
+        group_obj = self.env["education.group"]
         for sale in self:
             template = template_obj.search([
                 ("school_id", "=", sale.school_id.id),
                 ("course_id", "=", sale.course_id.id),
             ])
             sale.sale_order_template_id = template[:1]
+            group = group_obj.search([
+                ("academic_year_id", "=", sale.academic_year_id.id),
+                ("center_id", "=", sale.school_id.id),
+                ("course_id", "=", sale.course_id.id),
+                ("group_type_id.type", "=", "official")
+            ])
+            if len(group) == 1:
+                sale.edu_group_id = group
+
+    @api.multi
+    @api.onchange('sale_order_template_id')
+    def onchange_sale_order_template_id(self):
+        result = super(SaleOrder, self).onchange_sale_order_template_id()
+        for line in self.order_line:
+            line.payer_ids = line.get_payers_info()
+        return result
 
     @api.multi
     def action_cancel(self):

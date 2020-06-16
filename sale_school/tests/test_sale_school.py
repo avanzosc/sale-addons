@@ -3,7 +3,7 @@
 
 from .common import TestSaleSchoolCommon
 from odoo.tests import common
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 @common.at_install(False)
@@ -107,3 +107,44 @@ class TestSaleSchool(TestSaleSchoolCommon):
         self.assertEquals(next_course.sale_order_template_count, 1)
         self.assertEquals(len(templates), 2)
         self.assertIn(("id", "in", templates.ids), action_dict.get("domain"))
+
+    def test_create_next_sale_order(self):
+        next_course = self.edu_course.copy(default={"education_code": "NEXT"})
+        next_year = self.academic_year._get_next()
+        next_template = self.sale_template.copy(
+            default={"course_id": next_course.id,
+                     "school_id": self.edu_partner.id})
+        with self.assertRaises(UserError):
+            self.student.create_next_enrollment()
+        self.env["education.course.change"].create({
+            "school_id": self.edu_partner.id,
+            "course_id": self.edu_course.id,
+            "next_school_id": self.edu_partner.id,
+            "next_course_id": next_course.id,
+        })
+        self.assertFalse(self.student.enrollment_ids.filtered(
+            lambda e: e.academic_year_id == next_year))
+        self.student.create_next_enrollment()
+        action_dict = self.student.button_open_enrollments()
+        self.assertIn(
+            ("child_id", "=", self.student.id), action_dict.get("domain"))
+        self.assertIn("default_child_id", action_dict.get("context"))
+        self.assertTrue(self.student.enrollment_ids.filtered(
+            lambda e: e.academic_year_id == next_year))
+        active_enrollments = self.student.enrollment_ids.filtered(
+            lambda e: e.state != "cancel")
+        self.assertEquals(
+            len(active_enrollments), self.student.enrollment_count)
+        next_enrollments = self.student.enrollment_ids.filtered(
+            lambda e: e.academic_year_id == next_year)
+        self.assertEquals(
+            next_enrollments[:1].sale_order_template_id, next_template)
+        self.student.create_next_enrollment()
+        next_enrollments = self.student.enrollment_ids.filtered(
+            lambda e: e.academic_year_id == next_year)
+        self.assertEquals(len(next_enrollments), 1)
+        next_enrollments[:1].action_cancel()
+        self.student.create_next_enrollment()
+        next_enrollments = self.student.enrollment_ids.filtered(
+            lambda e: e.academic_year_id == next_year)
+        self.assertEquals(len(next_enrollments), 2)

@@ -1,10 +1,11 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.addons.education.tests.common import TestEducationCommon
+from odoo.addons.contacts_school_education.tests.common import \
+    TestContactsSchoolEducationCommon
 
 
-class TestSaleSchoolCommon(TestEducationCommon):
+class TestSaleSchoolCommon(TestContactsSchoolEducationCommon):
 
     @classmethod
     def setUpClass(cls):
@@ -21,20 +22,11 @@ class TestSaleSchoolCommon(TestEducationCommon):
         cls.student_pricelist = cls.pricelist_obj.create({
             "name": "Student Pricelist",
         })
-        family_vals = {
-            "name": "Family for test sale_school_generate_sepa",
-            "educational_category": "family",
-            "property_product_pricelist": cls.family_pricelist.id,
-        }
-        cls.family = cls.partner_model.create(family_vals)
-        student_vals = {
-            "name": "Student for test sale_school_generate_sepa",
-            "educational_category": "student",
-            "parent_id": cls.family.id,
-        }
-        cls.student = cls.partner_model.create(student_vals)
+        cls.family.property_product_pricelist = cls.family_pricelist
+        cls.student.property_product_pricelist = cls.student_pricelist
+        cls.student.update_current_group_id()
         progenitor_vals = {
-            "name": "Progenitor for test sale_school_generate_sepa",
+            "name": "Progenitor",
             "educational_category": "progenitor",
             "bank_ids": [(0, 0, {
                 "acc_number": "ES2020189263751078650575",
@@ -53,18 +45,12 @@ class TestSaleSchoolCommon(TestEducationCommon):
         cls.service = cls.product_model.create({
             "name": "Test Service",
         })
-        cls.edu_group = cls.group_model.create({
-            "education_code": "TEST",
-            "description": "Test Education Group",
-            "center_id": cls.edu_partner.id,
-            "course_id": cls.edu_course.id,
-            "academic_year_id": cls.academic_year.id,
-            "level_id": cls.edu_level.id,
-        })
-        cls.edu_group2 = cls.edu_group.copy(default={
+        cls.edu_group2 = cls.group.copy(default={
             "education_code": "TEST2",
             "description": "Test Education Group (2)",
-            "academic_year_id": cls.edu_group.academic_year_id.id,
+            "academic_year_id": cls.group.academic_year_id.id,
+            "center_id": cls.edu_partner.id,
+            "course_id": cls.edu_course.id,
         })
         cls.sale_order = cls.sale_order_model.create({
             "partner_id": cls.family.id,
@@ -72,7 +58,7 @@ class TestSaleSchoolCommon(TestEducationCommon):
             "school_id": cls.edu_partner.id,
             "course_id": cls.edu_course.id,
             "academic_year_id": cls.academic_year.id,
-            "edu_group_id": cls.edu_group.id,
+            "edu_group_id": cls.group.id,
             "order_line": [(0, 0, {
                 "product_id": cls.service.id,
                 "payer_ids": [(0, 0, {
