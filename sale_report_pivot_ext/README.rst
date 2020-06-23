@@ -2,11 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=====================
-Sale report pivot ext
-=====================
+===============================
+Sales Analysis Report Extension
+===============================
 
-* In "Sale report pivot" new field "Commitment date".
+Extend Sales Analysis Report to add Commitment Date.
 
 Bug Tracker
 ===========

@@ -12,9 +12,9 @@ class TestSaleReportPivotExt(common.SavepointCase):
         super(TestSaleReportPivotExt, cls).setUpClass()
         cls.report_model = cls.env['sale.report']
 
-    def test_sale_line_pending_info(self):
+    def test_sale_report_pivot(self):
         res = self.report_model._query(
-            with_clause='', fields=None, groupby='', from_clause='')
+            with_clause='', fields={}, groupby='', from_clause='')
         self.assertIn(
-            ', s.commitment_date_without_hour as commitment_date', res)
-        self.assertIn('s.id , s.commitment_date_without_hour', res)
+            ', s.commitment_date as commitment_date', res)
+        self.assertIn('s.id , s.commitment_date', res)
