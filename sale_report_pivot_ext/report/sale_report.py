@@ -12,9 +12,8 @@ class SaleReport(models.Model):
     def _query(self, with_clause='', fields=None, groupby='', from_clause=''):
         if not fields:
             fields = {}
-        fields['commitment_date'] = (
-            ', s.commitment_date_without_hour as commitment_date')
-        groupby += ', s.commitment_date_without_hour'
+        fields["commitment_date"] = ', s.commitment_date as commitment_date'
+        groupby += ', s.commitment_date'
         return super(SaleReport, self)._query(
             with_clause=with_clause, fields=fields, groupby=groupby,
             from_clause=from_clause)

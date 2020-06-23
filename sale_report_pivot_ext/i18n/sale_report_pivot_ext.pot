@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-26 12:41+0000\n"
-"PO-Revision-Date: 2020-03-26 12:41+0000\n"
+"POT-Creation-Date: 2020-06-23 10:54+0000\n"
+"PO-Revision-Date: 2020-06-23 10:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,16 +23,6 @@ msgstr ""
 #. module: sale_report_pivot_ext
 #: model_terms:ir.ui.view,arch_db:sale_report_pivot_ext.view_order_product_search
 msgid "Commitment date"
-msgstr ""
-
-#. module: sale_report_pivot_ext
-#: model:ir.model.fields,field_description:sale_report_pivot_ext.field_sale_order__commitment_date_without_hour
-msgid "Commitment date without hour"
-msgstr ""
-
-#. module: sale_report_pivot_ext
-#: model:ir.model,name:sale_report_pivot_ext.model_sale_order
-msgid "Sale Order"
 msgstr ""
 
 #. module: sale_report_pivot_ext
