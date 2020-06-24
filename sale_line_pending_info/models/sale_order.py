@@ -64,15 +64,26 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     @api.multi
-    @api.depends('product_uom_qty', 'qty_delivered', 'price_unit', 'discount')
+    @api.depends('product_uom_qty', 'qty_delivered', 'price_unit', 'discount',
+                 'order_id', 'order_id.picking_ids',
+                 'order_id.picking_ids.state')
     def _compute_qty_amount_pending_delivery(self):
         for line in self:
-            line.qty_pending_delivery = (
-                line.product_uom_qty - line.qty_delivered)
-            amount = line.qty_pending_delivery * line.price_unit
-            if line.discount:
-                amount -= (amount * line.discount) / 100
-            line.amount_pending_delivery = amount
+            found = False
+            for picking in line.order_id.picking_ids:
+                if any([x.state not in ('done', 'cancel') and
+                        x.product_id.id == line.product_id.id for x in
+                        picking.move_lines]):
+                    found = True
+            if not found or line.product_id.type == 'service':
+                line.amount_pending_delivery = 0
+            if found:
+                line.qty_pending_delivery = (
+                    line.product_uom_qty - line.qty_delivered)
+                amount = line.qty_pending_delivery * line.price_unit
+                if line.discount:
+                    amount -= (amount * line.discount) / 100
+                line.amount_pending_delivery = amount
 
     @api.multi
     @api.depends('product_uom_qty', 'qty_invoiced', 'discount')

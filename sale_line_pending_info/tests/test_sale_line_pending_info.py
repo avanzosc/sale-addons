@@ -14,12 +14,16 @@ class TestSaleLinePendingInfo(common.SavepointCase):
         cls.report_model = cls.env['sale.report']
 
     def test_sale_line_pending_info(self):
-        cond = [('state', 'in', ('sale', 'done'))]
+        cond = [('state', '=', 'draft')]
         sale = self.sale_model.search(cond, limit=1)
-        sale.order_line.write({'discount': 5})
+        sale.order_line.write({'discount': 10})
+        sale.action_confirm()
         for line in sale.order_line:
-            self.assertEquals(line.qty_pending_delivery,
-                              line.product_uom_qty - line.qty_delivered)
+            if line.product_id.type != 'service':
+                self.assertEquals(line.qty_pending_delivery,
+                                  line.product_uom_qty - line.qty_delivered)
+            else:
+                self.assertEquals(line.qty_pending_delivery, 0)
             amount = line.qty_pending_delivery * line.price_unit
             if line.discount:
                 amount -= (amount * line.discount) / 100
