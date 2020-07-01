@@ -12,26 +12,22 @@ class CrmLead(models.Model):
 
     @api.multi
     def create_sale_order_for_student(self):
-        today = fields.Date.context_today(self)
-        date_from = today.replace(month=1, day=1)
-        next_year = today.year + 1
-        date_to = today.replace(year=next_year, month=12, day=31)
-        academic_years = self.env['education.academic_year'].search([
-            ('date_start', '>=', date_from),
-            ('date_end', '<=', date_to),
-        ])
-        if not academic_years:
-            raise UserError(_('There are no valid academic years'))
+        current_year = self.env["education.academic_year"].search([
+            ("current", "=", True)])
+        if not current_year:
+            raise UserError(_("There should be current academic year"))
+        next_year = current_year._get_next()
+        if not next_year:
+            raise UserError(_('There is no next academic year defined.'))
         sales = self.env['sale.order']
         futures = self.mapped('future_student_ids').filtered(
             lambda l: l.child_id and not l.sale_order_id and
-            l.academic_year_id in academic_years)
+            l.academic_year_id == next_year)
         if not futures:
             raise UserError(_('There are not future student to register.'))
         for future in futures:
             vals = future.crm_lead_id._get_vals_for_sale_order(future)
             future.sale_order_id = sales.create(vals)
-            future.sale_order_id.onchange_sale_order_template_id()
             future.child_id.educational_category = 'student'
             future.crm_lead_id._put_payer_information_in_sale_order(
                 future, future.sale_order_id)
@@ -48,19 +44,25 @@ class CrmLead(models.Model):
 
     @api.multi
     def _get_vals_for_sale_order(self, future):
-        cond = [('school_id', '=', future.school_id.id),
-                ('course_id', '=', future.course_id.id)]
-        template = self.env['sale.order.template'].search(cond, limit=1)
-        vals = {
-            'partner_id': self.partner_id.id,
-            'opportunity_id': self.id,
-            'child_id': future.child_id.id,
-            'course_id': future.course_id.id,
-            'school_id': future.school_id.id,
-            'academic_year_id': future.academic_year_id.id,
-            'sale_order_template_id': template.id,
-        }
-        return vals
+        sale_order_obj = self.env["sale.order"]
+        new_sale = sale_order_obj.new({
+            "partner_id": self.partner_id.id,
+            "opportunity_id": self.id,
+            "child_id": future.child_id.id,
+            "course_id": future.course_id.id,
+            "school_id": future.school_id.id,
+            "academic_year_id": future.academic_year_id.id,
+        })
+        for onchange_method in new_sale._onchange_methods["partner_id"]:
+            onchange_method(new_sale)
+        for onchange_method in new_sale._onchange_methods["course_id"]:
+            onchange_method(new_sale)
+        for onchange_method in new_sale._onchange_methods[
+                "sale_order_template_id"]:
+            onchange_method(new_sale)
+        sale_order_dict = new_sale._convert_to_write(
+            new_sale._cache)
+        return sale_order_dict
 
     @api.multi
     def _put_payer_information_in_sale_order(self, future, sale):
