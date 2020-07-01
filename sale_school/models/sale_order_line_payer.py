@@ -49,7 +49,7 @@ class SaleOrderLinePayer(models.Model):
             lambda r: r.child2_id == self.child_id and
             r.family_id == self.line_id.order_id.partner_id)
         self.bank_id = (family_rel.bank_id or
-                        self.payer_id.bank_ids.filtered("use_default"))
+                        self.payer_id.bank_ids.filtered("use_default")[:1])
 
     @api.multi
     def name_get(self):

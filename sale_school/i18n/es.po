@@ -6,14 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-17 15:58+0000\n"
-"PO-Revision-Date: 2020-04-17 15:58+0000\n"
+"POT-Creation-Date: 2020-06-23 10:03+0000\n"
+"PO-Revision-Date: 2020-06-23 10:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner__enrollment_count
+#: model:ir.model.fields,field_description:sale_school.field_res_users__enrollment_count
+msgid "# Enrollments"
+msgstr "Nº matrículas"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_course__sale_order_template_count
@@ -54,6 +60,11 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: sale_school
+#: model:ir.model,name:sale_school.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sale_school
 #: model:ir.model,name:sale_school.model_education_course
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__course_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template__course_id
@@ -68,8 +79,8 @@ msgstr "Cambio de curso"
 
 #. module: sale_school
 #: model:ir.actions.server,name:sale_school.education_course_change_create_template_action
-msgid "Create Sale Template from Course Change"
-msgstr "Crear plantilla de presupuesto desde cambio de curso"
+msgid "Create Sale Template"
+msgstr "Crear plantilla de presupuesto"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__create_uid
@@ -96,6 +107,13 @@ msgstr "Centro educativo"
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__edu_group_id
 msgid "Education Group"
 msgstr "Grupo educativo"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner__enrollment_ids
+#: model:ir.model.fields,field_description:sale_school.field_res_users__enrollment_ids
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_view_form
+msgid "Enrollments"
+msgstr "Matrículas"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__id
@@ -212,14 +230,18 @@ msgid "Template must be unique per school and course!"
 msgstr "¡La plantilla debe ser única por centro educativo y curso!"
 
 #. module: sale_school
-#: code:addons/sale_school/models/sale_order.py:45
 #: code:addons/sale_school/models/sale_order.py:49
 #, python-format
 msgid "The payers do not add 100%"
 msgstr "Los pagadores no suman 100%"
 
 #. module: sale_school
-#: code:addons/sale_school/models/sale_order.py:49
+#: code:addons/sale_school/models/res_partner.py:55
+#, python-format
+msgid "There is not course change defined."
+msgstr "No hay cambio de curso definido."
+
+#. module: sale_school
 #: code:addons/sale_school/models/sale_order.py:53
 #, python-format
 msgid "There must be a bank account defined per payer!"

@@ -4,6 +4,12 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="product.view_partner_property_form" />
         <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="button_open_enrollments" type="object" class="oe_stat_button" icon="fa-briefcase"
+                        attrs="{'invisible': [('enrollment_count','=',0)]}">
+                    <field name="enrollment_count" string="Enrollments" widget="statinfo" />
+                </button>
+            </div>
             <field name="property_product_pricelist" position="attributes">
                 <attribute name="attrs" />
             </field>
