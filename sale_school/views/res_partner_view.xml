@@ -22,4 +22,37 @@
             </div>
         </field>
     </record>
+
+    <record model="ir.actions.server" id="action_discontinue_enrollments">
+        <field name="name">Discontinue Enrollment</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="binding_model_id" ref="base.model_res_partner" />
+        <field name="state">code</field>
+        <field name="code">
+for record in records:
+    record.action_discontinue()
+        </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_create_repeater_enrollments">
+        <field name="name">Create Repeater Enrollment</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="binding_model_id" ref="base.model_res_partner" />
+        <field name="state">code</field>
+        <field name="code">
+for record in records:
+    record.create_repeater_enrollment()
+        </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_create_next_academic_year_enrollments">
+        <field name="name">Create Next Academic Year Enrollment</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="binding_model_id" ref="base.model_res_partner" />
+        <field name="state">code</field>
+        <field name="code">
+for record in records:
+    record.create_next_enrollment()
+        </field>
+    </record>
 </odoo>

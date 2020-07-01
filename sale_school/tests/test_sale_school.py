@@ -3,7 +3,7 @@
 
 from .common import TestSaleSchoolCommon
 from odoo.tests import common
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 
 
 @common.at_install(False)
@@ -114,8 +114,6 @@ class TestSaleSchool(TestSaleSchoolCommon):
         next_template = self.sale_template.copy(
             default={"course_id": next_course.id,
                      "school_id": self.edu_partner.id})
-        with self.assertRaises(UserError):
-            self.student.create_next_enrollment()
         self.env["education.course.change"].create({
             "school_id": self.edu_partner.id,
             "course_id": self.edu_course.id,
@@ -148,3 +146,29 @@ class TestSaleSchool(TestSaleSchoolCommon):
         next_enrollments = self.student.enrollment_ids.filtered(
             lambda e: e.academic_year_id == next_year)
         self.assertEquals(len(next_enrollments), 2)
+
+    def test_student_discontinue(self):
+        self.assertFalse(self.student.old_student)
+        self.assertEquals(self.student.educational_category, "student")
+        self.student.action_discontinue()
+        self.assertTrue(self.student.old_student)
+        self.assertEquals(self.student.educational_category, "otherrelative")
+
+    def test_student_repearter_enrollment(self):
+        next_year = self.academic_year._get_next()
+        current_group = self.student.get_current_group()
+        sale_orders = self.sale_order.search([
+            ("child_id", "=", self.student.id),
+            ("school_id", "=", current_group.center_id.id),
+            ("course_id", "=", current_group.course_id.id),
+            ("academic_year_id", "=", next_year.id),
+        ])
+        self.assertFalse(sale_orders)
+        self.student.create_repeater_enrollment()
+        sale_orders = self.sale_order.search([
+            ("child_id", "=", self.student.id),
+            ("school_id", "=", current_group.center_id.id),
+            ("course_id", "=", current_group.course_id.id),
+            ("academic_year_id", "=", next_year.id),
+        ])
+        self.assertTrue(sale_orders)

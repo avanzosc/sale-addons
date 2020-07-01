@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
@@ -43,6 +42,25 @@ class ResPartner(models.Model):
         return action_dict
 
     @api.multi
+    def action_discontinue(self):
+        self.ensure_one()
+        if self.educational_category not in ("student", "otherchild"):
+            return
+        current_group = self.get_current_group()
+        self.write({
+            "educational_category": "otherrelative",
+            "old_student": True,
+            "alumni_center_id": current_group.center_id.id,
+            "alumni_academic_year_id": current_group.academic_year_id.id,
+            "current_center_id": False,
+            "current_level_id": False,
+            "current_course_id": False,
+            "current_group_id": False,
+        })
+        self.message_post(
+            body=_("Student's registration has been discharged."))
+
+    @api.multi
     def create_next_enrollment(self):
         self.ensure_one()
         if self.educational_category not in ("student", "otherchild"):
@@ -59,6 +77,20 @@ class ResPartner(models.Model):
             "|", ("gender", "=", self.gender), ("gender", "=", False)
         ])
         if not course_changes:
-            raise UserError(_("There is not course change defined."))
+            self.action_discontinue()
         for course_change in course_changes:
             course_change.find_or_create_enrollment(self, next_year)
+
+    @api.multi
+    def create_repeater_enrollment(self):
+        self.ensure_one()
+        if self.educational_category != "student":
+            return
+        current_year = self.env["education.academic_year"].search([
+            ("current", "=", True)])
+        if not current_year:
+            return
+        next_year = current_year._get_next()
+        current_group = self.get_current_group()
+        return self.env["sale.order"].find_or_create_enrollment(
+            self, next_year, current_group.center_id, current_group.course_id)

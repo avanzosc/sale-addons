@@ -36,33 +36,6 @@ class EducationCourseChange(models.Model):
     @api.multi
     def find_or_create_enrollment(self, student, academic_year):
         self.ensure_one()
-        sale_order_obj = self.env["sale.order"]
-        sale_order = sale_order_obj.search([
-            ("partner_id", "=", student.parent_id.id),
-            ("child_id", "=", student.id),
-            ("school_id", "=", self.next_school_id.id),
-            ("course_id", "=", self.next_course_id.id),
-            ("academic_year_id", "=", academic_year.id),
-            ("state", "!=", "cancel"),
-        ])
-        if sale_order:
-            return sale_order
-        new_sale_order = sale_order_obj.with_context(
-            default_child_id=student.id).new({
-                "partner_id": student.parent_id.id,
-                "child_id": student.id,
-                "school_id": self.next_school_id.id,
-                "course_id": self.next_course_id.id,
-                "academic_year_id": academic_year.id,
-            })
-        for onchange_method in new_sale_order._onchange_methods['partner_id']:
-            onchange_method(new_sale_order)
-        for onchange_method in new_sale_order._onchange_methods['course_id']:
-            onchange_method(new_sale_order)
-        for onchange_method in new_sale_order._onchange_methods[
-                'sale_order_template_id']:
-            onchange_method(new_sale_order)
-        sale_order_dict = new_sale_order._convert_to_write(
-            new_sale_order._cache)
-        sale_order = sale_order_obj.create(sale_order_dict)
+        self.env["sale.order"].find_or_create_enrollment(
+            student, academic_year, self.next_school_id, self.next_course_id)
         return True

@@ -98,6 +98,36 @@ class SaleOrder(models.Model):
             line.payer_ids = line.get_payers_info()
         return result
 
+    def find_or_create_enrollment(
+            self, student, academic_year, center, course):
+        sale_order = self.search([
+            ("partner_id", "=", student.parent_id.id),
+            ("child_id", "=", student.id),
+            ("academic_year_id", "=", academic_year.id),
+            ("state", "!=", "cancel"),
+        ])
+        if sale_order:
+            return sale_order
+        new_sale_order = self.with_context(
+            default_child_id=student.id).new({
+                "partner_id": student.parent_id.id,
+                "child_id": student.id,
+                "school_id": center.id,
+                "course_id": course.id,
+                "academic_year_id": academic_year.id,
+            })
+        for onchange_method in new_sale_order._onchange_methods['partner_id']:
+            onchange_method(new_sale_order)
+        for onchange_method in new_sale_order._onchange_methods['course_id']:
+            onchange_method(new_sale_order)
+        for onchange_method in new_sale_order._onchange_methods[
+                'sale_order_template_id']:
+            onchange_method(new_sale_order)
+        sale_order_dict = new_sale_order._convert_to_write(
+            new_sale_order._cache)
+        sale_order = self.create(sale_order_dict)
+        return sale_order
+
     @api.multi
     def action_cancel(self):
         edu_group_obj = self.env["education.group"]
