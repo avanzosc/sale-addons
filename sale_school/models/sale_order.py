@@ -31,6 +31,19 @@ class SaleOrder(models.Model):
         comodel_name="education.group", string="Education Group",
         index=True, readonly=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]})
+    mandatory_subject_ids = fields.Many2many(
+        comodel_name="education.subject", string="Mandatory Subjects",
+        relation="sale_mandatory_subject_rel", column1="order_id",
+        column2="subject_id", readonly=True)
+    possible_optional_subject_ids = fields.Many2many(
+        comodel_name="education.subject", string="Possible Optional Subjects",
+        relation="sale_possible_optional_subject_rel", column1="order_id",
+        column2="subject_id", readonly=True)
+    optional_subject_ids = fields.Many2many(
+        comodel_name="education.subject", string="Optional Subjects",
+        relation="sale_optional_subject_rel", column1="order_id",
+        column2="subject_id", readonly=True,
+        states={"draft": [("readonly", False)], "sent": [("readonly", False)]})
 
     @api.model
     def create(self, values):
@@ -75,6 +88,7 @@ class SaleOrder(models.Model):
     def onchange_school_course(self):
         template_obj = self.env["sale.order.template"]
         group_obj = self.env["education.group"]
+        subject_center_obj = self.env["education.subject.center"]
         for sale in self:
             template = template_obj.search([
                 ("school_id", "=", sale.school_id.id),
@@ -89,6 +103,14 @@ class SaleOrder(models.Model):
             ])
             if len(group) == 1:
                 sale.edu_group_id = group
+            subject_list = subject_center_obj.search([
+                ("center_id", "=", sale.school_id.id),
+                ("course_id", "=", sale.course_id.id),
+            ])
+            sale.mandatory_subject_ids = subject_list.filtered(
+                lambda l: l.subject_type == "mandatory").mapped("subject_id")
+            sale.possible_optional_subject_ids = subject_list.filtered(
+                lambda l: l.subject_type == "optional").mapped("subject_id")
 
     @api.multi
     @api.onchange('sale_order_template_id')
