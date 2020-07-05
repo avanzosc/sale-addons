@@ -35,6 +35,26 @@
                 <field name="payer_ids" nolabel="True"
                        context="{'default_line_id': active_id, 'default_child_id': child_id}" />
             </xpath>
+            <notebook position="inside">
+                <page string="Subject List" name="subject_list">
+                    <separator string="Mandatory Subjects" />
+                    <field name="mandatory_subject_ids">
+                        <tree>
+                            <field name="education_code" />
+                            <field name="description" />
+                        </tree>
+                    </field>
+                    <separator string="Optional Subjects" />
+                    <field name="possible_optional_subject_ids" invisible="True" />
+                    <field name="optional_subject_ids"
+                           domain="[('id', 'in', possible_optional_subject_ids)]">
+                        <tree>
+                            <field name="education_code" />
+                            <field name="description" />
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
         </field>
     </record>
 
