@@ -26,7 +26,7 @@ class CrmLead(models.Model):
         if not futures:
             raise UserError(_('There are not future student to register.'))
         for future in futures:
-            vals = future.crm_lead_id._get_vals_for_sale_order(future)
+            vals = future.crm_lead_id.sudo()._get_vals_for_sale_order(future)
             future.sale_order_id = sales.create(vals)
             future.child_id.educational_category = 'student'
             future.crm_lead_id._put_payer_information_in_sale_order(

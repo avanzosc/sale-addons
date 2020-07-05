@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-20 14:15+0000\n"
-"PO-Revision-Date: 2019-11-20 14:15+0000\n"
+"POT-Creation-Date: 2020-07-05 16:47+0000\n"
+"PO-Revision-Date: 2020-07-05 16:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,27 +16,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_crm_school
-#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__academic_year_id
-#: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
-msgid "Academic year"
-msgstr ""
-
-#. module: sale_crm_school
-#: model:ir.model.fields,field_description:sale_crm_school.field_product_product__center_id
-#: model:ir.model.fields,field_description:sale_crm_school.field_product_template__center_id
-#: model_terms:ir.ui.view,arch_db:sale_crm_school.product_template_view_search
-msgid "Center"
-msgstr ""
-
-#. module: sale_crm_school
-#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_template_line__company_id
-msgid "Company"
-msgstr ""
-
-#. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_education_course
-#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_template__course_id
 msgid "Course"
+msgstr ""
+
+#. module: sale_crm_school
+#: model:ir.model,name:sale_crm_school.model_education_course_change
+msgid "Course Change"
+msgstr ""
+
+#. module: sale_crm_school
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.crm_lead_future_student_tree_view_inh_sale_crm_school
+msgid "Enrollment"
 msgstr ""
 
 #. module: sale_crm_school
@@ -45,19 +36,8 @@ msgid "Future student from leads"
 msgstr ""
 
 #. module: sale_crm_school
-#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order__course_id
-#: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
-msgid "Initial school course"
-msgstr ""
-
-#. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_crm_lead
 msgid "Lead/Opportunity"
-msgstr ""
-
-#. module: sale_crm_school
-#: model_terms:ir.ui.view,arch_db:sale_crm_school.view_sales_order_filter_inh_sale_crm_school
-msgid "Opportunity"
 msgstr ""
 
 #. module: sale_crm_school
@@ -86,16 +66,6 @@ msgid "Quotation Template Line"
 msgstr ""
 
 #. module: sale_crm_school
-#: model:ir.model.fields,field_description:sale_crm_school.field_education_course__sale_order_template_id
-msgid "Quotation template"
-msgstr ""
-
-#. module: sale_crm_school
-#: model:ir.model.fields,field_description:sale_crm_school.field_education_course__sale_order_template_ids
-msgid "Quotation templates"
-msgstr ""
-
-#. module: sale_crm_school
 #: model:ir.model,name:sale_crm_school.model_sale_order
 msgid "Sale Order"
 msgstr ""
@@ -111,36 +81,26 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_crm_school
-#: model:ir.model.fields,field_description:sale_crm_school.field_sale_order_template__school_id
-msgid "School"
-msgstr ""
-
-#. module: sale_crm_school
-#: code:addons/sale_crm_school/models/sale_order.py:29
-#, python-format
-msgid "The payers do not add 100%"
-msgstr ""
-
-#. module: sale_crm_school
-#: code:addons/sale_crm_school/models/crm_lead.py:24
-#, python-format
-msgid "There are no valid academic years"
-msgstr ""
-
-#. module: sale_crm_school
-#: code:addons/sale_crm_school/models/crm_lead.py:30
+#: code:addons/sale_crm_school/models/crm_lead.py:27
 #, python-format
 msgid "There are not future student to register."
 msgstr ""
 
 #. module: sale_crm_school
-#: model_terms:ir.ui.view,arch_db:sale_crm_school.crm_lead_future_student_search_view_inh_sale_crm_school
-msgid "With sale order"
+#: code:addons/sale_crm_school/models/crm_lead.py:21
+#, python-format
+msgid "There is no next academic year defined."
 msgstr ""
 
 #. module: sale_crm_school
-#: model_terms:ir.ui.view,arch_db:sale_crm_school.education_course_view_search
-msgid "Without course"
+#: code:addons/sale_crm_school/models/crm_lead.py:18
+#, python-format
+msgid "There should be current academic year"
+msgstr ""
+
+#. module: sale_crm_school
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.crm_lead_future_student_search_view_inh_sale_crm_school
+msgid "With sale order"
 msgstr ""
 
 #. module: sale_crm_school

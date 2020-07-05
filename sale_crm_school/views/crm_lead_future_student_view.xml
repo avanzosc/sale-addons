@@ -4,8 +4,8 @@
         <field name="model">crm.lead.future.student</field>
         <field name="inherit_id" ref="crm_school.crm_lead_future_student_tree_view" />
         <field name="arch" type="xml">
-            <field name="academic_year_id" position="after">
-                <field name="sale_order_id" />
+            <field name="child_id" position="after">
+                <field name="sale_order_id" string="Enrollment" />
             </field>
         </field>
     </record>
