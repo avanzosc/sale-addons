@@ -17,7 +17,9 @@ class StockPicking(models.Model):
             raise exceptions.Warning(_("Partner not defined"))
         sale_obj = self.env['sale.order']
         sale_line_obj = self.env['sale.order.line']
-        sale = sale_obj.create({'partner_id': self.partner_id.id})
+        sale = sale_obj.create({'partner_id': self.partner_id.id,
+                                'picking_from_id': self.id})
+        sale.onchange_partner_id()
         for line in self.move_lines:
             sale_line_data = {
                 'product_id': line.product_id.id,

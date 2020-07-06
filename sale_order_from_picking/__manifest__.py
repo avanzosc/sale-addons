@@ -3,17 +3,20 @@
 
 {
     'name': 'Sale Order From Picking',
-    'version': '12.0.1.0.0',
+    'version': '12.0.2.0.0',
     'depends': [
         'sale',
         'stock',
+        'sale_stock',
     ],
     'author':  "AvanzOSC",
     'license': "AGPL-3",
     'summary': '''Sale Order From Picking''',
     'website': 'http://www.avanzosc.es',
     'data': [
+        'views/sale_order_view.xml',
         'views/stock_picking_view.xml',
+        'wizard/generate_sale_orders_view.xml',
         ],
     'installable': True,
     'auto_install': False,

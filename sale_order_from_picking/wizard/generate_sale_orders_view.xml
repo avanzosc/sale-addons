@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Start window -->
+
+    <record id="generate_sale_orders_form" model="ir.ui.view">
+        <field name="name">generate.sale.orders.wiz.form</field>
+        <field name="model">generate.sale.orders.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Copy Partner Data">
+                <separator string="Generate sale orders for selected stock pickings?" colspan="4" />
+                <footer>
+                    <button class="oe_highlight" name="generate_sale_orders"
+                    string="Accept" type="object" />
+                    or
+                    <button class="oe_link" special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_generate_sale_orders" model="ir.actions.act_window">
+        <field name="name">Generate Sale Orders</field>
+        <field name="res_model">generate.sale.orders.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="generate_sale_orders_form" />
+        <field name="target">new</field>
+    </record>
+
+    <act_window name="Generate Sale Orders" res_model="generate.sale.orders.wizard"
+        src_model="stock.picking" view_mode="form" target="new"
+        key2="client_action_multi" id="action_generate_sale_orders" />
+
+    <record id="message_wizard_form" model="ir.ui.view">
+        <field name="name">message.wizard.form</field>
+        <field name="model">generated.message.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <p class="text-center">
+                    <field name="message" readonly="1"/>
+                </p>
+            <footer>
+                <button string="Ok" class="oe_highlight" special="cancel"/>
+            </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
