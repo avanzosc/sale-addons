@@ -6,9 +6,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-02 08:53+0000\n"
-"PO-Revision-Date: 2019-10-02 10:56+0100\n"
+"POT-Creation-Date: 2020-06-30 11:43+0000\n"
+"PO-Revision-Date: 2020-06-30 13:55+0100\n"
 "Last-Translator: Daniel <danielcampos@avanzosc.es>\n"
+"Language: Spanish\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,28 +18,182 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: sale_order_from_picking
+#: model_terms:ir.ui.view,arch_db:sale_order_from_picking.generate_sale_orders_form
+msgid "Accept"
+msgstr "Aceptar"
+
+#. module: sale_order_from_picking
+#: model_terms:ir.ui.view,arch_db:sale_order_from_picking.generate_sale_orders_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_order_from_picking
+#: model_terms:ir.ui.view,arch_db:sale_order_from_picking.generate_sale_orders_form
+msgid "Copy Partner Data"
+msgstr "Copiar datos empresa"
+
+#. module: sale_order_from_picking
 #: model_terms:ir.ui.view,arch_db:sale_order_from_picking.view_picking_form
 msgid "Create Sale"
 msgstr "Crear venta"
 
 #. module: sale_order_from_picking
-#: code:addons/sale_order_from_picking/models/stock.py:14
-#, python-format
-msgid "Partner not defined"
-msgstr "Empresa no definida"
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generate_sale_orders_wizard__create_uid
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generated_message_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
 
 #. module: sale_order_from_picking
-#: model:ir.model,name:sale_order_from_picking.model_stock_picking
-msgid "Transfer"
-msgstr "Tranferir"
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generate_sale_orders_wizard__create_date
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generated_message_wizard__create_date
+msgid "Created on"
+msgstr "Creado en"
 
 #. module: sale_order_from_picking
-#: code:addons/sale_order_from_picking/models/stock.py:29
-#, python-format
-msgid "View Sale"
-msgstr "View Sale"
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generate_sale_orders_wizard__display_name
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generated_message_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: sale_order_from_picking
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_sale_order__picking_from_id
+msgid "From Picking"
+msgstr "Desde albarán"
+
+#. module: sale_order_from_picking
+#: model:ir.actions.act_window,name:sale_order_from_picking.action_generate_sale_orders
+msgid "Generate Sale Orders"
+msgstr "Generar pedidos de venta"
+
+#. module: sale_order_from_picking
+#: model:ir.model,name:sale_order_from_picking.model_generate_sale_orders_wizard
+msgid "Generate multiple sale orders"
+msgstr "Generar multiples pedidos de venta"
+
+#. module: sale_order_from_picking
+#: model_terms:ir.ui.view,arch_db:sale_order_from_picking.generate_sale_orders_form
+msgid "Generate sale orders for selected stock pickings?"
+msgstr "¿Crear pedidos de venta desde los albaranes seleccionados?"
 
 #. module: sale_order_from_picking
 #: model:ir.model.fields,field_description:sale_order_from_picking.field_stock_picking__sale_order_id
 msgid "Generated sale Order"
 msgstr "Pedido de venta generado"
+
+#. module: sale_order_from_picking
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generate_sale_orders_wizard__id
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generated_message_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_from_picking
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generate_sale_orders_wizard____last_update
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generated_message_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_from_picking
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generate_sale_orders_wizard__write_uid
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generated_message_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_order_from_picking
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generate_sale_orders_wizard__write_date
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generated_message_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_order_from_picking
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_generated_message_wizard__message
+msgid "Message"
+msgstr "Mensaje"
+
+#. module: sale_order_from_picking
+#: model:ir.model,name:sale_order_from_picking.model_generated_message_wizard
+msgid "Message Wizard"
+msgstr ""
+
+#. module: sale_order_from_picking
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_sale_order_line__stock_move_id
+msgid "Move"
+msgstr "Movimiento"
+
+#. module: sale_order_from_picking
+#: code:addons/sale_order_from_picking/wizard/generate_sale_orders.py:52
+#, python-format
+msgid "Number of generated sale orders: %s"
+msgstr "Número de albaranes generados: %s"
+
+#. module: sale_order_from_picking
+#: model_terms:ir.ui.view,arch_db:sale_order_from_picking.message_wizard_form
+msgid "Ok"
+msgstr "Aceptar"
+
+#. module: sale_order_from_picking
+#: code:addons/sale_order_from_picking/models/stock.py:17
+#, python-format
+msgid "Partner not defined"
+msgstr "Empresa no definida"
+
+#. module: sale_order_from_picking
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_sale_order__picking_ref
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: sale_order_from_picking
+#: model:ir.model,name:sale_order_from_picking.model_sale_order
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_from_picking
+#: model:ir.model,name:sale_order_from_picking.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linea de pedido de venta"
+
+#. module: sale_order_from_picking
+#: model:ir.model.fields,field_description:sale_order_from_picking.field_sale_order__picking_scheduled_date
+msgid "Scheduled Date"
+msgstr "Fecha planificada"
+
+#. module: sale_order_from_picking
+#: model:ir.model.fields,help:sale_order_from_picking.field_sale_order__picking_scheduled_date
+msgid ""
+"Scheduled time for the first part of the shipment to be processed. Setting "
+"manually a value here would set it as expected date for all the stock moves."
+msgstr ""
+
+#. module: sale_order_from_picking
+#: code:addons/sale_order_from_picking/wizard/generate_sale_orders.py:54
+#, python-format
+msgid "Successfull"
+msgstr ""
+
+#. module: sale_order_from_picking
+#: code:addons/sale_order_from_picking/wizard/generate_sale_orders.py:18
+#, python-format
+msgid "There are already generated sale orders in selected pickings."
+msgstr "Ya existen pedidos de venta en los albaranes seleccionados."
+
+#. module: sale_order_from_picking
+#: model:ir.model,name:sale_order_from_picking.model_stock_picking
+msgid "Transfer"
+msgstr "Transferir"
+
+#. module: sale_order_from_picking
+#: code:addons/sale_order_from_picking/models/stock.py:34
+#: code:addons/sale_order_from_picking/models/stock.py:35
+#, python-format
+msgid "View Sale"
+msgstr "Ver venta"
+
+#. module: sale_order_from_picking
+#: code:addons/sale_order_from_picking/wizard/generate_sale_orders.py:24
+#, python-format
+msgid "You can only generate sale orders from \"incoming\" pickings."
+msgstr "Sólo se pueden generar pedidos de venta desde albaranes de entrada"
+
+#. module: sale_order_from_picking
+#: model_terms:ir.ui.view,arch_db:sale_order_from_picking.generate_sale_orders_form
+msgid "or"
+msgstr "o"
