@@ -38,7 +38,7 @@
             <notebook position="inside">
                 <page string="Subject List" name="subject_list">
                     <separator string="Mandatory Subjects" />
-                    <field name="mandatory_subject_ids">
+                    <field name="mandatory_subject_ids" readonly="True">
                         <tree>
                             <field name="education_code" />
                             <field name="description" />

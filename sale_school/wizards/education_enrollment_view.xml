@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="education_enrollment_view_form" model="ir.ui.view">
+        <field name="model">education.enrollment</field>
+        <field name="arch" type="xml">
+            <form string="Parameters">
+                <label for="academic_year_id" />
+                <field name="academic_year_id" />
+                <field name="line_ids">
+                    <tree editable="top" create="false" delete="true">
+                        <field name="partner_id" />
+                        <field name="enroll_action" />
+                        <field name="current_center_id" readonly="True" />
+                        <field name="current_course_id" readonly="True" />
+                        <field name="next_center_id" attrs="{'readonly': [('enroll_action','!=','pass')], 'required': [('enroll_action','=','pass')]}" />
+                        <field name="next_course_id" attrs="{'readonly': [('enroll_action','!=','pass')], 'required': [('enroll_action','=','pass')]}" />
+                    </tree>
+                </field>
+                <footer>
+                    <button name="button_create_enrollment" string="Create Enrollments" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_education_enrollment"
+                name="Define Next Year Enroll Action"
+                src_model="res.partner"
+                res_model="education.enrollment"
+                view_type="form"
+                view_mode="form"
+                key2="client_action_multi"
+                target="new" />
+</odoo>

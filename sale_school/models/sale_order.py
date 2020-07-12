@@ -34,7 +34,7 @@ class SaleOrder(models.Model):
     mandatory_subject_ids = fields.Many2many(
         comodel_name="education.subject", string="Mandatory Subjects",
         relation="sale_mandatory_subject_rel", column1="order_id",
-        column2="subject_id", readonly=True)
+        column2="subject_id")
     possible_optional_subject_ids = fields.Many2many(
         comodel_name="education.subject", string="Possible Optional Subjects",
         relation="sale_possible_optional_subject_rel", column1="order_id",

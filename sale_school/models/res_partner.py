@@ -15,6 +15,9 @@ class ResPartner(models.Model):
     enrollment_count = fields.Integer(
         compute="_compute_enrollment_count", string="# Enrollments",
         compute_sudo=True, store=True)
+    enrollment_history_ids = fields.One2many(
+        comodel_name="res.partner.enrollment", inverse_name="partner_id",
+        string="Enrollment History", readonly=True)
 
     @api.multi
     @api.depends("enrollment_ids", "enrollment_ids.state")
@@ -70,27 +73,15 @@ class ResPartner(models.Model):
         if not current_year:
             return
         next_year = current_year._get_next()
-        current_group = self.get_current_group()
-        course_changes = self.env["education.course.change"].search([
-            ("school_id", "=", current_group.center_id.id),
-            ("course_id", "=", current_group.course_id.id),
-            "|", ("gender", "=", self.gender), ("gender", "=", False)
-        ])
-        if not course_changes:
-            self.action_discontinue()
-        for course_change in course_changes:
-            course_change.find_or_create_enrollment(self, next_year)
+        next_year_enroll = self.enrollment_history_ids.filtered(
+            lambda e: e.academic_year_id == next_year)
+        next_year_enroll.create_enrollment()
 
     @api.multi
-    def create_repeater_enrollment(self):
+    def create_enrollment(self, next_year, center, course):
         self.ensure_one()
-        if self.educational_category != "student":
+        if self.educational_category not in ("student", "otherchild"):
             return
-        current_year = self.env["education.academic_year"].search([
-            ("current", "=", True)])
-        if not current_year:
-            return
-        next_year = current_year._get_next()
-        current_group = self.get_current_group()
-        return self.env["sale.order"].find_or_create_enrollment(
-            self, next_year, current_group.center_id, current_group.course_id)
+        self.env["sale.order"].find_or_create_enrollment(
+            self, next_year, center, course)
+        return True

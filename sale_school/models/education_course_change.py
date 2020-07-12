@@ -32,10 +32,3 @@ class EducationCourseChange(models.Model):
             safe_eval(action.domain or "[]")])
         action_dict.update({"domain": domain})
         return action_dict
-
-    @api.multi
-    def find_or_create_enrollment(self, student, academic_year):
-        self.ensure_one()
-        self.env["sale.order"].find_or_create_enrollment(
-            student, academic_year, self.next_school_id, self.next_course_id)
-        return True

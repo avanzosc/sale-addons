@@ -27,6 +27,7 @@
         "views/sale_order_line_view.xml",
         "views/sale_order_line_payer_view.xml",
         "views/sale_order_template_view.xml",
+        "wizards/education_enrollment_view.xml",
     ],
     "installable": True,
 }
