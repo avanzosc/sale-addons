@@ -122,6 +122,16 @@ class TestSaleSchool(TestSaleSchoolCommon):
         })
         self.assertFalse(self.student.enrollment_ids.filtered(
             lambda e: e.academic_year_id == next_year))
+        wizard = self.enrollment_wizard_model.with_context(
+            active_model="res.partner", active_ids=self.student.ids).create({})
+        line = wizard.line_ids.filtered(lambda l: l.partner_id == self.student)
+        self.assertFalse(line.next_center_id)
+        self.assertFalse(line.next_course_id)
+        line.enroll_action = "pass"
+        line._onchange_enroll_action()
+        self.assertEquals(line.next_center_id, self.edu_partner)
+        self.assertEquals(line.next_course_id, next_course)
+        wizard.button_create_enrollment()
         self.student.create_next_enrollment()
         action_dict = self.student.button_open_enrollments()
         self.assertIn(
@@ -150,11 +160,18 @@ class TestSaleSchool(TestSaleSchoolCommon):
     def test_student_discontinue(self):
         self.assertFalse(self.student.old_student)
         self.assertEquals(self.student.educational_category, "student")
-        self.student.action_discontinue()
+        wizard = self.enrollment_wizard_model.with_context(
+            active_model="res.partner", active_ids=self.student.ids).create({})
+        next_year = self.academic_year._get_next()
+        self.assertEquals(wizard.academic_year_id, next_year)
+        line = wizard.line_ids.filtered(lambda l: l.partner_id == self.student)
+        line.enroll_action = "unenroll"
+        wizard.button_create_enrollment()
+        self.student.create_next_enrollment()
         self.assertTrue(self.student.old_student)
         self.assertEquals(self.student.educational_category, "otherrelative")
 
-    def test_student_repearter_enrollment(self):
+    def test_student_repeater_enrollment(self):
         next_year = self.academic_year._get_next()
         current_group = self.student.get_current_group()
         sale_orders = self.sale_order.search([
@@ -164,7 +181,15 @@ class TestSaleSchool(TestSaleSchoolCommon):
             ("academic_year_id", "=", next_year.id),
         ])
         self.assertFalse(sale_orders)
-        self.student.create_repeater_enrollment()
+        self.student.write({
+            "enrollment_history_ids": [(0, 0, {
+                "academic_year_id": next_year.id,
+                "enrollment_action": "repeat",
+                "enrollment_center_id": self.student.current_center_id.id,
+                "enrollment_course_id": self.student.current_course_id.id,
+            })]
+        })
+        self.student.create_next_enrollment()
         sale_orders = self.sale_order.search([
             ("child_id", "=", self.student.id),
             ("school_id", "=", current_group.center_id.id),

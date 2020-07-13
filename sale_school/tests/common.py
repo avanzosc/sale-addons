@@ -11,6 +11,7 @@ class TestSaleSchoolCommon(TestContactsSchoolEducationCommon):
     def setUpClass(cls):
         super(TestSaleSchoolCommon, cls).setUpClass()
         cls.partner_model = cls.env["res.partner"]
+        cls.enrollment_wizard_model = cls.env["education.enrollment"]
         cls.sale_order_model = cls.env["sale.order"]
         cls.product_model = cls.env["product.product"]
         cls.family_obj = cls.env["res.partner.family"]

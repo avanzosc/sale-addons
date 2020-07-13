@@ -23,25 +23,24 @@
         </field>
     </record>
 
-    <record model="ir.actions.server" id="action_discontinue_enrollments">
-        <field name="name">Discontinue Enrollment</field>
-        <field name="model_id" ref="base.model_res_partner"/>
-        <field name="binding_model_id" ref="base.model_res_partner" />
-        <field name="state">code</field>
-        <field name="code">
-for record in records:
-    record.action_discontinue()
-        </field>
-    </record>
-
-    <record model="ir.actions.server" id="action_create_repeater_enrollments">
-        <field name="name">Create Repeater Enrollment</field>
-        <field name="model_id" ref="base.model_res_partner"/>
-        <field name="binding_model_id" ref="base.model_res_partner" />
-        <field name="state">code</field>
-        <field name="code">
-for record in records:
-    record.create_repeater_enrollment()
+    <record id="res_partner_education_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="contacts_school_education.res_partner_view_form" />
+        <field name="arch" type="xml">
+            <page name="student_groups" position="after">
+                <page name="student_history" string="Student Enrollment History"
+                      attrs="{'invisible': ['|',('educational_category','!=','student'),('enrollment_history_ids','=',False)]}">
+                    <field name="enrollment_history_ids">
+                        <tree decoration-danger="enrollment_state=='errored'">
+                            <field name="academic_year_id" />
+                            <field name="enrollment_action" />
+                            <field name="enrollment_center_id" />
+                            <field name="enrollment_course_id" />
+                            <field name="enrollment_state" />
+                        </tree>
+                    </field>
+                </page>
+            </page>
         </field>
     </record>
 

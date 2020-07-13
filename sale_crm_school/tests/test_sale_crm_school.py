@@ -36,6 +36,14 @@ class TestSaleCrmSchool(TestSaleCrmSchoolCommon):
         new_students = self.new_student_model.search(search_cond)
         self.assertFalse(sale_orders)
         self.assertFalse(new_students)
+        self.student.write({
+            "enrollment_history_ids": [(0, 0, {
+                "enrollment_action": "pass",
+                "academic_year_id": self.next_year.id,
+                "enrollment_center_id": self.edu_partner2.id,
+                "enrollment_course_id": self.edu_course2.id,
+            })],
+        })
         self.student.create_next_enrollment()
         sale_orders = self.sale_order_model.search(search_cond)
         new_students = self.new_student_model.search(search_cond)
