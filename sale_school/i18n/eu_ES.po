@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 19:46+0000\n"
-"PO-Revision-Date: 2020-07-05 19:46+0000\n"
+"POT-Creation-Date: 2020-07-14 13:53+0000\n"
+"PO-Revision-Date: 2020-07-14 13:53+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,13 +27,9 @@ msgid "# Quotation Templates"
 msgstr ""
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order__academic_year_id
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Academic Year"
-msgstr ""
-
-#. module: sale_school
-#: model:ir.model.fields,field_description:sale_school.field_sale_order__academic_year_id
-msgid "Academic year"
 msgstr ""
 
 #. module: sale_school
@@ -42,9 +38,24 @@ msgid "Allowed payers"
 msgstr ""
 
 #. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.education_enrollment_view_form
+msgid "Assign Enrollment Actions"
+msgstr ""
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_form
+msgid "Back to Pending"
+msgstr ""
+
+#. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__bank_id
 msgid "Bank Account"
 msgstr "Banku Kontua"
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.education_enrollment_view_form
+msgid "Cancel"
+msgstr "Utzi"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_product_product__center_id
@@ -75,6 +86,22 @@ msgstr "Maila"
 #. module: sale_school
 #: model:ir.model,name:sale_school.model_education_course_change
 msgid "Course Change"
+msgstr "02- Cambio de curso"
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+msgid "Course Selection Pending"
+msgstr ""
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_form
+msgid "Create Enrollment"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.actions.server,name:sale_school.action_res_partner_enroll
+#: model:ir.ui.menu,name:sale_school.res_partner_enroll_menuitem
+msgid "Create Enrollment Actions"
 msgstr ""
 
 #. module: sale_school
@@ -83,44 +110,124 @@ msgid "Create Next Academic Year Enrollment"
 msgstr ""
 
 #. module: sale_school
-#: model:ir.actions.server,name:sale_school.action_create_repeater_enrollments
-msgid "Create Repeater Enrollment"
-msgstr ""
-
-#. module: sale_school
 #: model:ir.actions.server,name:sale_school.education_course_change_create_template_action
 msgid "Create Sale Template"
 msgstr ""
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment__create_uid
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__create_uid
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__create_uid
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__create_uid
 msgid "Created by"
 msgstr "Nork sortua"
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment__create_date
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__create_date
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__create_date
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__create_date
 msgid "Created on"
 msgstr "Noiz sortua"
 
 #. module: sale_school
-#: model:ir.actions.server,name:sale_school.action_discontinue_enrollments
-msgid "Discontinue Enrollment"
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__current_center_id
+msgid "Current Education Center"
 msgstr ""
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__current_course_id
+msgid "Current Education Course"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.actions.act_window,name:sale_school.action_education_enrollment
+msgid "Define Next Year Enroll Action"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment__display_name
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__display_name
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__display_name
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__display_name
 msgid "Display Name"
 msgstr "Izena erakutsi"
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__center_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template_line__school_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template_option__school_id
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 msgid "Education Center"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__course_id
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+msgid "Education Course"
 msgstr ""
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__edu_group_id
 msgid "Education Group"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__enroll_action
+msgid "Enroll Action"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__enrollment_action
+msgid "Enrollment Action"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__enrollment_course_id
+msgid "Enrollment Course"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__enrollment_center_id
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+msgid "Enrollment Education Center"
+msgstr ""
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+msgid "Enrollment Education Course"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner__enrollment_history_ids
+#: model:ir.model.fields,field_description:sale_school.field_res_users__enrollment_history_ids
+msgid "Enrollment History"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.actions.server,name:sale_school.res_partner_enrollment_server_action
+msgid "Enrollment History: Create Enrollments"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment__line_ids
+msgid "Enrollment Lines"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__state
+msgid "Enrollment State"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_education_enrollment
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__enrollment_id
+msgid "Enrollment Wizard"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_education_enrollment_line
+msgid "Enrollment Wizard Line"
 msgstr ""
 
 #. module: sale_school
@@ -131,21 +238,44 @@ msgid "Enrollments"
 msgstr ""
 
 #. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+#: selection:res.partner.enrollment,state:0
+msgid "Errored"
+msgstr ""
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+msgid "Group By"
+msgstr "Taldekatu"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment__id
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__id
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__id
 msgid "ID"
 msgstr ""
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment____last_update
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line____last_update
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment____last_update
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer____last_update
 msgid "Last Modified on"
 msgstr "Azken aldaketa"
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment__write_uid
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__write_uid
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__write_uid
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__write_uid
 msgid "Last Updated by"
 msgstr "Azkenengoz eguneratu zuena"
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment__write_date
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__write_date
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__write_date
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__write_date
 msgid "Last Updated on"
 msgstr "Azken eguneraketa noiz"
@@ -154,6 +284,35 @@ msgstr "Azken eguneraketa noiz"
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__mandatory_subject_ids
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_form
 msgid "Mandatory Subjects"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment__academic_year_id
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__academic_year_id
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+msgid "Next Academic Year"
+msgstr ""
+
+#. module: sale_school
+#: selection:education.enrollment.line,enroll_action:0
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+#: selection:res.partner.enrollment,enrollment_action:0
+msgid "Next Course"
+msgstr "Hurrengo maila"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__next_center_id
+msgid "Next Education Center"
+msgstr "Hurrengo ikastetxea"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__next_course_id
+msgid "Next Education Course"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_sale_order_enrollment
+msgid "Next Year Enrollment Creation Wizard"
 msgstr ""
 
 #. module: sale_school
@@ -167,6 +326,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__originator_id
 #: model_terms:ir.ui.view,arch_db:sale_school.view_sales_order_line_filter
 msgid "Originator"
+msgstr ""
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.education_enrollment_view_form
+msgid "Parameters"
+msgstr "Parametroak"
+
+#. module: sale_school
+#: model:ir.actions.act_window,name:sale_school.action_res_partner_enrollment
+#: model:ir.model,name:sale_school.model_res_partner_enrollment
+#: model:ir.ui.menu,name:sale_school.res_partner_enrollment_menuitem
+msgid "Partner Enrollment History"
 msgstr ""
 
 #. module: sale_school
@@ -187,13 +358,30 @@ msgid "Payers"
 msgstr ""
 
 #. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+#: selection:res.partner.enrollment,state:0
+msgid "Pending"
+msgstr "Zain"
+
+#. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__pay_percentage
 msgid "Percentage"
 msgstr ""
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__possible_course_ids
+msgid "Possible Education Courses"
+msgstr ""
+
+#. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__possible_optional_subject_ids
 msgid "Possible Optional Subjects"
+msgstr ""
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+#: selection:res.partner.enrollment,state:0
+msgid "Processed"
 msgstr ""
 
 #. module: sale_school
@@ -220,6 +408,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_school.field_education_course__sale_order_template_ids
 msgid "Quotation Templates"
 msgstr "Aurrekontu txantiloiak "
+
+#. module: sale_school
+#: selection:education.enrollment.line,enroll_action:0
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+#: selection:res.partner.enrollment,enrollment_action:0
+msgid "Repeat Course"
+msgstr ""
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__line_id
@@ -249,15 +444,23 @@ msgid "School"
 msgstr ""
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__partner_id
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__partner_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__child_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line__child_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__child_id
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Student"
-msgstr "Ikaslea"
+msgstr "Ikaslea "
 
 #. module: sale_school
-#: code:addons/sale_school/models/res_partner.py:61
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_education_view_form
+msgid "Student Enrollment History"
+msgstr ""
+
+#. module: sale_school
+#: code:addons/sale_school/models/res_partner.py:64
 #, python-format
 msgid "Student's registration has been discharged."
 msgstr ""
@@ -273,14 +476,17 @@ msgid "Template must be unique per school and course!"
 msgstr ""
 
 #. module: sale_school
-#: code:addons/sale_school/models/sale_order.py:49
 #: code:addons/sale_school/models/sale_order.py:62
 #, python-format
 msgid "The payers do not add 100%"
 msgstr ""
 
 #. module: sale_school
-#: code:addons/sale_school/models/sale_order.py:53
+#: sql_constraint:res.partner.enrollment:0
+msgid "There can be only one definition per year and student"
+msgstr ""
+
+#. module: sale_school
 #: code:addons/sale_school/models/sale_order.py:66
 #, python-format
 msgid "There must be a bank account defined per payer!"
@@ -292,7 +498,20 @@ msgid "Total Percentage"
 msgstr ""
 
 #. module: sale_school
+#: selection:education.enrollment.line,enroll_action:0
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+#: selection:res.partner.enrollment,enrollment_action:0
+msgid "Unenroll"
+msgstr ""
+
+#. module: sale_school
 #: model_terms:ir.ui.view,arch_db:sale_school.education_course_view_search
 msgid "Without Quotation Template"
+msgstr ""
+
+#. module: sale_school
+#: code:addons/sale_school/models/res_partner_enrollment.py:54
+#, python-format
+msgid "You can't edit processed lines"
 msgstr ""
 

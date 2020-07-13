@@ -12,12 +12,12 @@
                         <field name="enroll_action" />
                         <field name="current_center_id" readonly="True" />
                         <field name="current_course_id" readonly="True" />
-                        <field name="next_center_id" attrs="{'readonly': [('enroll_action','!=','pass')], 'required': [('enroll_action','=','pass')]}" />
-                        <field name="next_course_id" attrs="{'readonly': [('enroll_action','!=','pass')], 'required': [('enroll_action','=','pass')]}" />
+                        <field name="next_center_id" attrs="{'readonly': [('enroll_action','=','unenroll')]}" />
+                        <field name="next_course_id" attrs="{'readonly': [('enroll_action','=','unenroll')]}" />
                     </tree>
                 </field>
                 <footer>
-                    <button name="button_create_enrollment" string="Create Enrollments" type="object" class="btn-primary"/>
+                    <button name="button_create_enrollment" string="Assign Enrollment Actions" type="object" class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_enrollment_view_tree" model="ir.ui.view">
+        <field name="model">res.partner.enrollment</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="state=='errored'">
+                <field name="partner_id" options="{'no_create': True}" />
+                <field name="center_id" options="{'no_create': True}" />
+                <field name="course_id" options="{'no_create': True}" />
+                <field name="academic_year_id" options="{'no_create': True}" />
+                <field name="enrollment_action" />
+                <field name="possible_course_ids" invisible="True"/>
+                <field name="enrollment_center_id" options="{'no_create': True}" />
+                <field name="enrollment_course_id" options="{'no_create': True}"
+                       domain="[('id', 'in', possible_course_ids)]"/>
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_partner_enrollment_view_form" model="ir.ui.view">
+        <field name="model">res.partner.enrollment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="create_enrollment" type="object" string="Create Enrollment" states="pending"/>
+                    <button name="button_draft" type="object" string="Back to Pending" states="errored"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pending,processed,errored"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="partner_id" options="{'no_create': True}" />
+                        <field name="academic_year_id" options="{'no_create': True}" />
+                        <field name="enrollment_action" />
+                    </group>
+                    <group>
+                        <group>
+                            <field name="center_id" options="{'no_create': True}" />
+                            <field name="course_id" options="{'no_create': True}" />
+                        </group>
+                        <group attrs="{'invisible': [('enrollment_action','=','unenroll')]}">
+                            <field name="possible_course_ids" invisible="True" />
+                            <field name="enrollment_center_id" options="{'no_create': True}" />
+                            <field name="enrollment_course_id" options="{'no_create': True}"
+                                   domain="[('id', 'in', possible_course_ids)]"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="res_partner_enrollment_view_search" model="ir.ui.view">
+        <field name="model">res.partner.enrollment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" />
+                <field name="center_id" />
+                <field name="course_id" />
+                <field name="academic_year_id" />
+                <field name="enrollment_center_id" />
+                <field name="enrollment_course_id" />
+                <filter string="Course Selection Pending" name="course_pending"
+                        domain="[('enrollment_action','=','pass'),('enrollment_course_id','=',False)]" />
+                <separator/>
+                <filter string="Next Course" name="action_pass" domain="[('enrollment_action','=','pass')]"/>
+                <filter string="Repeat Course" name="action_repeat" domain="[('enrollment_action','=','repeat')]"/>
+                <filter string="Unenroll" name="action_unenroll" domain="[('enrollment_action','=','unenroll')]"/>
+                <separator/>
+                <filter string="Pending" name="state_pending" domain="[('state','=','pending')]"/>
+                <filter string="Processed" name="state_processed" domain="[('state','=','processed')]"/>
+                <filter string="Errored" name="state_errored" domain="[('state','=','errored')]"/>
+                <group expand="0" name="group_by" string="Group By">
+                    <filter name="student_group" string="Student" context="{'group_by': 'partner_id'}"/>
+                    <filter name="academic_year_group" string="Next Academic Year"
+                            context="{'group_by': 'academic_year_id'}"/>
+                    <separator />
+                    <filter name="center_group" string="Education Center"
+                            context="{'group_by': 'center_id'}"/>
+                    <filter name="course_group" string="Education Course"
+                            context="{'group_by': 'course_id'}"/>
+                    <separator />
+                    <filter name="enrollment_center_group" string="Enrollment Education Center"
+                            context="{'group_by': 'enrollment_center_id'}"/>
+                    <filter name="enrollment_course_group" string="Enrollment Education Course"
+                            context="{'group_by': 'enrollment_course_id'}"/>
+               </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_res_partner_enrollment">
+        <field name="name">Partner Enrollment History</field>
+        <field name="res_model">res.partner.enrollment</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="res_partner_enrollment_view_tree" />
+    </record>
+
+    <menuitem id="res_partner_enrollment_menuitem"
+              parent="sale.sale_order_menu"
+              action="action_res_partner_enrollment"
+              sequence="10" />
+
+    <record id="res_partner_enrollment_server_action" model="ir.actions.server">
+        <field name="name">Enrollment History: Create Enrollments</field>
+        <field name="model_id" ref="sale_school.model_res_partner_enrollment"/>
+        <field name="binding_model_id" ref="sale_school.model_res_partner_enrollment"/>
+        <field name="state">code</field>
+        <field name="code">records.create_enrollment()</field>
+    </record>
+</odoo>

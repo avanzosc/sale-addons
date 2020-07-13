@@ -24,7 +24,7 @@ class SaleOrder(models.Model):
         index=True, readonly=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]})
     academic_year_id = fields.Many2one(
-        comodel_name="education.academic_year", string="Academic year",
+        comodel_name="education.academic_year", string="Academic Year",
         index=True, readonly=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]})
     edu_group_id = fields.Many2one(
@@ -163,4 +163,7 @@ class SaleOrder(models.Model):
             for edu_group in edu_groups:
                 edu_group.student_ids = [(5, sale.child_id.id)]
             sale.child_id.update_current_group_id()
+            sale.child_id.enrollment_history_ids.filtered(
+                lambda e: e.academic_year_id ==
+                sale.academic_year_id).button_draft()
         return res
