@@ -120,10 +120,11 @@ class EducationEnrollmentLine(models.TransientModel):
     def create_partner_enrollment(self):
         enroll_obj = self.env["res.partner.enrollment"]
         for line in self.filtered("enroll_action"):
+            group = line.partner_id.get_current_group()
             enroll_obj.create({
                 "partner_id": line.partner_id.id,
-                "center_id": line.current_center_id.id,
-                "course_id": line.current_course_id.id,
+                "center_id": group.center_id.id,
+                "course_id": group.course_id.id,
                 "academic_year_id": line.enrollment_id.academic_year_id.id,
                 "enrollment_action": line.enroll_action,
                 "enrollment_center_id": line.next_center_id.id,
