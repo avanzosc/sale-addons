@@ -125,10 +125,7 @@ class TestSaleSchool(TestSaleSchoolCommon):
         wizard = self.enrollment_wizard_model.with_context(
             active_model="res.partner", active_ids=self.student.ids).create({})
         line = wizard.line_ids.filtered(lambda l: l.partner_id == self.student)
-        self.assertFalse(line.next_center_id)
-        self.assertFalse(line.next_course_id)
-        line.enroll_action = "pass"
-        line._onchange_enroll_action()
+        self.assertEquals(line.enroll_action, "pass")
         self.assertEquals(line.next_center_id, self.edu_partner)
         self.assertEquals(line.next_course_id, next_course)
         wizard.button_create_enrollment()
@@ -197,3 +194,21 @@ class TestSaleSchool(TestSaleSchoolCommon):
             ("academic_year_id", "=", next_year.id),
         ])
         self.assertTrue(sale_orders)
+
+    def test_create_enroll_history(self):
+        students = self.partner_model.search([
+            ("educational_category", "=", "student"),
+        ])
+        next_year = self.academic_year._get_next()
+        enrollments = self.enrollment_model.search([
+            ("academic_year_id", "=", next_year.id),
+        ])
+        self.assertFalse(enrollments)
+        action_dict = self.partner_model._create_enrollment_history()
+        enrollments = self.enrollment_model.search([
+            ("academic_year_id", "=", next_year.id),
+        ])
+        self.assertTrue(enrollments)
+        self.assertEquals(len(students), len(enrollments))
+        self.assertIn(("academic_year_id", "=", next_year.id),
+                      action_dict.get("domain"))

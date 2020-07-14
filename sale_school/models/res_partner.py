@@ -17,7 +17,7 @@ class ResPartner(models.Model):
         compute_sudo=True, store=True)
     enrollment_history_ids = fields.One2many(
         comodel_name="res.partner.enrollment", inverse_name="partner_id",
-        string="Enrollment History", readonly=True)
+        string="Enrollment History")
 
     @api.multi
     @api.depends("enrollment_ids", "enrollment_ids.state")
@@ -85,3 +85,40 @@ class ResPartner(models.Model):
         self.env["sale.order"].find_or_create_enrollment(
             self, next_year, center, course)
         return True
+
+    @api.multi
+    def _create_enrollment_history(self):
+        students = self.search([
+            ("educational_category", "=", "student"),
+        ])
+        current_year = self.env["education.academic_year"].search([
+            ("current", "=", True)])
+        if not current_year:
+            return
+        next_year = current_year._get_next()
+        enrollment_obj = self.env["res.partner.enrollment"]
+        for student in students:
+            history = student.enrollment_history_ids.filtered(
+                lambda e: e.academic_year_id == next_year)
+            if not history:
+                new_history = enrollment_obj.new({
+                    "academic_year_id": next_year.id,
+                    "partner_id": student.id,
+                    "enrollment_action": "pass",
+                })
+                for onchange_method in new_history._onchange_methods[
+                        "partner_id"]:
+                    onchange_method(new_history)
+                for onchange_method in new_history._onchange_methods[
+                        "enrollment_action"]:
+                    onchange_method(new_history)
+                enrolment_dict = new_history._convert_to_write(
+                    new_history._cache)
+                enrollment_obj.create(enrolment_dict)
+        action = self.env.ref("sale_school.action_res_partner_enrollment")
+        action_dict = action and action.read()[0]
+        domain = expression.AND([
+            [("academic_year_id", "=", next_year.id)],
+            safe_eval(action.domain or "[]")])
+        action_dict.update({"domain": domain})
+        return action_dict

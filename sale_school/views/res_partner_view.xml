@@ -31,12 +31,15 @@
                 <page name="student_history" string="Student Enrollment History"
                       attrs="{'invisible': ['|',('educational_category','!=','student'),('enrollment_history_ids','=',False)]}">
                     <field name="enrollment_history_ids">
-                        <tree decoration-danger="enrollment_state=='errored'">
-                            <field name="academic_year_id" />
+                        <tree decoration-danger="state=='errored'"
+                              editable="top">
+                            <field name="academic_year_id" options="{'no_create': True}" />
                             <field name="enrollment_action" />
-                            <field name="enrollment_center_id" />
-                            <field name="enrollment_course_id" />
-                            <field name="enrollment_state" />
+                            <field name="possible_course_ids" invisible="True"/>
+                            <field name="enrollment_center_id" options="{'no_create': True}" />
+                            <field name="enrollment_course_id" options="{'no_create': True}"
+                                   domain="[('id', 'in', possible_course_ids)]"/>
+                            <field name="state" />
                         </tree>
                     </field>
                 </page>
@@ -54,4 +57,17 @@ for record in records:
     record.create_next_enrollment()
         </field>
     </record>
+
+    <record model="ir.actions.server" id="action_res_partner_enroll">
+        <field name="name">Create Enrollment Actions</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="code">action = model._create_enrollment_history()</field>
+    </record>
+
+    <menuitem id="res_partner_enroll_menuitem"
+              action="action_res_partner_enroll"
+              parent="sale.sale_order_menu"
+              sequence="500"/>
 </odoo>

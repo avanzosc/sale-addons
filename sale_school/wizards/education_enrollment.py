@@ -30,17 +30,34 @@ class EducationEnrollment(models.TransientModel):
             partners = self.env["res.partner"].browse(active_ids)
             enroll_partner = self.env["res.partner.enrollment"].search([
                 ("academic_year_id", "=", next_year.id),
-                ("id", "in", active_ids),
+                ("partner_id", "in", active_ids),
             ])
             partner_list = partners.filtered(
                 lambda p: p not in enroll_partner.mapped("partner_id") and
                 p.educational_category == "student")
-            result.update({
-                "line_ids": [(0, 0, {
+            enroll_obj = self.env["education.enrollment.line"]
+            lines = []
+            for partner in partner_list:
+                group = partner.get_current_group()
+                course_changes = self.env["education.course.change"].search([
+                    ("school_id", "=", group.center_id.id),
+                    ("course_id", "=", group.course_id.id)
+                ])
+                enroll_action = "unenroll" if not course_changes else "pass"
+                new_enroll = enroll_obj.new({
                     "partner_id": partner.id,
-                    "current_center_id": partner.current_center_id.id,
-                    "current_course_id": partner.current_course_id.id,
-                }) for partner in partner_list],
+                    "enroll_action": enroll_action,
+                    "current_center_id": group.center_id.id,
+                    "current_course_id": group.course_id.id,
+                })
+                for onchange_method in new_enroll._onchange_methods[
+                        'enroll_action']:
+                    onchange_method(new_enroll)
+                new_enroll_dict = new_enroll._convert_to_write(
+                    new_enroll._cache)
+                lines.append((0, 0, new_enroll_dict))
+            result.update({
+                "line_ids": lines,
             })
         return result
 
@@ -56,10 +73,11 @@ class EducationEnrollmentLine(models.TransientModel):
 
     enrollment_id = fields.Many2one(
         comodel_name="education.enrollment", string="Enrollment Wizard",
-        required=True)
+        required=True, ondelete="cascade")
     partner_id = fields.Many2one(
         comodel_name="res.partner", string="Student",
-        domain=[("educational_category", "=", "student")], required=True)
+        domain=[("educational_category", "=", "student")], required=True,
+        ondelete="cascade")
     current_center_id = fields.Many2one(
         comodel_name="res.partner", string="Current Education Center")
     current_course_id = fields.Many2one(
@@ -104,6 +122,8 @@ class EducationEnrollmentLine(models.TransientModel):
         for line in self.filtered("enroll_action"):
             enroll_obj.create({
                 "partner_id": line.partner_id.id,
+                "center_id": line.current_center_id.id,
+                "course_id": line.current_course_id.id,
                 "academic_year_id": line.enrollment_id.academic_year_id.id,
                 "enrollment_action": line.enroll_action,
                 "enrollment_center_id": line.next_center_id.id,
