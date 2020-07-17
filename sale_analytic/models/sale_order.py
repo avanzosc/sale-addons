@@ -14,3 +14,9 @@ class SaleOrder(models.Model):
             for order in self.filtered(lambda o: not o.analytic_account_id):
                 order._create_analytic_account()
         return res
+
+    def _create_analytic_account(self, prefix=None):
+        for order in self:
+            super(SaleOrder, order.with_context(
+                default_user_id=order.user_id))._create_analytic_account(
+                prefix=prefix)

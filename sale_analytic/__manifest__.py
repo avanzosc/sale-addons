@@ -3,9 +3,10 @@
 
 {
     'name': 'Sale Analytic',
-    'version': '12.0.1.0.0',
+    'version': '12.0.2.0.0',
     'depends': [
         'analytic',
+        'analytic_usability',
         'sale',
     ],
     'author':  "AvanzOSC",
