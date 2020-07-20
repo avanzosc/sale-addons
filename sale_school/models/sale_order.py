@@ -77,7 +77,7 @@ class SaleOrder(models.Model):
     @api.multi
     @api.onchange("partner_id", "child_id")
     def onchange_partner_id(self):
-        self.partner_id = self.child_id.parent_id
+        self.partner_id = self.child_id.parent_id or self.partner_id
         super(SaleOrder, self).onchange_partner_id()
         self.pricelist_id = (
             self.child_id.property_product_pricelist or

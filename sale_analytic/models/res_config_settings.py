@@ -10,5 +10,4 @@ class ResConfigSettings(models.TransientModel):
 
     autocreate_sale_analytic_account = fields.Boolean(
         related='company_id.autocreate_sale_analytic_account',
-        string="Auto Analytic account", readonly=False
-        )
+        string="Auto Analytic account", readonly=False)
