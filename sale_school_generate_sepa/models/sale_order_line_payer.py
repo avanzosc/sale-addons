@@ -10,9 +10,9 @@ class SaleOrderLinePayer(models.Model):
     @api.multi
     def _find_or_create_mandate(self):
         self.ensure_one()
-        mandate = self._find_mandate()
+        mandate = self.sudo()._find_mandate()
         if not mandate:
-            wiz_obj = self.env["res.partner.bank.mandate.generator"]
+            wiz_obj = self.sudo().env["res.partner.bank.mandate.generator"]
             mandate_wiz = wiz_obj.with_context(
                 force_company=self.line_id.originator_id.id).create({
                     "bank_ids": [(6, 0, self.bank_id.ids)],
