@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 13:53+0000\n"
-"PO-Revision-Date: 2020-07-14 13:53+0000\n"
+"POT-Creation-Date: 2020-07-21 09:33+0000\n"
+"PO-Revision-Date: 2020-07-21 09:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,8 +28,27 @@ msgstr ""
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__academic_year_id
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__academic_year_id
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Academic Year"
+msgstr ""
+
+#. module: sale_school
+#: code:addons/sale_school/wizards/sale_order_group_change.py:39
+#, python-format
+msgid "All quotation must be for the same academic year."
+msgstr ""
+
+#. module: sale_school
+#: code:addons/sale_school/wizards/sale_order_group_change.py:43
+#, python-format
+msgid "All quotation must be for the same center."
+msgstr ""
+
+#. module: sale_school
+#: code:addons/sale_school/wizards/sale_order_group_change.py:47
+#, python-format
+msgid "All quotation must be for the same course."
 msgstr ""
 
 #. module: sale_school
@@ -54,6 +73,7 @@ msgstr ""
 
 #. module: sale_school
 #: model_terms:ir.ui.view,arch_db:sale_school.education_enrollment_view_form
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_group_change_view_form
 msgid "Cancel"
 msgstr ""
 
@@ -62,6 +82,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_school.field_product_template__center_id
 #: model_terms:ir.ui.view,arch_db:sale_school.product_template_view_search
 msgid "Center"
+msgstr ""
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_group_change_view_form
+msgid "Change Group"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.actions.act_window,name:sale_school.action_sale_order_group_change
+msgid "Change Group in Batch"
 msgstr ""
 
 #. module: sale_school
@@ -118,6 +148,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__create_uid
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__create_uid
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__create_uid
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__create_uid
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__create_uid
 msgid "Created by"
 msgstr ""
@@ -126,6 +157,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__create_date
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__create_date
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__create_date
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__create_date
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__create_date
 msgid "Created on"
 msgstr ""
@@ -149,12 +181,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__display_name
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__display_name
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__display_name
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__display_name
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__center_id
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__center_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template_line__school_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template_option__school_id
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
@@ -163,12 +197,15 @@ msgstr ""
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__course_id
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__course_id
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 msgid "Education Course"
 msgstr ""
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__edu_group_id
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__group_id
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Education Group"
 msgstr ""
 
@@ -183,17 +220,13 @@ msgid "Enrollment Action"
 msgstr ""
 
 #. module: sale_school
-#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__enrollment_course_id
-msgid "Enrollment Course"
-msgstr ""
-
-#. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__enrollment_center_id
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 msgid "Enrollment Education Center"
 msgstr ""
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__enrollment_course_id
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 msgid "Enrollment Education Course"
 msgstr ""
@@ -252,6 +285,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__id
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__id
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__id
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__id
 msgid "ID"
 msgstr ""
@@ -260,6 +294,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment____last_update
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line____last_update
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment____last_update
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change____last_update
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -268,6 +303,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__write_uid
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__write_uid
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__write_uid
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__write_uid
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -276,6 +312,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__write_date
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__write_date
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__write_date
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__write_date
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__write_date
 msgid "Last Updated on"
 msgstr ""
@@ -311,8 +348,8 @@ msgid "Next Education Course"
 msgstr ""
 
 #. module: sale_school
-#: model:ir.model,name:sale_school.model_sale_order_enrollment
-msgid "Next Year Enrollment Creation Wizard"
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_quotation_view_search
+msgid "No group selected"
 msgstr ""
 
 #. module: sale_school
@@ -366,6 +403,17 @@ msgstr ""
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__pay_percentage
 msgid "Percentage"
+msgstr ""
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_group_change_view_form
+msgid "Please select a group"
+msgstr ""
+
+#. module: sale_school
+#: code:addons/sale_school/wizards/sale_order_group_change.py:35
+#, python-format
+msgid "Please select quotations."
 msgstr ""
 
 #. module: sale_school
@@ -424,6 +472,11 @@ msgstr ""
 #. module: sale_school
 #: model:ir.model,name:sale_school.model_sale_order
 msgid "Sale Order"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__sale_order_ids
+msgid "Sale Order List"
 msgstr ""
 
 #. module: sale_school
@@ -507,6 +560,11 @@ msgstr ""
 #. module: sale_school
 #: model_terms:ir.ui.view,arch_db:sale_school.education_course_view_search
 msgid "Without Quotation Template"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_sale_order_group_change
+msgid "Wizard to change education group in batch"
 msgstr ""
 
 #. module: sale_school
