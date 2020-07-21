@@ -3,7 +3,7 @@
 
 from .common import TestSaleSchoolCommon
 from odoo.tests import common
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 @common.at_install(False)
@@ -107,6 +107,48 @@ class TestSaleSchool(TestSaleSchoolCommon):
         self.assertEquals(next_course.sale_order_template_count, 1)
         self.assertEquals(len(templates), 2)
         self.assertIn(("id", "in", templates.ids), action_dict.get("domain"))
+
+    def test_change_group(self):
+        new_center = self.edu_partner.copy()
+        new_course = self.edu_course.copy(default={"education_code": "NEXT"})
+        next_year = self.academic_year._get_next()
+        new_sale_order = self.sale_order.copy(default={
+            "academic_year_id": next_year.id,
+            "school_id": new_center.id,
+            "course_id": new_course.id,
+            "edu_group_id": False})
+        self.assertFalse(new_sale_order.edu_group_id)
+        self.assertEquals(self.sale_order.edu_group_id, self.group)
+        sale_orders = self.sale_order | new_sale_order
+        with self.assertRaises(UserError):
+            self.group_change_model.with_context(
+                active_model="sale.order",
+                active_ids=sale_orders.ids).create({})
+        new_sale_order.academic_year_id = self.sale_order.academic_year_id
+        with self.assertRaises(UserError):
+            self.group_change_model.with_context(
+                active_model="sale.order",
+                active_ids=sale_orders.ids).create({})
+        new_sale_order.school_id = self.sale_order.school_id
+        with self.assertRaises(UserError):
+            self.group_change_model.with_context(
+                active_model="sale.order",
+                active_ids=sale_orders.ids).create({})
+        new_sale_order.course_id = self.sale_order.course_id
+        new_wizard = self.group_change_model.with_context(
+            active_model="sale.order",
+            active_ids=sale_orders.ids).create({})
+        self.assertEquals(new_wizard.center_id, self.edu_partner)
+        self.assertEquals(new_wizard.course_id, self.edu_course)
+        new_wizard.group_id = self.group
+        new_wizard.button_change_group()
+        self.assertEquals(new_sale_order.edu_group_id, self.group)
+        new_sale_order.action_confirm()
+        self.assertNotIn(new_sale_order.state, ["draft", "sent"])
+        with self.assertRaises(UserError):
+            self.group_change_model.with_context(
+                active_model="sale.order",
+                active_ids=new_sale_order.ids).create({})
 
     def test_create_next_sale_order(self):
         next_course = self.edu_course.copy(default={"education_code": "NEXT"})

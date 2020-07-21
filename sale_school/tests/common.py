@@ -13,6 +13,7 @@ class TestSaleSchoolCommon(TestContactsSchoolEducationCommon):
         cls.partner_model = cls.env["res.partner"]
         cls.enrollment_model = cls.env["res.partner.enrollment"]
         cls.enrollment_wizard_model = cls.env["education.enrollment"]
+        cls.group_change_model = cls.env["sale.order.group.change"]
         cls.sale_order_model = cls.env["sale.order"]
         cls.product_model = cls.env["product.product"]
         cls.family_obj = cls.env["res.partner.family"]
