@@ -24,7 +24,7 @@ class StockPicking(models.Model):
             sale_line_data = {
                 'product_id': line.product_id.id,
                 'name': line.name,
-                'uom_id': line.product_id.uom_id.id,
+                'product_uom': line.product_id.uom_id.id,
                 'product_uom_qty': line.product_uom_qty,
                 'order_id': sale.id,
                 'stock_move_id': line.id,
