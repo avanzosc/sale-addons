@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 09:33+0000\n"
-"PO-Revision-Date: 2020-07-21 09:33+0000\n"
+"POT-Creation-Date: 2020-07-22 12:59+0000\n"
+"PO-Revision-Date: 2020-07-22 12:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -277,6 +277,26 @@ msgid "Errored"
 msgstr ""
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__errored_note
+msgid "Errored Note"
+msgstr ""
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__is_exception
+msgid "Exception"
+msgstr "Salbuespen"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__exception_note
+msgid "Exception Note"
+msgstr ""
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+msgid "Exceptions"
+msgstr ""
+
+#. module: sale_school
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 msgid "Group By"
 msgstr "Taldekatu"
@@ -324,6 +344,11 @@ msgid "Mandatory Subjects"
 msgstr ""
 
 #. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_form
+msgid "Mark as Exception"
+msgstr ""
+
+#. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__academic_year_id
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__academic_year_id
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
@@ -345,6 +370,12 @@ msgstr "Hurrengo ikastetxea"
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__next_course_id
 msgid "Next Education Course"
+msgstr ""
+
+#. module: sale_school
+#: code:addons/sale_school/models/res_partner_enrollment.py:147
+#, python-format
+msgid "No Course Change defined"
 msgstr ""
 
 #. module: sale_school
@@ -505,7 +536,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Student"
-msgstr "Ikaslea "
+msgstr "Ikaslea"
 
 #. module: sale_school
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_education_view_form
@@ -569,6 +600,7 @@ msgstr ""
 
 #. module: sale_school
 #: code:addons/sale_school/models/res_partner_enrollment.py:54
+#: code:addons/sale_school/models/res_partner_enrollment.py:57
 #, python-format
 msgid "You can't edit processed lines"
 msgstr ""

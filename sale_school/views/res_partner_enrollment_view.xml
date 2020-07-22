@@ -3,7 +3,7 @@
     <record id="res_partner_enrollment_view_tree" model="ir.ui.view">
         <field name="model">res.partner.enrollment</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="state=='errored'">
+            <tree decoration-danger="state=='errored'" decoration-it="is_exception">
                 <field name="partner_id" options="{'no_create': True}" />
                 <field name="center_id" options="{'no_create': True}" />
                 <field name="course_id" options="{'no_create': True}" />
@@ -14,6 +14,7 @@
                 <field name="enrollment_course_id" options="{'no_create': True}"
                        domain="[('id', 'in', possible_course_ids)]"/>
                 <field name="state" />
+                <field name="is_exception" invisible="True" />
             </tree>
         </field>
     </record>
@@ -25,6 +26,7 @@
                 <header>
                     <button name="create_enrollment" type="object" string="Create Enrollment" states="pending"/>
                     <button name="button_draft" type="object" string="Back to Pending" states="errored"/>
+                    <button name="mark_exception" type="object" string="Mark as Exception" states="errored" />
                     <field name="state" widget="statusbar" statusbar_visible="pending,processed,errored"/>
                 </header>
                 <sheet>
@@ -32,6 +34,7 @@
                         <field name="partner_id" options="{'no_create': True}" />
                         <field name="academic_year_id" options="{'no_create': True}" />
                         <field name="enrollment_action" />
+                        <field name="is_exception" invisible="True"/>
                     </group>
                     <group>
                         <group>
@@ -44,6 +47,10 @@
                             <field name="enrollment_course_id" options="{'no_create': True}"
                                    domain="[('id', 'in', possible_course_ids)]"/>
                         </group>
+                    </group>
+                    <group>
+                        <field name="errored_note" attrs="{'invisible': ['|',('state','!=','errored'),('errored_note','!=',False)]}" />
+                        <field name="exception_note" attrs="{'invisible': [('is_exception','!=',True)]}" />
                     </group>
                 </sheet>
             </form>
@@ -62,6 +69,8 @@
                 <field name="enrollment_course_id" />
                 <filter string="Course Selection Pending" name="course_pending"
                         domain="[('enrollment_action','=','pass'),('enrollment_course_id','=',False)]" />
+                <filter string="Exceptions" name="exception"
+                        domain="[('is_exception','=',True)]" />
                 <separator/>
                 <filter string="Next Course" name="action_pass" domain="[('enrollment_action','=','pass')]"/>
                 <filter string="Repeat Course" name="action_repeat" domain="[('enrollment_action','=','repeat')]"/>
