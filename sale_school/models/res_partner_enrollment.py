@@ -41,6 +41,9 @@ class ResPartnerEnrollment(models.Model):
                    ("processed", "Processed"),
                    ("errored", "Errored")], string="Enrollment State",
         default="pending", required=True, readonly=True)
+    errored_note = fields.Text(string="Errored Note")
+    is_exception = fields.Boolean(string="Exception")
+    exception_note = fields.Text(string="Exception Note")
 
     _sql_constraints = [(
         "partner_academic_year_unique",
@@ -103,7 +106,17 @@ class ResPartnerEnrollment(models.Model):
 
     @api.multi
     def button_draft(self):
-        self.write({"state": "pending"})
+        self.write({
+            "state": "pending",
+        })
+
+    @api.multi
+    def mark_exception(self):
+        self.ensure_one()
+        self.filtered(lambda e: e.state == "errored").write({
+            "state": "pending",
+            "is_exception": True,
+        })
 
     @api.multi
     def create_enrollment(self):
@@ -116,7 +129,8 @@ class ResPartnerEnrollment(models.Model):
                 lambda e: e.academic_year_id == next_year and
                 e.state == "pending"):
             if enrollment.enrollment_action in ("pass", "repeat"):
-                if enrollment.enrollment_action == "pass":
+                if (not enrollment.is_exception and
+                        enrollment.enrollment_action == "pass"):
                     course_change = course_change_obj.search([
                         ("school_id", "=",
                          enrollment.partner_id.current_center_id.id),
@@ -128,7 +142,10 @@ class ResPartnerEnrollment(models.Model):
                          enrollment.enrollment_course_id.id),
                     ])
                     if not course_change:
-                        enrollment.state = "errored"
+                        enrollment.write({
+                            "state": "errored",
+                            "errored_note": _("No Course Change defined"),
+                        })
                         continue
                 enrollment.partner_id.create_enrollment(
                     enrollment.academic_year_id,
@@ -136,4 +153,7 @@ class ResPartnerEnrollment(models.Model):
                     enrollment.enrollment_course_id)
             elif enrollment.enrollment_action == "unenroll":
                 enrollment.partner_id.action_discontinue()
-            enrollment.state = "processed"
+            enrollment.write({
+                "state": "processed",
+                "errored_note": False,
+            })
