@@ -24,7 +24,7 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_id')
     def product_id_change(self):
         result = super(SaleOrderLine, self).product_id_change()
-        self.payer_ids = self.get_payers_info()
+        self.payer_ids = self.sudo().get_payers_info()
         return result
 
     @api.depends('payer_ids', 'payer_ids.pay_percentage')

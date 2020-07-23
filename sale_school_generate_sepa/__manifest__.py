@@ -9,6 +9,7 @@
     "website": "http://www.avanzosc.es",
     "depends": [
         "sale_school",
+        "account_banking_mandate",
         "account_banking_sepa_direct_debit",
         "account_banking_mandate_usability",
     ],

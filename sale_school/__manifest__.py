@@ -12,6 +12,7 @@
         "sale",
         "sale_management",
         "sales_team",
+        "account_payment_mode",
         "contacts_school",
         "contacts_school_education",
         "education",
