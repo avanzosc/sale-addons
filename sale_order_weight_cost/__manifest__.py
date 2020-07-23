@@ -14,6 +14,7 @@
     "data": [
         "security/sale_order_weight_groups.xml",
         "views/sale_order_line_views.xml",
+        "views/sale_order_views.xml",
     ],
     "installable": True,
 }

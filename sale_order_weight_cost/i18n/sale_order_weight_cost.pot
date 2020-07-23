@@ -42,6 +42,11 @@ msgid "The volume in m3."
 msgstr ""
 
 #. module: sale_order_weight_cost
+#: model:ir.model.fields,field_description:sale_order_weight_cost.field_sale_order__total_line_cost
+msgid "Total line cost"
+msgstr ""
+
+#. module: sale_order_weight_cost
 #: model:ir.model.fields,field_description:sale_order_weight_cost.field_sale_order_line__volume
 msgid "Volume"
 msgstr ""

@@ -28,3 +28,6 @@ class TestSaleOrderWeightCost(common.SavepointCase):
             self.sale.order_line[0].cost, 8.75)
         self.assertEqual(
             self.sale.order_line[0].weight_uom_id, self.weight_uom)
+        self.assertEqual(
+            self.sale.total_line_cost, sum(
+                self.sale.mapped("order_line.cost")))
