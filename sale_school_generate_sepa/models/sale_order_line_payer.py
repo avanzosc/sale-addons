@@ -8,8 +8,17 @@ class SaleOrderLinePayer(models.Model):
     _inherit = "sale.order.line.payer"
 
     @api.multi
+    def check_payment_mode_mandate_required(self):
+        self.ensure_one()
+        payment_mode = self.payer_id.sudo().with_context(
+            force_company=self.originator_id.id).customer_payment_mode_id
+        return payment_mode.payment_method_id.mandate_required
+
+    @api.multi
     def _find_or_create_mandate(self):
         self.ensure_one()
+        if not self.check_payment_mode_mandate_required():
+            return False
         mandate = self.sudo()._find_mandate()
         if not mandate:
             wiz_obj = self.sudo().env["res.partner.bank.mandate.generator"]

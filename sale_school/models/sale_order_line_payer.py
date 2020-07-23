@@ -52,6 +52,25 @@ class SaleOrderLinePayer(models.Model):
                         self.payer_id.bank_ids.filtered("use_default")[:1])
 
     @api.multi
+    def check_payment_mode(self):
+        self.ensure_one()
+        payment_mode = self.payer_id.sudo().with_context(
+            force_company=self.originator_id.id).customer_payment_mode_id
+        if not payment_mode:
+            return True
+        return False
+
+    @api.multi
+    def check_payment_mode_bank_required(self):
+        self.ensure_one()
+        payment_mode = self.payer_id.sudo().with_context(
+            force_company=self.originator_id.id).customer_payment_mode_id
+        if (payment_mode.payment_method_id.bank_account_required and
+                not self.bank_id):
+            return True
+        return False
+
+    @api.multi
     def name_get(self):
         """ name_get() -> [(id, name), ...]
 

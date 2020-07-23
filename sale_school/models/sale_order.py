@@ -61,7 +61,11 @@ class SaleOrder(models.Model):
                 raise ValidationError(
                     _("The payers do not add 100%"))
             payers = order_lines.mapped("payer_ids")
-            if any(payers.filtered(lambda p: not p.bank_id)):
+            if any([payer.check_payment_mode() for payer in payers]):
+                raise ValidationError(
+                    _("There is a payer without payment mode!"))
+            if any([payer.check_payment_mode_bank_required()
+                    for payer in payers]):
                 raise ValidationError(
                     _("There must be a bank account defined per payer!"))
         res = super(SaleOrder, self).action_confirm()

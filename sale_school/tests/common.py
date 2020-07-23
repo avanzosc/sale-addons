@@ -28,12 +28,19 @@ class TestSaleSchoolCommon(TestContactsSchoolEducationCommon):
         cls.family.property_product_pricelist = cls.family_pricelist
         cls.student.property_product_pricelist = cls.student_pricelist
         cls.student.update_current_group_id()
+        cls.payment_method = cls.env["account.payment.method"].search([
+            ("bank_account_required", "=", True),
+        ])
+        cls.payment_mode = cls.env["account.payment.mode"].search([
+            ("payment_method_id", "=", cls.payment_method.id),
+        ])
         progenitor_vals = {
             "name": "Progenitor",
             "educational_category": "progenitor",
             "bank_ids": [(0, 0, {
                 "acc_number": "ES2020189263751078650575",
             })],
+            "customer_payment_mode_id": False,
         }
         cls.progenitor = cls.partner_model.create(progenitor_vals)
         family_vals = {

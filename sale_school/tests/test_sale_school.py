@@ -33,6 +33,12 @@ class TestSaleSchool(TestSaleSchoolCommon):
         })
         with self.assertRaises(ValidationError):
             self.sale_order.action_confirm()
+        payer_line.with_context(
+            force_company=payer_line.originator_id.id).payer_id.write({
+                "customer_payment_mode_id": self.payment_mode.id,
+            })
+        with self.assertRaises(ValidationError):
+            self.sale_order.action_confirm()
         payer_line._onchange_payer_id()
         self.sale_order.action_confirm()
         self.assertIn(
