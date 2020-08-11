@@ -42,10 +42,4 @@ class SaleOrderLinePayer(models.Model):
     @api.multi
     def _find_mandate(self):
         self.ensure_one()
-        bank_mandates = (
-            self.bank_id.mandate_ids.sorted("signature_date", reverse=True)
-            .filtered(lambda m: m.company_id == self.line_id.originator_id))
-        mandates = bank_mandates.filtered(lambda m: m.state == "valid")
-        if not mandates:
-            mandates = bank_mandates.filtered(lambda m: m.state == "draft")
-        return mandates and mandates[:1]
+        return self.bank_id._find_mandate(self.line_id.originator_id)
