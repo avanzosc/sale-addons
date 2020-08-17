@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-23 15:09+0000\n"
-"PO-Revision-Date: 2020-07-23 15:09+0000\n"
+"POT-Creation-Date: 2020-08-18 10:41+0000\n"
+"PO-Revision-Date: 2020-08-18 10:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -95,6 +95,13 @@ msgid "Change Group in Batch"
 msgstr "Cambiar grupo en bloque"
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_product_pricelist__child_num
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__partner_child_number
+#: model_terms:ir.ui.view,arch_db:sale_school.product_pricelist_view_search
+msgid "Child Number"
+msgstr "Numero de niño"
+
+#. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template_line__company_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template_option__company_id
 msgid "Company"
@@ -147,6 +154,7 @@ msgstr "Crear plantilla de presupuesto"
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__create_uid
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__create_uid
+#: model:ir.model.fields,field_description:sale_school.field_product_pricelist_type__create_uid
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__create_uid
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__create_uid
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__create_uid
@@ -156,6 +164,7 @@ msgstr "Creado por"
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__create_date
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__create_date
+#: model:ir.model.fields,field_description:sale_school.field_product_pricelist_type__create_date
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__create_date
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__create_date
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__create_date
@@ -180,6 +189,7 @@ msgstr "Definir acciones para el próximo año"
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__display_name
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__display_name
+#: model:ir.model.fields,field_description:sale_school.field_product_pricelist_type__display_name
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__display_name
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__display_name
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__display_name
@@ -297,6 +307,13 @@ msgid "Exceptions"
 msgstr "Excepciones"
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__partner_parent_id
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
+msgid "Family"
+msgstr "Familia"
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.product_pricelist_view_search
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 msgid "Group By"
 msgstr "Agrupar por"
@@ -304,6 +321,7 @@ msgstr "Agrupar por"
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__id
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__id
+#: model:ir.model.fields,field_description:sale_school.field_product_pricelist_type__id
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__id
@@ -313,6 +331,7 @@ msgstr ""
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment____last_update
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line____last_update
+#: model:ir.model.fields,field_description:sale_school.field_product_pricelist_type____last_update
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment____last_update
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change____last_update
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer____last_update
@@ -322,6 +341,7 @@ msgstr "Última modificación en"
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__write_uid
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__write_uid
+#: model:ir.model.fields,field_description:sale_school.field_product_pricelist_type__write_uid
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__write_uid
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__write_uid
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__write_uid
@@ -331,6 +351,7 @@ msgstr "Última actualización por"
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__write_date
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__write_date
+#: model:ir.model.fields,field_description:sale_school.field_product_pricelist_type__write_date
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__write_date
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__write_date
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__write_date
@@ -347,6 +368,11 @@ msgstr "Asignaturas obligatorias"
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_form
 msgid "Mark as Exception"
 msgstr "Marcar como excepción"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_product_pricelist_type__name
+msgid "Name"
+msgstr "Nombre"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__academic_year_id
@@ -374,6 +400,7 @@ msgstr "Siguiente curso"
 
 #. module: sale_school
 #: code:addons/sale_school/models/res_partner_enrollment.py:147
+#: code:addons/sale_school/models/res_partner_enrollment.py:175
 #, python-format
 msgid "No Course Change defined"
 msgstr "No hay cambio de curso definido"
@@ -382,6 +409,11 @@ msgstr "No hay cambio de curso definido"
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_quotation_view_search
 msgid "No group selected"
 msgstr "Sin grupo educativo"
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_form
+msgid "Open Enrollment"
+msgstr "Abrir matricula"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__optional_subject_ids
@@ -456,6 +488,24 @@ msgstr "Cursos posibles"
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__possible_optional_subject_ids
 msgid "Possible Optional Subjects"
 msgstr "Asignaturas opcionales posibles"
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_product_pricelist
+msgid "Pricelist"
+msgstr "Tarifa"
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_product_pricelist_type
+#: model:ir.model.fields,field_description:sale_school.field_product_pricelist__type_id
+#: model_terms:ir.ui.view,arch_db:sale_school.product_pricelist_view_search
+msgid "Pricelist Type"
+msgstr "Tipo de tarifa"
+
+#. module: sale_school
+#: model:ir.actions.act_window,name:sale_school.product_pricelist_type_action
+#: model:ir.ui.menu,name:sale_school.menu_product_pricelist_type_main
+msgid "Pricelist Types"
+msgstr "Tipos de tarifa"
 
 #. module: sale_school
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
@@ -539,13 +589,17 @@ msgid "Student"
 msgstr "Alumno"
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__partner_birthdate
+msgid "Student Birthdate"
+msgstr "Fecha de nacimiento del alumno"
+
+#. module: sale_school
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_education_view_form
 msgid "Student Enrollment History"
 msgstr "Historial de matriculación"
 
 #. module: sale_school
 #: code:addons/sale_school/models/res_partner.py:64
-#: code:addons/sale_school/models/res_partner.py:81
 #, python-format
 msgid "Student's registration has been discharged."
 msgstr "Se ha dado de baja la matricula del alumno."
@@ -578,11 +632,16 @@ msgid "There is a payer without payment mode!"
 msgstr "¡Hay un pagador sin modo de pago!"
 
 #. module: sale_school
-#: code:addons/sale_school/models/sale_order.py:66
 #: code:addons/sale_school/models/sale_order.py:70
 #, python-format
 msgid "There must be a bank account defined per payer!"
 msgstr "¡Debe haber una cuenta bancaria definida por pagador!"
+
+#. module: sale_school
+#: model:ir.model.fields,help:sale_school.field_product_pricelist__child_num
+#: model:ir.model.fields,help:sale_school.field_res_partner_enrollment__partner_child_number
+msgid "This field defines the child position over enrollees from the same family"
+msgstr "Este campo define la posición del niño frente a los afiliados de la misma familia"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line__total_percentage
@@ -608,6 +667,7 @@ msgstr "Asistente para cambiar grupo en bloque"
 
 #. module: sale_school
 #: code:addons/sale_school/models/res_partner_enrollment.py:57
+#: code:addons/sale_school/models/res_partner_enrollment.py:85
 #, python-format
 msgid "You can't edit processed lines"
 msgstr "No se puede modificar lineas procesadas"

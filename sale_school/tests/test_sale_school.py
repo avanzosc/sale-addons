@@ -242,6 +242,18 @@ class TestSaleSchool(TestSaleSchoolCommon):
             ("academic_year_id", "=", next_year.id),
         ])
         self.assertTrue(sale_orders)
+        enroll = self.student.enrollment_history_ids.filtered(
+            lambda e: e.academic_year_id == next_year)
+        self.assertTrue(enroll)
+        self.assertEquals(len(enroll), 1)
+        self.assertEquals(
+            enroll.display_name,
+            "[{}] {}".format(next_year.name, self.student.display_name))
+        action_dict = enroll.button_open_enrollment_order()
+        self.assertIn(
+            ("child_id", '=', self.student.id), action_dict.get("domain"))
+        self.assertIn(
+            ("academic_year_id", '=', next_year.id), action_dict.get("domain"))
 
     def test_create_enroll_history(self):
         students = self.partner_model.search([

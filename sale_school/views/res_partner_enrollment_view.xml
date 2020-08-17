@@ -5,6 +5,9 @@
         <field name="arch" type="xml">
             <tree decoration-danger="state=='errored'" decoration-it="is_exception">
                 <field name="partner_id" options="{'no_create': True}" />
+                <field name="partner_parent_id" />
+                <field name="partner_child_number" />
+                <field name="partner_birthdate" />
                 <field name="center_id" options="{'no_create': True}" />
                 <field name="course_id" options="{'no_create': True}" />
                 <field name="academic_year_id" options="{'no_create': True}" />
@@ -30,6 +33,12 @@
                     <field name="state" widget="statusbar" statusbar_visible="pending,processed,errored"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="button_open_enrollment_order" type="object" string="Open Enrollment"
+                                class="oe_stat_button" icon="fa-usd"
+                                states="processed"
+                                groups="sales_team.group_sale_salesman"/>
+                    </div>
                     <group>
                         <field name="partner_id" options="{'no_create': True}" />
                         <field name="academic_year_id" options="{'no_create': True}" />
@@ -62,6 +71,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="partner_id" />
+                <field name="partner_parent_id" />
                 <field name="center_id" />
                 <field name="course_id" />
                 <field name="academic_year_id" />
@@ -93,6 +103,9 @@
                             context="{'group_by': 'enrollment_center_id'}"/>
                     <filter name="enrollment_course_group" string="Enrollment Education Course"
                             context="{'group_by': 'enrollment_course_id'}"/>
+                    <separator />
+                    <filter name="family_group" string="Family"
+                            context="{'group_by': 'partner_parent_id'}"/>
                </group>
             </search>
         </field>

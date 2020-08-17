@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_pricelist_type_view_tree" model="ir.ui.view">
+        <field name="model">product.pricelist.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_pricelist_type_view_form" model="ir.ui.view">
+        <field name="model">product.pricelist.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" /></h1>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_pricelist_type_view_search" model="ir.ui.view">
+        <field name="model">product.pricelist.type</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record id="product_pricelist_type_action" model="ir.actions.act_window">
+        <field name="name">Pricelist Types</field>
+        <field name="res_model">product.pricelist.type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="product_pricelist_type_view_search" />
+    </record>
+
+    <menuitem id="menu_product_pricelist_type_main"
+              name="Pricelist Types"
+              parent="sale.product_menu_catalog"
+              action="product_pricelist_type_action"
+              groups="product.group_sale_pricelist"
+              sequence="4" />
+</odoo>
