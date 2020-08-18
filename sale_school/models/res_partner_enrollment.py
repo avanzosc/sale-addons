@@ -3,6 +3,8 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.models import expression
+from odoo.tools.safe_eval import safe_eval
 
 ENROLL_ACTION = [
     ("pass", "Next Course"),
@@ -18,6 +20,16 @@ class ResPartnerEnrollment(models.Model):
     partner_id = fields.Many2one(
         comodel_name="res.partner", string="Student", required=True,
         domain=[("educational_category", "=", "student")], ondelete="cascade")
+    partner_parent_id = fields.Many2one(
+        comodel_name="res.partner", string="Family",
+        related="partner_id.parent_id", store=True)
+    partner_birthdate = fields.Date(
+        string="Student Birthdate", related="partner_id.birthdate_date",
+        store=True)
+    partner_child_number = fields.Integer(
+        string="Child Number", related="partner_id.child_number", store=True,
+        help="This field defines the child position over enrollees from the "
+             "same family")
     academic_year_id = fields.Many2one(
         comodel_name="education.academic_year", string="Next Academic Year",
         required=True, ondelete="cascade")
@@ -49,6 +61,22 @@ class ResPartnerEnrollment(models.Model):
         "partner_academic_year_unique",
         "unique(partner_id, academic_year_id)",
         "There can be only one definition per year and student")]
+
+    @api.multi
+    def name_get(self):
+        """ name_get() -> [(id, name), ...]
+
+        Returns a textual representation for the records in ``self``.
+        By default this is the value of the ``display_name`` field.
+
+        :return: list of pairs ``(id, text_repr)`` for each records
+        :rtype: list(tuple)
+        """
+        result = []
+        for record in self:
+            result.append((record.id, "[{}] {}".format(
+                record.academic_year_id.name, record.partner_id.display_name)))
+        return result
 
     @api.multi
     def write(self, values):
@@ -157,3 +185,15 @@ class ResPartnerEnrollment(models.Model):
                 "state": "processed",
                 "errored_note": False,
             })
+
+    @api.multi
+    def button_open_enrollment_order(self):
+        self.ensure_one()
+        action = self.env.ref("sale.action_quotations_with_onboarding")
+        action_dict = action.read()[0] if action else {}
+        domain = expression.AND([
+            [("child_id", "=", self.partner_id.id),
+             ("academic_year_id", "=", self.academic_year_id.id)],
+            safe_eval(action.domain or "[]")])
+        action_dict.update({"domain": domain})
+        return action_dict

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_pricelist_view_tree" model="ir.ui.view">
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="sale.product_pricelist_view_tree" />
+        <field name="arch" type="xml">
+            <field name="currency_id" position="before">
+                <field name="type_id" />
+                <field name="child_num" />
+            </field>
+        </field>
+    </record>
+
+    <record id="product_pricelist_view_form" model="ir.ui.view">
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="sale.product_pricelist_view_form" />
+        <field name="arch" type="xml">
+            <field name="currency_id" position="before">
+                <field name="type_id" options="{'no_create': True, 'no_open': True}"/>
+                <field name="child_num" />
+            </field>
+        </field>
+    </record>
+
+    <record id="product_pricelist_view_search" model="ir.ui.view">
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view_search" />
+        <field name="arch" type="xml">
+            <field name="currency_id" position="before">
+                <field name="type_id" />
+                <field name="child_num" />
+            </field>
+            <filter name="inactive" position="after">
+                <group expand="0" name="group_by" string="Group By">
+                    <filter string="Pricelist Type" name="pricelist_type" context="{'group_by':'type_id'}" />
+                    <filter string="Child Number" name="child_num" context="{'group_by':'child_num'}" />
+                </group>
+            </filter>
+        </field>
+    </record>
+</odoo>

@@ -23,6 +23,8 @@
         "views/education_course_view.xml",
         "views/education_course_change_view.xml",
         "views/product_view.xml",
+        "views/product_pricelist_view.xml",
+        "views/product_pricelist_type_view.xml",
         "views/res_partner_view.xml",
         "views/res_partner_enrollment_view.xml",
         "views/sale_order_view.xml",
