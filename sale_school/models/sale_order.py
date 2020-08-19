@@ -70,12 +70,7 @@ class SaleOrder(models.Model):
                     _("There must be a bank account defined per payer!"))
         res = super(SaleOrder, self).action_confirm()
         for sale in self.filtered("edu_group_id"):
-            sale.edu_group_id.student_ids = [(4, sale.child_id.id)]
-            sale.child_id.write({
-                "current_group_id": sale.edu_group_id.id,
-                "current_center_id": sale.edu_group_id.center_id.id,
-                "current_course_id": sale.edu_group_id.course_id.id,
-            })
+            sale.child_id.assign_group(sale.edu_group_id, update=True)
         return res
 
     @api.multi
