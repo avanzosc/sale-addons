@@ -18,6 +18,10 @@ class ResPartner(models.Model):
     enrollment_history_ids = fields.One2many(
         comodel_name="res.partner.enrollment", inverse_name="partner_id",
         string="Enrollment History")
+    additional_product_ids = fields.Many2many(
+        comodel_name="product.product", string="Additional Products",
+        relation="rel_partner_addproduct", column1="partner_id",
+        column2="product_id")
 
     @api.multi
     @api.depends("enrollment_ids", "enrollment_ids.state")
@@ -122,3 +126,16 @@ class ResPartner(models.Model):
             safe_eval(action.domain or "[]")])
         action_dict.update({"domain": domain})
         return action_dict
+
+    @api.multi
+    def update_pricelist_child_number(self):
+        pricelist_obj = self.env["product.pricelist"]
+        for partner in self.filtered("child_number"):
+            pricelist = partner.property_product_pricelist
+            if pricelist and pricelist.type_id:
+                new_pricelist = pricelist_obj.search([
+                    ("type_id", "=", pricelist.type_id.id),
+                    ("child_num", "<=", partner.child_number),
+                ], limit=1, order="child_num DESC")
+                if new_pricelist and new_pricelist != pricelist:
+                    partner.property_product_pricelist = new_pricelist

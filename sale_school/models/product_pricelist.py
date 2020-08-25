@@ -10,6 +10,6 @@ class ProductPricelist(models.Model):
     type_id = fields.Many2one(
         comodel_name="product.pricelist.type", string="Pricelist Type")
     child_num = fields.Integer(
-        string="Child Number",
+        string="Child Number", default=1,
         help="This field defines the child position over enrollees from the "
              "same family")

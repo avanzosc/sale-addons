@@ -140,4 +140,20 @@
             </filter>
         </field>
     </record>
+
+    <record id="action_sale_add_progenitors2followers" model="ir.actions.server">
+        <field name="name">Add Progenitors to Followers</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="sale.model_sale_order" />
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+        <field name="code">
+for record in records:
+    partners = (
+        record.partner_id.mapped("family_progenitor_ids") |
+        record.child_id.mapped("student_progenitor_ids") |
+        record.mapped("order_line.payer_ids.payer_id"))
+    record.message_subscribe(partner_ids=partners.ids)
+        </field>
+    </record>
 </odoo>

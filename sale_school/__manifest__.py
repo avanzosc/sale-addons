@@ -20,6 +20,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "views/account_invoice_view.xml",
         "views/education_course_view.xml",
         "views/education_course_change_view.xml",
         "views/product_view.xml",
