@@ -42,4 +42,5 @@ class SaleOrderLinePayer(models.Model):
     @api.multi
     def _find_mandate(self):
         self.ensure_one()
-        return self.bank_id._find_mandate(self.line_id.originator_id)
+        return (self.bank_id and
+                self.bank_id._find_mandate(self.line_id.originator_id))
