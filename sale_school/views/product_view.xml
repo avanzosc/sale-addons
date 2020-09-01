@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <field name="company_id" position="after">
                 <field name="center_id"/>
+                <field name="education_type" />
             </field>
         </field>
     </record>
@@ -16,6 +17,7 @@
         <field name="arch" type="xml">
             <field name="categ_id" position="after">
                 <field name="center_id"/>
+                <field name="education_type" />
             </field>
         </field>
     </record>
@@ -26,10 +28,14 @@
         <field name="arch" type="xml">
             <field name="categ_id" position="after">
                 <field name="center_id" />
+                <field name="education_type" />
             </field>
             <filter name="consumable" position="after">
                 <filter name="groupby_center" string="Center" domain="[]"
                         context="{'group_by':'center_id'}"/>
+                <separator />
+                <filter name="groupby_education_type" string="Education Type"
+                         domain="[]" context="{'group_by':'education_type'}" />
             </filter>
         </field>
     </record>

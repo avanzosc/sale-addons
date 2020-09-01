@@ -19,21 +19,42 @@ class TestSaleSchoolCommon(TestContactsSchoolEducationCommon):
         cls.family_obj = cls.env["res.partner.family"]
         cls.pricelist_obj = cls.env["product.pricelist"]
         cls.edu_partner.educational_category = "school"
+        cls.pricelist_type = cls.env["product.pricelist.type"].create({
+            "name": "Student Pricelist",
+        })
         cls.family_pricelist = cls.pricelist_obj.create({
             "name": "Family Pricelist",
         })
         cls.student_pricelist = cls.pricelist_obj.create({
             "name": "Student Pricelist",
+            "type_id": cls.pricelist_type.id,
         })
+        cls.student_pricelist2 = cls.student_pricelist.copy(
+            default={"child_num": 2})
         cls.family.property_product_pricelist = cls.family_pricelist
         cls.student.property_product_pricelist = cls.student_pricelist
         cls.student.update_current_group_id()
         cls.payment_method = cls.env["account.payment.method"].search([
             ("bank_account_required", "=", True),
         ])
+        if not cls.payment_method:
+            cls.payment_method = cls.payment_method.create({
+                "name": "Test Payment Method",
+                "code": "TEST",
+                "payment_type": "inbound",
+                "bank_account_required": True,
+            })
         cls.payment_mode = cls.env["account.payment.mode"].search([
             ("payment_method_id", "=", cls.payment_method.id),
         ])
+        if not cls.payment_mode:
+            cls.payment_mode = cls.payment_mode.create({
+                "name": "Test Payment Mode",
+                "payment_method_id": cls.payment_method.id,
+                "bank_account_link": "variable",
+                "default_journal_ids": cls.env["account.journal"].search([
+                    ("type", "in", ("sale", "sale_refund"))])
+            })
         progenitor_vals = {
             "name": "Progenitor",
             "educational_category": "progenitor",

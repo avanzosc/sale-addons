@@ -31,15 +31,19 @@ class TestSaleSchool(TestSaleSchoolCommon):
         payer_line.write({
             'pay_percentage': 100.0,
         })
+        self.assertTrue(payer_line.check_payment_mode())
         with self.assertRaises(ValidationError):
             self.sale_order.action_confirm()
-        payer_line.with_context(
-            force_company=payer_line.originator_id.id).payer_id.write({
+        payer_line.payer_id.with_context(
+            force_company=payer_line.originator_id.id).write({
                 "customer_payment_mode_id": self.payment_mode.id,
             })
+        self.assertFalse(payer_line.check_payment_mode())
+        self.assertTrue(payer_line.check_payment_mode_bank_required())
         with self.assertRaises(ValidationError):
             self.sale_order.action_confirm()
         payer_line._onchange_payer_id()
+        self.assertFalse(payer_line.check_payment_mode_bank_required())
         self.sale_order.action_confirm()
         self.assertIn(
             self.sale_order.child_id, self.sale_order.edu_group_id.student_ids)
@@ -272,3 +276,11 @@ class TestSaleSchool(TestSaleSchoolCommon):
         self.assertEquals(len(students), len(enrollments))
         self.assertIn(("academic_year_id", "=", next_year.id),
                       action_dict.get("domain"))
+
+    def test_update_pricelist(self):
+        self.assertEquals(self.student.property_product_pricelist,
+                          self.student_pricelist)
+        self.student.child_number = 3
+        self.student.update_pricelist_child_number()
+        self.assertEquals(self.student.property_product_pricelist,
+                          self.student_pricelist2)

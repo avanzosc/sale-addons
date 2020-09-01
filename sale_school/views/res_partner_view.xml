@@ -20,6 +20,20 @@
                 <attribute name="attrs" />
                 <attribute name="invisible">True</attribute>
             </div>
+            <notebook position="inside">
+                <page name="additional_products" string="Additional Products">
+                    <field name="additional_product_ids">
+                        <tree>
+                            <field name="display_name" />
+                            <field name="categ_id" />
+                            <field name="lst_price" />
+                            <field name="education_type" />
+                            <field name="center_id" />
+                            <field name="company_id" />
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
         </field>
     </record>
 

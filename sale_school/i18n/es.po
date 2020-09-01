@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-18 10:41+0000\n"
-"PO-Revision-Date: 2020-08-18 10:41+0000\n"
+"POT-Creation-Date: 2020-08-28 11:18+0000\n"
+"PO-Revision-Date: 2020-08-28 11:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,19 @@ msgstr "Nº plantillas de presupuesto"
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Academic Year"
 msgstr "Año académico"
+
+#. module: sale_school
+#: model:ir.actions.server,name:sale_school.action_invoice_add_progenitors2followers
+#: model:ir.actions.server,name:sale_school.action_sale_add_progenitors2followers
+msgid "Add Progenitors to Followers"
+msgstr "Añadir progenitores a seguidores"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner__additional_product_ids
+#: model:ir.model.fields,field_description:sale_school.field_res_users__additional_product_ids
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_view_form
+msgid "Additional Products"
+msgstr "Productos adicionales"
 
 #. module: sale_school
 #: code:addons/sale_school/wizards/sale_order_group_change.py:39
@@ -220,6 +233,11 @@ msgid "Education Group"
 msgstr "Grupo educativo"
 
 #. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.product_template_view_search
+msgid "Education Type"
+msgstr "Tipo de educación"
+
+#. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__enroll_action
 msgid "Enroll Action"
 msgstr "Acción de matricula"
@@ -313,10 +331,20 @@ msgid "Family"
 msgstr "Familia"
 
 #. module: sale_school
+#: selection:product.template,education_type:0
+msgid "First Child Contribution"
+msgstr "Aportación 1er hijo"
+
+#. module: sale_school
 #: model_terms:ir.ui.view,arch_db:sale_school.product_pricelist_view_search
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 msgid "Group By"
 msgstr "Agrupar por"
+
+#. module: sale_school
+#: selection:product.template,education_type:0
+msgid "Home Meal"
+msgstr "De casa"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__id
@@ -399,7 +427,6 @@ msgid "Next Education Course"
 msgstr "Siguiente curso"
 
 #. module: sale_school
-#: code:addons/sale_school/models/res_partner_enrollment.py:147
 #: code:addons/sale_school/models/res_partner_enrollment.py:175
 #, python-format
 msgid "No Course Change defined"
@@ -409,6 +436,11 @@ msgstr "No hay cambio de curso definido"
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_quotation_view_search
 msgid "No group selected"
 msgstr "Sin grupo educativo"
+
+#. module: sale_school
+#: selection:product.template,education_type:0
+msgid "One-way"
+msgstr "Bus parcial"
 
 #. module: sale_school
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_form
@@ -432,6 +464,11 @@ msgstr "Ordenante"
 #: model_terms:ir.ui.view,arch_db:sale_school.education_enrollment_view_form
 msgid "Parameters"
 msgstr "Parámetros"
+
+#. module: sale_school
+#: selection:product.template,education_type:0
+msgid "Parent Death Insurance"
+msgstr "Seguro fallecimiento progenitor"
 
 #. module: sale_school
 #: model:ir.actions.act_window,name:sale_school.action_res_partner_enrollment
@@ -519,6 +556,12 @@ msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_product_product__education_type
+#: model:ir.model.fields,field_description:sale_school.field_product_template__education_type
+msgid "Product Type"
+msgstr "Tipo de producto"
+
+#. module: sale_school
 #: model:ir.model,name:sale_school.model_sale_order_template
 msgid "Quotation Template"
 msgstr "Plantilla de presupuesto"
@@ -578,6 +621,16 @@ msgid "School"
 msgstr "Colegio"
 
 #. module: sale_school
+#: selection:product.template,education_type:0
+msgid "School Canteen"
+msgstr "Comedor"
+
+#. module: sale_school
+#: selection:product.template,education_type:0
+msgid "Second Child Contribution"
+msgstr "Aportación 2º hijo"
+
+#. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__partner_id
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__partner_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__child_id
@@ -600,6 +653,7 @@ msgstr "Historial de matriculación"
 
 #. module: sale_school
 #: code:addons/sale_school/models/res_partner.py:64
+#: code:addons/sale_school/models/res_partner.py:68
 #, python-format
 msgid "Student's registration has been discharged."
 msgstr "Se ha dado de baja la matricula del alumno."
@@ -649,6 +703,11 @@ msgid "Total Percentage"
 msgstr "Porcentaje total"
 
 #. module: sale_school
+#: selection:product.template,education_type:0
+msgid "Two-way"
+msgstr "Bus completo"
+
+#. module: sale_school
 #: selection:education.enrollment.line,enroll_action:0
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 #: selection:res.partner.enrollment,enrollment_action:0
@@ -666,7 +725,6 @@ msgid "Wizard to change education group in batch"
 msgstr "Asistente para cambiar grupo en bloque"
 
 #. module: sale_school
-#: code:addons/sale_school/models/res_partner_enrollment.py:57
 #: code:addons/sale_school/models/res_partner_enrollment.py:85
 #, python-format
 msgid "You can't edit processed lines"
