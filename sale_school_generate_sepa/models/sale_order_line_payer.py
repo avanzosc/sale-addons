@@ -43,4 +43,5 @@ class SaleOrderLinePayer(models.Model):
     def _find_mandate(self):
         self.ensure_one()
         return (self.bank_id and
-                self.bank_id._find_mandate(self.line_id.originator_id))
+                self.bank_id._find_mandate(self.line_id.originator_id) or
+                self.env["account.banking.mandate"])

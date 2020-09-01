@@ -17,4 +17,4 @@ class ResPartnerBank(models.Model):
         mandates = bank_mandates.filtered(lambda m: m.state == "valid")
         if not mandates:
             mandates = bank_mandates.filtered(lambda m: m.state == "draft")
-        return mandates and mandates[:1]
+        return mandates and mandates[:1] or self.env["account.banking.mandate"]
