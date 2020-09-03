@@ -54,14 +54,13 @@ class CrmLead(models.Model):
         current_year = self.env["education.academic_year"].search([
             ("current", "=", True)])
         if not current_year:
-            raise UserError(_("There should be current academic year"))
+            raise UserError(
+                _("There should be at least a current academic year"))
         next_year = current_year._get_next()
-        if not next_year:
-            raise UserError(_('There is no next academic year defined.'))
         sales = self.env['sale.order']
         futures = self.mapped('future_student_ids').filtered(
             lambda l: l.child_id and not l.sale_order_id and
-            l.academic_year_id == next_year)
+            l.academic_year_id in (current_year, next_year))
         if not futures:
             raise UserError(_('There are not future student to register.'))
         for future in futures:
