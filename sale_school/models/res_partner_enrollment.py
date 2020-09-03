@@ -149,13 +149,8 @@ class ResPartnerEnrollment(models.Model):
     @api.multi
     def create_enrollment(self):
         course_change_obj = self.env["education.course.change"]
-        current_year = self.env["education.academic_year"].search([
-            ("current", "=", True),
-        ])
-        next_year = current_year and current_year._get_next()
-        for enrollment in self.filtered(
-                lambda e: e.academic_year_id == next_year and
-                e.state == "pending"):
+        subject_center_obj = self.env["education.subject.center"]
+        for enrollment in self.filtered(lambda e: e.state == "pending"):
             if enrollment.enrollment_action in ("pass", "repeat"):
                 if (not enrollment.is_exception and
                         enrollment.enrollment_action == "pass"):
@@ -170,11 +165,18 @@ class ResPartnerEnrollment(models.Model):
                          enrollment.enrollment_course_id.id),
                     ])
                     if not course_change:
-                        enrollment.write({
-                            "state": "errored",
-                            "errored_note": _("No Course Change defined"),
-                        })
-                        continue
+                        course_center = subject_center_obj.search([
+                            ("center_id", "=",
+                             enrollment.enrollment_center_id.id),
+                            ("course_id", "=",
+                             enrollment.enrollment_course_id.id),
+                        ])
+                        if not course_center:
+                            enrollment.write({
+                                "state": "errored",
+                                "errored_note": _("No Course Change defined"),
+                            })
+                            continue
                 enrollment.partner_id.create_enrollment(
                     enrollment.academic_year_id,
                     enrollment.enrollment_center_id,
