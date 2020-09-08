@@ -33,7 +33,9 @@ class TestSaleSchoolCommon(TestContactsSchoolEducationCommon):
             default={"child_num": 2})
         cls.family.property_product_pricelist = cls.family_pricelist
         cls.student.property_product_pricelist = cls.student_pricelist
-        cls.student.update_current_group_id()
+        cls.group.write({
+            "student_ids": [(6, 0, cls.student.ids)],
+        })
         cls.payment_method = cls.env["account.payment.method"].search([
             ("bank_account_required", "=", True),
         ])
