@@ -17,4 +17,4 @@ class TestSaleReportPivotExt(common.SavepointCase):
             with_clause='', fields={}, groupby='', from_clause='')
         self.assertIn(
             ', s.commitment_date as commitment_date', res)
-        self.assertIn('s.id , s.commitment_date', res)
+        self.assertIn(', s.commitment_date', res)
