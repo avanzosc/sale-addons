@@ -78,6 +78,7 @@ class TestSaleSchoolCommon(TestContactsSchoolEducationCommon):
         cls.service = cls.product_model.create({
             "name": "Test Service",
         })
+        cls.service2 = cls.service.copy()
         cls.edu_group2 = cls.group.copy(default={
             "education_code": "TEST2",
             "description": "Test Education Group (2)",
@@ -110,5 +111,12 @@ class TestSaleSchoolCommon(TestContactsSchoolEducationCommon):
                 "price_unit": cls.service.lst_price,
                 "product_uom_qty": 10.0,
                 "product_uom_id": cls.service.uom_id.id,
+            })],
+            "sale_order_template_option_ids": [(0, 0, {
+                "product_id": cls.service2.id,
+                "name": cls.service2.name,
+                "price_unit": cls.service2.lst_price,
+                "quantity": 10.0,
+                "uom_id": cls.service2.uom_id.id,
             })]
         })
