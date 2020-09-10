@@ -284,3 +284,24 @@ class TestSaleSchool(TestSaleSchoolCommon):
         self.student.update_pricelist_child_number()
         self.assertEquals(self.student.property_product_pricelist,
                           self.student_pricelist2)
+
+    def test_sale_order_template(self):
+        self.test_sale_order_onchange()
+        self.sale_order.onchange_sale_order_template_id()
+        self.assertEquals(
+            self.sale_order.sale_order_template_id, self.sale_template)
+        self.assertIn(
+            self.service, self.sale_order.mapped("order_line.product_id"))
+        self.assertNotIn(
+            self.service2, self.sale_order.mapped("order_line.product_id"))
+        self.assertIn(
+            self.service2,
+            self.sale_order.mapped("sale_order_option_ids.product_id"))
+        self.sale_order.sale_order_option_ids.add_option_to_order()
+        self.assertIn(
+            self.service2, self.sale_order.mapped("order_line.product_id"))
+        option_line = self.sale_order.order_line.filtered(
+            lambda l: l.product_id == self.service2)
+        self.assertTrue(option_line.payer_ids)
+        self.assertIn(
+            self.progenitor, option_line.mapped("payer_ids.payer_id"))

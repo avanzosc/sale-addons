@@ -24,7 +24,8 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_id')
     def product_id_change(self):
         result = super(SaleOrderLine, self).product_id_change()
-        self.payer_ids = self.sudo().get_payers_info()
+        if not self.payer_ids:
+            self.payer_ids = self.sudo().get_payers_info()
         return result
 
     @api.depends('payer_ids', 'payer_ids.pay_percentage')
@@ -36,20 +37,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def get_payers_info(self):
         self.ensure_one()
-        payer_lines = []
         child = self.order_id.child_id or self.env["res.partner"].browse(
             self.env.context.get("default_child_id"))
-        payers = child.child2_ids.filtered("payer")
-        for payer in payers.filtered(
-                lambda p: p.responsible_id not in self.mapped(
-                    "payer_ids.payer_id")):
-            payer_line = self.env["sale.order.line.payer"].new({
-                "payer_id": payer.responsible_id.id,
-                "pay_percentage": payer.payment_percentage,
-            })
-            for onchange_method in payer_line._onchange_methods["payer_id"]:
-                onchange_method(payer_line)
-            payer_line_dict = payer_line._convert_to_write(
-                payer_line._cache)
-            payer_lines.append((0, 0, payer_line_dict))
+        payer_lines = child and child.get_payers_info() or []
         return payer_lines

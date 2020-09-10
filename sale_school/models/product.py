@@ -21,4 +21,4 @@ class ProductTemplate(models.Model):
         comodel_name='res.partner', string='Center',
         domain=[('educational_category', '=', 'school')])
     education_type = fields.Selection(
-        selection=PRODUCT_TYPE, string="Product Type")
+        selection=PRODUCT_TYPE, string="Education Product Type")

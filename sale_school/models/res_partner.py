@@ -24,6 +24,22 @@ class ResPartner(models.Model):
         column2="product_id")
 
     @api.multi
+    def get_payers_info(self):
+        self.ensure_one()
+        payer_lines = []
+        for payer in self.child2_ids.filtered("payer"):
+            payer_line = self.env["sale.order.line.payer"].new({
+                "payer_id": payer.responsible_id.id,
+                "pay_percentage": payer.payment_percentage,
+            })
+            for onchange_method in payer_line._onchange_methods["payer_id"]:
+                onchange_method(payer_line)
+            payer_line_dict = payer_line._convert_to_write(
+                payer_line._cache)
+            payer_lines.append((0, 0, payer_line_dict))
+        return payer_lines
+
+    @api.multi
     @api.depends("enrollment_ids", "enrollment_ids.state")
     def _compute_enrollment_count(self):
         for record in self.filtered("enrollment_ids"):
