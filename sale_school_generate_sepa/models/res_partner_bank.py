@@ -11,9 +11,9 @@ class ResPartnerBank(models.Model):
     def _find_mandate(self, originator):
         self.ensure_one()
         bank_mandates = (
-            self.mandate_ids.sorted("signature_date", reverse=True)
-                .filtered(
-                lambda m: m.company_id == originator))
+            self.mandate_ids.filtered(
+                lambda m: m.company_id == originator).sorted(
+                "signature_date", reverse=True))
         mandates = bank_mandates.filtered(lambda m: m.state == "valid")
         if not mandates:
             mandates = bank_mandates.filtered(lambda m: m.state == "draft")
