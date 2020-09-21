@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="portal_my_quotations_school"
+              inherit_id="sale.portal_my_quotations">
+        <xpath expr="//thead//th[1]" position="after">
+            <th name="student_header">Student</th>
+            <th name="year_header">Academic Year</th>
+        </xpath>
+        <xpath expr="//t[@t-as='quotation']//td[1]" position="after">
+            <td name="student"><span t-field="quotation.child_id"/></td>
+            <td name="year"><span t-field="quotation.academic_year_id"/></td>
+        </xpath>
+    </template>
+
+    <template id="portal_my_orders_school"
+              inherit_id="sale.portal_my_orders">
+        <xpath expr="//thead//th[1]" position="after">
+            <th name="student_header">Student</th>
+            <th name="year_header">Academic Year</th>
+        </xpath>
+        <xpath expr="//t[@t-as='order']//td[1]" position="after">
+            <td name="student"><span t-field="order.child_id"/></td>
+            <td name="year"><span t-field="order.academic_year_id"/></td>
+        </xpath>
+    </template>
+
+    <template id="sale_order_portal_content_school"
+              inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div class="row" t-if="sale_order.child_id">
+                <div class="col-lg-6">
+                    <strong>Student</strong>: <span t-field="sale_order.child_id" /><br/>
+                    <strong>Academic Year</strong>: <span t-field="sale_order.academic_year_id" /><br />
+                    <strong>Education Center</strong>: <span t-field="sale_order.school_id" /><br/>
+                    <strong>Education Course</strong>: <span t-field="sale_order.course_id" /><br/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

@@ -32,6 +32,7 @@
         "views/sale_order_line_view.xml",
         "views/sale_order_line_payer_view.xml",
         "views/sale_order_template_view.xml",
+        "views/sale_portal_template.xml",
         "wizards/education_enrollment_view.xml",
         "wizards/sale_order_group_change_view.xml",
     ],
