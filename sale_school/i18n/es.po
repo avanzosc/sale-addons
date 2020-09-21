@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-28 11:18+0000\n"
-"PO-Revision-Date: 2020-08-28 11:18+0000\n"
+"POT-Creation-Date: 2020-09-21 14:39+0000\n"
+"PO-Revision-Date: 2020-09-21 14:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,8 +27,36 @@ msgid "# Quotation Templates"
 msgstr "Nº plantillas de presupuesto"
 
 #. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_portal_content_school
+msgid "<br/>\n"
+"                    <strong>Academic Year</strong>:"
+msgstr "<br/>\n"
+"                    <strong>Año académico</strong>:"
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_portal_content_school
+msgid "<br/>\n"
+"                    <strong>Education Center</strong>:"
+msgstr "<br/>\n"
+"                    <strong>Centro educativo</strong>:"
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_portal_content_school
+msgid "<br/>\n"
+"                    <strong>Education Course</strong>:"
+msgstr "<br/>\n"
+"                    <strong>Curso</strong>:"
+
+#. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_portal_content_school
+msgid "<strong>Student</strong>:"
+msgstr "<strong>Alumno</strong>:"
+
+#. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__academic_year_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__academic_year_id
+#: model_terms:ir.ui.view,arch_db:sale_school.portal_my_orders_school
+#: model_terms:ir.ui.view,arch_db:sale_school.portal_my_quotations_school
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Academic Year"
 msgstr "Año académico"
@@ -427,7 +455,7 @@ msgid "Next Education Course"
 msgstr "Siguiente curso"
 
 #. module: sale_school
-#: code:addons/sale_school/models/res_partner_enrollment.py:175
+#: code:addons/sale_school/models/res_partner_enrollment.py:177
 #, python-format
 msgid "No Course Change defined"
 msgstr "No hay cambio de curso definido"
@@ -652,8 +680,7 @@ msgid "Student Enrollment History"
 msgstr "Historial de matriculación"
 
 #. module: sale_school
-#: code:addons/sale_school/models/res_partner.py:64
-#: code:addons/sale_school/models/res_partner.py:68
+#: code:addons/sale_school/models/res_partner.py:84
 #, python-format
 msgid "Student's registration has been discharged."
 msgstr "Se ha dado de baja la matricula del alumno."
