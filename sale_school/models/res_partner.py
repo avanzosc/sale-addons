@@ -79,6 +79,9 @@ class ResPartner(models.Model):
             "current_level_id": False,
             "current_course_id": False,
             "current_group_id": False,
+            "student_group_ids": [
+                (5, x.id) for x in self.student_group_ids.filtered(
+                    lambda g: g.academic_year_id.current)],
         })
         self.message_post(
             body=_("Student's registration has been discharged."))
