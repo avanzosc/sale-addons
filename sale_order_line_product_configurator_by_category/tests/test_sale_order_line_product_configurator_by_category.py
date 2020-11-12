@@ -13,6 +13,7 @@ class SaleOrderLineProductConfiguratorTest(common.SavepointCase):
         cls.category_model = cls.env['product.category']
         cls.sale_model = cls.env['sale.order']
         cls.partner_model = cls.env['res.partner']
+        cls.sale_line_model = cls.env['sale.order.line']
         cls.category1 = cls.category_model.create({
             'name': 'Category1'
         })
@@ -50,11 +51,11 @@ class SaleOrderLineProductConfiguratorTest(common.SavepointCase):
             'partner_id': cls.partner.id,
         })
 
-        cls.line1 = cls.env['sale.order.line'].create({
+        cls.line1 = cls.sale_line_model.create({
             'product_id': cls.product1.id,
             'order_id': cls.sale_order.id,
         })
-        cls.line2 = cls.env['sale.order.line'].create({
+        cls.line2 = cls.sale_line_model.create({
             'product_id': cls.product2.id,
             'order_id': cls.sale_order.id,
         })
@@ -65,6 +66,13 @@ class SaleOrderLineProductConfiguratorTest(common.SavepointCase):
         self.assertEquals(res1['domain']['product_id'][0][2],
                           (self.product3.id,))
         self.assertEquals(res1, res2)
+        self.line2 = self.sale_line_model.create({
+            'name': 'section',
+            'order_id': self.sale_order.id,
+            'display_type': 'line_section',
+        })
+        res3 = self.line2.onchange_order_line()
+        self.assertFalse(res3)
 
     def test_product_restrictions(self):
         self.assertEqual(self.product1.restricted_products._ids,
@@ -82,3 +90,8 @@ class SaleOrderLineProductConfiguratorTest(common.SavepointCase):
         self.product3.button_copy_to_siblings()
         self.assertEqual(self.product31.restricted_by_products._ids,
                          (self.product2.id,))
+        self.product3.write({'restricted_by_products': [(5,)]})
+        self.product3.force_restrict_copy = True
+        self.product3.button_copy_to_siblings()
+        self.assertFalse(self.product31.restricted_by_products._ids)
+        self.assertFalse(self.product3.force_restrict_copy)
