@@ -15,12 +15,15 @@
             </xpath>
             <xpath expr="//field[@name='order_line']//tree//field[@name='discount']" position="after">
                 <field name="amount_pending_delivery" widget="monetary" 
-                    sum="Sum amount pending delivery"/>
-                <field name="amount_pending_invoicing" widget="monetary" sum="Sum amount pending invoicing"/>
+                    sum="Sum amount pending delivery"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}" />
+                <field name="amount_pending_invoicing" widget="monetary" sum="Sum amount pending invoicing"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"/>
                 <field name="qty_shipped_pending_invoicing" sum="Sum Shipped pending invoicing"
                     attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}" />
                 <field name="amount_shipped_pending_invoicing" widget="monetary"
-                    sum="Sum amount shipped pending invoicing"/>
+                    sum="Sum amount shipped pending invoicing"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/form//field[@name='qty_delivered']/.." position="after">
                 <label for="qty_pending_delivery" string="Pending delivery qty"
