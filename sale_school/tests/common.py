@@ -79,12 +79,18 @@ class TestSaleSchoolCommon(TestContactsSchoolEducationCommon):
             "name": "Test Service",
         })
         cls.service2 = cls.service.copy()
+        cls.class_type = cls.env['education.group_type'].create({
+            'education_code': 'TYPE',
+            'description': 'Test Group Type',
+            'type': 'class',
+        })
         cls.edu_group2 = cls.group.copy(default={
             "education_code": "TEST2",
             "description": "Test Education Group (2)",
             "academic_year_id": cls.group.academic_year_id.id,
             "center_id": cls.edu_partner.id,
             "course_id": cls.edu_course.id,
+            "group_type_id": cls.class_type.id,
         })
         cls.sale_order = cls.sale_order_model.create({
             "partner_id": cls.family.id,
