@@ -86,7 +86,7 @@ class SaleOrderLine(models.Model):
                 line.amount_pending_delivery = amount
 
     @api.multi
-    @api.depends('product_uom_qty', 'qty_invoiced', 'discount')
+    @api.depends('product_uom_qty', 'qty_invoiced', 'discount', 'price_unit')
     def _compute_qty_amount_pending_invoicing(self):
         for line in self:
             line.qty_pending_invoicing = (
