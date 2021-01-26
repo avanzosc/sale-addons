@@ -10,6 +10,28 @@ from odoo.tools.safe_eval import safe_eval
 class CrmLead(models.Model):
     _inherit = 'crm.lead'
 
+    @api.depends('order_ids')
+    def _compute_sale_amount_total(self):
+        for lead in self:
+            try:
+                super(CrmLead, self)._compute_sale_amount_total()
+            except Exception:
+                total = 0.0
+                nbr = 0
+                company_currency = (
+                    lead.company_currency or
+                    self.env.user.company_id.currency_id)
+                for order in lead.order_ids:
+                    if order.state in ('draft', 'sent'):
+                        nbr += 1
+                    if order.state not in ('draft', 'sent', 'cancel'):
+                        total += order.currency_id._convert(
+                            order.amount_untaxed, company_currency,
+                            order.company_id or self.env.user.company_id,
+                            order.date_order or fields.Date.today())
+                lead.sale_amount_total = total
+                lead.sale_number = nbr
+
     @api.multi
     def find_or_create_enrollment(
             self, student, academic_year, center, course):
