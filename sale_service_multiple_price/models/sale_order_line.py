@@ -20,11 +20,14 @@ class SaleOrderLine(models.Model):
                 l.multiple_price_unit):
             first_hour = multiple_hour = 0.0
             for timesheet in analytic_line_obj.search([
-                    ("so_line", "=", line.id)]):
+                    ("so_line", "=", line.id),
+                    ("timesheet_invoice_id.state", "=", "draft"),
+                    ("project_id", "!=", False)]):
                 first_hour += 1
                 multiple_hour += timesheet.unit_amount - 1
             if multiple_hour:
-                for invoice_line in line.invoice_lines:
+                for invoice_line in line.invoice_lines.filtered(
+                        lambda l: l.parent_state == "draft"):
                     new_invoice_line = invoice_line.copy_data(default={
                         "quantity": multiple_hour,
                         "price_unit": line.multiple_price_unit,
