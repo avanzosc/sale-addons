@@ -52,3 +52,4 @@ class SaleOrder(models.Model):
             return my_warning
         else:
             return warning
+
