@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
         for sale in self:
             min_price_unit = sale._get_min_price_unit()
             lines = sale.order_line.filtered(
-                lambda x: x.price_unit <= min_price_unit)
+                lambda x: x.price_unit == min_price_unit)
             if lines:
                 raise UserError(
                     _('You have %s line(s) with an amount less than or equal '
