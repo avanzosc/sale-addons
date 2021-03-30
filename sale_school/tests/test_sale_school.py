@@ -218,7 +218,7 @@ class TestSaleSchool(TestSaleSchoolCommon):
         wizard.button_create_enrollment()
         self.student.create_next_enrollment()
         self.assertTrue(self.student.old_student)
-        self.assertEquals(self.student.educational_category, "otherrelative")
+        self.assertEquals(self.student.educational_category, "otherchild")
 
     def test_student_repeater_enrollment(self):
         next_year = self.academic_year._get_next()
