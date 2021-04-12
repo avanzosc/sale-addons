@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_line_view_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale_order_line_input.view_sales_order_line_input_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="commitment_date" />
+            </field>
+        </field>
+    </record>
+</odoo>
