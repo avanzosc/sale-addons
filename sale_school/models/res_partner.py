@@ -65,25 +65,6 @@ class ResPartner(models.Model):
         return action_dict
 
     @api.multi
-    def action_discontinue(self):
-        self.ensure_one()
-        if self.educational_category not in ("student", "otherchild"):
-            return
-        current_group = self.get_current_group()
-        self.write({
-            "educational_category": "otherrelative",
-            "old_student": True,
-            "alumni_center_id": current_group.center_id.id,
-            "alumni_academic_year_id": current_group.academic_year_id.id,
-            "current_center_id": False,
-            "current_level_id": False,
-            "current_course_id": False,
-            "current_group_id": False,
-        })
-        self.message_post(
-            body=_("Student's registration has been discharged."))
-
-    @api.multi
     def create_next_enrollment(self):
         self.ensure_one()
         if self.educational_category not in ("student", "otherchild"):
