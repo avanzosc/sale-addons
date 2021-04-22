@@ -1,0 +1,6 @@
+# list the OCA project dependencies, one per line
+sale-workflow
+
+# add a github url if you need a forked version
+odoo-addons https://github.com/avanzosc/odoo-addons
+
