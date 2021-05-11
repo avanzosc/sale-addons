@@ -1,0 +1,107 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_line_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-11 05:18+0000\n"
+"PO-Revision-Date: 2021-05-11 05:18+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_contract
+#: model:ir.model.fields,field_description:sale_order_line_contract.field_sale_order__count_contracts
+msgid "# Contracts"
+msgstr "# Contratos"
+
+#. module: sale_order_line_contract
+#: model:ir.model.fields,field_description:sale_order_line_contract.field_sale_order_line__contract_line_id
+msgid "Contract line"
+msgstr "Línea contrato"
+
+#. module: sale_order_line_contract
+#: model:ir.model.fields,field_description:sale_order_line_contract.field_sale_order__contract_ids
+#: model_terms:ir.ui.view,arch_db:sale_order_line_contract.view_order_form
+msgid "Contracts"
+msgstr "Contratos"
+
+#. module: sale_order_line_contract
+#: code:addons/sale_order_line_contract/models/product_product.py:12
+#: selection:product.product,recurring_rule_type:0
+#, python-format
+msgid "Day(s)"
+msgstr "Día(s)"
+
+#. module: sale_order_line_contract
+#: model:ir.model.fields,field_description:sale_order_line_contract.field_product_product__recurring_interval
+msgid "Invoice Every"
+msgstr "Facturar cada"
+
+#. module: sale_order_line_contract
+#: code:addons/sale_order_line_contract/models/product_product.py:14
+#: selection:product.product,recurring_rule_type:0
+#, python-format
+msgid "Month(s)"
+msgstr "Mes(es)"
+
+#. module: sale_order_line_contract
+#: code:addons/sale_order_line_contract/models/product_product.py:15
+#: selection:product.product,recurring_rule_type:0
+#, python-format
+msgid "Month(s) last day"
+msgstr "Último día mes(es)"
+
+#. module: sale_order_line_contract
+#: model:ir.model,name:sale_order_line_contract.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_order_line_contract
+#: code:addons/sale_order_line_contract/models/product_product.py:16
+#: selection:product.product,recurring_rule_type:0
+#, python-format
+msgid "Quarter(s)"
+msgstr "Cuatrimestre(s)"
+
+#. module: sale_order_line_contract
+#: model:ir.model.fields,field_description:sale_order_line_contract.field_product_product__recurring_rule_type
+msgid "Recurrence"
+msgstr "Recurrencia"
+
+#. module: sale_order_line_contract
+#: model:ir.model,name:sale_order_line_contract.model_sale_order
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_line_contract
+#: model:ir.model,name:sale_order_line_contract.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_order_line_contract
+#: code:addons/sale_order_line_contract/models/product_product.py:17
+#: selection:product.product,recurring_rule_type:0
+#, python-format
+msgid "Semester(s)"
+msgstr "Semestre(s)"
+
+#. module: sale_order_line_contract
+#: code:addons/sale_order_line_contract/models/product_product.py:13
+#: selection:product.product,recurring_rule_type:0
+#, python-format
+msgid "Week(s)"
+msgstr "Semana(s)"
+
+#. module: sale_order_line_contract
+#: code:addons/sale_order_line_contract/models/product_product.py:18
+#: selection:product.product,recurring_rule_type:0
+#, python-format
+msgid "Year(s)"
+msgstr "Año(s)"
+

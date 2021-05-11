@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="product_product_tree_view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <field name="lst_price" position="before">
+                <field name="recurring_rule_type" />
+                <field name="recurring_interval" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_search_form_view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view" />
+        <field name="arch" type="xml">
+            <field name="product_tmpl_id" position="after">
+                <field name="recurring_rule_type" />
+                <field name="recurring_interval" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_product_version_normal_form_view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="recurring_rule_type" />
+                <field name="recurring_interval"
+                    attrs="{'invisible': [('recurring_rule_type', '=', False)]}" />
+            </field>
+        </field>
+    </record>
+</odoo>
