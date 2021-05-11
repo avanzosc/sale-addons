@@ -13,6 +13,8 @@
     'data': [
         'views/product_product_views.xml',
         'views/sale_order_views.xml',
+        'views/contract_contract_views.xml',
+        'views/contract_line_views.xml',
     ],
     'installable': True,
 }

@@ -12,8 +12,7 @@ class SaleOrder(models.Model):
         string='Contracts', comodel_name='contract.contract',
         compute='_compute_contract_ids', store=True)
     count_contracts = fields.Integer(
-        string='# Contracts', comodel_name='contract.contract',
-        compute='_compute_count_contracts')
+        string='# Contracts', compute='_compute_count_contracts')
 
     @api.multi
     @api.depends('order_line', 'order_line.contract_line_id')
@@ -33,11 +32,16 @@ class SaleOrder(models.Model):
     def _action_confirm(self):
         res = super(SaleOrder, self)._action_confirm()
         for sale in self:
-            lines = sale.order_line.filtered(
-                lambda x: x.product_id and
-                x.product_id.recurring_interval)
-            sale.create_contract_lines(lines)
+            lines = sale.catch_lines_to_try()
+            if lines:
+                sale.create_contract_lines(lines)
         return res
+
+    def catch_lines_to_try(self):
+        lines = self.order_line.filtered(
+            lambda x: x.product_id and
+            x.product_id.recurring_interval)
+        return lines
 
     def create_contract_lines(self, lines):
         cond = [('partner_id', '=', self.partner_id.id),
