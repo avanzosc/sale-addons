@@ -6,7 +6,7 @@
 Sale student event
 ==================
 
-* Student and event in sale order line.
+* Student and event in sale order line. Is member boolean in event and sale order line.
 
 Bug Tracker
 ===========
