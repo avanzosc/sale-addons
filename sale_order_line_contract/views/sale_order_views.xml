@@ -15,6 +15,12 @@
                     <field name="count_contracts" widget="statinfo" string="Contracts"/>
                 </button>
             </button>
+            <notebook position="before">
+                <group>
+                    <field name="contract_created_literal" nolabel="1"
+                        attrs="{'invisible': [('contract_created_literal', '=', False)]}"/>
+                </group>
+            </notebook>
         </field>
     </record>
 </odoo>

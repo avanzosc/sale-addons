@@ -13,6 +13,10 @@ class SaleOrder(models.Model):
         compute='_compute_contract_ids', store=True)
     count_contracts = fields.Integer(
         string='# Contracts', compute='_compute_count_contracts')
+    contract_created = fields.Boolean(
+        string='Contract created', default=False)
+    contract_created_literal = fields.Char(
+        string='Contract created literal')
 
     @api.multi
     @api.depends('order_line', 'order_line.contract_line_id')
@@ -35,6 +39,13 @@ class SaleOrder(models.Model):
             lines = sale.catch_lines_to_try()
             if lines:
                 sale.create_contract_lines(lines)
+                if sale.contract_created:
+                    sale.contract_created_literal = _(
+                        'A NEW CONTRACT HAS BEEN CREATED.')
+                else:
+                    sale.contract_created_literal = _(
+                        'A NEW LINE(S) HAS BEEN CREATED IN AN EXISTING '
+                        'CONTRACT.')
         return res
 
     def catch_lines_to_try(self):
@@ -58,6 +69,7 @@ class SaleOrder(models.Model):
 
     def create_contract(self):
         vals = self._catch_values_for_create_contract()
+        self.contract_created = True
         return self.env['contract.contract'].create(vals)
 
     def _catch_values_for_create_contract(self):
