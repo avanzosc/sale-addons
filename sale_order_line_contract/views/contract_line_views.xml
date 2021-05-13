@@ -17,19 +17,42 @@
         <field name="inherit_id" ref="contract.contract_line_tree_view"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
+                <field name="recurring_rule_type" />
+                <field name="recurring_interval" />
                 <field name="sale_order_line_id" />
                 <field name="sale_order_id" />
             </field>
         </field>
     </record>
-    <record id="contract_line_tree_view" model="ir.ui.view">
+    <record id="contract_line_search_view" model="ir.ui.view">
+        <field name="name">contract.line.search.view</field>
         <field name="model">contract.line</field>
-        <field name="inherit_id" ref="contract.contract_line_tree_view"/>
         <field name="arch" type="xml">
-            <field name="name" position="after">
-                <field name="sale_order_line_id" />
+            <search string="Search contract line">
+                <field name="product_id" />
                 <field name="sale_order_id" />
-            </field>
+                <field name="recurring_rule_type" />
+                <field name="recurring_interval" />
+                <field name="date_start" />
+                <field name="date_end" />
+                <field name="recurring_next_date" />
+                <field name="last_date_invoiced" />
+                <separator/>
+                <filter string="With sale line" name="with-sale-line"
+                    domain="[('sale_order_line_id','!=', False)]" />
+                <filter string="Without sale line" name="with-sale-line"
+                    domain="[('sale_order_line_id','=', False)]" />
+                <group expand="0" string="Group By">
+                    <filter string="Product" name="product" domain="[]" context="{'group_by':'product_id'}"/>
+                    <filter string="Sale order" name="sale-order" domain="[]" context="{'group_by':'sale_order_id'}"/>
+                    <filter string="Recurrence" name="recurrence" domain="[]" context="{'group_by':'recurring_rule_type'}"/>
+                    <filter string="Invoice Every" name="invoice-every" domain="[]" context="{'group_by':'recurring_interval'}"/>
+                    <filter string="Date start" name="date-start" domain="[]" context="{'group_by':'date_start'}"/>
+                    <filter string="Date end" name="date_end" domain="[]" context="{'group_by':'date_end'}"/>
+                    <filter string="Date on next invoice" name="date_next_invoice" domain="[]" context="{'group_by':'recurring_next_date'}"/>
+                    <filter string="Last date invoiced" name="last_date_invoice" domain="[]" context="{'group_by':'last_date_invoiced'}"/>
+                </group>
+            </search>
         </field>
     </record>
 </odoo>
