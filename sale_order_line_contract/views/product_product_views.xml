@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="product_product_tree_view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <field name="lst_price" position="before">
+                <field name="recurring_rule_type" />
+                <field name="recurring_interval" />
+                <field name="apply_recurrence_in" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_search_form_view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view" />
+        <field name="arch" type="xml">
+            <field name="product_tmpl_id" position="after">
+                <field name="recurring_rule_type" />
+                <field name="recurring_interval" />
+                <field name="apply_recurrence_in" />
+            </field>
+            <filter name="filter_to_purchase" position="after">
+                <separator/>
+                <filter string="With recurrence" name="with-recurrence" domain="[('recurring_rule_type', '!=', False)]"/>
+                <filter string="Without recurrence" name="without-recurrence" domain="[('recurring_rule_type', '=', False)]"/>
+            </filter>
+            <filter name="categ_id" position="after">
+                <filter string="Recurrence" name="recurrence" context="{'group_by':'recurring_rule_type'}"/>
+                <filter string="Invoice Every" name="invoice-every" context="{'group_by':'recurring_interval'}"/>
+                <filter string="Apply recurrence in" name="recurrence-id" context="{'group_by':'apply_recurrence_in'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_product_version_normal_form_view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="recurring_rule_type" />
+                <field name="recurring_interval"
+                    attrs="{'invisible': [('recurring_rule_type', '=', False)], 'required': [('recurring_rule_type', '!=', False)]}" />
+                <field name="apply_recurrence_in"
+                    attrs="{'invisible': [('recurring_rule_type', '=', False)], 'required': [('recurring_rule_type', '!=', False)]}" />
+            </field>
+        </field>
+    </record>
+</odoo>
