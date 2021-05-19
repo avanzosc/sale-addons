@@ -33,18 +33,4 @@
             </filter>
         </field>
     </record>
-
-    <record model="ir.ui.view" id="product_product_version_normal_form_view">
-        <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.product_normal_form_view" />
-        <field name="arch" type="xml">
-            <field name="company_id" position="after">
-                <field name="recurring_rule_type" />
-                <field name="recurring_interval"
-                    attrs="{'invisible': [('recurring_rule_type', '=', False)], 'required': [('recurring_rule_type', '!=', False)]}" />
-                <field name="apply_recurrence_in"
-                    attrs="{'invisible': [('recurring_rule_type', '=', False)], 'required': [('recurring_rule_type', '!=', False)]}" />
-            </field>
-        </field>
-    </record>
 </odoo>

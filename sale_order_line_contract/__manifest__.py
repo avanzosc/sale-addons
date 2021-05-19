@@ -11,6 +11,7 @@
     'license': "AGPL-3",
     'website': 'http://www.avanzosc.es',
     'data': [
+        'views/product_template_views.xml',
         'views/product_product_views.xml',
         'views/sale_order_views.xml',
         'views/contract_contract_views.xml',
