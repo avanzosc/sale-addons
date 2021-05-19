@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-13 12:38+0000\n"
-"PO-Revision-Date: 2021-05-13 12:38+0000\n"
+"POT-Creation-Date: 2021-05-19 10:59+0000\n"
+"PO-Revision-Date: 2021-05-19 10:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,11 +27,14 @@ msgstr ""
 
 #. module: sale_order_line_contract
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_product_product__apply_recurrence_in
+#: model:ir.model.fields,field_description:sale_order_line_contract.field_product_template__apply_recurrence_in
 #: model_terms:ir.ui.view,arch_db:sale_order_line_contract.product_search_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_line_contract.product_template_search_view
 msgid "Apply recurrence in"
 msgstr ""
 
 #. module: sale_order_line_contract
+#: code:addons/sale_order_line_contract/models/sale_order.py:0
 #: code:addons/sale_order_line_contract/models/sale_order.py:0
 #, python-format
 msgid "CONTRACT(s) CREATED"
@@ -40,14 +43,19 @@ msgstr ""
 #. module: sale_order_line_contract
 #: code:addons/sale_order_line_contract/models/sale_order.py:0
 #: code:addons/sale_order_line_contract/models/sale_order.py:0
+#: code:addons/sale_order_line_contract/models/sale_order.py:0
+#: code:addons/sale_order_line_contract/models/sale_order.py:0
 #, python-format
 msgid "CONTRACT(s) HAVE BEEN MODIFIED {} TIMES."
 msgstr ""
 
 #. module: sale_order_line_contract
 #: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_template.py:0
 #: model:ir.model,name:sale_order_line_contract.model_contract_contract
 #: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_product__apply_recurrence_in__contract
+#: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_template__apply_recurrence_in__contract
 #, python-format
 msgid "Contract"
 msgstr ""
@@ -69,8 +77,11 @@ msgstr ""
 
 #. module: sale_order_line_contract
 #: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_template.py:0
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_sale_order_line__contract_line_id
 #: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_product__apply_recurrence_in__line
+#: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_template__apply_recurrence_in__line
 #, python-format
 msgid "Contract line"
 msgstr ""
@@ -103,7 +114,10 @@ msgstr ""
 
 #. module: sale_order_line_contract
 #: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_template.py:0
 #: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_product__recurring_rule_type__daily
+#: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_template__recurring_rule_type__daily
 #, python-format
 msgid "Day(s)"
 msgstr ""
@@ -112,6 +126,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_contract_contract__display_name
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_contract_line__display_name
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_product_product__display_name
+#: model:ir.model.fields,field_description:sale_order_line_contract.field_product_template__display_name
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_sale_order_line__display_name
 msgid "Display Name"
@@ -126,6 +141,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_contract_contract__id
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_contract_line__id
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_product_product__id
+#: model:ir.model.fields,field_description:sale_order_line_contract.field_product_template__id
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_sale_order_line__id
 msgid "ID"
@@ -133,8 +149,10 @@ msgstr ""
 
 #. module: sale_order_line_contract
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_product_product__recurring_interval
+#: model:ir.model.fields,field_description:sale_order_line_contract.field_product_template__recurring_interval
 #: model_terms:ir.ui.view,arch_db:sale_order_line_contract.contract_line_search_view
 #: model_terms:ir.ui.view,arch_db:sale_order_line_contract.product_search_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_line_contract.product_template_search_view
 msgid "Invoice Every"
 msgstr ""
 
@@ -142,6 +160,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_contract_contract____last_update
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_contract_line____last_update
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_product_product____last_update
+#: model:ir.model.fields,field_description:sale_order_line_contract.field_product_template____last_update
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_sale_order_line____last_update
 msgid "Last Modified on"
@@ -154,14 +173,20 @@ msgstr ""
 
 #. module: sale_order_line_contract
 #: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_template.py:0
 #: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_product__recurring_rule_type__monthly
+#: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_template__recurring_rule_type__monthly
 #, python-format
 msgid "Month(s)"
 msgstr ""
 
 #. module: sale_order_line_contract
 #: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_template.py:0
 #: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_product__recurring_rule_type__monthlylastday
+#: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_template__recurring_rule_type__monthlylastday
 #, python-format
 msgid "Month(s) last day"
 msgstr ""
@@ -173,16 +198,26 @@ msgid "Product"
 msgstr ""
 
 #. module: sale_order_line_contract
+#: model:ir.model,name:sale_order_line_contract.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: sale_order_line_contract
 #: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_template.py:0
 #: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_product__recurring_rule_type__quarterly
+#: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_template__recurring_rule_type__quarterly
 #, python-format
 msgid "Quarter(s)"
 msgstr ""
 
 #. module: sale_order_line_contract
 #: model:ir.model.fields,field_description:sale_order_line_contract.field_product_product__recurring_rule_type
+#: model:ir.model.fields,field_description:sale_order_line_contract.field_product_template__recurring_rule_type
 #: model_terms:ir.ui.view,arch_db:sale_order_line_contract.contract_line_search_view
 #: model_terms:ir.ui.view,arch_db:sale_order_line_contract.product_search_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_line_contract.product_template_search_view
 msgid "Recurrence"
 msgstr ""
 
@@ -220,20 +255,27 @@ msgstr ""
 
 #. module: sale_order_line_contract
 #: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_template.py:0
 #: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_product__recurring_rule_type__semesterly
+#: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_template__recurring_rule_type__semesterly
 #, python-format
 msgid "Semester(s)"
 msgstr ""
 
 #. module: sale_order_line_contract
 #: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_template.py:0
 #: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_product__recurring_rule_type__weekly
+#: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_template__recurring_rule_type__weekly
 #, python-format
 msgid "Week(s)"
 msgstr ""
 
 #. module: sale_order_line_contract
 #: model_terms:ir.ui.view,arch_db:sale_order_line_contract.product_search_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_line_contract.product_template_search_view
 msgid "With recurrence"
 msgstr ""
 
@@ -244,6 +286,7 @@ msgstr ""
 
 #. module: sale_order_line_contract
 #: model_terms:ir.ui.view,arch_db:sale_order_line_contract.product_search_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_line_contract.product_template_search_view
 msgid "Without recurrence"
 msgstr ""
 
@@ -254,7 +297,11 @@ msgstr ""
 
 #. module: sale_order_line_contract
 #: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_product.py:0
+#: code:addons/sale_order_line_contract/models/product_template.py:0
 #: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_product__recurring_rule_type__yearly
+#: model:ir.model.fields.selection,name:sale_order_line_contract.selection__product_template__recurring_rule_type__yearly
 #, python-format
 msgid "Year(s)"
 msgstr ""
+
