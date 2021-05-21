@@ -13,6 +13,7 @@
         "event_schedule"
     ],
     "data": [
+        "views/assets.xml",
         "views/sale_order_views.xml",
         "views/sale_order_line_views.xml",
         "views/event_event_ticket_views.xml",
