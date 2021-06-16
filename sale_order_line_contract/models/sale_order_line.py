@@ -7,7 +7,8 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     contract_line_id = fields.Many2one(
-        string='Contract line', comodel_name='contract.line')
+        string='Contract line', comodel_name='contract.line',
+        copy=False)
 
     def _create_contract_line(self, contract):
         vals = self._catch_values_for_contract_line()
