@@ -36,6 +36,7 @@ class TestSaleOrderLineContract(common.SavepointCase):
             "company_id": cls.company.id,
             "order_line": [(0, 0, sale_line_vals)]}
         cls.sale1 = cls.sale_obj.create(sale_vals)
+        cls.contract_line = cls.env['contract.line'].search([], limit=1)
 
     def test_sale_order_line_contract(self):
         self.sale1._action_confirm()
@@ -61,3 +62,17 @@ class TestSaleOrderLineContract(common.SavepointCase):
         domain = ['&', ('id', 'in', sale2.contract_ids[0].ids),
                   ('contract_type', '=', 'sale')]
         self.assertEquals(result.get('domain'), domain)
+        self.assertEquals(sale2.contract_ids[0].count_sale_orders, 2)
+        result = sale2.contract_ids[0].action_view_sale_orders()
+        cond = "[('id','in',[{}, {}])]".format(sale2.id, self.sale1.id)
+        self.assertEquals(result.get('domain'), cond)
+        self.sale1.order_line[0].contract_line_id = False
+        sale2.contract_ids[0].contract_line_ids[0].write(
+            {'sale_order_line_id': self.sale1.order_line[0].id})
+        self.assertEquals(
+            sale2.contract_ids[0].contract_line_ids[0].sale_order_line_id,
+            self.sale1.order_line[0])
+        self.sale1.order_line[0].contract_line_id = sale2.order_line[0].contract_line_id.id
+        self.assertEquals(
+            self.sale1.order_line[0].contract_line_id.sale_order_line_id,
+            self.sale1.order_line[0])

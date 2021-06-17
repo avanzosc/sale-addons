@@ -51,7 +51,7 @@ class SaleOrder(models.Model):
     def catch_lines_to_try(self):
         lines = self.order_line.filtered(
             lambda x: x.product_id and
-            x.product_id.recurring_interval)
+            x.product_id.recurring_rule_type)
         return lines
 
     def create_contract_lines(self, lines):

@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import models, api, _
 from odoo.exceptions import UserError
+from openerp.tools import config
 
 
 class SaleOrder(models.Model):
@@ -9,6 +10,9 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
+        if (config['test_enable'] and
+                not self.env.context.get('check_amount_less')):
+            return super(SaleOrder, self).action_confirm()
         for sale in self:
             min_price_unit = sale._get_min_price_unit()
             lines = sale.order_line.filtered(
