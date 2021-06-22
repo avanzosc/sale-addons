@@ -17,6 +17,7 @@
         "views/sale_order_views.xml",
         "views/sale_order_line_views.xml",
         "views/event_event_ticket_views.xml",
+        "views/event_registration_views.xml"
     ],
     "license": "AGPL-3",
     'installable': True,
