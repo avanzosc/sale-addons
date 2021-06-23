@@ -36,24 +36,38 @@
                        context="{'default_line_id': active_id, 'default_child_id': child_id}" />
             </xpath>
             <notebook position="inside">
-                <page string="Subject List" name="subject_list">
-                    <separator string="Mandatory Subjects" />
-                    <field name="mandatory_subject_ids" readonly="True">
-                        <tree>
-                            <field name="education_code" />
+                <page string="Student's Permissions" name="child_permissions">
+                    <field name="child_permission_ids" readonly="True">
+                        <tree decoration-bf="state == 'yes'"
+                              decoration-muted="state == 'pending'"
+                              decoration-danger="state == 'no'"
+                              decoration-warning="state == 'conflict'">
+                            <field name="type_id" />
                             <field name="description" />
-                        </tree>
-                    </field>
-                    <separator string="Optional Subjects" />
-                    <field name="possible_optional_subject_ids" invisible="True" />
-                    <field name="optional_subject_ids"
-                           domain="[('id', 'in', possible_optional_subject_ids)]">
-                        <tree>
-                            <field name="education_code" />
-                            <field name="description" />
+                            <field name="state" />
+                            <field name="start_date" />
+                            <field name="end_date" />
                         </tree>
                     </field>
                 </page>
+<!--                <page string="Subject List" name="subject_list">-->
+<!--                    <separator string="Mandatory Subjects" />-->
+<!--                    <field name="mandatory_subject_ids" readonly="True">-->
+<!--                        <tree>-->
+<!--                            <field name="education_code" />-->
+<!--                            <field name="description" />-->
+<!--                        </tree>-->
+<!--                    </field>-->
+<!--                    <separator string="Optional Subjects" />-->
+<!--                    <field name="possible_optional_subject_ids" invisible="True" />-->
+<!--                    <field name="optional_subject_ids"-->
+<!--                           domain="[('id', 'in', possible_optional_subject_ids)]">-->
+<!--                        <tree>-->
+<!--                            <field name="education_code" />-->
+<!--                            <field name="description" />-->
+<!--                        </tree>-->
+<!--                    </field>-->
+<!--                </page>-->
             </notebook>
         </field>
     </record>
