@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-21 14:39+0000\n"
-"PO-Revision-Date: 2020-09-21 14:39+0000\n"
+"POT-Creation-Date: 2021-06-23 11:18+0000\n"
+"PO-Revision-Date: 2021-06-23 11:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -140,7 +140,7 @@ msgstr "Cambiar grupo en bloque"
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__partner_child_number
 #: model_terms:ir.ui.view,arch_db:sale_school.product_pricelist_view_search
 msgid "Child Number"
-msgstr "Numero de niño"
+msgstr "Nº de niño"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template_line__company_id
@@ -259,6 +259,12 @@ msgstr "Curso"
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Education Group"
 msgstr "Grupo educativo"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_product_product__education_type
+#: model:ir.model.fields,field_description:sale_school.field_product_template__education_type
+msgid "Education Product Type"
+msgstr "Tipo de producto de educación"
 
 #. module: sale_school
 #: model_terms:ir.ui.view,arch_db:sale_school.product_template_view_search
@@ -416,7 +422,6 @@ msgstr "Última actualización el"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__mandatory_subject_ids
-#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_form
 msgid "Mandatory Subjects"
 msgstr "Asignaturas obligatorias"
 
@@ -477,7 +482,6 @@ msgstr "Abrir matricula"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__optional_subject_ids
-#: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_form
 msgid "Optional Subjects"
 msgstr "Asignaturas opcionales"
 
@@ -584,12 +588,6 @@ msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: sale_school
-#: model:ir.model.fields,field_description:sale_school.field_product_product__education_type
-#: model:ir.model.fields,field_description:sale_school.field_product_template__education_type
-msgid "Product Type"
-msgstr "Tipo de producto"
-
-#. module: sale_school
 #: model:ir.model,name:sale_school.model_sale_order_template
 msgid "Quotation Template"
 msgstr "Plantilla de presupuesto"
@@ -620,6 +618,11 @@ msgstr "Repetir curso"
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__line_id
 msgid "Sale Line"
 msgstr "Línea de venta"
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_sale_order_option
+msgid "Sale Options"
+msgstr "Opciones de venta"
 
 #. module: sale_school
 #: model:ir.model,name:sale_school.model_sale_order
@@ -664,6 +667,8 @@ msgstr "Aportación 2º hijo"
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__child_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line__child_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__child_id
+#: model_terms:ir.ui.view,arch_db:sale_school.portal_my_orders_school
+#: model_terms:ir.ui.view,arch_db:sale_school.portal_my_quotations_school
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Student"
@@ -680,15 +685,10 @@ msgid "Student Enrollment History"
 msgstr "Historial de matriculación"
 
 #. module: sale_school
-#: code:addons/sale_school/models/res_partner.py:84
-#, python-format
-msgid "Student's registration has been discharged."
-msgstr "Se ha dado de baja la matricula del alumno."
-
-#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_sale_order__child_permission_ids
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_form
-msgid "Subject List"
-msgstr "Lista de asignaturas"
+msgid "Student's Permissions"
+msgstr "Autorizaciones de alumno"
 
 #. module: sale_school
 #: sql_constraint:sale.order.template:0
@@ -697,6 +697,7 @@ msgstr "¡La plantilla debe ser única por centro educativo y curso!"
 
 #. module: sale_school
 #: code:addons/sale_school/models/sale_order.py:62
+#: code:addons/sale_school/models/sale_order.py:66
 #, python-format
 msgid "The payers do not add 100%"
 msgstr "Los pagadores no suman 100%"
@@ -708,12 +709,14 @@ msgstr "Solo se puede definir una acción por año y alumno"
 
 #. module: sale_school
 #: code:addons/sale_school/models/sale_order.py:66
+#: code:addons/sale_school/models/sale_order.py:70
 #, python-format
 msgid "There is a payer without payment mode!"
 msgstr "¡Hay un pagador sin modo de pago!"
 
 #. module: sale_school
 #: code:addons/sale_school/models/sale_order.py:70
+#: code:addons/sale_school/models/sale_order.py:74
 #, python-format
 msgid "There must be a bank account defined per payer!"
 msgstr "¡Debe haber una cuenta bancaria definida por pagador!"

@@ -44,6 +44,10 @@ class SaleOrder(models.Model):
         relation="sale_optional_subject_rel", column1="order_id",
         column2="subject_id", readonly=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]})
+    child_permission_ids = fields.Many2many(
+        comodel_name="res.partner.permission", string="Student's Permissions",
+        relation="sale_partner_permission_rel", column1="sale_id",
+        column2="permission_id", compute="_compute_child_permission")
 
     @api.model
     def create(self, values):
@@ -166,3 +170,10 @@ class SaleOrder(models.Model):
                 lambda e: e.academic_year_id ==
                 sale.academic_year_id).button_draft()
         return res
+
+    @api.multi
+    def _compute_child_permission(self):
+        for sale in self:
+            permissions = sale.child_id.permission_ids.filtered(
+                lambda p: p.center_id == sale.school_id)
+            sale.child_permission_ids = [(6, 0, permissions.ids)]
