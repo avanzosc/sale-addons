@@ -161,6 +161,9 @@ class TestSaleSchool(TestSaleSchoolCommon):
                 active_ids=new_sale_order.ids).create({})
 
     def test_create_next_sale_order(self):
+        self.student.write({
+            "additional_product_ids": [(6, 0, [self.service3.id])],
+        })
         next_course = self.edu_course.copy(default={"education_code": "NEXT"})
         next_year = self.academic_year._get_next()
         next_template = self.sale_template.copy(
@@ -186,8 +189,12 @@ class TestSaleSchool(TestSaleSchoolCommon):
         self.assertIn(
             ("child_id", "=", self.student.id), action_dict.get("domain"))
         self.assertIn("default_child_id", action_dict.get("context"))
-        self.assertTrue(self.student.enrollment_ids.filtered(
-            lambda e: e.academic_year_id == next_year))
+        next_year_enrollment = self.student.enrollment_ids.filtered(
+            lambda e: e.academic_year_id == next_year)
+        self.assertTrue(next_year_enrollment)
+        for additional_product in self.student.additional_product_ids:
+            self.assertIn(additional_product,
+                          next_year_enrollment.mapped("order_line.product_id"))
         active_enrollments = self.student.enrollment_ids.filtered(
             lambda e: e.state != "cancel")
         self.assertEquals(

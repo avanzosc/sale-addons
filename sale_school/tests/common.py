@@ -79,6 +79,7 @@ class TestSaleSchoolCommon(TestContactsSchoolEducationCommon):
             "name": "Test Service",
         })
         cls.service2 = cls.service.copy()
+        cls.service3 = cls.service.copy()
         cls.class_type = cls.env['education.group_type'].create({
             'education_code': 'TYPE',
             'description': 'Test Group Type',

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_addproduct_report_view_tree" model="ir.ui.view">
+        <field name="model">res.partner.addproduct.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="student_id" />
+                <field name="product_id" />
+                <field name="center_id" />
+                <field name="course_id" />
+                <field name="categ_id" />
+                <field name="company_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_partner_addproduct_report_view_search" model="ir.ui.view">
+        <field name="model">res.partner.addproduct.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="student_id" />
+                <field name="product_id" />
+                <field name="center_id" />
+                <field name="level_id" />
+                <field name="course_id" />
+                <field name="categ_id" />
+                <field name="company_id" />
+                <group expand="1" string="Group By">
+                    <filter string="Student" name="student"
+                            context="{'group_by':'student_id'}"/>
+                    <filter string="Course" name="course"
+                            context="{'group_by':'course_id'}"/>
+                    <filter string="Education Level" name="level"
+                            context="{'group_by':'level_id'}"/>
+                    <filter string="Education Center" name="education_center"
+                            context="{'group_by':'center_id'}"/>
+                    <separator />
+                    <filter string="Product" name="product"
+                            context="{'group_by':'product_id'}"/>
+                    <filter string="Product Category" name="category"
+                            context="{'group_by':'categ_id'}"/>
+                    <filter string="Product Company" name="company"
+                            context="{'group_by':'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_res_partner_addproduct_report" model="ir.actions.act_window">
+        <field name="name">Additional Product List</field>
+        <field name="res_model">res.partner.addproduct.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id"
+               ref="res_partner_addproduct_report_view_search"/>
+    </record>
+
+    <menuitem id="res_partner_addproduct_report_menuitem"
+              parent="sale.menu_sale_report"
+              action="action_res_partner_addproduct_report"
+              sequence="10" />
+</odoo>
