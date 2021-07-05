@@ -35,6 +35,7 @@
         "views/sale_portal_template.xml",
         "wizards/education_enrollment_view.xml",
         "wizards/sale_order_group_change_view.xml",
+        "reports/res_partner_additional_product_report_view.xml",
     ],
     "installable": True,
 }

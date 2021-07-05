@@ -150,6 +150,19 @@ class SaleOrder(models.Model):
             onchange_method(new_sale_order)
         sale_order_dict = new_sale_order._convert_to_write(
             new_sale_order._cache)
+        for product in student.additional_product_ids:
+            new_sale_line = self.env["sale.order.line"].with_context(
+                default_child_id=student.id,
+            ).new({
+                "product_id": product.id,
+                "product_uom_qty": 1.0,
+            })
+            for onchange_method in new_sale_line._onchange_methods[
+                    "product_id"]:
+                onchange_method(new_sale_line)
+            sale_line_dict = new_sale_line._convert_to_write(
+                new_sale_line._cache)
+            sale_order_dict["order_line"].append((0, 0, sale_line_dict))
         sale_order = self.create(sale_order_dict)
         return sale_order
 

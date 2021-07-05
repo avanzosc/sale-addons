@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-23 11:18+0000\n"
-"PO-Revision-Date: 2021-06-23 11:18+0000\n"
+"POT-Creation-Date: 2021-07-05 10:19+0000\n"
+"PO-Revision-Date: 2021-07-05 10:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -68,11 +68,27 @@ msgid "Add Progenitors to Followers"
 msgstr "Añadir progenitores a seguidores"
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_addproduct_report__product_id
+msgid "Additional Product"
+msgstr "Producto adicional"
+
+#. module: sale_school
+#: model:ir.actions.act_window,name:sale_school.action_res_partner_addproduct_report
+#: model:ir.ui.menu,name:sale_school.res_partner_addproduct_report_menuitem
+msgid "Additional Product List"
+msgstr "Listado de productos adicionales"
+
+#. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_res_partner__additional_product_ids
 #: model:ir.model.fields,field_description:sale_school.field_res_users__additional_product_ids
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_view_form
 msgid "Additional Products"
 msgstr "Productos adicionales"
+
+#. module: sale_school
+#: model:ir.model,name:sale_school.model_res_partner_addproduct_report
+msgid "Additional Products Report"
+msgstr "Informe de productos adicionales"
 
 #. module: sale_school
 #: code:addons/sale_school/wizards/sale_order_group_change.py:39
@@ -155,8 +171,10 @@ msgstr "Contacto"
 
 #. module: sale_school
 #: model:ir.model,name:sale_school.model_education_course
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_addproduct_report__course_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__course_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template__course_id
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_addproduct_report_view_search
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Course"
 msgstr "Curso"
@@ -231,6 +249,7 @@ msgstr "Definir acciones para el próximo año"
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__display_name
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__display_name
 #: model:ir.model.fields,field_description:sale_school.field_product_pricelist_type__display_name
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_addproduct_report__display_name
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__display_name
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__display_name
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__display_name
@@ -238,10 +257,12 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_addproduct_report__center_id
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__center_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__center_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template_line__school_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_template_option__school_id
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_addproduct_report_view_search
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 msgid "Education Center"
 msgstr "Centro educativo"
@@ -259,6 +280,12 @@ msgstr "Curso"
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Education Group"
 msgstr "Grupo educativo"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_addproduct_report__level_id
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_addproduct_report_view_search
+msgid "Education Level"
+msgstr "Nivel educativo"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_product_product__education_type
@@ -371,6 +398,7 @@ msgstr "Aportación 1er hijo"
 
 #. module: sale_school
 #: model_terms:ir.ui.view,arch_db:sale_school.product_pricelist_view_search
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_addproduct_report_view_search
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 msgid "Group By"
 msgstr "Agrupar por"
@@ -384,6 +412,7 @@ msgstr "De casa"
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment__id
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__id
 #: model:ir.model.fields,field_description:sale_school.field_product_pricelist_type__id
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_addproduct_report__id
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change__id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__id
@@ -394,6 +423,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment____last_update
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line____last_update
 #: model:ir.model.fields,field_description:sale_school.field_product_pricelist_type____last_update
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_addproduct_report____last_update
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment____last_update
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_group_change____last_update
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer____last_update
@@ -583,6 +613,23 @@ msgid "Processed"
 msgstr "Procesada"
 
 #. module: sale_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_addproduct_report_view_search
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_addproduct_report__categ_id
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_addproduct_report_view_search
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: sale_school
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_addproduct_report__company_id
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_addproduct_report_view_search
+msgid "Product Company"
+msgstr "Compañia del producto"
+
+#. module: sale_school
 #: model:ir.model,name:sale_school.model_product_template
 msgid "Product Template"
 msgstr "Plantilla de producto"
@@ -663,12 +710,14 @@ msgstr "Aportación 2º hijo"
 
 #. module: sale_school
 #: model:ir.model.fields,field_description:sale_school.field_education_enrollment_line__partner_id
+#: model:ir.model.fields,field_description:sale_school.field_res_partner_addproduct_report__student_id
 #: model:ir.model.fields,field_description:sale_school.field_res_partner_enrollment__partner_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order__child_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line__child_id
 #: model:ir.model.fields,field_description:sale_school.field_sale_order_line_payer__child_id
 #: model_terms:ir.ui.view,arch_db:sale_school.portal_my_orders_school
 #: model_terms:ir.ui.view,arch_db:sale_school.portal_my_quotations_school
+#: model_terms:ir.ui.view,arch_db:sale_school.res_partner_addproduct_report_view_search
 #: model_terms:ir.ui.view,arch_db:sale_school.res_partner_enrollment_view_search
 #: model_terms:ir.ui.view,arch_db:sale_school.sale_order_view_search
 msgid "Student"
@@ -696,7 +745,6 @@ msgid "Template must be unique per school and course!"
 msgstr "¡La plantilla debe ser única por centro educativo y curso!"
 
 #. module: sale_school
-#: code:addons/sale_school/models/sale_order.py:62
 #: code:addons/sale_school/models/sale_order.py:66
 #, python-format
 msgid "The payers do not add 100%"
@@ -708,14 +756,12 @@ msgid "There can be only one definition per year and student"
 msgstr "Solo se puede definir una acción por año y alumno"
 
 #. module: sale_school
-#: code:addons/sale_school/models/sale_order.py:66
 #: code:addons/sale_school/models/sale_order.py:70
 #, python-format
 msgid "There is a payer without payment mode!"
 msgstr "¡Hay un pagador sin modo de pago!"
 
 #. module: sale_school
-#: code:addons/sale_school/models/sale_order.py:70
 #: code:addons/sale_school/models/sale_order.py:74
 #, python-format
 msgid "There must be a bank account defined per payer!"
