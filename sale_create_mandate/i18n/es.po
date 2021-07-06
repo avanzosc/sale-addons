@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_create_mandate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-06 13:05+0000\n"
+"PO-Revision-Date: 2021-07-06 13:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_create_mandate
+#: model:ir.model,name:sale_create_mandate.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Cuentas bancarias"
+
+#. module: sale_create_mandate
+#: model:ir.model,name:sale_create_mandate.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sale_create_mandate
+#: model:ir.model.fields,field_description:sale_create_mandate.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_create_mandate.field_res_partner_bank__display_name
+#: model:ir.model.fields,field_description:sale_create_mandate.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_create_mandate
+#: model:ir.model.fields,field_description:sale_create_mandate.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_create_mandate.field_res_partner_bank__id
+#: model:ir.model.fields,field_description:sale_create_mandate.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_create_mandate
+#: model:ir.model.fields,field_description:sale_create_mandate.field_res_partner____last_update
+#: model:ir.model.fields,field_description:sale_create_mandate.field_res_partner_bank____last_update
+#: model:ir.model.fields,field_description:sale_create_mandate.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_create_mandate
+#: model:ir.model,name:sale_create_mandate.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_create_mandate
+#: code:addons/sale_create_mandate/models/res_partner.py:0
+#, python-format
+msgid ""
+"The order could not be confirmed because the customer does not have a valid "
+"bank account."
+msgstr "El pedido no se puede confirmar porque el cliente no tiene una cuenta bancaria válida"
