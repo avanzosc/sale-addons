@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-06 13:05+0000\n"
-"PO-Revision-Date: 2021-07-06 13:05+0000\n"
+"POT-Creation-Date: 2021-07-07 08:37+0000\n"
+"PO-Revision-Date: 2021-07-07 08:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,15 @@ msgstr ""
 #: model:ir.model,name:sale_create_mandate.model_res_partner_bank
 msgid "Bank Accounts"
 msgstr "Cuentas bancarias"
+
+#. module: sale_create_mandate
+#: model:ir.model.fields,field_description:sale_create_mandate.field_account_setup_bank_manual_config__error_bank_acc
+#: model:ir.model.fields,field_description:sale_create_mandate.field_res_partner__error_bank_acc
+#: model:ir.model.fields,field_description:sale_create_mandate.field_res_partner_bank__error_bank_acc
+#: model:ir.model.fields,field_description:sale_create_mandate.field_res_users__error_bank_acc
+#: model:ir.model.fields,field_description:sale_create_mandate.field_sale_order__error_bank_acc
+msgid "Bank account error"
+msgstr "Error CC"
 
 #. module: sale_create_mandate
 #: model:ir.model,name:sale_create_mandate.model_res_partner
@@ -57,4 +66,6 @@ msgstr "Pedido de venta"
 msgid ""
 "The order could not be confirmed because the customer does not have a valid "
 "bank account."
-msgstr "El pedido no se puede confirmar porque el cliente no tiene una cuenta bancaria válida"
+msgstr ""
+"El pedido no se puede confirmar porque el cliente no tiene una cuenta "
+"bancaria válida"
