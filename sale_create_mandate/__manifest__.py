@@ -7,8 +7,9 @@
     "website": "http://www.avanzosc.es",
     'version': '14.0.1.0.0',
     'depends': [
-        'account_banking_mandate_usability',
         'account',
+        'account_banking_mandate_usability',
+        'account_payment_sale',
         'sale'
     ],
     'data': [
