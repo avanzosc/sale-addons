@@ -108,3 +108,12 @@ class CrmLeadFutureStudent(models.Model):
 
     sale_order_id = fields.Many2one(
         comodel_name='sale.order', string='Sale order')
+
+    @api.multi
+    def create_new_student(self, partner_id=False):
+        self.ensure_one()
+        if self.sale_order_id:
+            self.child_id = self.sale_order_id.child_id
+        else:
+            super(CrmLeadFutureStudent,
+                  self).create_new_student(partner_id=partner_id)
