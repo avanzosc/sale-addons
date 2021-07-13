@@ -4,8 +4,21 @@
         <field name="model">crm.lead.future.student</field>
         <field name="inherit_id" ref="crm_school.crm_lead_future_student_tree_view" />
         <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="decoration-muted">sale_order_state == 'cancel'</attribute>
+                <attribute name="decoration-info">sale_order_state in ['draft', 'sent']</attribute>
+                <attribute name="decoration-bf">sale_order_state == 'done'</attribute>
+            </tree>
             <field name="child_id" position="after">
                 <field name="sale_order_id" string="Enrollment" />
+                <button name="create_sale_order_for_student"
+                        string="Create Sale Order"
+                        type="object"
+                        attrs="{'invisible': [('sale_order_id','!=',False)]}"
+                        icon="fa-pencil-square-o" />
+            </field>
+            <field name="lead_stage_id" position="after">
+                <field name="sale_order_state" string="Status" />
             </field>
         </field>
     </record>
@@ -32,6 +45,18 @@
             <field name="year_birth" position="after">
                 <field name="sale_order_id" />
             </field>
+        </field>
+    </record>
+
+    <record id="action_create_sale_order_for_student" model="ir.actions.server">
+        <field name="name">Create new sale order</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="crm_school.model_crm_lead_future_student" />
+        <field name="binding_model_id" ref="crm_school.model_crm_lead_future_student" />
+        <field name="code">
+            for record in records:
+                record.create_sale_order_for_student()
         </field>
     </record>
 

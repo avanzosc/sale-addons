@@ -73,25 +73,8 @@ class CrmLead(models.Model):
 
     @api.multi
     def create_sale_order_for_student(self):
-        current_year = self.env["education.academic_year"].search([
-            ("current", "=", True)])
-        if not current_year:
-            raise UserError(
-                _("There should be at least a current academic year"))
-        next_year = current_year._get_next()
-        sales = sale_obj = self.env['sale.order']
-        futures = self.mapped('future_student_ids').filtered(
-            lambda l: l.child_id and not l.sale_order_id and
-            l.academic_year_id in (current_year, next_year))
-        if not futures:
-            raise UserError(_('There are not future student to register.'))
-        for future in futures:
-            sale_order = sale_obj.find_or_create_enrollment(
-                future.child_id, future.academic_year_id, future.school_id,
-                future.course_id)
-            future.sale_order_id = sale_order
-            future.child_id.educational_category = 'student'
-            sales += future.sale_order_id
+        sales = self.mapped(
+            "future_student_ids").create_sale_order_for_student()
         action = self.env.ref('sale.action_quotations_with_onboarding')
         action_dict = action.read()[0] if action else {}
         domain = expression.AND([
@@ -108,6 +91,9 @@ class CrmLeadFutureStudent(models.Model):
 
     sale_order_id = fields.Many2one(
         comodel_name='sale.order', string='Sale order')
+    sale_order_state = fields.Selection(
+        string="Sale Order Status", related="sale_order_id.state",
+        store=True)
 
     @api.multi
     def create_new_student(self, partner_id=False):
@@ -117,3 +103,26 @@ class CrmLeadFutureStudent(models.Model):
         else:
             super(CrmLeadFutureStudent,
                   self).create_new_student(partner_id=partner_id)
+
+    @api.multi
+    def create_sale_order_for_student(self):
+        current_year = self.env["education.academic_year"].search([
+            ("current", "=", True)])
+        if not current_year:
+            raise UserError(
+                _("There should be at least a current academic year"))
+        next_year = current_year._get_next()
+        sales = sale_obj = self.env["sale.order"]
+        futures = self.filtered(
+            lambda l: l.child_id and not l.sale_order_id and
+            l.academic_year_id in (current_year, next_year))
+        if not futures:
+            raise UserError(_("There are not future student to register."))
+        for future in futures:
+            sale_order = sale_obj.find_or_create_enrollment(
+                future.child_id, future.academic_year_id, future.school_id,
+                future.course_id)
+            future.sale_order_id = sale_order
+            future.child_id.educational_category = "student"
+            sales += future.sale_order_id
+        return sales

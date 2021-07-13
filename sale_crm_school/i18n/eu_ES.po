@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-03 10:27+0000\n"
-"PO-Revision-Date: 2020-09-03 10:27+0000\n"
+"POT-Creation-Date: 2021-07-12 10:32+0000\n"
+"PO-Revision-Date: 2021-07-12 10:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,16 @@ msgstr "Maila"
 #: model:ir.model,name:sale_crm_school.model_education_course_change
 msgid "Course Change"
 msgstr "Maila aldaketa"
+
+#. module: sale_crm_school
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.crm_lead_future_student_tree_view_inh_sale_crm_school
+msgid "Create Sale Order"
+msgstr ""
+
+#. module: sale_crm_school
+#: model:ir.actions.server,name:sale_crm_school.action_create_sale_order_for_student
+msgid "Create new sale order"
+msgstr ""
 
 #. module: sale_crm_school
 #: model_terms:ir.ui.view,arch_db:sale_crm_school.crm_lead_future_student_tree_view_inh_sale_crm_school
@@ -76,6 +86,11 @@ msgid "Sale Order"
 msgstr "Salmenta eskaera "
 
 #. module: sale_crm_school
+#: model:ir.model.fields,field_description:sale_crm_school.field_crm_lead_future_student__sale_order_state
+msgid "Sale Order Status"
+msgstr ""
+
+#. module: sale_crm_school
 #: model:ir.model.fields,field_description:sale_crm_school.field_crm_lead_future_student__sale_order_id
 msgid "Sale order"
 msgstr ""
@@ -86,13 +101,18 @@ msgid "Sales Order Line"
 msgstr "Salmenta-eskaera lerroa"
 
 #. module: sale_crm_school
-#: code:addons/sale_crm_school/models/crm_lead.py:65
+#: model_terms:ir.ui.view,arch_db:sale_crm_school.crm_lead_future_student_tree_view_inh_sale_crm_school
+msgid "Status"
+msgstr "Egoera"
+
+#. module: sale_crm_school
+#: code:addons/sale_crm_school/models/crm_lead.py:120
 #, python-format
 msgid "There are not future student to register."
 msgstr ""
 
 #. module: sale_crm_school
-#: code:addons/sale_crm_school/models/crm_lead.py:58
+#: code:addons/sale_crm_school/models/crm_lead.py:113
 #, python-format
 msgid "There should be at least a current academic year"
 msgstr ""
