@@ -69,8 +69,7 @@ class EventRegistration(models.Model):
         if len(available_tickets) == 1:
             select_ticket = available_tickets
         elif len(available_tickets) > 1:
-            member_ticket = available_tickets.filtered(
-                    lambda t: t.is_member)
+            member_ticket = available_tickets.filtered(lambda t: t.is_member)
             if self.is_member:
                 select_ticket = member_ticket
             elif member_ticket and len(available_tickets) == 2:
