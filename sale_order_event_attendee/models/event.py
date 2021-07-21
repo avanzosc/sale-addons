@@ -8,15 +8,15 @@ class EventRegistration(models.Model):
 
     def action_cancel(self):
         super(EventRegistration, self).action_cancel()
-        if self.order_status == 'draft':
+        if self.order_status in ('draft', 'sent'):
             order = self.sale_order_id
+            self.sale_order_line_id = None
             self.sale_order_id = None
             order._calculate_order_line_qty()
         elif self.order_status in ('done', 'sale'):
             raise ValidationError(
                 _("You cannot cancel a participant with a "
                   "confirmed Sale Order."))
-
 
     def action_confirm(self):
         super(EventRegistration, self).action_confirm()
@@ -38,19 +38,19 @@ class EventRegistration(models.Model):
                     order = order_obj.sudo().create({
                         'partner_id': self.partner_id.id
                     })
-                self.write({'sale_order_id': order.id})
+                self.sale_order_id = order.id
             if not self.sale_order_line_id:
                 ticket_line = self.sale_order_id.order_line.filtered(
-                    lambda l: l.product_id.id ==
-                              self.event_ticket_id.product_id.id)
+                    lambda l:
+                    l.product_id.id == self.event_ticket_id.product_id.id)
                 order_line = None
                 if not ticket_line:
                     order_line = self.env['sale.order.line'].sudo().create(
                         {
-                        'product_id': self.event_ticket_id.product_id.id,
-                        'name': self.event_ticket_id.name,
-                        'order_id': self.sale_order_id.id,
-                        'product_uom':
+                            'product_id': self.event_ticket_id.product_id.id,
+                            'name': self.event_ticket_id.name,
+                            'order_id': order.id,
+                            'product_uom':
                             self.event_ticket_id.product_id.uom_id.id})
                 else:
                     for line in ticket_line:
@@ -58,8 +58,7 @@ class EventRegistration(models.Model):
                                 self.event_ticket_id.product_id.id:
                             order_line = line
                             break
-
-                self.write({'sale_order_line_id': order_line.id})
+                self.sale_order_line_id = order_line.id
 
         if order:
             order._calculate_order_line_qty()
