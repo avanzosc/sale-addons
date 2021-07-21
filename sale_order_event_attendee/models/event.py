@@ -1,9 +1,22 @@
 
-from odoo import models
+from odoo import models, _
+from odoo.exceptions import ValidationError
 
 
 class EventRegistration(models.Model):
     _inherit = 'event.registration'
+
+    def action_cancel(self):
+        super(EventRegistration, self).action_cancel()
+        if self.order_status == 'draft':
+            order = self.sale_order_id
+            self.sale_order_id = None
+            order._calculate_order_line_qty()
+        elif self.order_status in ('done', 'sale'):
+            raise ValidationError(
+                _("You cannot cancel a participant with a "
+                  "confirmed Sale Order."))
+
 
     def action_confirm(self):
         super(EventRegistration, self).action_confirm()
@@ -13,8 +26,8 @@ class EventRegistration(models.Model):
         if not self.event_ticket_id:
             self.select_ticket()
 
+        order = self.sale_order_id
         if self.event_ticket_id:
-            order = self.sale_order_id
             if not order:
                 order_obj = self.env['sale.order']
                 order = order_obj.search([
@@ -47,7 +60,9 @@ class EventRegistration(models.Model):
                             break
 
                 self.write({'sale_order_line_id': order_line.id})
-                order._calculate_order_line_qty()
+
+        if order:
+            order._calculate_order_line_qty()
 
     def select_ticket(self):
         select_ticket = None
