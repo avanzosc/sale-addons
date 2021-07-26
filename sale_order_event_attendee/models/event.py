@@ -10,8 +10,9 @@ class EventRegistration(models.Model):
         super(EventRegistration, self).action_cancel()
         if self.order_status in ('draft', 'sent'):
             order = self.sale_order_id
-            self.sale_order_line_id = None
-            self.sale_order_id = None
+            self.write({
+                'sale_order_line_id': None,
+                'sale_order_id': None})
             order._calculate_order_line_qty()
         elif self.order_status in ('done', 'sale'):
             raise ValidationError(
@@ -19,15 +20,16 @@ class EventRegistration(models.Model):
                   "confirmed Sale Order."))
 
     def action_confirm(self):
-        super(EventRegistration, self).action_confirm()
+        res = super(EventRegistration, self).action_confirm()
         if not self.partner_id:
-            return
+            return res
 
-        if not self.event_ticket_id:
-            self.select_ticket()
+        select_ticket = self.event_ticket_id
+        if not select_ticket:
+            select_ticket = self.select_ticket()
 
         order = self.sale_order_id
-        if self.event_ticket_id:
+        if select_ticket:
             if not order:
                 order_obj = self.env['sale.order']
                 order = order_obj.search([
@@ -38,33 +40,39 @@ class EventRegistration(models.Model):
                     order = order_obj.sudo().create({
                         'partner_id': self.partner_id.id
                     })
-                self.sale_order_id = order.id
+                self.write({'sale_order_id': order.id})
+
             if not self.sale_order_line_id:
-                ticket_line = self.sale_order_id.order_line.filtered(
+                ticket_line = order.order_line.filtered(
                     lambda l:
-                    l.product_id.id == self.event_ticket_id.product_id.id)
+                    l.product_id.id == select_ticket.product_id.id)
                 order_line = None
                 if not ticket_line:
                     order_line = self.env['sale.order.line'].sudo().create(
                         {
                             'product_id': self.event_ticket_id.product_id.id,
+                            'event_id': self.event_id.id,
                             'name': self.event_ticket_id.name,
                             'order_id': order.id,
                             'product_uom':
-                            self.event_ticket_id.product_id.uom_id.id})
+                                self.event_ticket_id.product_id.uom_id.id})
                 else:
                     for line in ticket_line:
-                        if line.product_id.id == \
-                                self.event_ticket_id.product_id.id:
+                        if line.product_id.id == select_ticket.product_id.id:
                             order_line = line
                             break
-                self.sale_order_line_id = order_line.id
+                self.write({'sale_order_line_id': order_line.id})
 
         if order:
             order._calculate_order_line_qty()
 
+        return res
+
     def select_ticket(self):
         select_ticket = None
+        if not self.event_id:
+            raise ValidationError(
+                _("There is no event selected!"))
         available_tickets = self.event_id.event_ticket_ids
         if len(available_tickets) == 1:
             select_ticket = available_tickets
@@ -75,5 +83,10 @@ class EventRegistration(models.Model):
             elif member_ticket and len(available_tickets) == 2:
                 select_ticket = available_tickets.filtered(
                     lambda t: not t.is_member)
+            else:
+                raise ValidationError(
+                    _("You must select a ticket by hand."))
         if select_ticket:
             self.write({'event_ticket_id': select_ticket.id})
+
+        return select_ticket
