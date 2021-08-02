@@ -22,7 +22,7 @@ class EventRegistration(models.Model):
     def action_confirm(self):
         res = super(EventRegistration, self).action_confirm()
         if not self.partner_id:
-            return
+            return res
 
         select_ticket = self.event_ticket_id
         if not select_ticket:
