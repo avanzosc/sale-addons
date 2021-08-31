@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_type_config
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-26 08:01+0000\n"
+"PO-Revision-Date: 2021-08-26 08:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_type_config
+#: model:ir.model.fields,field_description:sale_order_type_config.field_purchase_order__picking_type_id
+msgid "Deliver To"
+msgstr "Entregar a"
+
+#. module: sale_order_type_config
+#: model:ir.model.fields,field_description:sale_order_type_config.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:sale_order_type_config.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_order_type_config
+#: model:ir.model.fields,field_description:sale_order_type_config.field_purchase_order__id
+#: model:ir.model.fields,field_description:sale_order_type_config.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_type_config
+#: model:ir.model.fields,field_description:sale_order_type_config.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:sale_order_type_config.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_order_type_config
+#: model:ir.model,name:sale_order_type_config.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: sale_order_type_config
+#: model:ir.model,name:sale_order_type_config.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_type_config
+#: model:ir.model.fields,help:sale_order_type_config.field_purchase_order__picking_type_id
+msgid "This will determine operation type of incoming shipment"
+msgstr "Esto determinará el tipo de operación del envío entrante"
+
+#. module: sale_order_type_config
+#: model:ir.model.fields,field_description:sale_order_type_config.field_sale_order__type_id
+msgid "Type"
+msgstr "Tipo"
