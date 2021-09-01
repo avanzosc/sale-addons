@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_line_attachment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-31 08:08+0000\n"
+"PO-Revision-Date: 2021-08-31 08:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_attachment
+#: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.view_document_file_kanba
+msgid "<strong>Attachmets in sales orders</strong>"
+msgstr "<strong>Adjuntos en pedidos de venta/strong>"
+
+#. module: sale_order_line_attachment
+#: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.view_document_file_kanba
+msgid "<strong>No attachmets in sales orders</strong>"
+msgstr "<strong>No adjuntos en pedidos de venta</strong>"
+
+#. module: sale_order_line_attachment
+#: model:ir.model.fields,field_description:sale_order_line_attachment.field_ir_attachment__attach_in_sales_orders
+#: model:ir.model.fields,field_description:sale_order_line_attachment.field_mrp_document__attach_in_sales_orders
+msgid "Attach in sales orders"
+msgstr "Adjuntar en pedidos de venta"
+
+#. module: sale_order_line_attachment
+#: model:ir.model,name:sale_order_line_attachment.model_ir_attachment
+msgid "Attachment"
+msgstr "Adjunto"
+
+#. module: sale_order_line_attachment
+#: model:ir.model.fields,field_description:sale_order_line_attachment.field_product_product__count_attachments
+#: model:ir.model.fields,field_description:sale_order_line_attachment.field_product_template__count_attachments
+#: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.product_template_form_view
+msgid "Attachments"
+msgstr "Adjuntos"
+
+#. module: sale_order_line_attachment
+#: model:ir.model,name:sale_order_line_attachment.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "Asistente de redacción de correo electrónico."
+
+#. module: sale_order_line_attachment
+#: model:ir.model,name:sale_order_line_attachment.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: sale_order_line_attachment
+#: model:ir.model,name:sale_order_line_attachment.model_sale_order
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_line_attachment
+#: model:ir.model,name:sale_order_line_attachment.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_order_line_attachment
+#: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.view_order_form
+msgid "View Attachments"
+msgstr "Adjuntos"
+
