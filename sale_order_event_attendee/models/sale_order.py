@@ -13,7 +13,5 @@ class SaleOrder(models.Model):
                     [('sale_order_id', '=', self.id),
                      ('sale_order_line_id', '=', line._origin.id)]
                 )
-                if line_count == 0:
-                    line.unlink()
-                else:
+                if line_count > 0:
                     line.product_uom_qty = line_count
