@@ -10,6 +10,8 @@ class SaleOrder(models.Model):
         for line in self.order_line:
             if line.product_id.event_ok:
                 line_count = self.env['event.registration'].search_count(
-                    [('sale_order_line_id', '=', line._origin.id)]
+                    [('sale_order_id', '=', self.id),
+                     ('sale_order_line_id', '=', line._origin.id)]
                 )
-                line.product_uom_qty = line_count
+                if line_count > 0:
+                    line.product_uom_qty = line_count
