@@ -20,8 +20,11 @@ class SaleOrder(models.Model):
                     lambda x: x.type == 'delivery')
                 for delivery in deliveries:
                     partners += delivery
-                if len(deliveries) > 1:
-                    self.partner_shipping_id = deliveries[0].id
+                if len(deliveries) == 1:
+                    self.partner_shipping_id = deliveries.id
+                else:
+                    if len(deliveries) > 1:
+                        self.partner_shipping_id = False
             self.allowed_shipping_ids = [(6, 0, partners.ids)]
         return result
 
