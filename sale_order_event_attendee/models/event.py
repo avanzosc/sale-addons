@@ -52,6 +52,7 @@ class EventRegistration(models.Model):
                         {
                             'product_id': self.event_ticket_id.product_id.id,
                             'event_id': self.event_id.id,
+                            'event_ticket_id': self.event_ticket_id.id,
                             'name': self.event_ticket_id.name,
                             'order_id': order.id,
                             'product_uom':
