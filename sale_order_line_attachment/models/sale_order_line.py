@@ -20,4 +20,3 @@ class SaleOrderLine(models.Model):
         }
         return res
 
-    

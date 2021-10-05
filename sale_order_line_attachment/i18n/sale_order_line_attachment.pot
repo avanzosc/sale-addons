@@ -27,7 +27,6 @@ msgstr ""
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_ir_attachment__attach_in_sales_orders
-#: model:ir.model.fields,field_description:sale_order_line_attachment.field_mrp_document__attach_in_sales_orders
 msgid "Attach in sales orders"
 msgstr ""
 
@@ -149,6 +148,7 @@ msgstr ""
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product__sale_order_line_id
 msgid "Sale order line"
+<<<<<<< HEAD
 #: model:ir.model,name:sale_order_line_attachment.model_sale_order
 msgid "Sale Order"
 msgstr ""
