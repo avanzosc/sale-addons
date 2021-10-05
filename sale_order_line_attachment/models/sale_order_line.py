@@ -16,32 +16,3 @@ class SaleOrderLine(models.Model):
         res['context'] = {'default_res_model': 'sale.order.line',
                           'default_res_id': self.id}
         return res
-
-    @api.model
-    def create(self, values):
-        line = super(SaleOrderLine, self).create(values)
-        line._catch_product_attachments()
-        return line
-
-    @api.multi
-    def write(self, vals):
-        result = super(SaleOrderLine, self).write(vals)
-        if 'product_id' in vals and vals.get('product_id', False):
-            for line in self:
-                line._catch_product_attachments()
-        return result
-
-    def _catch_product_attachments(self):
-        cond = [('res_model', '=', 'sale.order.line'),
-                ('res_id', 'in', self.product_id.product_tmpl_id.ids)]
-        attachments = self.env['ir.attachment'].search(cond)
-        if attachments:
-            attachments.unlink()
-        cond = [('attach_in_sales_orders', '=', True),
-                ('res_model', '=', 'product.template'),
-                ('res_id', 'in', self.product_id.product_tmpl_id.ids)]
-        attachments = self.env['ir.attachment'].search(cond)
-        for attachment in attachments:
-            attachment.copy(
-                {'res_model': 'sale.order.line',
-                 'res_id': self.id})
