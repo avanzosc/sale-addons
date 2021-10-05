@@ -5,8 +5,11 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//tree//field[@name='price_tax']" position="after">
-                <button name="action_get_attachment_view" string="View Attachments" type="object" icon="fa-paperclip"/>
+                <button name="%(sale_order_line_attachment.action_wiz_catch_attachment_from_product)d"
+                    string="Catch Attachments" type="action" icon="fa-paperclip"/>
+                <button name="action_get_attachment_view" string="View Attachments" type="object" icon="fa-list"/>
             </xpath>
         </field>
     </record>
 </odoo>
+
