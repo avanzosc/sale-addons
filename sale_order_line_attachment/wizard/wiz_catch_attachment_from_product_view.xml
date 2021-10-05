@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="wiz_catch_attachment_from_product_form" model="ir.ui.view">
+        <field name="name">wiz.catch.attachment.from.product.form</field>
+        <field name="model">wiz.catch.attachment.from.product</field>
+        <field name="arch" type="xml">
+            <form string="Catch attachment from product">
+                <sheet>
+                    <group name="main" colspan="4">
+                        <field name="sale_order_line_id" invisible="1" colspan="4"/>
+                        <separator string="Select attachments" colspan="4" />
+                        <field name="line_ids" nolabel="1" colspan="4">
+                            <tree string='Product attachments' create="false" edit="True" delete="false">
+                                <field name="wiz_id" invisible="1"/>
+                                <field name="catch_attachment" />
+                                <field name="attachment_id" readonly="1" />
+                                <field name="attachment_name" invisible="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button class="oe_highlight" name="button_catch_attachment_from_product"
+                        string="Catch attachments" type="object" />
+                        or
+                        <button class="oe_link" special="cancel" string="Cancel" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_wiz_catch_attachment_from_product" model="ir.actions.act_window">
+        <field name="name">Catch attachments from product</field>
+        <field name="res_model">wiz.catch.attachment.from.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
