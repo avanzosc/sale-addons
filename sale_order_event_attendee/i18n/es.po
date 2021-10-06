@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-21 13:49+0000\n"
-"PO-Revision-Date: 2021-07-21 13:49+0000\n"
+"POT-Creation-Date: 2021-10-01 08:56+0000\n"
+"PO-Revision-Date: 2021-10-01 08:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -46,5 +46,19 @@ msgstr "Pedido de venta"
 #. module: sale_order_event_attendee
 #: code:addons/sale_order_event_attendee/models/event.py:0
 #, python-format
-msgid "You cannot cancel a participant with a confirmed Sale Order."
-msgstr "No puedes cancelar un participante con un pedido de venta confirmado."
+msgid "There is no event selected!"
+msgstr "No hay evento seleccionado!"
+
+#. module: sale_order_event_attendee
+#: code:addons/sale_order_event_attendee/models/event.py:0
+#, python-format
+msgid ""
+"You cannot cancel a participant with a confirmed Sale Order (Partner: {})."
+msgstr ""
+"No puedes cancelar a un participante con un pedido de venta confirmado! (Reservado por: {})."
+
+#. module: sale_order_event_attendee
+#: code:addons/sale_order_event_attendee/models/event.py:0
+#, python-format
+msgid "You must select a ticket by hand."
+msgstr "Debes elegir un ticket a mano."

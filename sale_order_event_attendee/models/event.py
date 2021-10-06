@@ -8,68 +8,72 @@ class EventRegistration(models.Model):
 
     def action_cancel(self):
         super(EventRegistration, self).action_cancel()
-        if self.order_status in ('draft', 'sent'):
-            order = self.sale_order_id
-            self.write({
-                'sale_order_line_id': None,
-                'sale_order_id': None})
-            order._calculate_order_line_qty()
-        elif self.order_status in ('done', 'sale'):
-            raise ValidationError(
-                _("You cannot cancel a participant with a "
-                  "confirmed Sale Order."))
+        for record in self:
+            if record.order_status in ('draft', 'sent'):
+                order = record.sale_order_id
+                record.write({
+                    'sale_order_line_id': None,
+                    'sale_order_id': None})
+                order._calculate_order_line_qty()
+            elif record.order_status in ('done', 'sale'):
+                raise ValidationError(
+                    _("You cannot cancel a participant with a "
+                      "confirmed Sale Order (Partner: {}).").format(
+                        record.partner_id.name))
 
     def action_confirm(self):
         res = super(EventRegistration, self).action_confirm()
-        if not self.partner_id:
-            return res
+        for record in self:
+            if not record.partner_id:
+                continue
 
-        select_ticket = self.event_ticket_id
-        if not select_ticket:
-            select_ticket = self.select_ticket()
+            select_ticket = record.event_ticket_id
+            if not select_ticket:
+                select_ticket = record.select_ticket()
 
-        order = self.sale_order_id
-        if select_ticket:
-            if not order:
-                order_obj = self.env['sale.order']
-                order = order_obj.search([
-                    ('partner_id', '=', self.partner_id.id),
-                    ('state', 'in', ('draft', 'sent'))
-                ], order='date_order desc', limit=1)
+            order = record.sale_order_id
+            if select_ticket:
                 if not order:
-                    order = order_obj.sudo().create({
-                        'partner_id': self.partner_id.id
-                    })
-                self.write({'sale_order_id': order.id})
+                    order_obj = self.env['sale.order']
+                    order = order_obj.search([
+                        ('partner_id', '=', record.partner_id.id),
+                        ('state', 'in', ('draft', 'sent'))
+                    ], order='date_order desc', limit=1)
+                    if not order:
+                        order = order_obj.sudo().create({
+                            'partner_id': record.partner_id.id
+                        })
+                    record.write({'sale_order_id': order.id})
 
-            if not self.sale_order_line_id:
-                ticket_line = order.order_line.filtered(
-                    lambda l:
-                    l.product_id.id == select_ticket.product_id.id)
-                order_line = None
-                if not ticket_line:
-                    order_line = self.env['sale.order.line'].sudo().create(
-                        {
-                            'product_id': self.event_ticket_id.product_id.id,
-                            'event_id': self.event_id.id,
-                            'event_ticket_id': self.event_ticket_id.id,
-                            'name': self.event_ticket_id.name,
-                            'order_id': order.id,
-                            'product_uom':
-                                self.event_ticket_id.product_id.uom_id.id})
-                else:
-                    for line in ticket_line:
-                        if line.product_id.id == select_ticket.product_id.id:
-                            order_line = line
-                            break
-                self.write({'sale_order_line_id': order_line.id})
+                if not record.sale_order_line_id:
+                    ticket_line = order.order_line.filtered(
+                        lambda l:
+                        l.product_id.id == select_ticket.product_id.id)
+                    order_line = None
+                    if not ticket_line:
+                        order_line = self.env['sale.order.line'].sudo().create(
+                            {
+                                'product_id': record.event_ticket_id.product_id.id,
+                                'event_id': record.event_id.id,
+                                'event_ticket_id': record.event_ticket_id.id,
+                                'name': record.event_ticket_id.name,
+                                'order_id': order.id,
+                                'product_uom':
+                                    record.event_ticket_id.product_id.uom_id.id})
+                    else:
+                        for line in ticket_line:
+                            if line.product_id.id == select_ticket.product_id.id:
+                                order_line = line
+                                break
+                    record.write({'sale_order_line_id': order_line.id})
 
-        if order:
-            order._calculate_order_line_qty()
+            if order:
+                order._calculate_order_line_qty()
 
         return res
 
     def select_ticket(self):
+        self.ensure_one()
         select_ticket = None
         if not self.event_id:
             raise ValidationError(
