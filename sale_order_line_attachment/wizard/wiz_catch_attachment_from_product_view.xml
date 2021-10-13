@@ -10,7 +10,7 @@
                         <field name="sale_order_line_id" invisible="1" colspan="4"/>
                         <separator string="Select attachments" colspan="4" />
                         <field name="line_ids" nolabel="1" colspan="4">
-                            <tree string='Product attachments' create="false" edit="True" delete="false">
+                            <tree string='Product attachments' editable="bottom" create="false" edit="true" delete="false">
                                 <field name="wiz_id" invisible="1"/>
                                 <field name="catch_attachment" />
                                 <field name="attachment_id" readonly="1" />
