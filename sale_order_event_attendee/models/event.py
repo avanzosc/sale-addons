@@ -34,16 +34,13 @@ class EventRegistration(models.Model):
             order = record.sale_order_id
             if select_ticket:
                 if not order:
-                    order_obj = self.env['sale.order']
-                    order = order_obj.search([
-                        ('partner_id', '=', record.partner_id.id),
-                        ('state', 'in', ('draft', 'sent'))
-                    ], order='date_order desc', limit=1)
+                    line, order = record.get_event_order(select_ticket)
                     if not order:
-                        order = order_obj.sudo().create({
-                            'partner_id': record.partner_id.id
+                        order = self.env['sale.order'].sudo().create({
+                            'partner_id': self.partner_id.id
                         })
-                    record.write({'sale_order_id': order.id})
+                    record.write({'sale_order_line_id': line.id,
+                                  'sale_order_id': order.id})
 
                 if not record.sale_order_line_id:
                     ticket_line = order.order_line.filtered(
@@ -71,6 +68,27 @@ class EventRegistration(models.Model):
                 order._calculate_order_line_qty()
 
         return res
+
+    def get_event_order(self, select_ticket):
+        # Find open order line for parner and ticket
+        line_obj = self.env['sale.order.line']
+        line = line_obj.search([
+            ('order_partner_id', '=', self.partner_id.id),
+            ('state', 'in', ('draft', 'sent')),
+            ('event_id', '=', self.event_id.id),
+            ('event_ticket_id', '=', select_ticket.id),
+        ], limit=1)
+        order = line.order_id
+
+        if not order:
+            # Find open order for partner
+            order_obj = self.env['sale.order']
+            order = order_obj.search([
+                ('partner_id', '=', self.partner_id.id),
+                ('state', 'in', ('draft', 'sent'))
+            ], order='date_order desc', limit=1)
+
+        return line, order
 
     def select_ticket(self):
         self.ensure_one()
