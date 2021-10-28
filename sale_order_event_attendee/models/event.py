@@ -34,42 +34,26 @@ class EventRegistration(models.Model):
             order = record.sale_order_id
             if select_ticket:
                 if not order:
-                    line, order = record.get_event_order(select_ticket)
+                    line, order = record.get_event_attendee_order(
+                        select_ticket)
                     if not order:
                         order = self.env['sale.order'].sudo().create({
                             'partner_id': self.partner_id.id
                         })
-                    record.write({'sale_order_line_id': line.id,
-                                  'sale_order_id': order.id})
-
-                if not record.sale_order_line_id:
-                    ticket_line = order.order_line.filtered(
-                        lambda l:
-                        l.product_id.id == select_ticket.product_id.id)
-                    order_line = None
-                    if not ticket_line:
-                        order_line = self.env['sale.order.line'].sudo().create(
-                            {
-                                'product_id': record.event_ticket_id.product_id.id,
-                                'event_id': record.event_id.id,
-                                'event_ticket_id': record.event_ticket_id.id,
-                                'name': record.event_ticket_id.name,
-                                'order_id': order.id,
-                                'product_uom':
-                                    record.event_ticket_id.product_id.uom_id.id})
-                    else:
-                        for line in ticket_line:
-                            if line.product_id.id == select_ticket.product_id.id:
-                                order_line = line
-                                break
-                    record.write({'sale_order_line_id': order_line.id})
+                    if not line:
+                        line = record.get_event_attendee_order_line(
+                            order, select_ticket)
+                    record.write({
+                        'sale_order_line_id': line.id,
+                        'sale_order_id': order.id
+                    })
 
             if order:
                 order._calculate_order_line_qty()
 
         return res
 
-    def get_event_order(self, select_ticket):
+    def get_event_attendee_order(self, select_ticket):
         # Find open order line for parner and ticket
         line_obj = self.env['sale.order.line']
         line = line_obj.search([
@@ -89,6 +73,28 @@ class EventRegistration(models.Model):
             ], order='date_order desc', limit=1)
 
         return line, order
+
+    def get_event_attendee_order_line(self, order, select_ticket):
+        ticket_line = order.order_line.filtered(
+            lambda l:
+            l.product_id.id == select_ticket.product_id.id)
+        order_line = None
+        if not ticket_line:
+            order_line = self.env['sale.order.line'].sudo().create(
+                {
+                    'product_id': self.event_ticket_id.product_id.id,
+                    'event_id': self.event_id.id,
+                    'event_ticket_id': self.event_ticket_id.id,
+                    'name': self.event_ticket_id.name,
+                    'order_id': order.id,
+                    'product_uom':
+                        self.event_ticket_id.product_id.uom_id.id})
+        else:
+            for line in ticket_line:
+                if line.product_id.id == select_ticket.product_id.id:
+                    order_line = line
+                    break
+        return order_line
 
     def select_ticket(self):
         self.ensure_one()
