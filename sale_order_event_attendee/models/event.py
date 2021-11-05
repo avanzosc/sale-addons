@@ -33,21 +33,19 @@ class EventRegistration(models.Model):
 
             order = record.sale_order_id
             if select_ticket:
+                line, order = record.get_event_attendee_order(
+                    select_ticket)
                 if not order:
-                    line, order = record.get_event_attendee_order(
-                        select_ticket)
-                    if not order:
-                        order = self.env['sale.order'].sudo().create({
-                            'partner_id': self.partner_id.id
-                        })
-                    if not line:
-                        line = record.get_event_attendee_order_line(
-                            order, select_ticket)
-                    record.write({
-                        'sale_order_line_id': line.id,
-                        'sale_order_id': order.id
+                    order = self.env['sale.order'].sudo().create({
+                        'partner_id': self.partner_id.id
                     })
-
+                if not line:
+                    line = record.get_event_attendee_order_line(
+                        order, select_ticket)
+                record.write({
+                    'sale_order_line_id': line.id,
+                    'sale_order_id': order.id
+                })
             if order:
                 order._calculate_order_line_qty()
 
