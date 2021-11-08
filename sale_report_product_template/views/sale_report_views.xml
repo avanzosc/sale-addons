@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_product_search" model="ir.ui.view">
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="attributes">
+                <attribute name="string">Product Variant</attribute>
+            </field>
+            <field name="product_id" position="after">
+                <field name="product_tmpl_id" string="Product"/>
+            </field>
+            <filter name="Product" position="attributes">
+                <attribute name="string">Product Variant</attribute>
+            </filter>
+            <filter name="Product" position="after">
+                <filter string="Product" name="product_tmpl" context="{'group_by':'product_tmpl_id'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>
