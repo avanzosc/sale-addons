@@ -1,4 +1,5 @@
-
+# Copyright 2021 Leire Martinez de Santos - AvanzOSC
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import models, _
 from odoo.exceptions import ValidationError
 
@@ -26,51 +27,71 @@ class EventRegistration(models.Model):
         for record in self:
             if not record.partner_id:
                 continue
-
             select_ticket = record.event_ticket_id
             if not select_ticket:
                 select_ticket = record.select_ticket()
-
             order = record.sale_order_id
             if select_ticket:
-                if not order:
-                    order_obj = self.env['sale.order']
-                    order = order_obj.search([
-                        ('partner_id', '=', record.partner_id.id),
-                        ('state', 'in', ('draft', 'sent'))
-                    ], order='date_order desc', limit=1)
+                line, order = record.get_event_attendee_sale_order(
+                    select_ticket)
+                if not line:
                     if not order:
-                        order = order_obj.sudo().create({
-                            'partner_id': record.partner_id.id
-                        })
-                    record.write({'sale_order_id': order.id})
-
-                if not record.sale_order_line_id:
-                    ticket_line = order.order_line.filtered(
-                        lambda l:
-                        l.product_id.id == select_ticket.product_id.id)
-                    order_line = None
-                    if not ticket_line:
-                        order_line = self.env['sale.order.line'].sudo().create(
-                            {
-                                'product_id': record.event_ticket_id.product_id.id,
-                                'event_id': record.event_id.id,
-                                'event_ticket_id': record.event_ticket_id.id,
-                                'name': record.event_ticket_id.name,
-                                'order_id': order.id,
-                                'product_uom':
-                                    record.event_ticket_id.product_id.uom_id.id})
-                    else:
-                        for line in ticket_line:
-                            if line.product_id.id == select_ticket.product_id.id:
-                                order_line = line
-                                break
-                    record.write({'sale_order_line_id': order_line.id})
-
+                        vals = record.event_attendee_catch_sale_order_vals()
+                        order = self.env['sale.order'].sudo().create(vals)
+                    line = record.event_attendee_create_sale_order_line(
+                        order, select_ticket)
+                record.write({
+                    'sale_order_line_id': line.id,
+                    'sale_order_id': order.id
+                })
             if order:
                 order._calculate_order_line_qty()
-
         return res
+
+    def get_event_attendee_sale_order(self, select_ticket):
+        order_obj = self.env['sale.order']
+        line_obj = self.env['sale.order.line']
+        line = line_obj.search([
+            ('order_partner_id', '=', self.partner_id.id),
+            ('state', 'in', ('draft', 'sent')),
+            ('event_id', '=', self.event_id.id),
+            ('event_ticket_id', '=', select_ticket.id),
+        ], limit=1)
+        order = line.order_id if line else order_obj
+        if not order:
+            order = order_obj.search([
+                ('partner_id', '=', self.partner_id.id),
+                ('state', 'in', ('draft', 'sent'))
+            ], order='date_order desc', limit=1)
+        return line, order
+
+    def event_attendee_catch_sale_order_vals(self):
+        return {'partner_id': self.partner_id.id}
+
+    def event_attendee_create_sale_order_line(self, order, select_ticket):
+        ticket_line = order.order_line.filtered(
+            lambda l:l.product_id.id == select_ticket.product_id.id and
+            l.event_id.id == self.event_id.id)
+        order_line = None
+        if not ticket_line:
+            vals = self.event_attendee_catch_values_for_sale_order_line(order)
+            order_line = self.env['sale.order.line'].sudo().create(vals)
+        else:
+            for line in ticket_line:
+                if line.product_id.id == select_ticket.product_id.id:
+                    order_line = line
+                    break
+        return order_line
+
+    def event_attendee_catch_values_for_sale_order_line(self, order):
+        vals = {
+            'product_id': self.event_ticket_id.product_id.id,
+            'event_id': self.event_id.id,
+            'event_ticket_id': self.event_ticket_id.id,
+            'name': self.event_ticket_id.name,
+            'order_id': order.id,
+            'product_uom': self.event_ticket_id.product_id.uom_id.id}
+        return vals
 
     def select_ticket(self):
         self.ensure_one()
@@ -93,5 +114,4 @@ class EventRegistration(models.Model):
                     _("You must select a ticket by hand."))
         if select_ticket:
             self.write({'event_ticket_id': select_ticket.id})
-
         return select_ticket

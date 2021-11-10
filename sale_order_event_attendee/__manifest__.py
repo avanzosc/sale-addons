@@ -5,7 +5,7 @@
     "license": "AGPL-3",
     "author": "AvanzOSC",
     "website": "http://www.avanzosc.es",
-    'version': '14.0.1.1.0',
+    'version': '14.0.1.2.0',
     'depends': [
         'event',
         'website_event',
