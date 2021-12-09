@@ -5,6 +5,7 @@ from odoo import models, fields
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
+    _order = "order_id, manual_sequence, id"
 
     manual_sequence = fields.Char(
         string='Manual seq.')
