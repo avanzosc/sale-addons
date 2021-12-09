@@ -5,6 +5,7 @@ from odoo import models, fields
 
 class StockMove(models.Model):
     _inherit = "stock.move"
+    _order = 'manual_sequence, id'
 
     manual_sequence = fields.Char(
         string='Manual seq.')
