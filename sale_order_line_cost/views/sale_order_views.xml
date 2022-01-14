@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook/page[@name='order_lines']/field[@name='order_line']/tree/field[@name='price_unit']" position="before">
+                <field name="workforce_cost" widget="monetary"/>
+                <field name="material_cost" widget="monetary"/>
+                <field name="standard_price" widget="monetary"/>
+                <field name="cost_unit" widget="monetary"/>
+                <field name="cost_subtotal" sum="Total Cost" widget="monetary"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="amount_total" position="before">
+                <field name="total_cost" sum="Total Cost" widget="monetary"/>
+            </field>
+        </field>
+    </record>
+</odoo>
