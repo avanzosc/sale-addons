@@ -8,7 +8,7 @@
         "sale",
     ],
     "author": "AvanzOSC",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/OCA/l10n-spain",
     "category": "Sales",
     "data": [
         "views/sale_order_view.xml",
