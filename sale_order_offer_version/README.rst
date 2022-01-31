@@ -1,13 +1,16 @@
-.. image:: https://img.shields.io/badge/license-AGPL--3-blue.png
-   :target: https://www.gnu.org/licenses/agpl
-   :alt: License: AGPL-3
-
 ========================
-Sale order offer version
+Sale Order Offer Version
 ========================
 
-* New field "It is an offer type" in sale order types, and new menu in sales
- "Offers", allows you to have offers in sales, and convert them into budgets.
+.. |badge1| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
+
+
+|badge1|
+
+This module adds new menu for offers, those offers are defined by checking "Is it
+offer type?" in the sale order types.
 
 Bug Tracker
 ===========
@@ -22,8 +25,15 @@ Do not contact contributors directly about support or help with technical issues
 Credits
 =======
 
+Authors
+~~~~~~~
+
+* AvanzOSC
+
 Contributors
 ~~~~~~~~~~~~
 
-* Ana Juaristi <anajuaristi@avanzosc.es>
-* Alfredo de la Fuente<alfredodelafuente@avanzosc.es>
+* `AvanzOsc <http://www.avanzosc.es>`_:
+
+  * Ana Juaristi <anajuaristi@avanzosc.es>
+  * Alfredo de la Fuente<alfredodelafuente@avanzosc.es>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-30 09:22+0000\n"
-"PO-Revision-Date: 2021-08-30 09:22+0000\n"
+"POT-Creation-Date: 2022-01-31 10:51+0000\n"
+"PO-Revision-Date: 2022-01-31 10:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,12 +16,22 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.report_saleorder_offer_document
+msgid "<strong>Offer Date:</strong>"
+msgstr ""
+
+#. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__acceptance_date
+msgid "Acceptance Date"
+msgstr ""
+
+#. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Acceptance date"
 msgstr ""
 
 #. module: sale_order_offer_version
+#: code:addons/sale_order_offer_version/models/sale_order.py:0
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__accepted
 #, python-format
@@ -100,7 +110,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__is_offer_type
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order_type__is_offer_type
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_sale_order_type_search_view
-msgid "It is an offer type"
+msgid "Is it offer type?"
 msgstr ""
 
 #. module: sale_order_offer_version
@@ -131,6 +141,21 @@ msgid "Offer"
 msgstr ""
 
 #. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.report_saleorder_offer_document
+msgid "Offer #"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__stage
+msgid "Offer Status"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_sale_order_type_search_view
+msgid "Offer Type"
+msgstr ""
+
+#. module: sale_order_offer_version
 #: model:ir.actions.act_window,name:sale_order_offer_version.action_sale_offer
 #: model:ir.ui.menu,name:sale_order_offer_version.menu_sale_offer
 msgid "Offers"
@@ -155,6 +180,7 @@ msgstr ""
 
 #. module: sale_order_offer_version
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
+#: code:addons/sale_order_offer_version/models/sale_order.py:0
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__pending
 #, python-format
 msgid "Pending"
@@ -172,6 +198,7 @@ msgstr ""
 
 #. module: sale_order_offer_version
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
+#: code:addons/sale_order_offer_version/models/sale_order.py:0
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__rejected
 #, python-format
 msgid "Rejected"
@@ -184,19 +211,27 @@ msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__rejection_date
+msgid "Rejection Date"
+msgstr ""
+
+#. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Rejection date"
 msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__count_sale_orders
-#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__sale_ids
+msgid "Sale Order Count"
+msgstr ""
+
+#. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_view_order_form
 msgid "Sale orders"
 msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model,name:sale_order_offer_version.model_sale_order
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__sale_ids
 msgid "Sales Order"
 msgstr ""
 
@@ -218,11 +253,6 @@ msgstr ""
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Show all records which has next action date is before today"
-msgstr ""
-
-#. module: sale_order_offer_version
-#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__stage
-msgid "State"
 msgstr ""
 
 #. module: sale_order_offer_version
