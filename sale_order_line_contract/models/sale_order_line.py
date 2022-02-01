@@ -17,6 +17,7 @@ class SaleOrderLine(models.Model):
     def _catch_values_for_contract_line(self):
         vals = {
             'product_id': self.product_id.id,
+            'uom_id': self.product_uom.id,
             'name': self.name,
             'quantity': self.product_uom_qty,
             'price_unit': self.price_unit,
