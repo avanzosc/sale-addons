@@ -4,7 +4,9 @@ from odoo import models, fields
 
 
 class SaleOrderType(models.Model):
-    _inherit = 'sale.order.type'
+    _inherit = "sale.order.type"
 
     is_offer_type = fields.Boolean(
-        string='It is an offer type', default=False)
+        string="Is it offer type?",
+        default=False,
+    )
