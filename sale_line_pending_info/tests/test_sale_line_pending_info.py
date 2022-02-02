@@ -6,62 +6,71 @@ from odoo.tests import common
 @common.at_install(False)
 @common.post_install(True)
 class TestSaleLinePendingInfo(common.SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super(TestSaleLinePendingInfo, cls).setUpClass()
-        cls.sale_model = cls.env['sale.order']
-        cls.report_model = cls.env['sale.report']
+        cls.sale_model = cls.env["sale.order"]
+        cls.report_model = cls.env["sale.report"]
 
     def test_sale_line_pending_info(self):
-        cond = [('state', '=', 'draft')]
+        cond = [("state", "=", "draft")]
         sale = self.sale_model.search(cond, limit=1)
-        sale.order_line.write({'discount': 10})
+        sale.order_line.write({"discount": 10})
         sale.action_confirm()
         for line in sale.order_line:
-            if line.product_id.type != 'service':
-                self.assertEquals(line.qty_pending_delivery,
-                                  line.product_uom_qty - line.qty_delivered)
+            if line.product_id.type != "service":
+                self.assertEquals(
+                    line.qty_pending_delivery, line.product_uom_qty - line.qty_delivered
+                )
             else:
                 self.assertEquals(line.qty_pending_delivery, 0)
             amount = line.qty_pending_delivery * line.price_unit
             if line.discount:
                 amount -= (amount * line.discount) / 100
             self.assertEquals(line.amount_pending_delivery, amount)
-            self.assertEquals(line.qty_pending_invoicing,
-                              line.product_uom_qty - line.qty_invoiced)
+            self.assertEquals(
+                line.qty_pending_invoicing, line.product_uom_qty - line.qty_invoiced
+            )
             amount = line.qty_pending_invoicing * line.price_unit
             if line.discount:
                 amount -= (amount * line.discount) / 100
             self.assertEquals(line.amount_pending_invoicing, amount)
             self.assertEquals(
                 line.qty_shipped_pending_invoicing,
-                line.qty_delivered - line.qty_invoiced)
+                line.qty_delivered - line.qty_invoiced,
+            )
             amount = line.qty_shipped_pending_invoicing * line.price_unit
             if line.discount:
                 amount -= (amount * line.discount) / 100
             self.assertEquals(line.amount_shipped_pending_invoicing, amount)
         self.assertEquals(
             sale.total_qty_pending_delivery,
-            sum(sale.order_line.mapped('qty_pending_delivery')))
+            sum(sale.order_line.mapped("qty_pending_delivery")),
+        )
         self.assertEquals(
             sale.total_amount_pending_delivery,
-            sum(sale.order_line.mapped('amount_pending_delivery')))
+            sum(sale.order_line.mapped("amount_pending_delivery")),
+        )
         self.assertEquals(
             sale.total_qty_pending_invoicing,
-            sum(sale.order_line.mapped('qty_pending_invoicing')))
+            sum(sale.order_line.mapped("qty_pending_invoicing")),
+        )
         self.assertEquals(
             sale.total_amount_pending_invoicing,
-            sum(sale.order_line.mapped('amount_pending_invoicing')))
+            sum(sale.order_line.mapped("amount_pending_invoicing")),
+        )
         self.assertEquals(
             sale.total_qty_shipped_pending_invoicing,
-            sum(sale.order_line.mapped('qty_shipped_pending_invoicing')))
+            sum(sale.order_line.mapped("qty_shipped_pending_invoicing")),
+        )
         self.assertEquals(
             sale.total_amount_shipped_pending_invoicing,
-            sum(sale.order_line.mapped('amount_shipped_pending_invoicing')))
+            sum(sale.order_line.mapped("amount_shipped_pending_invoicing")),
+        )
         res = self.report_model._query(
-            with_clause='', fields=None, groupby='', from_clause='')
-        self.assertIn('as qty_pending_delivery', res)
-        self.assertIn('as qty_pending_invoicing', res)
-        self.assertIn('as amount_pending_delivery', res)
-        self.assertIn('as amount_pending_invoicing', res)
+            with_clause="", fields=None, groupby="", from_clause=""
+        )
+        self.assertIn("as qty_pending_delivery", res)
+        self.assertIn("as qty_pending_invoicing", res)
+        self.assertIn("as amount_pending_delivery", res)
+        self.assertIn("as amount_pending_invoicing", res)
