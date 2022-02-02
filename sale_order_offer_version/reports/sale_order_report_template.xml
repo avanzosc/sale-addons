@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_saleorder_offer_document" inherit_id="sale.report_saleorder_document">
+        <t t-set="address" position="after">
+            <t t-set="offer" t-value="doc.type_id.is_offer_type" />
+        </t>
+        <div t-if="doc.client_order_ref" position="after">
+            <div t-if="offer and doc.date_order" class="col-auto col-3 mw-100 mb-2">
+                <strong>Offer Date:</strong>
+                <p class="m-0" t-field="doc.date_order"/>
+            </div>
+        </div>
+        <span t-field="doc.name" position="before">
+            <span t-if="offer">Offer # </span>
+        </span>
+        <t t-if="not (env.context.get('proforma', False) or is_pro_forma)" position="attributes">
+            <attribute name="t-if">not offer and not (env.context.get('proforma', False) or is_pro_forma)</attribute>
+        </t>
+        <t t-if="env.context.get('proforma', False) or is_pro_forma" position="attributes">
+            <attribute name="t-if">not offer and (env.context.get('proforma', False) or is_pro_forma)</attribute>
+        </t>
+        <div t-if="doc.date_order and doc.state not in ['draft','sent']" position="attributes">
+            <attribute name="t-if">not offer and doc.date_order and doc.state not in ['draft','sent']</attribute>
+        </div>
+        <div t-if="doc.date_order and doc.state in ['draft','sent']" position="attributes">
+            <attribute name="t-if">not offer and doc.date_order and doc.state in ['draft','sent']</attribute>
+        </div>
+        <th name="th_taxes" position="attributes">
+            <attribute name="t-if">not offer</attribute>
+        </th>
+        <td name="td_taxes" position="attributes">
+            <attribute name="t-if">not offer</attribute>
+        </td>
+        <xpath expr="//tr[hasclass('is-subtotal')]" position="attributes">
+            <attribute name="t-if">not offer</attribute>
+        </xpath>
+        <div name="so_total_summary" position="attributes">
+            <attribute name="t-if">not offer</attribute>
+        </div>
+    </template>
+</odoo>
