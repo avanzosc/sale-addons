@@ -6,7 +6,7 @@
     "category": "Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
         "sale_order_line_menu",
         "sale_stock",
