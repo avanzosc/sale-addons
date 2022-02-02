@@ -6,13 +6,21 @@ from odoo import fields, models
 class SaleReport(models.Model):
     _inherit = "sale.report"
 
-    qty_pending_delivery = fields.Float(string="Pending delivery qty", readonly=True)
-    qty_pending_invoicing = fields.Float(string="Pending invoicing qty", readonly=True)
+    qty_pending_delivery = fields.Float(
+        string="Pending delivery qty",
+        readonly=True,
+    )
+    qty_pending_invoicing = fields.Float(
+        string="Pending invoicing qty",
+        readonly=True,
+    )
     amount_pending_delivery = fields.Float(
-        string="Amount pending delivery", readonly=True
+        string="Amount pending delivery",
+        readonly=True,
     )
     amount_pending_invoicing = fields.Float(
-        string="Amount pending invoicing", readonly=True
+        string="Amount pending invoicing",
+        readonly=True,
     )
 
     def _query(self, with_clause="", fields=None, groupby="", from_clause=""):
