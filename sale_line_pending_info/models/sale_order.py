@@ -1,13 +1,51 @@
 # Copyright 2020 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
-from odoo.addons import decimal_precision as dp
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.multi
+    total_qty_pending_delivery = fields.Float(
+        string="Pending Delivery Qty",
+        copy=False,
+        digits="Product Unit of Measure",
+        compute="_compute_total_qty_amount_pending_delivery",
+        store=True,
+    )
+    total_amount_pending_delivery = fields.Monetary(
+        string="Pending Delivery Amount",
+        copy=False,
+        compute="_compute_total_qty_amount_pending_delivery",
+        store=True,
+    )
+    total_qty_pending_invoicing = fields.Float(
+        string="Pending Invoicing Qty",
+        copy=False,
+        digits="Product Unit of Measure",
+        compute="_compute_total_qty_amount_pending_invoicing",
+        store=True,
+    )
+    total_amount_pending_invoicing = fields.Monetary(
+        string="Pending Invoicing Amount",
+        copy=False,
+        compute="_compute_total_qty_amount_pending_invoicing",
+        store=True,
+    )
+    total_qty_shipped_pending_invoicing = fields.Float(
+        string="Pending Invoicing Shipped Qty",
+        copy=False,
+        digits="Product Unit of Measure",
+        compute="_compute_total_qty_shipped_pending_invoicing",
+        store=True,
+    )
+    total_amount_shipped_pending_invoicing = fields.Monetary(
+        string="Pending Invoicing Shipped Amount",
+        copy=False,
+        compute="_compute_total_qty_shipped_pending_invoicing",
+        store=True,
+    )
+
     @api.depends(
         "order_line",
         "order_line.amount_pending_delivery",
@@ -22,7 +60,6 @@ class SaleOrder(models.Model):
                 sale.order_line.mapped("qty_pending_delivery")
             )
 
-    @api.multi
     @api.depends(
         "order_line",
         "order_line.amount_pending_invoicing",
@@ -37,7 +74,6 @@ class SaleOrder(models.Model):
                 sale.order_line.mapped("qty_pending_invoicing")
             )
 
-    @api.multi
     @api.depends(
         "order_line",
         "order_line.qty_shipped_pending_invoicing",
@@ -52,51 +88,56 @@ class SaleOrder(models.Model):
                 sale.order_line.mapped("amount_shipped_pending_invoicing")
             )
 
-    total_qty_pending_delivery = fields.Float(
-        string="Total pending delivery qty",
-        copy=False,
-        digits=dp.get_precision("Product Unit of Measure"),
-        compute="_compute_total_qty_amount_pending_delivery",
-        store=True,
-    )
-    total_amount_pending_delivery = fields.Monetary(
-        string="Total amount pending delivery",
-        copy=False,
-        compute="_compute_total_qty_amount_pending_delivery",
-        store=True,
-    )
-    total_qty_pending_invoicing = fields.Float(
-        string="Total pending invoicing qty",
-        copy=False,
-        digits=dp.get_precision("Product Unit of Measure"),
-        compute="_compute_total_qty_amount_pending_invoicing",
-        store=True,
-    )
-    total_amount_pending_invoicing = fields.Monetary(
-        string="Total amount pending invoicing",
-        copy=False,
-        compute="_compute_total_qty_amount_pending_invoicing",
-        store=True,
-    )
-    total_qty_shipped_pending_invoicing = fields.Float(
-        string="Total Qty shipped pending invoicing",
-        copy=False,
-        digits=dp.get_precision("Product Unit of Measure"),
-        compute="_compute_total_qty_shipped_pending_invoicing",
-        store=True,
-    )
-    total_amount_shipped_pending_invoicing = fields.Monetary(
-        string="Total amount shipped pending invoicing",
-        copy=False,
-        compute="_compute_total_qty_shipped_pending_invoicing",
-        store=True,
-    )
-
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.multi
+    qty_pending_delivery = fields.Float(
+        string="Pending Delivery Qty",
+        copy=False,
+        digits="Product Unit of Measure",
+        compute="_compute_qty_amount_pending_delivery",
+        store=True,
+    )
+    amount_pending_delivery = fields.Monetary(
+        string="Pending Delivery Amount",
+        copy=False,
+        compute="_compute_qty_amount_pending_delivery",
+        store=True,
+    )
+    qty_pending_invoicing = fields.Float(
+        string="Pending Invoicing Qty",
+        copy=False,
+        digits="Product Unit of Measure",
+        compute="_compute_qty_amount_pending_invoicing",
+        store=True,
+    )
+    amount_pending_invoicing = fields.Monetary(
+        string="Pending Invoicing Amount",
+        copy=False,
+        compute="_compute_qty_amount_pending_invoicing",
+        store=True,
+    )
+    qty_shipped_pending_invoicing = fields.Float(
+        string="Pending Invoicing Shipped Qty",
+        copy=False,
+        digits="Product Unit of Measure",
+        compute="_compute_qty_shipped_pending_invoicing",
+        store=True,
+    )
+    amount_shipped_pending_invoicing = fields.Monetary(
+        string="Pending Invoicing Shipped Amount",
+        copy=False,
+        compute="_compute_qty_shipped_pending_invoicing",
+        store=True,
+    )
+    team_id = fields.Many2one(
+        string="Sales Team",
+        comodel_name="crm.team",
+        store=True,
+        related="order_id.team_id",
+    )
+
     @api.depends(
         "product_uom_qty",
         "qty_delivered",
@@ -127,8 +168,12 @@ class SaleOrderLine(models.Model):
                     amount -= (amount * line.discount) / 100
                 line.amount_pending_delivery = amount
 
-    @api.multi
-    @api.depends("product_uom_qty", "qty_invoiced", "discount", "price_unit")
+    @api.depends(
+        "product_uom_qty",
+        "qty_invoiced",
+        "discount",
+        "price_unit",
+    )
     def _compute_qty_amount_pending_invoicing(self):
         for line in self:
             line.qty_pending_invoicing = line.product_uom_qty - line.qty_invoiced
@@ -137,8 +182,12 @@ class SaleOrderLine(models.Model):
                 amount -= (amount * line.discount) / 100
             line.amount_pending_invoicing = amount
 
-    @api.multi
-    @api.depends("qty_delivered", "qty_invoiced", "discount", "price_unit")
+    @api.depends(
+        "qty_delivered",
+        "qty_invoiced",
+        "discount",
+        "price_unit",
+    )
     def _compute_qty_shipped_pending_invoicing(self):
         for line in self:
             amount = 0
@@ -149,48 +198,3 @@ class SaleOrderLine(models.Model):
             line.qty_shipped_pending_invoicing = qty if qty > 0 else 0
             line.amount_shipped_pending_invoicing = amount
 
-    qty_pending_delivery = fields.Float(
-        string="Pending delivery qty",
-        copy=False,
-        digits=dp.get_precision("Product Unit of Measure"),
-        compute="_compute_qty_amount_pending_delivery",
-        store=True,
-    )
-    amount_pending_delivery = fields.Monetary(
-        string="Amount pending delivery",
-        copy=False,
-        compute="_compute_qty_amount_pending_delivery",
-        store=True,
-    )
-    qty_pending_invoicing = fields.Float(
-        string="Pending invoicing qty",
-        copy=False,
-        digits=dp.get_precision("Product Unit of Measure"),
-        compute="_compute_qty_amount_pending_invoicing",
-        store=True,
-    )
-    amount_pending_invoicing = fields.Monetary(
-        string="Amount pending invoicing",
-        copy=False,
-        compute="_compute_qty_amount_pending_invoicing",
-        store=True,
-    )
-    qty_shipped_pending_invoicing = fields.Float(
-        string="Qty shipped pending invoicing",
-        copy=False,
-        digits=dp.get_precision("Product Unit of Measure"),
-        compute="_compute_qty_shipped_pending_invoicing",
-        store=True,
-    )
-    amount_shipped_pending_invoicing = fields.Monetary(
-        string="Amount shipped pending invoicing",
-        copy=False,
-        compute="_compute_qty_shipped_pending_invoicing",
-        store=True,
-    )
-    team_id = fields.Many2one(
-        string="Sales team",
-        comodel_name="crm.team",
-        store=True,
-        related="order_id.team_id",
-    )
