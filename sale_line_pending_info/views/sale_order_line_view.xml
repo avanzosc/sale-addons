@@ -2,26 +2,40 @@
 <odoo>
     <record id="view_sales_order_line_input_tree" model="ir.ui.view">
         <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale_order_line_input.view_sales_order_line_input_tree" />
+        <field
+      name="inherit_id"
+      ref="sale_order_line_input.view_sales_order_line_input_tree"
+    />
         <field name="arch" type="xml">
             <field name="order_id" position="after">
                 <field name="team_id" />
             </field>
             <field name="qty_delivered" position="after">
-                <field name="qty_pending_delivery" sum="Pending delivery"/>
+                <field name="qty_pending_delivery" sum="Pending delivery" />
             </field>
             <field name="qty_invoiced" position="after">
-                <field name="qty_pending_invoicing" sum="Pending invoicing"/>
+                <field name="qty_pending_invoicing" sum="Pending invoicing" />
             </field>
             <field name="price_subtotal" position="before">
-                <field name="amount_pending_delivery" sum="Total pending delivery" widget="monetary"/>
-                <field name="amount_pending_invoicing" sum="Total pending invoicing" widget="monetary"/>
+                <field
+          name="amount_pending_delivery"
+          sum="Total pending delivery"
+          widget="monetary"
+        />
+                <field
+          name="amount_pending_invoicing"
+          sum="Total pending invoicing"
+          widget="monetary"
+        />
             </field>
         </field>
     </record>
     <record id="sale_order_line_view_form_readonly" model="ir.ui.view">
         <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field
+      name="inherit_id"
+      ref="sale.sale_order_line_view_form_readonly"
+    />
         <field name="arch" type="xml">
             <field name="qty_delivered" position="after">
                 <field name="qty_pending_delivery" />
@@ -30,8 +44,8 @@
                 <field name="qty_pending_invoicing" />
             </field>
             <field name="price_subtotal" position="before">
-                <field name="amount_pending_delivery" widget="monetary"/>
-                <field name="amount_pending_invoicing" widget="monetary"/>
+                <field name="amount_pending_delivery" widget="monetary" />
+                <field name="amount_pending_invoicing" widget="monetary" />
             </field>
         </field>
     </record>
@@ -43,7 +57,12 @@
                 <field name="team_id" />
             </field>
             <filter name="salesperson" position="before">
-                <filter string="Sales team" name="salesteam" domain="[]" context="{'group_by':'team_id'}"/>
+                <filter
+          string="Sales team"
+          name="salesteam"
+          domain="[]"
+          context="{'group_by':'team_id'}"
+        />
             </filter>
         </field>
     </record>
