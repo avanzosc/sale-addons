@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_line_pending_info
+# 	* sale_line_pending_info
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 10:29+0000\n"
-"PO-Revision-Date: 2020-01-30 10:29+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2022-02-02 11:04+0000\n"
+"PO-Revision-Date: 2022-02-02 11:04+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,30 +16,91 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__amount_pending_delivery
 #: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__amount_pending_delivery
 msgid "Amount pending delivery"
-msgstr "Imp.Pdte. Entrega"
+msgstr "Imp. pdte. entrega"
 
 #. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__amount_pending_invoicing
 #: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__amount_pending_invoicing
 msgid "Amount pending invoicing"
-msgstr "Imp.Pdte. Facturar"
+msgstr "Imp. pdte. facturar"
 
 #. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_amount_pending_delivery
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__amount_pending_delivery
+msgid "Pending Delivery Amount"
+msgstr "Imp. pdte. entregar"
+
+#. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_qty_pending_delivery
 #: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__qty_pending_delivery
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__qty_pending_delivery
-#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.view_order_form
-msgid "Pending delivery qty"
-msgstr "Cant.Pdte. Entrega"
+msgid "Pending Delivery Qty"
+msgstr "Cant. pdte. entregar"
 
 #. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_amount_pending_invoicing
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__amount_pending_invoicing
+msgid "Pending Invoicing Amount"
+msgstr "Imp. pdte. facturar"
+
+#. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_qty_pending_invoicing
 #: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__qty_pending_invoicing
+msgid "Pending Invoicing Qty"
+msgstr "Cant. pdte. facturar"
+
+#. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_amount_shipped_pending_invoicing
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__amount_shipped_pending_invoicing
+msgid "Pending Invoicing Shipped Amount"
+msgstr "Imp. enviado pdte. facturar"
+
+#. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_qty_shipped_pending_invoicing
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__qty_shipped_pending_invoicing
+msgid "Pending Invoicing Shipped Qty"
+msgstr "Cant. enviada pdte. facturar"
+
+#. module: sale_line_pending_info
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_tree
+msgid "Pending delivery"
+msgstr "Entrega pendiente"
+
+#. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__qty_pending_delivery
+msgid "Pending delivery qty"
+msgstr "Cant. pdte. entrega"
+
+#. module: sale_line_pending_info
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_tree
+msgid "Pending invoicing"
+msgstr "Factura pendiente"
+
+#. module: sale_line_pending_info
 #: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__qty_pending_invoicing
-#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.view_order_form
 msgid "Pending invoicing qty"
-msgstr "Cant.Pdte. Facturar"
+msgstr "Cant. pdte. facturar"
 
 #. module: sale_line_pending_info
 #: model:ir.model,name:sale_line_pending_info.model_sale_report
@@ -47,64 +108,78 @@ msgid "Sales Analysis Report"
 msgstr "Informe de análisis de ventas"
 
 #. module: sale_line_pending_info
+#: model:ir.model,name:sale_line_pending_info.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_line_pending_info
 #: model:ir.model,name:sale_line_pending_info.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
 
 #. module: sale_line_pending_info
-#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.view_order_line_tree
-msgid "Total pending delivery"
-msgstr "Total pendiente entrega"
-
-#. module: sale_line_pending_info
-#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.view_order_line_tree
-msgid "Total pending invoicing"
-msgstr "Total pendiente facturar"
-
-#. module: sale_line_pending_info
 #: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__team_id
-#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.view_sales_order_line_filter
+msgid "Sales Team"
+msgstr "Equipo de ventas"
+
+#. module: sale_line_pending_info
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_search
 msgid "Sales team"
 msgstr "Equipo de ventas"
 
 #. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_qty_pending_delivery
-msgid "Total pending delivery qty"
-msgstr "Total Cant.Pdte. Entrega"
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_search
+msgid "To Deliver"
+msgstr "A entregar"
 
 #. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_amount_pending_delivery
-msgid "Total amount pending delivery"
-msgstr "Total Imp.Pdte. Entrega"
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_quotation_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_form
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_tree
+msgid "Total Pending Delivery Amount"
+msgstr "Imp. total pdte. entregar"
 
 #. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_qty_pending_invoicing
-msgid "Total pending invoicing qty"
-msgstr "Total Cant.Pdte. Facturar"
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_quotation_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_form
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_tree
+msgid "Total Pending Delivery Qty"
+msgstr "Cant. total pdte. entregar"
 
 #. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_amount_pending_invoicing
-msgid "Total amount pending invoicing"
-msgstr "Total Imp.Pdte. Facturar"
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_quotation_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_form
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_tree
+msgid "Total Pending Invoicing Amount"
+msgstr "Imp. total pdte. facturar"
 
 #. module: sale_line_pending_info
-#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.view_order_form
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__qty_shipped_pending_invoicing
-msgid "'Qty shipped pending invoicing"
-msgstr "Cant.Env. Pdte.Fact."
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_quotation_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_form
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_tree
+msgid "Total Pending Invoicing Qty"
+msgstr "Cant. total pdte. facturar"
 
 #. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__amount_shipped_pending_invoicing
-msgid "Amount shipped pending invoicing"
-msgstr "Imp.Env. Pdte.Fact."
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_quotation_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_form
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_tree
+msgid "Total Pending Invoicing Shipped Amount"
+msgstr "Imp. enviado total pdte. facturar"
 
 #. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_qty_shipped_pending_invoicing
-msgid "Total Qty shipped pending invoicing"
-msgstr "Total Cant.Env. Pdte.Fact."
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_quotation_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_form
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_tree
+msgid "Total Pending Invoicing Shipped Qty"
+msgstr "Cant. enviada total pdte. facturar"
 
 #. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__total_amount_shipped_pending_invoicing
-msgid "Total amount shipped pending invoicing"
-msgstr "Total Imp.Env. Pdte.Fact."
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_tree
+msgid "Total pending delivery"
+msgstr "Total pdte. entregar"
 
+#. module: sale_line_pending_info
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_tree
+msgid "Total pending invoicing"
+msgstr "Total pdte. facturar"
