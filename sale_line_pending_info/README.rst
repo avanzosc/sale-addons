@@ -1,15 +1,24 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-   :alt: License: AGPL-3
-
 ======================
-Sale line pending info
+Sale Line Pending Info
 ======================
 
-* In sale lines new fields: Pending delivery qty, amount pending delivery,
-  pending invoicing qty, amount pending invoicing, qty shipped pending
-  invoicing, and amount shipped pending invoicing.
-* In sale order totals for sale lines new fields.
+.. |badge1| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
+
+
+|badge1|
+
+This module adds new fields to sale order lines:
+
+* Pending Delivery Quantity
+* Pending Delivery Amount
+* Pending Invoicing Quantity
+* Pending Invoicing Amount
+* Shipped Quantity Pending to Invoice
+* Shipped Amount Pending to Invoice
+
+It also adds sums of this fields to the sale order.
 
 Bug Tracker
 ===========
