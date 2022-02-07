@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-31 10:51+0000\n"
-"PO-Revision-Date: 2022-01-31 10:51+0000\n"
+"POT-Creation-Date: 2022-02-07 14:03+0000\n"
+"PO-Revision-Date: 2022-02-07 14:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,6 @@ msgid "Acceptance date"
 msgstr "Fecha aceptación"
 
 #. module: sale_order_offer_version
-#: code:addons/sale_order_offer_version/models/sale_order.py:0
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__accepted
 #, python-format
@@ -114,6 +113,12 @@ msgid "Is it offer type?"
 msgstr "Es oferta?"
 
 #. module: sale_order_offer_version
+#: code:addons/sale_order_offer_version/models/sale_order.py:0
+#, python-format
+msgid "It is not allowed to confirm an offer type sale order"
+msgstr "No está permitido confirmar un pedido de tipo oferta""
+
+#. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order_type____last_update
 msgid "Last Modified on"
@@ -167,6 +172,9 @@ msgid ""
 "Once the quotation is confirmed by the customer, it becomes a sales "
 "order.<br> You will be able to create an invoice and collect the payment."
 msgstr ""
+"Una vez que el presupuesto está confirmado por el cliente, este se "
+"transforma en un pedido de venta.<br> Podrá crear una factura y realizar el "
+"pago."
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
@@ -179,7 +187,6 @@ msgid "Order Date"
 msgstr "Fecha pedido"
 
 #. module: sale_order_offer_version
-#: code:addons/sale_order_offer_version/models/sale_order.py:0
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__pending
 #, python-format
@@ -197,7 +204,6 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: sale_order_offer_version
-#: code:addons/sale_order_offer_version/models/sale_order.py:0
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__rejected
 #, python-format

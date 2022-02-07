@@ -121,12 +121,12 @@
                 <separator/>
                 <filter string="Create Date" name="filter_create_date" date="create_date"/>
                 <filter invisible="1" string="Late Activities" name="activities_overdue"
-                    domain="[('my_activity_date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
-                    help="Show all records which has next action date is before today"/>
+                        domain="[('my_activity_date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                        help="Show all records which has next action date is before today"/>
                 <filter invisible="1" string="Today Activities" name="activities_today"
-                    domain="[('my_activity_date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                        domain="[('my_activity_date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
                 <filter invisible="1" string="Future Activities" name="activities_upcoming_all"
-                    domain="[('my_activity_date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                        domain="[('my_activity_date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
                 <group expand="0" string="Group By">
                     <filter string="Salesperson" name="salesperson" domain="[]" context="{'group_by': 'user_id'}"/>
                     <filter name="customer" string="Customer" domain="[]" context="{'group_by': 'partner_id'}"/>
@@ -157,51 +157,22 @@
     </record>
 
     <menuitem id="menu_sale_offer"
-            action="action_sale_offer"
-            parent="sale.sale_order_menu"
-            sequence="0" groups="sales_team.group_sale_salesman"/>
+              action="action_sale_offer"
+              parent="sale.sale_order_menu"
+              sequence="0"
+              groups="sales_team.group_sale_salesman"/>
 
         <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
-            <field name="name">Quotations</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">sale.order</field>
-            <field name="view_id" ref="sale.view_quotation_tree_with_onboarding"/>
-            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
-            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
             <field name="context">{'search_default_my_quotation': 1, 'default_is_offer_type': False}</field>
             <field name="domain">[('is_offer_type', '=', False)]</field>
-            <field name="help" type="html">
-              <p class="o_view_nocontent_smiling_face">
-                Create a new quotation, the first step of a new sale!
-              </p><p>
-                Once the quotation is confirmed by the customer, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
-              </p>
-            </field>
         </record>
 
         <record id="sale.action_quotations" model="ir.actions.act_window">
-            <field name="name">Quotations</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">sale.order</field>
-            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
-            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
             <field name="context">{'search_default_my_quotation': 1, 'default_is_offer_type': False}</field>
             <field name="domain">[('is_offer_type', '=', False)]</field>
-            <field name="help" type="html">
-              <p class="o_view_nocontent_smiling_face">
-                Create a new quotation, the first step of a new sale!
-              </p><p>
-                Once the quotation is confirmed by the customer, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
-              </p>
-            </field>
         </record>
 
         <record id="sale.action_quotations_salesteams" model="ir.actions.act_window">
-            <field name="name">Quotations</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">sale.order</field>
-            <field name="view_id" ref="sale.view_quotation_tree"/>
-            <field name="view_mode">tree,form,calendar,graph,kanban,pivot</field>
             <field name="context">{
                     'search_default_team_id': [active_id],
                     'default_team_id': active_id,
@@ -210,31 +181,11 @@
                 }
             </field>
             <field name="domain">[('is_offer_type', '=', False)]</field>
-            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
-            <field name="help" type="html">
-              <p class="o_view_nocontent_smiling_face">
-                Create a new quotation, the first step of a new sale!
-              </p><p>
-                Once the quotation is confirmed by the customer, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
-              </p>
-            </field>
         </record>
 
         <record id="sale.action_orders" model="ir.actions.act_window">
-            <field name="name">Sales Orders</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">sale.order</field>
-            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
-            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
             <field name="context">{'default_is_offer_type': False}</field>
             <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel')), ('is_offer_type', '=', False)]</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Create a new quotation, the first step of a new sale!
-                </p><p>
-                    Once the quotation is confirmed, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
-                </p>
-            </field>
         </record>
 
         <record id="action_view_all_sale_orders" model="ir.actions.act_window">
