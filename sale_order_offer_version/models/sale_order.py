@@ -1,6 +1,7 @@
 # Copyright 2021 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
@@ -30,9 +31,9 @@ class SaleOrder(models.Model):
     )
     stage = fields.Selection(
         selection=[
-            ("accepted", _("Accepted")),
-            ("rejected", _("Rejected")),
-            ("pending", _("Pending")),
+            ("accepted", "Accepted"),
+            ("rejected", "Rejected"),
+            ("pending", "Pending"),
         ],
         string="Offer Status",
         default="pending",
@@ -66,6 +67,13 @@ class SaleOrder(models.Model):
         for order in self.filtered(lambda x: x.type_id):
             self.is_offer_type = order.type_id.is_offer_type
         return result
+
+    def action_confirm(self):
+        if any(self.filtered("is_offer_type")):
+            raise UserError(_(
+                "It is not allowed to confirm an offer type sale order"
+            ))
+        return super(SaleOrder, self).action_confirm()
 
     def action_offer_to_quotation(self):
         for offer in self.filtered(lambda x: x.is_offer_type):
