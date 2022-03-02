@@ -79,12 +79,12 @@ class ResPartner(models.Model):
         next_year_enroll.create_enrollment()
 
     @api.multi
-    def create_enrollment(self, next_year, center, course):
+    def create_enrollment(self, next_year, center, course, group=False):
         self.ensure_one()
         if self.educational_category not in ("student", "otherchild"):
             return
         self.env["sale.order"].find_or_create_enrollment(
-            self, next_year, center, course)
+            self, next_year, center, course, group=group)
         return True
 
     @api.multi

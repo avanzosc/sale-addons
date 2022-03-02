@@ -8,12 +8,12 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     @api.multi
-    def create_enrollment(self, next_year, center, course):
+    def create_enrollment(self, next_year, center, course, group=False):
         self.ensure_one()
-        group = self.get_current_group()
-        if group.center_id == center:
+        current_group = self.get_current_group()
+        if current_group.center_id == center:
             return super(ResPartner, self).create_enrollment(
-                next_year, center, course)
+                next_year, center, course, group=group)
         self.env["crm.lead"].find_or_create_enrollment(
             self, next_year, center, course)
         return True
