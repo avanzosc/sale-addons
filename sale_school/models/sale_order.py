@@ -124,7 +124,7 @@ class SaleOrder(models.Model):
         return result
 
     def find_or_create_enrollment(
-            self, student, academic_year, center, course):
+            self, student, academic_year, center, course, group=False):
         sale_order = self.search([
             ("partner_id", "=", student.parent_id.id),
             ("child_id", "=", student.id),
@@ -139,6 +139,7 @@ class SaleOrder(models.Model):
                 "child_id": student.id,
                 "school_id": center.id,
                 "course_id": course.id,
+                "edu_group_id": group and group.id,
                 "academic_year_id": academic_year.id,
             })
         for onchange_method in new_sale_order._onchange_methods['partner_id']:

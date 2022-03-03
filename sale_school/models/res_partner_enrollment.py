@@ -48,6 +48,13 @@ class ResPartnerEnrollment(models.Model):
     enrollment_center_id = fields.Many2one(
         comodel_name="res.partner", string="Enrollment Education Center",
         domain=[("educational_category", "=", "school")])
+    enrollment_group_id = fields.Many2one(
+        comodel_name="education.group",
+        string="Enrollment Education Group",
+        domain="[('academic_year_id', '=', academic_year_id)," \
+               "('center_id', '=', enrollment_center_id)," \
+               "('course_id', '=', enrollment_course_id)]",
+    )
     state = fields.Selection(
         selection=[("pending", "Pending"),
                    ("processed", "Processed"),
@@ -131,6 +138,21 @@ class ResPartnerEnrollment(models.Model):
         else:
             self.enrollment_center_id = False
             self.enrollment_course_id = False
+            self.enrollment_group_id = False
+
+    @api.multi
+    @api.onchange("enrollment_center_id", "enrollment_course_id")
+    def onchange_center_course(self):
+        group_obj = self.env["education.group"]
+        for enrollment in self:
+            group = group_obj.search([
+                ("academic_year_id", "=", enrollment.academic_year_id.id),
+                ("center_id", "=", enrollment.enrollment_center_id.id),
+                ("course_id", "=", enrollment.enrollment_course_id.id),
+                ("group_type_id.type", "=", "official")
+            ])
+            if len(group) == 1:
+                enrollment.enrollment_group_id = group
 
     @api.multi
     def button_draft(self):
@@ -180,7 +202,8 @@ class ResPartnerEnrollment(models.Model):
                 enrollment.partner_id.create_enrollment(
                     enrollment.academic_year_id,
                     enrollment.enrollment_center_id,
-                    enrollment.enrollment_course_id)
+                    enrollment.enrollment_course_id,
+                    group=enrollment.enrollment_group_id)
             elif enrollment.enrollment_action == "unenroll":
                 enrollment.partner_id.action_discontinue()
             enrollment.write({

@@ -16,6 +16,7 @@
                 <field name="enrollment_center_id" options="{'no_create': True}" />
                 <field name="enrollment_course_id" options="{'no_create': True}"
                        domain="[('id', 'in', possible_course_ids)]"/>
+                <field name="enrollment_group_id" options="{'no_create': True}" />
                 <field name="state" />
                 <field name="is_exception" invisible="True" />
             </tree>
@@ -55,6 +56,7 @@
                             <field name="enrollment_center_id" options="{'no_create': True}" />
                             <field name="enrollment_course_id" options="{'no_create': True}"
                                    domain="[('id', 'in', possible_course_ids)]"/>
+                            <field name="enrollment_group_id" options="{'no_create': True}" />
                         </group>
                     </group>
                     <group>
