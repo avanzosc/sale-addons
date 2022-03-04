@@ -19,7 +19,8 @@ class ResPartnerEnrollment(models.Model):
 
     partner_id = fields.Many2one(
         comodel_name="res.partner", string="Student", required=True,
-        domain=[("educational_category", "=", "student")], ondelete="cascade")
+        domain=[("educational_category", "=", "student")], ondelete="cascade",
+        states={"pending": [("readonly", False)]}, readonly=True)
     partner_parent_id = fields.Many2one(
         comodel_name="res.partner", string="Family",
         related="partner_id.parent_id", store=True)
@@ -32,29 +33,35 @@ class ResPartnerEnrollment(models.Model):
              "same family")
     academic_year_id = fields.Many2one(
         comodel_name="education.academic_year", string="Next Academic Year",
-        required=True, ondelete="cascade")
+        required=True, ondelete="cascade",
+        states={"pending": [("readonly", False)]}, readonly=True)
     enrollment_action = fields.Selection(
-        selection=ENROLL_ACTION, string="Enrollment Action", required=True)
+        selection=ENROLL_ACTION, string="Enrollment Action", required=True,
+        states={"pending": [("readonly", False)]}, readonly=True)
     possible_course_ids = fields.Many2many(
         comodel_name="education.course", string="Possible Education Courses",
         compute="_compute_possible_courses")
     course_id = fields.Many2one(
-        comodel_name="education.course", string="Education Course")
+        comodel_name="education.course", string="Education Course",
+        states={"pending": [("readonly", False)]}, readonly=True)
     center_id = fields.Many2one(
         comodel_name="res.partner", string="Education Center",
-        domain=[("educational_category", "=", "school")])
+        domain=[("educational_category", "=", "school")],
+        states={"pending": [("readonly", False)]}, readonly=True)
     enrollment_course_id = fields.Many2one(
-        comodel_name="education.course", string="Enrollment Education Course")
+        comodel_name="education.course", string="Enrollment Education Course",
+        states={"pending": [("readonly", False)]}, readonly=True)
     enrollment_center_id = fields.Many2one(
         comodel_name="res.partner", string="Enrollment Education Center",
-        domain=[("educational_category", "=", "school")])
+        domain=[("educational_category", "=", "school")],
+        states={"pending": [("readonly", False)]}, readonly=True)
     enrollment_group_id = fields.Many2one(
         comodel_name="education.group",
         string="Enrollment Education Group",
         domain="[('academic_year_id', '=', academic_year_id)," \
                "('center_id', '=', enrollment_center_id)," \
                "('course_id', '=', enrollment_course_id)]",
-    )
+        states={"pending": [("readonly", False)]}, readonly=True)
     state = fields.Selection(
         selection=[("pending", "Pending"),
                    ("processed", "Processed"),
