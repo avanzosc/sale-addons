@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_task_form2" model="ir.ui.view">
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="vehicle_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_task_tree2" model="ir.ui.view">
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="vehicle_id" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_task_search_form" model="ir.ui.view">
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="vehicle_id"/>
+            </field>
+            <filter name="project" position="after">
+                <filter string="Vehicle" name="vehicle" context="{'group_by': 'vehicle_id'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>
