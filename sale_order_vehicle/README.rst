@@ -6,7 +6,7 @@
 Sale Order Vehicle
 ==================
 
-The vehicle field in sale orders and project tasks.
+The vehicle field in sale orders. When the sales order is confirmed, brings the vehicle to the project.
 
 Bug Tracker
 ===========
