@@ -18,7 +18,7 @@ msgstr ""
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.report_saleorder_offer_document
 msgid "<strong>Offer Date:</strong>"
-msgstr "<strong>Fecha de la oferta:</strong>"
+msgstr "<strong>Fecha de la valoración:</strong>"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__acceptance_date
@@ -50,7 +50,7 @@ msgstr "Todos los pedidos de venta"
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_view_order_form
 msgid "Convert offer to quotation"
-msgstr "Convertir oferta en presupuesto"
+msgstr "Convertir valoración en presupuesto"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
@@ -81,7 +81,7 @@ msgstr "Nombre mostrado"
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__from_offer_id
 msgid "From offer"
-msgstr "Desde oferta"
+msgstr "Desde valoración"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
@@ -110,13 +110,13 @@ msgstr "Introducción"
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order_type__is_offer_type
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_sale_order_type_search_view
 msgid "Is it offer type?"
-msgstr "Es oferta?"
+msgstr "Es valoración?"
 
 #. module: sale_order_offer_version
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
 #, python-format
 msgid "It is not allowed to confirm an offer type sale order"
-msgstr "No está permitido confirmar un pedido de tipo oferta"
+msgstr "No está permitido confirmar un pedido de tipo valoración"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order____last_update
@@ -143,28 +143,28 @@ msgstr "Número"
 #: model:sale.order.type,name:sale_order_offer_version.offer_type
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_tree_view
 msgid "Offer"
-msgstr "Oferta"
+msgstr "Valoración"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.report_saleorder_offer_document
 msgid "Offer #"
-msgstr "Oferta"
+msgstr "Valoración"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__stage
 msgid "Offer Status"
-msgstr "Estado de la oferta"
+msgstr "Estado de la valoración"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_sale_order_type_search_view
 msgid "Offer Type"
-msgstr "Tipo de oferta"
+msgstr "Tipo de valoraciones"
 
 #. module: sale_order_offer_version
 #: model:ir.actions.act_window,name:sale_order_offer_version.action_sale_offer
 #: model:ir.ui.menu,name:sale_order_offer_version.menu_sale_offer
 msgid "Offers"
-msgstr "Ofertas"
+msgstr "Valoraciones"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.actions.act_window,help:sale_order_offer_version.action_sale_offer
@@ -254,7 +254,7 @@ msgstr "Vendedor"
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Search offers"
-msgstr "Buscar ofertas"
+msgstr "Buscar valoraciones"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
