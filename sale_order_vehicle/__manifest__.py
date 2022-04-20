@@ -8,13 +8,13 @@
     "category": "Sale",
     "depends": [
         "sale",
+        "sale_project",
         "fleet",
         "project_vehicle",
         "sale_timesheet"
     ],
     "data": [
         "views/sale_order_views.xml",
-        "views/project_task_views.xml",
     ],
     "license": "AGPL-3",
     'installable': True,
