@@ -10,3 +10,9 @@ class SaleOrder(models.Model):
     vehicle_id = fields.Many2one(
         string='Vehicle',
         comodel_name='fleet.vehicle')
+
+    def action_confirm(self):
+        result = super(SaleOrder, self).action_confirm()
+        if self.project_id:
+            self.project_id.vehicle_id = self.vehicle_id.id
+        return result
