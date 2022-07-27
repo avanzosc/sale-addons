@@ -1,35 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_order_form" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="partner_shipping_id" position="after">
-                <field name="vehicle_id"/>
+                <field name="vehicle_id" />
             </field>
         </field>
     </record>
 
     <record id="view_order_tree" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="date_order" position="after">
-                <field name="vehicle_id" optional="hide"/>
+                <field name="vehicle_id" optional="hide" />
             </field>
         </field>
     </record>
 
     <record id="view_sales_order_filter" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="vehicle_id"/>
+                <field name="vehicle_id" />
             </field>
             <filter name="customer" position="after">
-                <filter name="vehicle" string="Vehicle" domain="[]" context="{'group_by': 'vehicle_id'}"/>
+                <filter
+          name="vehicle"
+          string="Vehicle"
+          domain="[]"
+          context="{'group_by': 'vehicle_id'}"
+        />
             </filter>
         </field>
     </record>
