@@ -140,33 +140,24 @@ class SaleOrderLine(models.Model):
 
     @api.depends(
         "product_uom_qty",
+        "qty_delivered_method",
         "qty_delivered",
         "price_unit",
         "discount",
-        "order_id",
-        "order_id.picking_ids",
-        "order_id.picking_ids.state",
     )
     def _compute_qty_amount_pending_delivery(self):
         for line in self:
-            found = False
-            for picking in line.order_id.picking_ids:
-                if any(
-                    [
-                        x.state not in ("done", "cancel")
-                        and x.product_id.id == line.product_id.id
-                        for x in picking.move_lines
-                    ]
-                ):
-                    found = True
-            if not found or line.product_id.type == "service":
-                line.amount_pending_delivery = 0
-            if found:
-                line.qty_pending_delivery = line.product_uom_qty - line.qty_delivered
-                amount = line.qty_pending_delivery * line.price_unit
+            qty_pending_delivery = amount_pending_delivery = 0
+            if line.qty_delivered_method == "stock_move":
+                qty_pending_delivery = line.product_uom_qty - line.qty_delivered
+                if qty_pending_delivery < 0:
+                    qty_pending_delivery = 0
+                amount = qty_pending_delivery * line.price_unit
                 if line.discount:
                     amount -= (amount * line.discount) / 100
-                line.amount_pending_delivery = amount
+                amount_pending_delivery = amount
+            line.qty_pending_delivery = qty_pending_delivery
+            line.amount_pending_delivery = amount_pending_delivery
 
     @api.depends(
         "product_uom_qty",
@@ -197,4 +188,3 @@ class SaleOrderLine(models.Model):
                 amount -= (amount * line.discount) / 100 if line.discount else 0
             line.qty_shipped_pending_invoicing = qty if qty > 0 else 0
             line.amount_shipped_pending_invoicing = amount
-
