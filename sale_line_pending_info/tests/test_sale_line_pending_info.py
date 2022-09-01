@@ -1,10 +1,9 @@
 # Copyright 2019 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestSaleLinePendingInfo(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
@@ -18,52 +17,52 @@ class TestSaleLinePendingInfo(common.SavepointCase):
         sale.order_line.write({"discount": 10})
         sale.action_confirm()
         for line in sale.order_line:
-            if line.product_id.type != "service":
-                self.assertEquals(
+            if line.qty_delivered_method == "stock_move":
+                self.assertEqual(
                     line.qty_pending_delivery, line.product_uom_qty - line.qty_delivered
                 )
             else:
-                self.assertEquals(line.qty_pending_delivery, 0)
+                self.assertEqual(line.qty_pending_delivery, 0)
             amount = line.qty_pending_delivery * line.price_unit
             if line.discount:
                 amount -= (amount * line.discount) / 100
-            self.assertEquals(line.amount_pending_delivery, amount)
-            self.assertEquals(
+            self.assertEqual(line.amount_pending_delivery, amount)
+            self.assertEqual(
                 line.qty_pending_invoicing, line.product_uom_qty - line.qty_invoiced
             )
             amount = line.qty_pending_invoicing * line.price_unit
             if line.discount:
                 amount -= (amount * line.discount) / 100
-            self.assertEquals(line.amount_pending_invoicing, amount)
-            self.assertEquals(
+            self.assertEqual(line.amount_pending_invoicing, amount)
+            self.assertEqual(
                 line.qty_shipped_pending_invoicing,
                 line.qty_delivered - line.qty_invoiced,
             )
             amount = line.qty_shipped_pending_invoicing * line.price_unit
             if line.discount:
                 amount -= (amount * line.discount) / 100
-            self.assertEquals(line.amount_shipped_pending_invoicing, amount)
-        self.assertEquals(
+            self.assertEqual(line.amount_shipped_pending_invoicing, amount)
+        self.assertEqual(
             sale.total_qty_pending_delivery,
             sum(sale.order_line.mapped("qty_pending_delivery")),
         )
-        self.assertEquals(
+        self.assertEqual(
             sale.total_amount_pending_delivery,
             sum(sale.order_line.mapped("amount_pending_delivery")),
         )
-        self.assertEquals(
+        self.assertEqual(
             sale.total_qty_pending_invoicing,
             sum(sale.order_line.mapped("qty_pending_invoicing")),
         )
-        self.assertEquals(
+        self.assertEqual(
             sale.total_amount_pending_invoicing,
             sum(sale.order_line.mapped("amount_pending_invoicing")),
         )
-        self.assertEquals(
+        self.assertEqual(
             sale.total_qty_shipped_pending_invoicing,
             sum(sale.order_line.mapped("qty_shipped_pending_invoicing")),
         )
-        self.assertEquals(
+        self.assertEqual(
             sale.total_amount_shipped_pending_invoicing,
             sum(sale.order_line.mapped("amount_shipped_pending_invoicing")),
         )

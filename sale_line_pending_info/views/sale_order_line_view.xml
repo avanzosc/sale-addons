@@ -8,32 +8,40 @@
                 <field name="team_id" />
             </field>
             <field name="qty_delivered" position="after">
-                <field name="qty_pending_delivery"
-                       sum="Pending delivery"
-                       optional="show" />
+                <field name="qty_to_deliver" optional="hide" />
+                <field
+          name="qty_pending_delivery"
+          sum="Pending delivery"
+          optional="show"
+        />
             </field>
             <field name="qty_invoiced" position="after">
-                <field name="qty_pending_invoicing"
-                       sum="Pending invoicing"
-                       optional="show" />
+                <field
+          name="qty_pending_invoicing"
+          sum="Pending invoicing"
+          optional="show"
+        />
             </field>
             <field name="price_subtotal" position="before">
-                <field name="amount_pending_delivery"
-                       sum="Total pending delivery"
-                       widget="monetary"
-                       optional="show" />
-                <field name="amount_pending_invoicing"
-                       sum="Total pending invoicing"
-                       widget="monetary"
-                       optional="show" />
+                <field
+          name="amount_pending_delivery"
+          sum="Total pending delivery"
+          widget="monetary"
+          optional="show"
+        />
+                <field
+          name="amount_pending_invoicing"
+          sum="Total pending invoicing"
+          widget="monetary"
+          optional="show"
+        />
             </field>
         </field>
     </record>
 
     <record id="sale_order_line_view_form" model="ir.ui.view">
         <field name="model">sale.order.line</field>
-        <field name="inherit_id"
-               ref="sale.sale_order_line_view_form_readonly" />
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
         <field name="arch" type="xml">
             <field name="qty_delivered" position="after">
                 <field name="qty_pending_delivery" />
@@ -53,18 +61,22 @@
         <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
         <field name="arch" type="xml">
             <filter name="to_invoice" position="after">
-                <filter string="To Deliver"
-                        name="to_deliver"
-                        domain="[('qty_pending_delivery','!=', 0)]" />
+                <filter
+          string="To Deliver"
+          name="to_deliver"
+          domain="[('qty_pending_delivery','!=', 0)]"
+        />
             </filter>
             <field name="salesman_id" position="before">
                 <field name="team_id" />
             </field>
             <filter name="salesperson" position="before">
-                <filter string="Sales team"
-                        name="salesteam"
-                        domain="[]"
-                        context="{'group_by':'team_id'}" />
+                <filter
+          string="Sales team"
+          name="salesteam"
+          domain="[]"
+          context="{'group_by':'team_id'}"
+        />
             </filter>
         </field>
     </record>
