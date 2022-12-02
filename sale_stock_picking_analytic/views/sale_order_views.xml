@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_put_analytic_in_out_picking_from_sale" model="ir.actions.server">
+        <field name="name">Put analytic account in pickings</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+        <field name="state">code</field>
+        <field name="code">
+            records.put_analytic_in_out_picking_from_sale()
+        </field>
+    </record>
+</odoo>

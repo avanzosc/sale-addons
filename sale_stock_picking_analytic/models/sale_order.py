@@ -16,3 +16,13 @@ class SaleOrder(models.Model):
                 pickings.write(
                     {'analytic_account_id': sale.analytic_account_id})
         return result
+
+    def put_analytic_in_out_picking_from_sale(self):
+        sales = self.filtered(lambda x: x.analytic_account_id and
+                              x.state not in ('draft', 'cancel'))
+        for sale in sales:
+            pickings = sale.picking_ids.filtered(
+                lambda z: not z.analytic_account_id and z.state == "done")
+            if pickings:
+                pickings.write(
+                    {'analytic_account_id': sale.analytic_account_id})
