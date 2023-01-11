@@ -7,6 +7,8 @@
             <field name="active" position="before">
                 <field name="sales_goal_monthly" />
                 <field name="sales_goal_yearly" />
+                <field name="current_month_sale_amount" />
+                <field name="current_year_sale_amount" />
             </field>
         </field>
     </record>
