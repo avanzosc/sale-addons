@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_view_tree" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree" />
+        <field name="arch" type="xml">
+            <field name="active" position="before">
+                <field name="sales_goal_monthly" />
+                <field name="sales_goal_yearly" />
+            </field>
+        </field>
+    </record>
+
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale']//field[@name='user_id']" position="after">
+                <field name="sales_goal_monthly" />
+                <field name="sales_goal_yearly" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_partner_view_search" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <field name="phone" position="after">
+                <separator />
+                <filter name="no_sales_goals"
+                        string="Undefined Sales Goals"
+                        domain="[('sales_goal_monthly','=',False),('sales_goal_yearly','=',False)]"
+                        context="{}" />
+                <filter name="has_sales_goals"
+                        string="Has Sales Goals?"
+                        domain="['|',('sales_goal_monthly','!=',0.0),('sales_goal_yearly','!=',0.0)]"
+                        context="{}" />
+            </field>
+        </field>
+    </record>
+</odoo>
