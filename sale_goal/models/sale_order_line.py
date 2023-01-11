@@ -21,7 +21,7 @@ class SaleOrderLine(models.Model):
     def _compute_sales_goal_monthly_percentage(self):
         for record in self:
             if record.order_partner_id.sales_goal_monthly:
-                record.sales_goal_monthly_percentage = record.order_partner_id.price_subtotal * 100 / record.order_partner_id.sales_goal_monthly
+                record.sales_goal_monthly_percentage = record.price_subtotal * 100 / record.order_partner_id.sales_goal_monthly
             else:
                 record.sales_goal_monthly_percentage = 0.0
 
@@ -29,6 +29,6 @@ class SaleOrderLine(models.Model):
     def _compute_sales_goal_yearly_percentage(self):
         for record in self:
             if record.order_partner_id.sales_goal_yearly:
-                record.sales_goal_yearly_percentage = record.order_partner_id.price_subtotal * 100 / record.order_partner_id.sales_goal_yearly
+                record.sales_goal_yearly_percentage = record.price_subtotal * 100 / record.order_partner_id.sales_goal_yearly
             else:
                 record.sales_goal_yearly_percentage = 0.0
