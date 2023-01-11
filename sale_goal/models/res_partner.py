@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
-from odoo.addons import decimal_precision as dp
 
 
 class ResPartner(models.Model):
@@ -10,22 +9,37 @@ class ResPartner(models.Model):
 
     sales_goal_monthly = fields.Float(
         string="Monthly Sales Goal",
-        digits=dp.get_precision("Product Price"),
     )
     sales_goal_yearly = fields.Float(
         string="Yearly Sales Goal",
-        digits=dp.get_precision('Product Price'),
     )
-    current_month_sale_amount = fields.Float()
-    current_year_sale_amount = fields.Float()
+    current_month_sale_amount = fields.Float(
+        compute="_compute_current_month_sale_amount",
+        string="Current Month Sale Amount",
+    )
+    current_year_sale_amount = fields.Float(
+        compute="_compute_current_year_sale_amount",
+        string="Current Year Sale Amount",
+    )
 
     def _compute_current_month_sale_amount(self):
+        today = fields.Date.context_today(self)
         for record in self:
-            record.current_month_sale_amount = 0.0
+            sale_orders = record.sale_order_ids.filtered(
+                lambda o: today.month == o.date_order.month and
+                today.year == o.date_order.year and
+                o.state not in ("draft", "sent", "cancel"))
+            record.current_month_sale_amount = sum(
+                sale_orders.mapped("order_line.price_subtotal"))
 
     def _compute_current_year_sale_amount(self):
+        today = fields.Date.context_today(self)
         for record in self:
-            record.current_year_sale_amount = 0.0
+            sale_orders = record.sale_order_ids.filtered(
+                lambda o: today.year == o.date_order.year and
+                o.state not in ("draft", "sent", "cancel"))
+            record.current_year_sale_amount = sum(
+                sale_orders.mapped("order_line.price_subtotal"))
 
     @api.onchange("sales_goal_monthly")
     def onchange_sales_goal_monthly(self):
