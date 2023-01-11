@@ -11,24 +11,20 @@ _logger = logging.getLogger(__name__)
 @openupgrade.migrate()
 def migrate(env, version):
     cr = env.cr
-    if not openupgrade.column_exists(
-        cr, "sale_order_line", "sales_goal_yearly_percentage"
-    ):
+    if not openupgrade.column_exists(cr, "res_users", "sales_goal_yearly"):
         openupgrade.logged_query(
             cr,
             """
-            ALTER TABLE sale_order_line
-            ADD COLUMN sales_goal_yearly_percentage numeric;
+            ALTER TABLE res_users
+            ADD COLUMN sales_goal_yearly numeric;
             """,
         )
 
-    if not openupgrade.column_exists(
-        cr, "sale_order_line", "sales_goal_monthly_percentage"
-    ):
+    if not openupgrade.column_exists(cr, "res_users", "sales_goal_monthly"):
         openupgrade.logged_query(
             cr,
             """
-            ALTER TABLE sale_order_line
-            ADD COLUMN sales_goal_monthly_percentage numeric;
+            ALTER TABLE res_users
+            ADD COLUMN sales_goal_monthly numeric;
             """,
         )
