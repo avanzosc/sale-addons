@@ -24,18 +24,22 @@ class ResUsers(models.Model):
     sales_goal_monthly = fields.Float(
         string="Monthly Sales Goal",
         compute="_compute_sales_goal",
+        default=0.0,
+        store=True,
     )
     sales_goal_yearly = fields.Float(
         string="Yearly Sales Goal",
         compute="_compute_sales_goal",
+        default=0.0,
+        store=True,
     )
     current_month_sale_amount = fields.Float(
-        compute="_compute_current_month_sale_amount",
         string="Current Month Sale Amount",
+        default=0.0,
     )
     current_year_sale_amount = fields.Float(
-        compute="_compute_current_year_sale_amount",
         string="Current Year Sale Amount",
+        default=0.0,
     )
 
     def _compute_sale_partner_count(self):
@@ -53,7 +57,7 @@ class ResUsers(models.Model):
             record.sales_goal_monthly = sum(partners.mapped("sales_goal_monthly"))
             record.sales_goal_yearly = sum(partners.mapped("sales_goal_yearly"))
 
-    def _compute_current_month_sale_amount(self):
+    def calculate_current_month_sale_amount(self):
         today = fields.Date.context_today(self)
         for record in self:
             sale_orders = record.commercial_sale_order_ids.filtered(
@@ -65,7 +69,7 @@ class ResUsers(models.Model):
                 sale_orders.mapped("order_line.price_subtotal")
             )
 
-    def _compute_current_year_sale_amount(self):
+    def calculate_current_year_sale_amount(self):
         today = fields.Date.context_today(self)
         for record in self:
             sale_orders = record.commercial_sale_order_ids.filtered(
@@ -75,3 +79,37 @@ class ResUsers(models.Model):
             record.current_year_sale_amount = sum(
                 sale_orders.mapped("order_line.price_subtotal")
             )
+
+    def process_current_sale_amount(self):
+        today = fields.Date.context_today(self)
+        year_orders = self.env["sale.order"].search(
+            [
+                ("state", "not in", ["draft", "sent", "cancel"]),
+                ("date_order", ">=", today.replace(month=1, day=1)),
+                ("date_order", "<", today.replace(year=today.year + 1, month=1, day=1)),
+            ]
+        )
+        users = self.search(
+            [
+                ("id", "not in", year_orders.mapped("user_id").ids),
+            ]
+        )
+        users.write(
+            {
+                "current_year_sale_amount": 0.0,
+                "current_month_sale_amount": 0.0,
+            }
+        )
+        year_orders.mapped("user_id").calculate_current_year_sale_amount()
+        month_orders = year_orders.filtered(lambda o: today.month == o.date_order.month)
+        users = self.search(
+            [
+                ("id", "not in", month_orders.mapped("user_id").ids),
+            ]
+        )
+        users.write(
+            {
+                "current_month_sale_amount": 0.0,
+            }
+        )
+        month_orders.mapped("user_id").calculate_current_month_sale_amount()

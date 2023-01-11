@@ -1,0 +1,100 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_goal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-12 14:38+0000\n"
+"PO-Revision-Date: 2023-01-12 14:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_goal
+#: model:ir.model,name:sale_goal.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_goal
+#: model:ir.model.fields,field_description:sale_goal.field_res_partner__current_month_sale_amount
+#: model:ir.model.fields,field_description:sale_goal.field_res_users__current_month_sale_amount
+msgid "Current Month Sale Amount"
+msgstr ""
+
+#. module: sale_goal
+#: model:ir.model.fields,field_description:sale_goal.field_res_partner__current_year_sale_amount
+#: model:ir.model.fields,field_description:sale_goal.field_res_users__current_year_sale_amount
+msgid "Current Year Sale Amount"
+msgstr ""
+
+#. module: sale_goal
+#: model:ir.model.fields,field_description:sale_goal.field_res_users__sale_partner_count
+msgid "Customer Count"
+msgstr ""
+
+#. module: sale_goal
+#: model:ir.actions.act_window,name:sale_goal.act_res_user_2_customers
+#: model:ir.model.fields,field_description:sale_goal.field_res_users__sale_partner_ids
+#: model_terms:ir.ui.view,arch_db:sale_goal.res_users_view_form
+msgid "Customers"
+msgstr "Clients"
+
+#. module: sale_goal
+#: model_terms:ir.ui.view,arch_db:sale_goal.res_partner_view_search
+msgid "Has Sales Goals?"
+msgstr ""
+
+#. module: sale_goal
+#: model:ir.model.fields,field_description:sale_goal.field_sale_order_line__sales_goal_monthly_percentage
+#: model:ir.model.fields,field_description:sale_goal.field_sale_report__sales_goal_monthly_percentage
+msgid "Monthly Goal Percentage"
+msgstr ""
+
+#. module: sale_goal
+#: model:ir.model.fields,field_description:sale_goal.field_res_partner__sales_goal_monthly
+#: model:ir.model.fields,field_description:sale_goal.field_res_users__sales_goal_monthly
+msgid "Monthly Sales Goal"
+msgstr ""
+
+#. module: sale_goal
+#: model:ir.model.fields,field_description:sale_goal.field_res_users__commercial_sale_order_ids
+msgid "Sales"
+msgstr ""
+
+#. module: sale_goal
+#: model:ir.model,name:sale_goal.model_sale_report
+msgid "Sales Analysis Report"
+msgstr "Rapport d'analyse des ventes"
+
+#. module: sale_goal
+#: model:ir.model,name:sale_goal.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: sale_goal
+#: model_terms:ir.ui.view,arch_db:sale_goal.res_partner_view_search
+msgid "Undefined Sales Goals"
+msgstr ""
+
+#. module: sale_goal
+#: model:ir.model,name:sale_goal.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: sale_goal
+#: model:ir.model.fields,field_description:sale_goal.field_sale_order_line__sales_goal_yearly_percentage
+#: model:ir.model.fields,field_description:sale_goal.field_sale_report__sales_goal_yearly_percentage
+msgid "Yearly Goal Percentage"
+msgstr ""
+
+#. module: sale_goal
+#: model:ir.model.fields,field_description:sale_goal.field_res_partner__sales_goal_yearly
+#: model:ir.model.fields,field_description:sale_goal.field_res_users__sales_goal_yearly
+msgid "Yearly Sales Goal"
+msgstr ""
+
