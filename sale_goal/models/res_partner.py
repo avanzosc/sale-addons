@@ -9,17 +9,21 @@ class ResPartner(models.Model):
 
     sales_goal_monthly = fields.Float(
         string="Monthly Sales Goal",
+        default=0.0,
     )
     sales_goal_yearly = fields.Float(
         string="Yearly Sales Goal",
+        default=0.0,
     )
     current_month_sale_amount = fields.Float(
         compute="_compute_current_month_sale_amount",
         string="Current Month Sale Amount",
+        default=0.0,
     )
     current_year_sale_amount = fields.Float(
         compute="_compute_current_year_sale_amount",
         string="Current Year Sale Amount",
+        default=0.0,
     )
 
     def _compute_current_month_sale_amount(self):
