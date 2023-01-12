@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Goals",
-    "version": "12.0.1.0.0",
+    "version": "12.0.2.0.0",
     "category": "Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -15,6 +15,7 @@
     "data": [
         "views/res_partner_views.xml",
         "views/res_users_views.xml",
+        "reports/sale_report_views.xml",
     ],
     "installable": True,
 }
