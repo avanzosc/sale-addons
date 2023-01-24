@@ -10,9 +10,15 @@
     "website": "http://www.avanzosc.es",
     "depends": [
         "sale",
+        "sale_stock",
+        "sale_order_line_input",
+        "sale_order_type",
+        "sale_line_pending_info",
+        "sale_order_line_menu",
     ],
     "data": [
         "views/sale_order_view.xml",
+        "views/sale_order_line_view.xml",
     ],
     "installable": True,
 }
