@@ -10,11 +10,11 @@ class SaleOrderLine(models.Model):
         string="Order Date", related="order_id.date_order", store=True,
         copy=False)
     sale_last_price_unit = fields.Float(
-        string="Sale Last Price", digits="Product Price",
+        string="LPS", digits="Product Price",
         compute="_compute_last_price_unit", store=True, copy=False,
         precompute=True)
     invoice_last_price_unit = fields.Float(
-        string="Invoice Last Price", digits="Product Price",
+        string="LPI", digits="Product Price",
         compute="_compute_last_price_unit", store=True, copy=False,
         precompute=True)
 
