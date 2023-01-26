@@ -10,20 +10,16 @@ class SaleOrderLine(models.Model):
     product_packaging_id = fields.Many2one(
         compute=False, precompute=False)
     product_packaging_qty = fields.Float(
-        compute=False, precompute=True)
+        compute=False, precompute=False)
 
     @api.onchange("product_packaging_id")
     def _onchange_product_packaging_id(self):
-        if self.product_packaging_id and self.product_packaging_qty:
-            self.product_uom_qty = (
-                self.product_packaging_qty * self.product_packaging_id.qty)
+        if self.product_packaging_id:
+            self.product_packaging_qty = 1
+            self.product_uom_qty = self.product_packaging_id.qty
         else:
-            if self.product_packaging_id and self.product_uom_qty:
-                newqty = self.product_packaging_id._check_qty(
-                    self.product_uom_qty, self.product_uom, "UP")
-                self.product_packaging_qty = newqty
-                return super(
-                    SaleOrderLine, self)._onchange_product_packaging_id()
+            self.product_packaging_qty = 0
+            self.product_uom_qty = 1
 
     @api.onchange("product_packaging_qty")
     def _onchange_product_packaging_qty(self):
