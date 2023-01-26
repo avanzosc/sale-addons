@@ -5,8 +5,8 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="before">
-                <field name="sale_last_price_unit" />
-                <field name="invoice_last_price_unit" />
+                <field name="sale_last_price_unit" optional="show"/>
+                <field name="invoice_last_price_unit" optional="show"/>
             </xpath>
         </field>
     </record>
