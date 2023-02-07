@@ -8,6 +8,7 @@
     "author": "AvanzOSC",
     "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
+        "sale_order_line_input",
         "sale_order_line_menu",
         "sale_stock",
     ],
