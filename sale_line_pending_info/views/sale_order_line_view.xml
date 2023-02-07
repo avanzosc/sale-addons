@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="sale_order_line_view_tree" model="ir.ui.view">
+    <record id="sale_order_line_view_order_tree" model="ir.ui.view">
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
@@ -9,18 +9,10 @@
             </field>
             <field name="qty_delivered" position="after">
                 <field name="qty_to_deliver" optional="hide" />
-                <field
-          name="qty_pending_delivery"
-          sum="Pending delivery"
-          optional="show"
-        />
+                <field name="qty_pending_delivery" sum="To Deliver" optional="show" />
             </field>
             <field name="qty_invoiced" position="after">
-                <field
-          name="qty_pending_invoicing"
-          sum="Pending invoicing"
-          optional="show"
-        />
+                <field name="qty_pending_invoicing" sum="To Invoice" optional="show" />
             </field>
             <field name="price_subtotal" position="before">
                 <field
@@ -34,6 +26,40 @@
           sum="Total pending invoicing"
           widget="monetary"
           optional="show"
+        />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_line_view_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field
+      name="inherit_id"
+      ref="sale_order_line_input.view_sales_order_line_input_tree"
+    />
+        <field name="arch" type="xml">
+            <button name="action_sale_order_form" position="after">
+                <field name="team_id" optional="show" />
+            </button>
+            <field name="qty_delivered" position="before">
+                <field name="qty_to_deliver" optional="hide" />
+                <field name="qty_pending_delivery" sum="To Deliver" optional="hide" />
+            </field>
+            <field name="qty_invoiced" position="before">
+                <field name="qty_pending_invoicing" sum="To Invoice" optional="hide" />
+            </field>
+            <field name="price_subtotal" position="before">
+                <field
+          name="amount_pending_delivery"
+          sum="Amount To Deliver"
+          widget="monetary"
+          optional="hide"
+        />
+                <field
+          name="amount_pending_invoicing"
+          sum="Amount To Invoice"
+          widget="monetary"
+          optional="hide"
         />
             </field>
         </field>
@@ -72,7 +98,7 @@
             </field>
             <filter name="salesperson" position="before">
                 <filter
-          string="Sales team"
+          string="Sales Team"
           name="salesteam"
           domain="[]"
           context="{'group_by':'team_id'}"

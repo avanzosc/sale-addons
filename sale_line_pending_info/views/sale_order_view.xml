@@ -15,9 +15,9 @@
         />
                 <field
           name="qty_pending_delivery"
-          sum="Total Pending Delivery Qty"
+          sum="To Deliver"
           attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="show"
+          optional="hide"
         />
             </xpath>
             <xpath
@@ -26,9 +26,9 @@
       >
                 <field
           name="qty_pending_invoicing"
-          sum="Total Pending Invoicing Qty"
+          sum="To Invoice"
           attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="show"
+          optional="hide"
         />
             </xpath>
             <xpath
@@ -38,29 +38,29 @@
                 <field
           name="amount_pending_delivery"
           widget="monetary"
-          sum="Total Pending Delivery Amount"
+          sum="To Delivery Amount"
           attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="show"
+          optional="hide"
         />
                 <field
           name="amount_pending_invoicing"
           widget="monetary"
-          sum="Total Pending Invoicing Amount"
+          sum="To Invoice Amount"
           attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="show"
+          optional="hide"
         />
                 <field
           name="qty_shipped_pending_invoicing"
           sum="Total Pending Invoicing Shipped Qty"
           attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="show"
+          optional="hide"
         />
                 <field
           name="amount_shipped_pending_invoicing"
           widget="monetary"
           sum="Total Pending Invoicing Shipped Amount"
           attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="show"
+          optional="hide"
         />
             </xpath>
             <xpath
@@ -107,39 +107,39 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
-            <field name="state" position="before">
+            <field name="amount_untaxed" position="before">
                 <field
           name="total_qty_pending_delivery"
           sum="Total Pending Delivery Qty"
-          optional="show"
+          optional="hide"
         />
                 <field
           name="total_amount_pending_delivery"
           widget="monetary"
           sum="Total Pending Delivery Amount"
-          optional="show"
+          optional="hide"
         />
                 <field
           name="total_qty_pending_invoicing"
           sum="Total Pending Invoicing Qty"
-          optional="show"
+          optional="hide"
         />
                 <field
           name="total_amount_pending_invoicing"
           widget="monetary"
           sum="Total Pending Invoicing Amount"
-          optional="show"
+          optional="hide"
         />
                 <field
           name="total_qty_shipped_pending_invoicing"
           sum="Total Pending Invoicing Shipped Qty"
-          optional="show"
+          optional="hide"
         />
                 <field
           name="total_amount_shipped_pending_invoicing"
           widget="monetary"
           sum="Total Pending Invoicing Shipped Amount"
-          optional="show"
+          optional="hide"
         />
             </field>
         </field>
