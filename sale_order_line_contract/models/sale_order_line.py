@@ -25,7 +25,8 @@ class SaleOrderLine(models.Model):
             'recurring_rule_type': self.product_id.recurring_rule_type,
             'date_start': fields.Date.context_today(self),
             'recurring_next_date': fields.Date.context_today(self),
-            'sale_order_line_id': self.id}
+            'sale_order_line_id': self.id,
+            'discount': self.discount}
         if self.product_id.apply_recurrence_in != 'contract':
             vals.update(
                 {'recurring_rule_type': self.product_id.recurring_rule_type,
