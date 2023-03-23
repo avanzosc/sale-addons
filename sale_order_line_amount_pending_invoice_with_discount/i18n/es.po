@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_amount_pending_invoice_with_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-23 08:01+0000\n"
+"PO-Revision-Date: 2023-03-23 08:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_amount_pending_invoice_with_discount
+#: model:ir.model.fields,field_description:sale_order_line_amount_pending_invoice_with_discount.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_line_amount_pending_invoice_with_discount.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_order_line_amount_pending_invoice_with_discount
+#: model:ir.model.fields,field_description:sale_order_line_amount_pending_invoice_with_discount.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_line_amount_pending_invoice_with_discount.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_line_amount_pending_invoice_with_discount
+#: model:ir.model.fields,field_description:sale_order_line_amount_pending_invoice_with_discount.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_order_line_amount_pending_invoice_with_discount.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_order_line_amount_pending_invoice_with_discount
+#: model:ir.model.fields,field_description:sale_order_line_amount_pending_invoice_with_discount.field_sale_order__total_amount_pending_invoicing_with_discount
+#: model:ir.model.fields,field_description:sale_order_line_amount_pending_invoice_with_discount.field_sale_order_line__amount_pending_invoicing_with_discount
+msgid "Pending Invoicing Amount With Discount"
+msgstr "Imp. Pdte. Fact. Con Dto."
+
+#. module: sale_order_line_amount_pending_invoice_with_discount
+#: model:ir.model,name:sale_order_line_amount_pending_invoice_with_discount.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_line_amount_pending_invoice_with_discount
+#: model:ir.model,name:sale_order_line_amount_pending_invoice_with_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_order_line_amount_pending_invoice_with_discount
+#: model_terms:ir.ui.view,arch_db:sale_order_line_amount_pending_invoice_with_discount.sale_order_view_form
+msgid "To Invoice Amount With discount"
+msgstr "Importe a facturar con descuento"
+
+#. module: sale_order_line_amount_pending_invoice_with_discount
+#: model_terms:ir.ui.view,arch_db:sale_order_line_amount_pending_invoice_with_discount.sale_order_quotation_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_order_line_amount_pending_invoice_with_discount.sale_order_view_tree
+msgid "Total Amount Pending Invoicing With Discount"
+msgstr "Total importe a facturar con descuento"
+
+#. module: sale_order_line_amount_pending_invoice_with_discount
+#: model_terms:ir.ui.view,arch_db:sale_order_line_amount_pending_invoice_with_discount.sale_order_line_view_order_tree
+#: model_terms:ir.ui.view,arch_db:sale_order_line_amount_pending_invoice_with_discount.sale_order_line_view_tree
+msgid "Total pending invoicing with discount"
+msgstr "Total pendiente facturar con descuento"

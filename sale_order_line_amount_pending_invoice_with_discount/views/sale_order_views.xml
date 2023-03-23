@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_view_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_line_pending_info.sale_order_view_form" />
+        <field name="arch" type="xml">
+            <field name="amount_pending_invoicing" position="after">
+                <field name="amount_pending_invoicing_with_discount" widget="monetary"
+                    sum="To Invoice Amount With discount"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+                    optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_view_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_line_pending_info.sale_order_view_tree" />
+        <field name="arch" type="xml">
+            <field name="total_amount_pending_invoicing" position="after">
+                <field name="total_amount_pending_invoicing_with_discount"
+                    sum="Total Amount Pending Invoicing With Discount" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_quotation_view_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_line_pending_info.sale_order_quotation_view_tree" />
+        <field name="arch" type="xml">
+            <field name="total_amount_pending_invoicing" position="after">
+                <field name="total_amount_pending_invoicing_with_discount"
+                    sum="Total Amount Pending Invoicing With Discount" optional="show" />
+            </field>
+        </field>
+    </record>
+</odoo>
