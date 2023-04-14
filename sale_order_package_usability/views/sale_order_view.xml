@@ -12,6 +12,10 @@
                 <field name="package_qty" optional="show"/>
                 <field name="container" optional="show" sum="Total Container"/>
             </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_packaging']" position="after">
+                <field name="package_qty"/>
+                <field name="container"/>
+            </xpath>
          </field>
      </record>
 </odoo>

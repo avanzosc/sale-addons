@@ -20,7 +20,7 @@ class SaleOrderLine(models.Model):
         if self.product_id and self.product_id.packaging_ids:
             self.product_packaging = self.product_id.packaging_ids[:1].id
 
-    @api.onchange("package_qty", "product_packaging", "product_packaging.qty")
+    @api.onchange("package_qty", "product_packaging", "product_packaging")
     def onchange_product_packaging(self):
         self.ensure_one()
         if self.package_qty:

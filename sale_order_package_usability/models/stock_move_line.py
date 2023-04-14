@@ -15,7 +15,7 @@ class StockMoveLine(models.Model):
         string="Packaging",
         comodel_name="product.packaging")
 
-    @api.onchange("package_qty", "product_packaging", "product_packaging.qty")
+    @api.onchange("package_qty", "product_packaging", "product_packaging")
     def onchange_product_packaging(self):
         self.ensure_one()
         if self.package_qty:
