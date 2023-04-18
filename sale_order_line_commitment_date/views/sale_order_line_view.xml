@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_line_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="order_id" position="after">
+                <field name="commitment_date" optional="show" widget="date"/>
+                <field name="scheduled_date" optional="hide" widget="date"/>
+                <field name="type_id" optional="show"/>
+                <field name="warehouse_id" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <filter name="my_sales_order_lines" position="after">
+                <separator/>
+                <filter string="Delivery Date Next Week" name="next_week" domain="[('commitment_date', '&gt;', context_today().strftime('%Y-%m-%d')), ('commitment_date','&lt;=', (context_today() + datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Delivery Date Tomorrow" name="tomorrow" domain="[('commitment_date','&lt;', (context_today() + datetime.timedelta(days=2)).strftime('%%Y-%%m-%%d')), ('commitment_date','&gt;', (context_today()).strftime('%Y-%m-%d'))]"/>
+                <filter string="Delivery Date Today" name="today" domain="[('commitment_date', '&lt;', (context_today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d')), ('commitment_date','&gt;', (context_today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Delivery Date Yesterday" name="yesterday" domain="[('commitment_date', '&lt;', context_today().strftime('%Y-%m-%d')), ('commitment_date','&gt;', (context_today() - datetime.timedelta(days=2)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Delivery Date Las Week" name="last_week" domain="[('commitment_date','&gt;', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d')), ('commitment_date','&lt;=', (context_today()).strftime('%Y-%m-%d'))]"/>
+                <filter string="Delivery Date Last Month" name="month" domain="[('commitment_date','&gt;', (context_today() - datetime.timedelta(days=30)).strftime('%%Y-%%m-%%d')), ('commitment_date','&lt;=', (context_today()).strftime('%Y-%m-%d'))]"/>
+                <filter string="Delivery Date Las Year" name="year" domain="[('commitment_date','&gt;', (context_today() - datetime.timedelta(days=365)).strftime('%%Y-%%m-%%d')), ('commitment_date','&lt;=', (context_today()).strftime('%Y-%m-%d'))]"/>
+                </filter>
+            <field name="salesman_id" position="after">
+                <field name="type_id"/>
+                <field name="warehouse_id"/>
+            </field>
+            <filter name="salesperson" position="after">
+                <filter string="Sale Type" name="type" domain="[]" context="{'group_by':'type_id'}"/>
+                <filter string="Warehouse" name="warehouse" domain="[]" context="{'group_by':'warehouse_id'}"/>
+                <filter string="Delivery Date" name="delivery_date" domain="[]" context="{'group_by':'commitment_date'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="sale_order_line_menu.action_orders_lines" model="ir.actions.act_window">
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+</odoo>
