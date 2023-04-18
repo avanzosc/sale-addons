@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_order_form">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="button_confirm_pickings" type="object" string="Complete Delivery" class="oe_highlight" attrs="{'invisible': [('picking_done', '=', True)]}">
+                    <field name="picking_done" invisible="1"/>
+                </button>
+                <button name="button_create_invoice_and_paid" type="object" string="Invoice and Pay" class="oe_highlight" attrs="{'invisible': [('pending_payment', '=', 0), '|', ('payment_done', '!=', 0), ('picking_ids', '=', [])]}">
+                    <field name="pending_payment" invisible="1"/>
+                    <field name="payment_done" invisible="1"/>
+                </button>
+            </header>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_order_tree">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="after">
+                <field name="payment_done" optional="show"/>
+                <field name="pending_payment" optional="show"/>
+            </field>
+        </field>
+    </record>
+</odoo>
