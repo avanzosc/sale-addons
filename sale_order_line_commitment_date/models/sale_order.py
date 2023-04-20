@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
         if "params" in self.env.context and "id" in (
             self.env.context["params"]) and "model" in (
                 self.env.context["params"]) and (
-                    self.env.context["params"]["model"]=="sale.order"):
+                    self.env.context["params"]["model"] == "sale.order"):
             order = self.env["sale.order"].search([
                 ("id", "=", self.env.context["params"]["id"])])
             return order.expected_date
@@ -28,5 +28,5 @@ class SaleOrder(models.Model):
 
     @api.onchange("expected_date")
     def _onchange_expected_date(self):
-        if self.expected_date:
+        if self.expected_date and not self.commitment_date:
             self.commitment_date = self.expected_date

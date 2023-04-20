@@ -40,8 +40,8 @@
             <filter name="my_sale_orders_filter" position="before">
                 <filter string="Pending Delivery" name="pending_delivery" domain="[('total_qty_pending_delivery', '>', 0)]"/>
                 <separator/>
-                <filter string="Today" name="today" domain="[('date_order', '&lt;=', context_today().strftime('%Y-%m-%d')), ('date_order','&gt;', (context_today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
-                <filter string="Yesterday" name="yesterday" domain="[('date_order', '&lt;', context_today().strftime('%Y-%m-%d')), ('date_order','&gt;', (context_today() - datetime.timedelta(days=2)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Today" name="today" domain="[('commitment_date', '&lt;=', context_today().strftime('%Y-%m-%d')), ('commitment_date','&gt;', (context_today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Tomorrow" name="tomorrow" domain="[('commitment_date','&gt;', context_today().strftime('%Y-%m-%d')), ('commitment_date','&lt;=', (context_today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
             </filter>
             <filter name="customer" position="after">
                 <filter name="type" string="Type" domain="[]" context="{'group_by': 'type_id'}"/>
