@@ -11,6 +11,7 @@
         "sale_order_lot_selection",
     ],
     "data": [
+        "views/sale_order_view.xml",
     ],
     'installable': True,
 }
