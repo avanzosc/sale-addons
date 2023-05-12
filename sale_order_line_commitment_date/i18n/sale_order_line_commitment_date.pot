@@ -21,91 +21,91 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_order_form
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_line_filter
 msgid "Delivery Date"
-msgstr "Fecha de entrega"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_line_filter
 msgid "Delivery Date Las Week"
-msgstr "Entrega última semana"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_line_filter
 msgid "Delivery Date Las Year"
-msgstr "Entrega último año"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_line_filter
 msgid "Delivery Date Last Month"
-msgstr "Entrega último mes"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_line_filter
 msgid "Delivery Date Next Week"
-msgstr "Entrega semana que viene"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_line_filter
 msgid "Delivery Date Today"
-msgstr "Entrega hoy"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_line_filter
 msgid "Delivery Date Tomorrow"
-msgstr "Entrega mañana"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_line_filter
 msgid "Delivery Date Yesterday"
-msgstr "Entrega ayer"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model:ir.model.fields,field_description:sale_order_line_commitment_date.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_order_line_commitment_date.field_sale_order_line__display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_order_form
 msgid "Expected:"
-msgstr "Esperado:"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model:ir.model.fields,field_description:sale_order_line_commitment_date.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_order_line_commitment_date.field_sale_order_line__id
 msgid "ID"
-msgstr "Identificador"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model:ir.model.fields,field_description:sale_order_line_commitment_date.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_order_line_commitment_date.field_sale_order_line____last_update
 msgid "Last Modified on"
-msgstr "Última modificación el"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_filter
 msgid "Pending Delivery"
-msgstr "Entregas pendientes"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model:ir.model.fields,field_description:sale_order_line_commitment_date.field_sale_order_line__type_id
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_line_filter
 msgid "Sale Type"
-msgstr "Tipo de pedido"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model:ir.model,name:sale_order_line_commitment_date.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model:ir.model,name:sale_order_line_commitment_date.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea de pedido de venta"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model:ir.model.fields,field_description:sale_order_line_commitment_date.field_sale_order__category_ids
 msgid "Tags"
-msgstr "Etiquetas"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model:ir.model.fields,help:sale_order_line_commitment_date.field_sale_order__commitment_date
@@ -114,27 +114,24 @@ msgid ""
 "This is the delivery date promised to the customer. If set, the delivery "
 "order will be scheduled based on this date rather than product lead times."
 msgstr ""
-"Ésta es la fecha de entrega prometida al cliente. Si se establece, la orden "
-"de entrega se programará en función de esta fecha en lugar de los plazos de "
-"entrega del producto."
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_filter
 msgid "Today"
-msgstr "Hoy"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_filter
 msgid "Tomorrow"
-msgstr "Mañana"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_filter
 msgid "Type"
-msgstr "Tipo"
+msgstr ""
 
 #. module: sale_order_line_commitment_date
 #: model:ir.model.fields,field_description:sale_order_line_commitment_date.field_sale_order_line__warehouse_id
 #: model_terms:ir.ui.view,arch_db:sale_order_line_commitment_date.view_sales_order_line_filter
 msgid "Warehouse"
-msgstr "Almacén"
+msgstr ""
