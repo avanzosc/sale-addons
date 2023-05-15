@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <record id="action_report_settlement" model="ir.actions.report">
+        <field name="name">Settlement Invoice report (Total)</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_commission_invoice_report.report_settlement_invoice</field>
+        <field name="report_file">sale_commission_invoice_report.report_settlement_invoice</field>
+        <field name="binding_model_id" ref="sale_commission.model_sale_commission_settlement" />
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="sale_commission_invoice_report.paperformat_a4_landscape" />
+    </record>
+
+     <record id="action_report_settlement_by_agent" model="ir.actions.report">
+        <field name="name">Settlement Invoice report (By Agent)</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_commission_invoice_report.report_settlement_invoice_by_agent</field>
+        <field name="report_file">sale_commission_invoice_report.report_settlement_invoice_by_agent</field>
+        <field name="binding_model_id" ref="sale_commission.model_sale_commission_settlement" />
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="sale_commission_invoice_report.paperformat_a4_landscape" />
+    </record>
+
+    <template id="report_settlement_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Agent</th>
+                                    <th class="text-right">From</th>
+                                    <th class="text-right">To</th>
+                                    <th class="text-left">Agent internal ref.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-left"><span t-if="o.agent_id" t-field="o.agent_id"/></td>
+                                    <td class="text-right"><span t-if="o.date_from" t-field="o.date_from"/></td>
+                                    <td class="text-right"><span t-if="o.date_to" t-field="o.date_to"/></td>
+                                    <td class="text-left"><span t-if="o.agent_id and o.agent_id.ref" t-field="o.agent_id.ref"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <t t-set="invoice_amount_untaxed" t-value="0" />
+                        <t t-set="invoice_commissionable_tax_base" t-value="0" />
+                        <t t-set="invoice_commission_total" t-value="0" />
+                        <t t-set="commissionable_tax_base" t-value="0" />
+                        <t t-set="commission_amount" t-value="0" />
+                        <t t-set="total_commissionable_tax_base" t-value="0" />
+                        <t t-set="total_commission_amount" t-value="0" />
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Invoice date</th>
+                                    <th class="text-center">Invoice</th>
+                                    <th class="text-left">Customer</th>
+                                    <th class="text-left">Invoice delivery address</th>
+                                    <th class="text-right">Tax amount (Inv)</th>
+                                    <th name="invoice_commissionable_tax_base" class="text-right">Commissionable tax base (Inv)</th>
+                                    <th class="text-right">Commissions amount (Inv)</th>
+                                    <th name="commissionable-tax-base" class="text-right">Commissionable tax base</th>
+                                    <th class="text-right" name="percentage_average_commission">% Average commission</th>
+                                    <th name="commission_amount" class="text-right">Commission amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.line_ids.mapped('invoice_id').sorted(key=lambda l: (l.name))" t-as="invoice">
+                                    <td>
+                                        <span t-field="invoice.date" />
+                                    </td>
+                                    <td>
+                                        <span t-field="invoice.name" />
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="invoice.partner_id.name"/>
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="invoice.partner_shipping_id.name"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-set="amount_untaxed_to_print" t-value="invoice.amount_untaxed" />
+                                        <t t-if="invoice.move_type == 'out_refund'" t-set="amount_untaxed_to_print" t-value="amount_untaxed_to_print * -1" />
+                                        <t t-set="invoice_amount_untaxed" 
+                                            t-value="invoice_amount_untaxed + amount_untaxed_to_print" />
+                                        <span t-esc="amount_untaxed_to_print"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}" />
+                                    </td>
+                                    <td name="invoice_commissionable_tax_base" class="text-right">
+                                        <t t-set="invoice_commissionable_tax_base_to_print" t-value="invoice.commissionable_tax_base" />
+                                        <t t-if="invoice.move_type == 'out_refund'" t-set="invoice_commissionable_tax_base_to_print"
+                                            t-value="invoice_commissionable_tax_base_to_print * -1" />
+                                        <t t-set="invoice_commissionable_tax_base" 
+                                            t-value="invoice_commissionable_tax_base + invoice_commissionable_tax_base_to_print" />
+                                        <span t-esc="invoice_commissionable_tax_base_to_print"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}" />
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-set="invoice_commission_total" 
+                                            t-value="invoice_commission_total + invoice.commission_total" />
+                                        <span t-field="invoice.commission_total"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}" />
+                                    </td>
+                                    <td name="commissionable-tax-base" class="text-right">
+                                        <t t-set="invoice_commissionable_tax_base_to_print" t-value="invoice.commissionable_tax_base" />
+                                        <t t-if="invoice.move_type == 'out_refund'" t-set="invoice_commissionable_tax_base_to_print"
+                                            t-value="invoice_commissionable_tax_base_to_print * -1" />
+                                        <t t-set="total_commissionable_tax_base" 
+                                            t-value="total_commissionable_tax_base + invoice_commissionable_tax_base_to_print" />
+                                        <span t-esc="invoice_commissionable_tax_base_to_print"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}" />
+                                    </td>
+                                    <td name="percentage_average_commission" class="text-right">
+                                        <t t-set="percentage" t-value="invoice.percentage_average_commission" />
+                                        <span t-esc="'%.2f'% percentage"/>%
+                                    </td>
+                                    <td name="commission_amount" class="text-right">
+                                        <t t-set="total_commission_amount"
+                                            t-value="total_commission_amount + invoice.commission_total" />
+                                        <span t-field="invoice.commission_total"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <strong>Total</strong>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="invoice_amount_untaxed"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                    <td name="total_invoice_commissionable_tax_base" class="text-right">
+                                        <span t-esc="invoice_commissionable_tax_base"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="invoice_commission_total"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                    <td name="total_commissionable_tax_base" class="text-right">
+                                        <span t-esc="total_commissionable_tax_base"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                    <t t-set="percentage" t-value="0" />
+                                    <t t-set="percentage" t-if="total_commission_amount and total_commissionable_tax_base"
+                                            t-value="(total_commission_amount / total_commissionable_tax_base) * 100" />
+                                    <td name="total_percentage_average_commission" class="text-right">
+                                        <span t-esc="'%.2f'% percentage"/>%
+                                    </td>
+                                    <td name="total_commission_amount" class="text-right">
+                                        <span t-esc="total_commission_amount"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_settlement_invoice_by_agent">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Agent</th>
+                                    <th class="text-right">From</th>
+                                    <th class="text-right">To</th>
+                                    <th class="text-left">Agent internal ref.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-left"><span t-if="o.agent_id" t-field="o.agent_id"/></td>
+                                    <td class="text-right"><span t-if="o.date_from" t-field="o.date_from"/></td>
+                                    <td class="text-right"><span t-if="o.date_to" t-field="o.date_to"/></td>
+                                    <td class="text-left"><span t-if="o.agent_id and o.agent_id.ref" t-field="o.agent_id.ref"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <t t-set="invoice_amount_untaxed" t-value="0" />
+                        <t t-set="invoice_commissionable_tax_base" t-value="0" />
+                        <t t-set="invoice_commission_total" t-value="0" />
+                        <t t-set="total_commissionable_tax_base" t-value="0" />
+                        <t t-set="total_commission_amount" t-value="0" />
+                        <table class="table table-condensed" >
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Invoice date</th>
+                                    <th  class="text-center">Invoice</th>
+                                    <th class="text-left">Customer</th>
+                                    <th class="text-left">Invoice delivery address</th>
+                                    <th class="text-right">Tax amount (Inv)</th>
+                                    <th name="commissionable-tax-base" class="text-right">Commissionable tax base (Inv)</th>
+                                    <th class="text-right">Commissions amount (Inv)</th>
+                                    <th class="text-right" name="percentage_average_commission">% Average commission</th>
+                                    <th name="commission_amount" class="text-right">Commission amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.line_ids.mapped('invoice_id').sorted(key=lambda l: (l.name))" t-as="invoice">
+                                    <t t-set="invoice_commission_amount" t-value="0" />
+                                    <t t-foreach="o.line_ids.filtered(lambda x: x.invoice_id == invoice)" t-as="line">
+                                        <t t-set="total_commissionable_tax_base"
+                                            t-value="total_commissionable_tax_base + line.invoice_line_id.price_subtotal" />
+                                        <t t-set="total_commission_amount"
+                                            t-value="total_commission_amount + line.settled_amount" />
+                                        <t t-set="invoice_commission_amount"
+                                            t-value="invoice_commission_amount + line.settled_amount" />
+                                    </t>
+                                    <tr>
+                                        <td>
+                                            <span t-esc="invoice.date" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="invoice.name" />
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-field="invoice.partner_id.name"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-field="invoice.partner_shipping_id.name"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-set="amount_untaxed_to_print" t-value="invoice.amount_untaxed" />
+                                            <t t-if="invoice.move_type == 'out_refund'" t-set="amount_untaxed_to_print" t-value="amount_untaxed_to_print * -1" />
+                                            <t t-set="invoice_amount_untaxed" 
+                                                t-value="invoice_amount_untaxed + amount_untaxed_to_print" />
+                                            <span t-esc="amount_untaxed_to_print"
+                                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}" />
+                                        </td>
+                                        <td name="commissionable-tax-base" class="text-right">
+                                            <t t-set="commissionable_tax_base_to_print" t-value="invoice.commissionable_tax_base" />
+                                            <t t-if="invoice.move_type == 'out_refund'" t-set="commissionable_tax_base_to_print"
+                                                t-value="commissionable_tax_base_to_print * -1" />
+                                            
+                                            <t t-set="invoice_commissionable_tax_base" 
+                                                t-value="invoice_commissionable_tax_base + commissionable_tax_base_to_print" />
+                                            <span t-esc="commissionable_tax_base_to_print"
+                                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}" />
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-set="invoice_commission_total" 
+                                                t-value="invoice_commission_total + invoice.commission_total" />
+                                            <span t-field="invoice.commission_total"
+                                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}" />
+                                        </td>
+                                        <td name="percentage_average_commission" class="text-right">
+                                            <t t-set="percentage"
+                                                t-value="(invoice_commission_amount / invoice_commissionable_tax_base) * 100" />
+                                            <span t-esc="'%.2f'% percentage"/>%
+                                        </td>
+                                        <td name="commission_amount" class="text-right">
+                                            <span t-esc="invoice_commission_amount"
+                                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="4">
+                                        <strong>Total</strong>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="invoice_amount_untaxed"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                    <td name="total_invoice_commissionable_tax_base" class="text-right">
+                                        <span t-esc="invoice_commissionable_tax_base"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="invoice_commission_total"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                    <t t-set="percentage" t-value="0" />
+                                    <t t-set="percentage" t-if="total_commission_amount and total_commissionable_tax_base"
+                                            t-value="(total_commission_amount / total_commissionable_tax_base) * 100" />
+                                    <td name="total_percentage_average_commission" class="text-right">
+                                        <span t-esc="'%.2f'% percentage"/>%
+                                    </td>
+                                    <td name="total_commission_amount" class="text-right">
+                                        <span t-esc="total_commission_amount"
+                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
