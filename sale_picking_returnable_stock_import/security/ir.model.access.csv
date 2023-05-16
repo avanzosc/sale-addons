@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_returnable_stock_import,returnable_stock_import internal,model_returnable_stock_import,stock.group_stock_user,1,1,1,1
+access_returnable_stock_import_line,returnable_stock_import_line internal,model_returnable_stock_import_line,stock.group_stock_user,1,1,1,1
