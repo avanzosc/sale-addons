@@ -23,7 +23,9 @@ class SaleOrder(models.Model):
     def _compute_picking_done(self):
         for sale in self:
             sale.picking_done = False
-            if sale.picking_ids and any([picking.state == "done" for picking in sale.picking_ids]):
+            if sale.picking_ids and any([
+                picking.state == "done" for picking in sale.picking_ids]
+            ):
                 sale.picking_done = True
 
     @api.depends("invoice_ids", "invoice_ids.amount_total",
