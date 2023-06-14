@@ -46,8 +46,9 @@ class ProductAttributeSaleReport(models.Model):
 
     def _where(self):
         return """
-                    WHERE so.confirmation_date > '2023-01-01' 
+                WHERE so.confirmation_date > '2023-01-01' 
         """
+
     def _group_by(self):
         group_by_str = """
                 GROUP BY ol.id, p.id, ptal.attribute_id
@@ -60,7 +61,7 @@ class ProductAttributeSaleReport(models.Model):
         self.env.cr.execute(
             """CREATE or REPLACE VIEW %s as
                 (
-                %s %s %s
+                %s %s %s %s
             )""", (
                 AsIs(self._table), AsIs(self._select()), AsIs(self._from()), AsIs(self._where()),
                 AsIs(self._group_by()),))
