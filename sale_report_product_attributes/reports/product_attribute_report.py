@@ -35,6 +35,7 @@ class ProductAttributeSaleReport(models.Model):
     def _from(self):
         from_str = """
                     FROM sale_order_line ol
+                    JOIN sale_order as so ON so.id = ol.order_id
                     JOIN product_product as p ON p.id = ol.product_id
                     JOIN product_template as pt ON pt.id = p.product_tmpl_id
                     JOIN product_template_attribute_line ptal ON ptal.product_tmpl_id = pt.id
@@ -43,6 +44,10 @@ class ProductAttributeSaleReport(models.Model):
             """
         return from_str
 
+    def _where(self):
+        return """
+                    WHERE so.confirmation_date > '2023-01-01' 
+        """
     def _group_by(self):
         group_by_str = """
                 GROUP BY ol.id, p.id, ptal.attribute_id
@@ -57,5 +62,5 @@ class ProductAttributeSaleReport(models.Model):
                 (
                 %s %s %s
             )""", (
-                AsIs(self._table), AsIs(self._select()), AsIs(self._from()),
+                AsIs(self._table), AsIs(self._select()), AsIs(self._from()), AsIs(self._where()),
                 AsIs(self._group_by()),))
