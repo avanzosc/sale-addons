@@ -23,30 +23,19 @@ class SaleReport(models.Model):
         readonly=True,
     )
 
-    def _query(self, with_clause="", fields=None, groupby="", from_clause=""):
-        if not fields:
-            fields = {}
-        fields["qty_pending_delivery"] = (
-            ", sum(l.qty_pending_delivery / u.factor * u2.factor) as "
-            "qty_pending_delivery"
-        )
-        fields["qty_pending_invoicing"] = (
+    def _select_sale(self):
+        result = super(SaleReport, self)._select_sale()
+        result += (
+            ", sum(l.qty_pending_delivery / u.factor * u2.factor) "
+            "as qty_pending_delivery"
             ", sum(l.qty_pending_invoicing / u.factor * u2.factor) as "
-            "qty_pending_invoicing"
-        )
-        fields["amount_pending_delivery"] = (
-            ", sum(l.amount_pending_delivery / CASE COALESCE(s.currency_rate,"
-            " 0) WHEN 0 THEN 1.0 ELSE s.currency_rate END) as "
-            "amount_pending_delivery"
-        )
-        fields["amount_pending_invoicing"] = (
-            ", sum(l.amount_pending_invoicing / CASE COALESCE(s.currency_rate,"
+            "qty_pending_invoicing, "
+            "sum(l.amount_pending_delivery / CASE COALESCE(s.currency_rate,0)"
+            " WHEN 0 THEN 1.0 ELSE s.currency_rate END) "
+            "as amount_pending_delivery, "
+            "sum(l.amount_pending_invoicing / CASE COALESCE(s.currency_rate,"
             " 0) WHEN 0 THEN 1.0 ELSE s.currency_rate END) as "
             "amount_pending_invoicing"
-        )
-        return super(SaleReport, self)._query(
-            with_clause=with_clause,
-            fields=fields,
-            groupby=groupby,
-            from_clause=from_clause,
-        )
+            )
+        return result
+
