@@ -66,9 +66,7 @@ class TestSaleLinePendingInfo(common.SavepointCase):
             sale.total_amount_shipped_pending_invoicing,
             sum(sale.order_line.mapped("amount_shipped_pending_invoicing")),
         )
-        res = self.report_model._query(
-            with_clause="", fields=None, groupby="", from_clause=""
-        )
+        res = self.report_model._query()
         self.assertIn("as qty_pending_delivery", res)
         self.assertIn("as qty_pending_invoicing", res)
         self.assertIn("as amount_pending_delivery", res)
