@@ -13,7 +13,7 @@ class SaleOrderLine(models.Model):
         domain="[('product_id','=',product_id)]",
         check_company=True)
     product_packaging_qty = fields.Float(
-        string="Packaging Quantity")
+        string="Packaging Q.")
 
     @api.onchange("product_packaging_id")
     def _onchange_product_packaging_id(self):
