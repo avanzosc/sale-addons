@@ -6,10 +6,8 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    total_cost = fields.Float(
-        string="Total Cost", compute="_compute_total_cost",
-        digits="Product Price", store=True, readonly=False,
-        groups="base.group_user")
+    total_cost = fields.Monetary(
+        string="Total Cost", compute="_compute_total_cost", store=True, readonly=False, groups="base.group_user")
 
     @api.depends("order_line", "order_line.total_cost")
     def _compute_total_cost(self):
