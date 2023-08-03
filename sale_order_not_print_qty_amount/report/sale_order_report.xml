@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <th name="th_quantity" position="attributes">
+            <attribute name="t-if">not doc.not_print_qty_amount</attribute>
+        </th>
+        <th name="th_priceunit" position="attributes">
+            <attribute name="t-if">not doc.not_print_qty_amount</attribute>
+        </th>
+        <th name="th_discount" position="attributes">
+            <attribute name="t-if">display_discount and not doc.not_print_qty_amount</attribute>
+        </th>
+        <th name="th_taxes" position="attributes">
+            <attribute name="t-if">not doc.not_print_qty_amount</attribute>
+        </th>
+        <th name="th_subtotal" position="attributes">
+            <attribute name="t-if">not doc.not_print_qty_amount</attribute>
+        </th>
+        <td name="td_quantity" position="attributes">
+            <attribute name="t-if">not doc.not_print_qty_amount</attribute>
+        </td>
+        <td name="td_priceunit" position="attributes">
+            <attribute name="t-if">not doc.not_print_qty_amount</attribute>
+        </td>
+        <xpath expr="//span[@t-field='line.discount']/.." position="attributes">
+            <attribute name="t-if">display_discount and not doc.not_print_qty_amount</attribute>
+        </xpath>
+        <td name="td_taxes" position="attributes">
+            <attribute name="t-if">not doc.not_print_qty_amount</attribute>
+        </td>
+        <td name="td_subtotal" position="attributes">
+            <attribute name="t-if">not line.is_downpayment and not doc.not_print_qty_amount</attribute>
+        </td>
+        <div name="so_total_summary" position="attributes">
+            <attribute name="t-if">not doc.not_print_qty_amount</attribute>
+        </div>
+    </template>
+</odoo>
