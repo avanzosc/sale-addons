@@ -7,12 +7,14 @@
     "category": "Sales/Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
         "sale",
+        "sale_order_line_input",
     ],
     "data": [
         "views/sale_order_view.xml",
+        "views/sale_order_line_view.xml",
     ],
     "installable": True,
 }
