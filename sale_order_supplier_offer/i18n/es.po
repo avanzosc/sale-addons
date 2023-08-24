@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_supplier_offer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-27 13:32+0000\n"
+"PO-Revision-Date: 2023-07-27 13:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_supplier_offer
+#: model:ir.model.fields,field_description:sale_order_supplier_offer.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:sale_order_supplier_offer.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_order_supplier_offer
+#: model:ir.model.fields,field_description:sale_order_supplier_offer.field_purchase_order__id
+#: model:ir.model.fields,field_description:sale_order_supplier_offer.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_supplier_offer
+#: model:ir.model.fields,field_description:sale_order_supplier_offer.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:sale_order_supplier_offer.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_order_supplier_offer
+#: model:ir.model,name:sale_order_supplier_offer.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: sale_order_supplier_offer
+#: model:ir.model.fields,field_description:sale_order_supplier_offer.field_purchase_order__sale_order_id
+msgid "Sale order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_supplier_offer
+#: model:ir.model,name:sale_order_supplier_offer.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_supplier_offer
+#: model_terms:ir.ui.view,arch_db:sale_order_supplier_offer.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_supplier_offer.view_order_form
+msgid "Supplier offer"
+msgstr "Oferta proveedor"
+
+#. module: sale_order_supplier_offer
+#: model:ir.model.fields,field_description:sale_order_supplier_offer.field_purchase_order__supplier_offer_file
+#: model:ir.model.fields,field_description:sale_order_supplier_offer.field_sale_order__supplier_offer_file
+msgid "Supplier offer file"
+msgstr "Archivo oferta proveedor"
+
+#. module: sale_order_supplier_offer
+#: model:ir.model.fields,field_description:sale_order_supplier_offer.field_purchase_order__supplier_offer_number
+#: model:ir.model.fields,field_description:sale_order_supplier_offer.field_sale_order__supplier_offer_number
+msgid "Supplier offer number"
+msgstr "Número oferta proveedor"
+
