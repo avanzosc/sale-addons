@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_spare_serial_number_for_bom_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-02 12:45+0000\n"
+"PO-Revision-Date: 2023-08-02 12:45+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: model_terms:ir.ui.view,arch_db:sale_order_spare_serial_number_for_bom_product.view_production_lot_form
+msgid "<span class=\"o_stat_text\">Sale lines</span>"
+msgstr "<span class=\"o_stat_text\">Líneas venta</span>"
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_sale_order__allowed_product_ids
+msgid "Allowed products"
+msgstr "Productos permitidos"
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_stock_production_lot__count_sale_lines
+msgid "Count sale lines"
+msgstr "Contador líneas de venta"
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_stock_production_lot__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_stock_production_lot__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_stock_production_lot____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: model:ir.model,name:sale_order_spare_serial_number_for_bom_product.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr "Lote/Número de serie"
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_stock_production_lot__sale_line_ids
+msgid "Sale lines"
+msgstr "Líneas de venta"
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: code:addons/sale_order_spare_serial_number_for_bom_product/models/stock_production_lot.py:0
+#, python-format
+msgid "Sale order lines"
+msgstr "Líneas de pedido de venta"
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: model:ir.model,name:sale_order_spare_serial_number_for_bom_product.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: model:ir.model,name:sale_order_spare_serial_number_for_bom_product.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_order_spare_serial_number_for_bom_product
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_sale_order__spare_serial_number_id
+#: model:ir.model.fields,field_description:sale_order_spare_serial_number_for_bom_product.field_sale_order_line__spare_serial_number_id
+#: model_terms:ir.ui.view,arch_db:sale_order_spare_serial_number_for_bom_product.view_sales_order_line_filter
+msgid "Spare serial number"
+msgstr "Número serie repuestos"
