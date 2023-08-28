@@ -9,11 +9,14 @@
     "depends": [
         "sale",
         "sale_project",
+        "sales_team",
         "fleet",
         "project_vehicle",
         "sale_timesheet",
     ],
     "data": [
+        "security/ir.model.access.csv",
+        "security/fleet_security.xml",
         "views/sale_order_views.xml",
     ],
     "license": "AGPL-3",
