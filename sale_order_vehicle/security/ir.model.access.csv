@@ -1,0 +1,2 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+fleet_vehicle_model_access_right_sale_user,fleet_vehicle_model_access_right sale,fleet.model_fleet_vehicle,sales_team.group_sale_salesman,1,0,0,0
