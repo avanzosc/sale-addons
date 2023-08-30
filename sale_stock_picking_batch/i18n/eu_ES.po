@@ -18,15 +18,15 @@ msgstr ""
 #. module: sale_stock_picking_batch
 #: model:ir.model,name:sale_stock_picking_batch.model_stock_picking_batch
 msgid "Batch Transfer"
-msgstr "Transferir agrupación"
+msgstr ""
 
 #. module: sale_stock_picking_batch
 #: model:ir.model.fields,field_description:sale_stock_picking_batch.field_stock_picking_batch__count_sale_orders
 msgid "Num. Sale Orders"
-msgstr "Núm. pedidos de venta"
+msgstr ""
 
 #. module: sale_stock_picking_batch
 #: model:ir.model.fields,field_description:sale_stock_picking_batch.field_stock_picking_batch__sale_order_ids
 #: model_terms:ir.ui.view,arch_db:sale_stock_picking_batch.stock_picking_batch_form
 msgid "Sale Orders"
-msgstr "Pedidos de venta"
+msgstr ""
