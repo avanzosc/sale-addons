@@ -2,18 +2,17 @@
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 
-============================
-Stock picking batch shortcut
-============================
+==========================
+Stock Picking Batch - Sale
+==========================
 
-* In form view of object "Batch Transfer", two new shorcuts to: "Delivery" and
-  "Sale Orders".
+Access to related sale orders from batch transfer.
 
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/avanzosc/odoo-addons/issues>`_. In case of trouble,
+<https://github.com/avanzosc/sale-addons/issues>`_. In case of trouble,
 please check there if your issue has already been reported. If you spotted
 it first, help us smash it by providing detailed and welcomed feedback.
 
