@@ -10,6 +10,9 @@
             <field name="write_date" position="after">
                 <field name="date_order" optional="hide" />
             </field>
+            <field name="name" position="before">
+                <field name="product_default_code" optional="hide" />
+            </field>
         </field>
     </record>
 
@@ -26,7 +29,13 @@
           string="Order Date"
           context="{'group_by': 'date_order'}"
         />
+                <filter name="group_product_default_code"
+                        string="Product Internal Reference"
+                        context="{'group_by': 'product_default_code'}" />
             </filter>
+            <field name="name" position="after">
+                <field name="product_default_code" />
+            </field>
         </field>
     </record>
 </odoo>
