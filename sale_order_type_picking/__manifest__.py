@@ -4,13 +4,10 @@
     "name": "Sale Order Type Picking",
     "author": "AvanzOSC",
     "website": "https://github.com/avanzosc/sale-addons",
-    "category": "Warehouse",
+    "category": "Sales Management",
     "version": "16.0.1.0.0",
     "license": "AGPL-3",
-    "depends": [
-        "sale_order_type",
-        "delivery"
-    ],
+    "depends": ["sale_order_type", "delivery"],
     "data": [
         "views/sale_order_type_views.xml",
     ],
