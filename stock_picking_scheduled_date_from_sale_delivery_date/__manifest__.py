@@ -6,13 +6,12 @@
     "category": "Inventory/Inventory",
     "license": "AGPL-3",
     "author": "AvanzOSC",
-    "website": "https://github.com/avanzosc/odoo-addons",
+    "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
         "sale",
         "stock",
     ],
     "excludes": [],
-    "data": [
-    ],
+    "data": [],
     "installable": True,
 }
