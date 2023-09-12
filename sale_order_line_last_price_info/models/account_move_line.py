@@ -7,5 +7,8 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     invoice_date = fields.Date(
-        string="Invoice/Bill Date", related="move_id.invoice_date", store=True,
-        copy=False)
+        string="Invoice/Bill Date",
+        related="move_id.invoice_date",
+        store=True,
+        copy=False,
+    )
