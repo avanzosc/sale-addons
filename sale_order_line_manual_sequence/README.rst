@@ -6,8 +6,8 @@
 Sale order line manual sequence
 ===============================
 
-* In "sale order line", "stock move", and "stock move line" objects, new field
-  "Manual seq.".
+In "sale order line", "stock move", and "stock move line" objects, new field
+"Manual seq.".
 
 Bug Tracker
 ===========
