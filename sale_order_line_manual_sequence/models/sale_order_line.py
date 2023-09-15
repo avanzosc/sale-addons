@@ -9,8 +9,8 @@ class SaleOrderLine(models.Model):
 
     manual_sequence = fields.Char(string="Manual seq.")
 
-    def _prepare_invoice_line(self):
+    def _prepare_invoice_line(self, **optional_values):
         self.ensure_one()
-        result = super()._prepare_invoice_line()
+        result = super()._prepare_invoice_line(**optional_values)
         result["manual_sequence"] = self.manual_sequence
         return result
