@@ -4,8 +4,10 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/tree//field[@name='sequence']"
-                   position="after">
+            <xpath
+        expr="//field[@name='order_line']/tree//field[@name='sequence']"
+        position="after"
+      >
                 <field name="manual_sequence" />
             </xpath>
         </field>
