@@ -6,12 +6,8 @@
     "category": "Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
-    "website": "http://www.avanzosc.es",
-    "depends": [
-        "sale",
-        "stock",
-        "account"
-    ],
+    "website": "https://github.com/avanzosc/sale-addons",
+    "depends": ["sale", "stock", "account"],
     "data": [
         "views/sale_order_view.xml",
         "views/stock_picking_view.xml",
