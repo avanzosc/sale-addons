@@ -10,6 +10,13 @@ class SaleOrderLine(models.Model):
     product_packaging_id = fields.Many2one(compute=False, precompute=False)
     product_packaging_qty = fields.Float(compute=False, precompute=False)
 
+    @api.onchange('product_id')
+    def _onchange_product_id_warning(self):
+        result = super(SaleOrderLine, self)._onchange_product_id_warning()
+        if self.product_id and len(self.product_id.packaging_ids) == 1:
+            self.product_packaging_id = self.product_id.packaging_ids[0].id
+        return result
+
     @api.onchange("product_packaging_id")
     def _onchange_product_packaging_id(self):
         if self.product_packaging_id:
