@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 08:07+0000\n"
-"PO-Revision-Date: 2022-12-05 08:07+0000\n"
+"POT-Creation-Date: 2023-07-04 13:00+0000\n"
+"PO-Revision-Date: 2023-07-04 13:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,11 @@ msgid "Commercial"
 msgstr "Comercial"
 
 #. module: sale_order_user_usability
+#: model_terms:ir.ui.view,arch_db:sale_order_user_usability.view_users_search
+msgid "Company"
+msgstr "Compañía"
+
+#. module: sale_order_user_usability
 #: model:ir.model.fields,field_description:sale_order_user_usability.field_account_payment__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
@@ -31,7 +36,7 @@ msgstr "Nombre mostrado"
 #. module: sale_order_user_usability
 #: model:ir.model.fields,field_description:sale_order_user_usability.field_account_payment__id
 msgid "ID"
-msgstr ""
+msgstr "Identificador"
 
 #. module: sale_order_user_usability
 #: model:ir.model.fields,field_description:sale_order_user_usability.field_account_payment____last_update
