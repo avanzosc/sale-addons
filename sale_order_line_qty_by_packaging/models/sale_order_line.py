@@ -15,6 +15,13 @@ class SaleOrderLine(models.Model):
     product_packaging_qty = fields.Float(
         string="Packaging Quantity")
 
+    @api.onchange("product_id")
+    def product_id_change(self):
+        result = super(SaleOrderLine, self).product_id_change()
+        if self.product_id and len(self.product_id.packaging_ids) == 1:
+            self.product_packaging_id = self.product_id.packaging_ids[0].id
+        return result
+
     @api.onchange("product_packaging_id")
     def _onchange_product_packaging_id(self):
         if self.product_packaging_id:
@@ -30,8 +37,9 @@ class SaleOrderLine(models.Model):
             self.product_uom_qty = (
                 self.product_packaging_qty * self.product_packaging_id.qty)
 
-    @api.onchange("product_uom_qty")
-    def _onchange_product_uom_qty(self):
+    @api.onchange('product_uom', 'product_uom_qty')
+    def product_uom_change(self):
+        result = super(SaleOrderLine, self).product_uom_change()
         if self.product_packaging_id and self.product_uom_qty:
             packaging_uom = self.product_packaging_id.product_uom_id
             packaging_uom_qty = self.product_uom._compute_quantity(
@@ -39,3 +47,4 @@ class SaleOrderLine(models.Model):
             self.product_packaging_qty = float_round(
                 packaging_uom_qty / self.product_packaging_id.qty,
                 precision_rounding=packaging_uom.rounding)
+        return result
