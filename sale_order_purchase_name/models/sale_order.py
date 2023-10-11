@@ -7,17 +7,12 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     purchase_name = fields.Char(
-        string="Purchase Orders",
-        compute="_compute_purchase_name",
-        compute_sudo=True)
+        string="Purchase Orders", compute="_compute_purchase_name", compute_sudo=True
+    )
 
     def _compute_purchase_name(self):
         for sale in self:
-            purchase_name = ""
-            if sale.purchase_order_count > 0:
-                purchases = sale._get_purchase_orders()
-                for purchase in purchases:
-                    purchase_name = (
-                        purchase.name if not purchase_name else
-                        "{}, {}".format(purchase_name, purchase.name))
-            sale.purchase_name = purchase_name
+            purchases = sale._get_purchase_orders()
+            sale.purchase_name = (
+                ", ".join(purchases.mapped("name")) if purchases else ""
+            )
