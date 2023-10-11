@@ -5,8 +5,10 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="payment_term_id" position="after">
-                <field name="purchase_name"
-                    attrs="{'invisible': [('purchase_order_count', '=', 0)]}"/>
+                <field
+          name="purchase_name"
+          attrs="{'invisible': [('purchase_name', 'in', ['', False])]}"
+        />
             </field>
         </field>
     </record>
@@ -16,7 +18,7 @@
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="team_id" position="after">
-                <field name="purchase_name" optional="show"/>
+                <field name="purchase_name" optional="show" />
             </field>
         </field>
     </record>
@@ -26,7 +28,7 @@
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="team_id" position="after">
-                <field name="purchase_name" optional="show"/>
+                <field name="purchase_name" optional="show" />
             </field>
         </field>
     </record>
