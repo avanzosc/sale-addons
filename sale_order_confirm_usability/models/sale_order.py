@@ -23,7 +23,9 @@ class SaleOrder(models.Model):
     def _compute_picking_done(self):
         for sale in self:
             sale.picking_done = False
-            if sale.picking_ids and any([picking.state == "done" for picking in sale.picking_ids]):
+            if (
+                sale.picking_ids) and any(
+                    [picking.state == "done" for picking in sale.picking_ids]):
                 sale.picking_done = True
 
     @api.depends("invoice_ids", "invoice_ids.amount_total",
@@ -50,7 +52,7 @@ class SaleOrder(models.Model):
         for line in self.order_line:
             if line.product_id and (
                 line.product_id.tracking != "none") and not (
-                    line.lot_id):
+                    line.lot_id) and line.product_uom_qty:
                 raise ValidationError(
                     _("The product {} has not lot").format(
                         line.product_id.name))
