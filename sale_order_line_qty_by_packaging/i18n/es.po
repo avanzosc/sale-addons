@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-19 07:27+0000\n"
-"PO-Revision-Date: 2023-07-19 07:27+0000\n"
+"POT-Creation-Date: 2023-10-24 13:17+0000\n"
+"PO-Revision-Date: 2023-10-24 13:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "Nombre mostrado"
 #. module: sale_order_line_qty_by_packaging
 #: model:ir.model.fields,field_description:sale_order_line_qty_by_packaging.field_sale_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "Identificador"
 
 #. module: sale_order_line_qty_by_packaging
 #: model:ir.model.fields,field_description:sale_order_line_qty_by_packaging.field_sale_order_line____last_update
@@ -31,13 +31,23 @@ msgid "Last Modified on"
 msgstr "Última modificación el"
 
 #. module: sale_order_line_qty_by_packaging
-#: model:ir.model.fields,field_description:sale_order_line_qty_by_packaging.field_sale_order_line__product_packaging_id
-msgid "Packaging"
-msgstr "Empaquetado"
+#: model:ir.model.fields,field_description:sale_order_line_qty_by_packaging.field_sale_order_line__product_packaging
+msgid "Package"
+msgstr "Paquete"
+
+#. module: sale_order_line_qty_by_packaging
+#: model_terms:ir.ui.view,arch_db:sale_order_line_qty_by_packaging.view_order_form
+msgid "Package:"
+msgstr "Paquete:"
 
 #. module: sale_order_line_qty_by_packaging
 #: model:ir.model.fields,field_description:sale_order_line_qty_by_packaging.field_sale_order_line__product_packaging_qty
 msgid "Packaging Q."
+msgstr "Cantidad de empaquetado"
+
+#. module: sale_order_line_qty_by_packaging
+#: model_terms:ir.ui.view,arch_db:sale_order_line_qty_by_packaging.view_order_form
+msgid "Packaging Q.:"
 msgstr "Cantidad de empaquetado"
 
 #. module: sale_order_line_qty_by_packaging

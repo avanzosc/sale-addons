@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
             <field name="salesman_id" position="after">
-                <field name="product_packaging_id" optional="hide"/>
+                <field name="product_packaging" optional="hide"/>
                 <field name="product_packaging_qty" optional="show"/>
             </field>
         </field>
