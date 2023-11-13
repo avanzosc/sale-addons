@@ -15,7 +15,9 @@ class SaleOrder(models.Model):
         string="Different import and total untaxed amounts",
         compute="_compute_different_amounts", store=True, copy=False)
 
-    @api.depends("total_amount_from_import", "amount_untaxed")
+    @api.depends("order_line", "order_line.price_subtotal",
+                 "total_amount_from_import", "amount_untaxed",
+                 "amount_total")
     def _compute_different_amounts(self):
         for sale in self:
             different_amounts = False
