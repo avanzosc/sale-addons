@@ -1,0 +1,110 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_computer_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-06 05:54+0000\n"
+"PO-Revision-Date: 2023-10-06 05:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_computer_management
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move__allowed_lots_ids
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move_line__allowed_lots_ids
+msgid "Allowed lots"
+msgstr ""
+
+#. module: sale_computer_management
+#: model:ir.model.fields,field_description:sale_computer_management.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move__display_name
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_quant__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_computer_management
+#: model:ir.model.fields,field_description:sale_computer_management.field_sale_order_line__grade_id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move__grade_id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move_line__grade_id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_quant__grade_id
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.quant_search_view
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.stock_move_line_view_search
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.view_move_search
+msgid "Grade"
+msgstr ""
+
+#. module: sale_computer_management
+#: model:ir.model.fields,field_description:sale_computer_management.field_sale_order_line__grade_tested
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move__grade_tested
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move_line__grade_tested
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_quant__grade_tested
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.quant_search_view
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.stock_move_line_view_search
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.view_move_search
+msgid "Grade tested"
+msgstr ""
+
+#. module: sale_computer_management
+#: model:ir.model.fields,field_description:sale_computer_management.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move__id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move_line__id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_quant__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_computer_management
+#: model:ir.model.fields,field_description:sale_computer_management.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move____last_update
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move_line____last_update
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_quant____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_computer_management
+#: model:ir.model,name:sale_computer_management.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: sale_computer_management
+#: model:ir.model,name:sale_computer_management.model_stock_quant
+msgid "Quants"
+msgstr ""
+
+#. module: sale_computer_management
+#: model:ir.model.fields,field_description:sale_computer_management.field_sale_order_line__ram_id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move__ram_id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move_line__ram_id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_quant__ram_id
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.quant_search_view
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.stock_move_line_view_search
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.view_move_search
+msgid "RAM"
+msgstr ""
+
+#. module: sale_computer_management
+#: model:ir.model,name:sale_computer_management.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_computer_management
+#: model:ir.model,name:sale_computer_management.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: sale_computer_management
+#: model:ir.model.fields,field_description:sale_computer_management.field_sale_order_line__storage1_size_id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move__storage1_size_id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_move_line__storage1_size_id
+#: model:ir.model.fields,field_description:sale_computer_management.field_stock_quant__storage1_size_id
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.quant_search_view
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.stock_move_line_view_search
+#: model_terms:ir.ui.view,arch_db:sale_computer_management.view_move_search
+msgid "Storage 1 Size"
+msgstr ""
