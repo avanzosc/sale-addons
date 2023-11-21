@@ -559,6 +559,8 @@ class SaleOrderImportLine(models.Model):
     def _create_sale_order(self):
         values = self._sale_order_values()
         sale = self.env["sale.order"].create(values)
+        sale.onchange_partner_id()
+        sale.onchange_partner_shipping_id()
         return sale
 
     def _sale_order_values(self):
