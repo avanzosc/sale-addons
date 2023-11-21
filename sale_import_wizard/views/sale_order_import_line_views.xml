@@ -95,25 +95,25 @@
                     decoration-it="log_info"
                     editable="top" >
                 <field name="action"/>
-                <field name="client_order_ref" readonly="1" optional="show"/>
-                <field name="product_name" readonly="1" optional="show"/>
-                <field name="product_code" readonly="1" optional="show"/>
-                <field name="product_barcode" readonly="1" optional="show"/>
-                <field name="customer_name" readonly="1" optional="show"/>
-                <field name="customer_code" readonly="1" optional="show"/>
-                <field name="customer_reference" readonly="1" optional="show"/>
-                <field name="product_customer_code" readonly="1" optional="show"/>
-                <field name="invoice_address_name" readonly="1" optional="show"/>
-                <field name="invoice_address_code" readonly="1" optional="show"/>
-                <field name="invoice_address_reference" readonly="1" optional="show"/>
-                <field name="delivery_address_name" readonly="1" optional="show"/>
-                <field name="delivery_address_code" readonly="1" optional="show"/>
-                <field name="delivery_address_reference" readonly="1" optional="show"/>
-                <field name="date_order" readonly="1" optional="show"/>
-                <field name="delivery_date" readonly="1" optional="show"/>
-                <field name="quantity" readonly="1" optional="show"/>
-                <field name="price_unit" readonly="1" optional="show"/>
-                <field name="total_order_amount" readonly="1" optional="show"/>
+                <field name="client_order_ref" optional="show"/>
+                <field name="product_name" optional="show"/>
+                <field name="product_code" optional="show"/>
+                <field name="product_barcode" optional="show"/>
+                <field name="customer_name" optional="show"/>
+                <field name="customer_code" optional="show"/>
+                <field name="customer_reference" optional="show"/>
+                <field name="product_customer_code" optional="show"/>
+                <field name="invoice_address_name" optional="show"/>
+                <field name="invoice_address_code" optional="show"/>
+                <field name="invoice_address_reference" optional="show"/>
+                <field name="delivery_address_name" optional="show"/>
+                <field name="delivery_address_code" optional="show"/>
+                <field name="delivery_address_reference" optional="show"/>
+                <field name="date_order" optional="show"/>
+                <field name="delivery_date" optional="show"/>
+                <field name="quantity" optional="show"/>
+                <field name="price_unit" optional="show"/>
+                <field name="total_order_amount" optional="show"/>
                 <field name="state" optional="hide"/>
                 <field name="log_info" optional="show"/>
                 <field name="sale_order_id" invisible="1"/>
