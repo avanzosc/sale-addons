@@ -557,10 +557,13 @@ class SaleOrderImportLine(models.Model):
         return line_values
 
     def _create_sale_order(self):
+        sale_obj = self.env["sale.order"]
         values = self._sale_order_values()
-        sale = self.env["sale.order"].create(values)
-        sale.onchange_partner_id()
-        sale.onchange_partner_shipping_id()
+        new_sale = sale_obj.new(values)
+        for (comp_onchange) in (new_sale._onchange_methods["partner_id"]):
+            comp_onchange(new_sale)
+        vals = new_sale._convert_to_write(new_sale._cache)
+        sale = sale_obj.create(vals)
         return sale
 
     def _sale_order_values(self):
