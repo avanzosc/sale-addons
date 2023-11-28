@@ -5,7 +5,6 @@
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <div name="journal_div" position="after">
-                
                 <field name="commissionable_tax_base"
                     string="Commissionable tax base"
                     attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'out_refund'])]}"/>
