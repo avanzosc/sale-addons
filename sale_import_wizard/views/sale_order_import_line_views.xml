@@ -97,18 +97,21 @@
                 <field name="action"/>
                 <field name="client_order_ref" optional="show"/>
                 <field name="product_name" optional="show"/>
-                <field name="product_code" optional="show"/>
-                <field name="product_barcode" optional="show"/>
+                <field name="product_code" optional="hide"/>
+                <field name="product_barcode" optional="hide"/>
+                <field name="product_customer_code" optional="hide"/>
                 <field name="customer_name" optional="show"/>
-                <field name="customer_code" optional="show"/>
+                <field name="customer_code" optional="hide"/>
                 <field name="customer_reference" optional="show"/>
-                <field name="product_customer_code" optional="show"/>
+                <field name="sale_customer_id" optional="show"/>
                 <field name="invoice_address_name" optional="show"/>
-                <field name="invoice_address_code" optional="show"/>
-                <field name="invoice_address_reference" optional="show"/>
+                <field name="invoice_address_code" optional="hide"/>
+                <field name="invoice_address_reference" optional="hide"/>
+                <field name="sale_invoice_address_id" optional="show"/>
                 <field name="delivery_address_name" optional="show"/>
-                <field name="delivery_address_code" optional="show"/>
-                <field name="delivery_address_reference" optional="show"/>
+                <field name="delivery_address_code" optional="hide"/>
+                <field name="delivery_address_reference" optional="hide"/>
+                <field name="sale_delivery_address_id" optional="show"/>
                 <field name="date_order" optional="show"/>
                 <field name="delivery_date" optional="show"/>
                 <field name="quantity" optional="show"/>
@@ -117,9 +120,9 @@
                 <field name="state" optional="hide"/>
                 <field name="log_info" optional="show"/>
                 <field name="sale_order_id" invisible="1"/>
-                <field name="sale_product_id" invisible="1"/>
+                <field name="sale_product_id" optional="hide"/>
                 <field name="sale_customer_id" invisible="1"/>
-                <field name="sale_invoice_address_id" optional="hide"/>
+                <field name="sale_invoice_address_id" invisible="1"/>
                 <field name="sale_delivery_address_id" invisible="1"/>
             </tree>
         </field>
