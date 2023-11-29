@@ -563,17 +563,16 @@ class SaleOrderImportLine(models.Model):
         for (comp_onchange) in (new_sale._onchange_methods["partner_id"]):
             comp_onchange(new_sale)
         vals = new_sale._convert_to_write(new_sale._cache)
-        sale = sale_obj.create(vals)
-        return sale
+        if self.sale_invoice_address_id:
+            vals["partner_invoice_id"] = self.sale_invoice_address_id.id
+        if self.sale_delivery_address_id:
+            vals["partner_shipping_id"] = self.sale_delivery_address_id.id
+        return sale_obj.create(vals)
 
     def _sale_order_values(self):
         values = {"partner_id": self.sale_customer_id.id,
                   "company_id": self.company_id.id,
                   "sale_import_id": self.import_id.id}
-        if self.sale_invoice_address_id:
-            values["partner_invoice_id"] = self.sale_invoice_address_id.id
-        if self.sale_delivery_address_id:
-            values["partner_shipping_id"] = self.sale_delivery_address_id.id
         if self.date_order:
             date_order = "{} 08:00:00".format(
                 fields.Date.to_string(self.date_order))
