@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record model="ir.ui.view" id="view_order_form">
+         <field name="model">sale.order</field>
+         <field name="inherit_id" ref="sale.view_order_form"/>
+         <field name="arch" type="xml">
+            <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='product_packaging']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="product_packaging" optional="show" string="Packaging"/>
+                <field name="package_qty" optional="show"/>
+                <field name="container" optional="show" sum="Total Container"/>
+            </xpath>
+         </field>
+     </record>
+</odoo>
