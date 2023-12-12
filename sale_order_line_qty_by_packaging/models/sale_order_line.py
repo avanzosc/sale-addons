@@ -41,7 +41,7 @@ class SaleOrderLine(models.Model):
     @api.onchange("product_uom", "product_uom_qty")
     def product_uom_change(self):
         result = super(SaleOrderLine, self). product_uom_change()
-        if self.product_packaging and self.product_uom_qty:
+        if self.product_packaging and self.product_uom_qty and not self.product_packaging_qty:
             packaging_uom = self.product_packaging.product_uom_id
             packaging_uom_qty = self.product_uom._compute_quantity(
                 self.product_uom_qty, packaging_uom)
