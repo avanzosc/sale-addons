@@ -30,11 +30,15 @@ class SaleOrder(models.Model):
                 sale.payment_ids = [(6, 0, payments)]
 
     def action_view_payments(self):
+        context = self.env.context.copy()
+        if self.partner_id:
+            context.update({
+                "default_partner_id": self.partner_id.id})
         return {
             "name": _("Payments"),
             "view_mode": "tree,form",
             "res_model": "account.payment",
             "domain": [("id", "in", self.payment_ids.ids)],
             "type": "ir.actions.act_window",
-            "context": self.env.context
+            "context": context
             }
