@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="view_picking_form" >
+    <record model="ir.ui.view" id="view_picking_form">
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button type="object" class="oe_stat_button"
-                    name="action_analytic_movements_from_picking"
-                    icon="fa-sitemap" >
-                        <field name="count_analytic_lines" widget="statinfo" string="Analytic movements"/>
+                <button
+          type="object"
+          class="oe_stat_button"
+          name="action_analytic_movements_from_picking"
+          icon="fa-sitemap"
+        >
+                        <field
+            name="count_analytic_lines"
+            widget="statinfo"
+            string="Analytic movements"
+          />
                 </button>
             </xpath>
         </field>
@@ -16,7 +23,7 @@
 
     <record id="action_create_analytic_line_from_out_picking" model="ir.actions.server">
         <field name="name">Generate movement analytics in out pickings</field>
-        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="model_id" ref="stock.model_stock_picking" />
         <field name="binding_model_id" ref="stock.model_stock_picking" />
         <field name="state">code</field>
         <field name="code">
