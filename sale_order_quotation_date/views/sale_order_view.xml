@@ -5,8 +5,8 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="validity_date" position="after">
-                <div class="o_td_label" groups="base.group_no_one" >
-                    <label for="quotation_date" string="Quotation Date"/>
+                <div class="o_td_label" groups="base.group_no_one">
+                    <label for="quotation_date" string="Quotation Date" />
                 </div>
                 <field name="quotation_date" nolabel="1" groups="base.group_no_one" />
             </field>
@@ -18,7 +18,7 @@
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="create_date" position="after">
-                <field name="quotation_date" widget="date" optional="show"/>
+                <field name="quotation_date" widget="date" optional="show" />
             </field>
         </field>
     </record>
@@ -28,7 +28,7 @@
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="date_order" position="before">
-                <field name="quotation_date" widget="date" optional="show"/>
+                <field name="quotation_date" widget="date" optional="show" />
             </field>
         </field>
     </record>
@@ -41,7 +41,12 @@
                 <field name="quotation_date" />
             </field>
             <filter name="order_month" position="before">
-                <filter string="Quotation date" name="quotation-date" domain="[]" context="{'group_by': 'quotation_date'}"/>
+                <filter
+          string="Quotation date"
+          name="quotation-date"
+          domain="[]"
+          context="{'group_by': 'quotation_date'}"
+        />
             </filter>
         </field>
     </record>
