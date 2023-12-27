@@ -1,0 +1,242 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_picking_return_containers
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 09:39+0000\n"
+"PO-Revision-Date: 2023-12-05 09:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_picking_return_containers
+#: model_terms:ir.ui.view,arch_db:sale_picking_return_containers.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">Return Journal</span>"
+msgstr "<span class=\"o_form_label\">Diario de devolución</span>"
+
+#. module: sale_picking_return_containers
+#: model_terms:ir.ui.view,arch_db:sale_picking_return_containers.res_config_settings_view_form
+msgid "Account journal for returns"
+msgstr "Diario de facturación para devoluciones"
+
+#. module: sale_picking_return_containers
+#: model:ir.model,name:sale_picking_return_containers.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: sale_picking_return_containers
+#: model:ir.model,name:sale_picking_return_containers.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_account_move__display_name
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Mostrar nombre"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_account_move__id
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_product_template__id
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_purchase_order__id
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_res_company__id
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_stock_move_line__id
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_stock_picking__id
+msgid "ID"
+msgstr "Identificador"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_purchase_order__is_devolution
+msgid "Is Devolution"
+msgstr "Es una devolución"
+
+#. module: sale_picking_return_containers
+#: model:ir.model,name:sale_picking_return_containers.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_account_move____last_update
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_product_template____last_update
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_res_company____last_update
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_stock_move_line____last_update
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_purchase_order_line__max_return
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_stock_move_line__max_return
+msgid "Max. Qty to Return"
+msgstr "Máx. a devolver"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_stock_picking__no_upadate_returns
+msgid "No update return"
+msgstr "No actualizar devolución"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_stock_move_line__picking_partner_id
+msgid "Partner"
+msgstr "Cliente"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_sale_order_line__pending_qty
+msgid "Pending Qty"
+msgstr "Pendiente"
+
+#. module: sale_picking_return_containers
+#: model:ir.model,name:sale_picking_return_containers.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Movimientos de Producto (Stock Move Line)"
+
+#. module: sale_picking_return_containers
+#: model:ir.model,name:sale_picking_return_containers.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: sale_picking_return_containers
+#: model:ir.model,name:sale_picking_return_containers.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: sale_picking_return_containers
+#: model:ir.model,name:sale_picking_return_containers.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea de pedido de compra"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_res_company__return_journal_id
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_res_config_settings__return_journal_id
+msgid "Return Journal"
+msgstr "Diario de devoluciones"
+
+#. module: sale_picking_return_containers
+#: code:addons/sale_picking_return_containers/models/sale_order.py:0
+#, python-format
+msgid "Return Purchase Order"
+msgstr "Pedido de devolución"
+
+#. module: sale_picking_return_containers
+#: model:ir.actions.server,name:sale_picking_return_containers.action_return_returnables
+#: model_terms:ir.ui.view,arch_db:sale_picking_return_containers.view_order_form
+msgid "Return Returnables"
+msgstr "Devolver retornables"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_product_product__returnable
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_product_template__returnable
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_stock_move_line__returnable
+#: model_terms:ir.ui.view,arch_db:sale_picking_return_containers.stock_move_line_view_search
+msgid "Returnable"
+msgstr "Retornable"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_sale_order_line__returned_amount
+msgid "Returned Amount"
+msgstr "Cantidad devuelta"
+
+#. module: sale_picking_return_containers
+#: model:ir.model.fields,field_description:sale_picking_return_containers.field_purchase_order_line__sale_order_line_ids
+msgid "Sale Order Lines"
+msgstr "Líneas de pedido de venta"
+
+#. module: sale_picking_return_containers
+#: model:ir.model,name:sale_picking_return_containers.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_picking_return_containers
+#: model:ir.model,name:sale_picking_return_containers.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_picking_return_containers
+#: model_terms:ir.ui.view,arch_db:sale_picking_return_containers.view_sales_order_line_filter
+msgid "Supplier"
+msgstr "Cliente"
+
+#. module: sale_picking_return_containers
+#: code:addons/sale_picking_return_containers/models/sale_order_line.py:0
+#, python-format
+msgid "The pending quantity negative only can be if the price unit is 0."
+msgstr ""
+"La cantidad pendiente negativa sólo puede tener si en precio unitario es 0."
+
+#. module: sale_picking_return_containers
+#: code:addons/sale_picking_return_containers/models/sale_order.py:0
+#, python-format
+msgid "The picking type must be outgoing."
+msgstr "El tipo de operación tiene que ser de entrega."
+
+#. module: sale_picking_return_containers
+#: code:addons/sale_picking_return_containers/models/sale_order.py:0
+#, python-format
+msgid "The picking type must have informed the return picking type."
+msgstr ""
+"El tipo de operación tiene que tener establecido el tipo de operación de "
+"devolución."
+
+#. module: sale_picking_return_containers
+#: code:addons/sale_picking_return_containers/models/purchase_order_line.py:0
+#: code:addons/sale_picking_return_containers/models/stock_move_line.py:0
+#, python-format
+msgid "The quantity can't be bigger than the maximum quantity to return."
+msgstr "La cantidad no puede ser mayor que la cantidad máxima a devolver."
+
+#. module: sale_picking_return_containers
+#: code:addons/sale_picking_return_containers/models/sale_order.py:0
+#, python-format
+msgid "The sale order does not have the partner."
+msgstr "El pedido de venta no tiene establecido el cliente."
+
+#. module: sale_picking_return_containers
+#: code:addons/sale_picking_return_containers/models/sale_order.py:0
+#, python-format
+msgid "The sale order does not have the type."
+msgstr "El pedido de venta no tiene establecido el tipo."
+
+#. module: sale_picking_return_containers
+#: code:addons/sale_picking_return_containers/models/sale_order.py:0
+#, python-format
+msgid "The sales order type does not have the picking type."
+msgstr "El pedido de venta no tiene establecido el tipo de operación."
+
+#. module: sale_picking_return_containers
+#: code:addons/sale_picking_return_containers/models/purchase_order.py:0
+#, python-format
+msgid "The supplier is not established"
+msgstr "No está establecido el preveedor."
+
+#. module: sale_picking_return_containers
+#: model_terms:ir.ui.view,arch_db:sale_picking_return_containers.view_order_line_tree
+msgid "Total Returned"
+msgstr "Total devuelto"
+
+#. module: sale_picking_return_containers
+#: model:ir.model,name:sale_picking_return_containers.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"

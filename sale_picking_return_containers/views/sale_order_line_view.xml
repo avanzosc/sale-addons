@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_order_line_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="qty_delivered" position="after">
+                <field name="returned_amount" sum="Total Returned"/>
+                <field name="pending_qty" force_save="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter"/>
+        <field name="arch" type="xml">
+            <filter name="salesperson" position="after">
+                <filter string="Supplier" name="supplier" domain="[]" context="{'group_by':'order_partner_id'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>
