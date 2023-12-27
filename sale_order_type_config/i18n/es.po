@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-26 08:01+0000\n"
-"PO-Revision-Date: 2021-08-26 08:01+0000\n"
+"POT-Creation-Date: 2023-12-19 10:32+0000\n"
+"PO-Revision-Date: 2023-12-19 10:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Nombre mostrado"
 #: model:ir.model.fields,field_description:sale_order_type_config.field_purchase_order__id
 #: model:ir.model.fields,field_description:sale_order_type_config.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "Identificador"
 
 #. module: sale_order_type_config
 #: model:ir.model.fields,field_description:sale_order_type_config.field_purchase_order____last_update
@@ -42,6 +42,11 @@ msgstr "Última modificación el"
 #: model:ir.model,name:sale_order_type_config.model_purchase_order
 msgid "Purchase Order"
 msgstr "Pedido de compra"
+
+#. module: sale_order_type_config
+#: model_terms:ir.ui.view,arch_db:sale_order_type_config.view_account_invoice_filter
+msgid "Sale Type"
+msgstr "Tipo de venta"
 
 #. module: sale_order_type_config
 #: model:ir.model,name:sale_order_type_config.model_sale_order
