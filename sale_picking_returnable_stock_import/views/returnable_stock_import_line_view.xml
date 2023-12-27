@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="returnable_stock_import_line_view_search" model="ir.ui.view">
+        <field name="model">returnable.stock.import.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sale_partner_ref"/>
+                <field name="sale_partner_name"/>
+                <field name="sale_product_code"/>
+                <field name="sale_product_name"/>
+                <field name="sale_order_type"/>
+                <separator/>
+                <filter
+          string="Errored"
+          name="error"
+          domain="[('state', '=', 'error')]"
+        />
+                <separator />
+                <filter
+          string="To Update"
+          name="2update"
+          domain="[('action', '=', 'update')]"
+        />
+                <group expand="0" name="group_by" string="Group By">
+                    <filter
+            name="group_partner"
+            string="Partner"
+            context="{'group_by': 'partner_id'}"
+          />
+                    <filter
+            name="group_product"
+            string="Product"
+            context="{'group_by': 'product_id'}"
+          />
+                    <filter
+            name="group_sale_order_type"
+            string="Order Type"
+            context="{'group_by': 'sale_order_type_id'}"
+          />
+                    <separator />
+                    <filter
+            name="group_status"
+            string="Status"
+            context="{'group_by': 'state'}"
+          />
+          <filter 
+            string="Log Info"
+            name="log_info"
+            domain="[]"
+            context="{'group_by': 'log_info'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="returnable_stock_import_line_view_form" model="ir.ui.view">
+        <field name="model">returnable.stock.import.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+            name="action_validate"
+            string="Validate"
+            type="object"
+            class="oe_read_only"
+            states="2validate,error"
+          />
+                    <button
+            name="action_process"
+            string="Process"
+            type="object"
+            class="oe_read_only"
+            states="error,pass"
+          />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sale_partner_ref"/>
+                            <field name="sale_partner_name"/>
+                            <field name="sale_product_code"/>
+                            <field name="sale_product_name"/>
+                            <field name="sale_order_type"/>
+                            <field name="sale_qty"/>
+                            <field name="sale_price_unit"/>
+                        </group>
+                        <group>
+                            <field
+                name="partner_id"
+                options="{'no_create': True, 'no_open': True}"
+              />
+                            <field
+                name="product_id"
+                options="{'no_create': True, 'no_open': True}"
+              />
+                            <field
+                name="sale_order_type_id"
+                options="{'no_create': True, 'no_open': True}"
+              />
+                        </group>
+                    </group>
+                    <field name="log_info"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="returnable_stock_import_line_view_tree" model="ir.ui.view">
+        <field name="model">returnable.stock.import.line</field>
+        <field name="arch" type="xml">
+            <tree
+        decoration-danger="state == 'error'"
+        decoration-muted="state == 'done'"
+        decoration-it="log_info"
+        editable="top"
+      >
+                <field name="action" readonly="1"/>
+                <field name="import_id" invisible="1"/>
+                <field name="sale_partner_ref"/>
+                <field name="sale_partner_name"/>
+                <field name="partner_id" optional="show"/>
+                <field name="sale_product_code"/>
+                <field name="sale_product_name"/>
+                <field name="product_id" optional="show"/>
+                <field name="sale_order_type"/>
+                <field name="sale_order_type_id" optional="show"/>
+                <field name="sale_qty"/>
+                <field name="sale_price_unit"/>
+                <field name="state"/>
+                <field name="log_info" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="returnable_stock_import_line_action" model="ir.actions.act_window">
+        <field name="name">Returnable Stock Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">returnable.stock.import.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="returnable_stock_import_line_view_tree"/>
+    </record>
+</odoo>
