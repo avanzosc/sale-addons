@@ -8,7 +8,8 @@
     "category": "Sale",
     "depends": [
         "sale_stock",
-        "stock_move_line_force_done"
+        "stock_move_line_force_done",
+        "sale_order_line_qty_by_packaging",
     ],
     "data": [
         "views/sale_order_view.xml",
