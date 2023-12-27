@@ -9,4 +9,14 @@
             </field>
         </field>
     </record>
+
+    <record id="view_account_invoice_filter" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <filter name="status" position="after">
+                <filter name="sale_type" string="Sale Type" context="{'group_by':'sale_type_id'}"/>
+            </filter>
+        </field>
+    </record>
 </odoo>
