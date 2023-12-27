@@ -59,11 +59,11 @@ class SaleOrder(models.Model):
         for picking in self.picking_ids:
             picking.button_force_done_detailed_operations()
             for line in picking.move_line_ids_without_package:
-                if line.product_id and (
-                    line.product_id.tracking != "none") and not (
-                        line.lot_id):
+                if line.product_id:
                     line.lot_id = line.move_id.sale_line_id.lot_id.id
-            picking.button_validate()
+                    line.qty_done = line.move_id.sale_line_id.product_uom_qty
+            res = picking.button_validate()
+            return res
 
     def button_create_invoice_and_paid(self):
         self.ensure_one()
