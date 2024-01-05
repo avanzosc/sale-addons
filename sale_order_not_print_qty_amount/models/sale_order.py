@@ -6,5 +6,4 @@ from odoo import fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    not_print_qty_amount = fields.Boolean(
-        string="Not print qty and amount", copy=False)
+    not_print_qty_amount = fields.Boolean(string="Not print qty and amount", copy=False)
