@@ -2,7 +2,10 @@
 <odoo>
     <record id="project_project_view_tree" model="ir.ui.view">
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="project_profitability_usability.project_project_view_tree" />
+        <field
+      name="inherit_id"
+      ref="project_profitability_usability.project_project_view_tree"
+    />
         <field name="arch" type="xml">
             <field name="profitability_pending_amount" position="after">
                 <field
