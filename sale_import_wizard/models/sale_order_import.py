@@ -1,11 +1,13 @@
 # Copyright 2023 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from datetime import datetime
 
 from odoo import fields, models
-from odoo.addons.base_import_wizard.models.base_import import convert2str
+from odoo.addons.base_import_wizard.models.base_import import (convert2date,
+                                                               convert2str)
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
+
+str2date = fields.Date.to_date
 
 
 class SaleOrderImport(models.Model):
@@ -29,20 +31,12 @@ class SaleOrderImport(models.Model):
     )
     warehouse_id = fields.Many2one(string="Warehouse", comodel_name="stock.warehouse")
 
-    def _get_line_values(self, row_values=False):
+    def _get_line_values(self, row_values, datemode=False):
         self.ensure_one()
-        values = super()._get_line_values(row_values=row_values)
+        values = super()._get_line_values(row_values, datemode=datemode)
         if row_values:
             date_order = row_values.get("FechaPedido", "")
-            date_order = (
-                False if not date_order else datetime.strptime(date_order, "%Y-%m-%d")
-            )
             delivery_date = row_values.get("FechaEntrega", "")
-            delivery_date = (
-                False
-                if not delivery_date
-                else datetime.strptime(delivery_date, "%Y-%m-%d")
-            )
             client_order_ref = row_values.get("NumeroPedidoCliente", "")
             product_name = row_values.get("NombreProducto", "")
             product_code = row_values.get("CodigoProducto", "")
@@ -77,8 +71,10 @@ class SaleOrderImport(models.Model):
                     "delivery_address_reference": convert2str(
                         delivery_address_reference
                     ),
-                    "date_order": date_order,
-                    "delivery_date": delivery_date,
+                    "date_order": convert2date(date_order) if date_order else False,
+                    "delivery_date": convert2date(delivery_date)
+                    if delivery_date
+                    else False,
                     "quantity": row_values.get("Cantidad", ""),
                     "price_unit": row_values.get("PrecioUnitario", ""),
                     "total_order_amount": row_values.get("TotalImportePedido", ""),
