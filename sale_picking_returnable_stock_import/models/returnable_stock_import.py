@@ -143,8 +143,8 @@ class ReturnableStockImportLine(models.Model):
         copy=False,
     )
 
-    def _action_validate(self):
-        update_values = super()._action_validate()
+    def action_validate(self):
+        super().action_validate()
         line_values = []
         for line in self.filtered(lambda l: l.state != "done"):
             log_info = ""
@@ -192,8 +192,8 @@ class ReturnableStockImportLine(models.Model):
             )
         return line_values
 
-    def _action_process(self):
-        update_values = super()._action_process()
+    def action_process(self):
+        super().action_validate()
         line_values = []
         sale = False
         for line in self.filtered(lambda l: l.state not in ("error", "done")):
