@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_billing_type_user,res.partner.billing.type.user,model_res_partner_billing_type,base.group_user,1,0,0,0
+access_res_partner_billing_type_manager,res.partner.billing.type.manager,model_res_partner_billing_type,sales_team.group_sale_manager,1,1,1,1
