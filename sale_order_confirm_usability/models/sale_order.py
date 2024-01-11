@@ -57,6 +57,7 @@ class SaleOrder(models.Model):
                     _("The product {} has not lot").format(
                         line.product_id.name))
         for picking in self.picking_ids:
+            picking.do_unreserve()
             picking.button_force_done_detailed_operations()
             for line in picking.move_line_ids_without_package:
                 if line.product_id:
