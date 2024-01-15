@@ -145,101 +145,73 @@ class ReturnableStockImportLine(models.Model):
 
     def _action_validate(self):
         update_values = super()._action_validate()
-        line_values = []
-        for line in self.filtered(lambda l: l.state != "done"):
-            log_info = ""
-            partner = product = sale_type = False
-            partner, log_info_partner = line._check_partner()
-            if log_info_partner:
-                log_info += log_info_partner
-            product, log_info_product = line._check_product()
-            if log_info_product:
-                log_info += log_info_product
-            sale_type, log_info_sale_type = line._check_sale_type()
-            if log_info_sale_type:
-                log_info += log_info_sale_type
-            if line.sale_qty == 0:
-                log_info += _("Error: Will not charge.")
-            if line.sale_qty < 0 and line.sale_price_unit != 0:
-                log_info += _("Error: Negative quantity with price.")
-            if line.partner_id and line.product_id and line.sale_price_unit:
-                same_lines = line.import_id.import_line_ids.filtered(
-                    lambda c: c.partner_id == line.partner_id and (
-                        c.product_id == line.product_id) and (
-                            c.sale_price_unit == line.sale_price_unit) and (
-                                c.id != line.id))
-                if same_lines:
-                    log_info += _("Error: Duplicate line.")
-            state = "error" if log_info or not (
-                product) or not partner or not sale_type else "pass"
-            action = "nothing"
-            if state != "error":
-                action = "create"
-            update_values = {
-                "partner_id": partner and partner.id,
-                "product_id": product and product.id,
-                "sale_order_type_id": sale_type and sale_type.id,
-                "log_info": log_info,
-                "state": state,
-                "action": action,
-                    }
-            line_values.append(
-                (
-                    1,
-                    line.id,
-                    update_values,
-                )
-            )
-        return line_values
+        log_infos = []
+        partner, log_info_partner = self._check_partner()
+        if log_info_partner:
+            log_infos.append(log_info_partner)
+        product, log_info_product = self._check_product()
+        if log_info_product:
+            log_infos.append(log_info_product)
+        sale_type, log_info_sale_type = self._check_sale_type()
+        if log_info_sale_type:
+            log_infos.append(log_info_sale_type)
+        if self.sale_qty == 0:
+            log_infos.append(_("Error: Will not charge."))
+        if self.sale_qty < 0 and self.sale_price_unit != 0:
+            log_infos.append(_("Error: Negative quantity with price."))
+        if self.partner_id and self.product_id and self.sale_price_unit:
+            same_lines = self.import_id.import_line_ids.filtered(
+                lambda c: c.partner_id == self.partner_id and (
+                    c.product_id == self.product_id) and (
+                        c.sale_price_unit == self.sale_price_unit) and (
+                            c.id != self.id))
+            if same_lines:
+                log_infos.append(_("Error: Duplicate line."))
+        state = "error" if log_infos or not (
+            product) or not partner or not sale_type else "pass"
+        action = "nothing"
+        if state != "error":
+            action = "create"
+        update_values.update({
+            "partner_id": partner and partner.id,
+            "product_id": product and product.id,
+            "sale_order_type_id": sale_type and sale_type.id,
+            "log_info": "\n".join(log_infos),
+            "state": state,
+            "action": action,
+                })
+        return update_values
 
     def _action_process(self):
         update_values = super()._action_process()
-        line_values = []
         sale = False
-        for line in self.filtered(lambda l: l.state not in ("error", "done")):
+        if self.action == "create":
             log_info = ""
-            if not line.partner_id:
+            if not self.partner_id:
                 log_info += _("Error: The partner is required.")
-            if not line.product_id:
+            if not self.product_id:
                 log_info += _("Error: The product is required.")
-            if not line.sale_order_type_id:
+            if not self.sale_order_type_id:
                 log_info += _("Error: The order type is required.")
-            same_order = line.import_id.import_line_ids.filtered(
-                lambda c: c.partner_id == line.partner_id)
-            if same_order.filtered(lambda c: c.state == "error" and c != line):
+            same_order = self.import_id.import_line_ids.filtered(
+                lambda c: c.partner_id == self.partner_id)
+            if same_order.filtered(lambda c: c.state == "error" and c != self):
                 log_info += _("Error: There is another line with the " +
                               "same supplier and sale type with errors.")
-            if log_info:
-                state = "error"
-                action = "nothing"
-                line.write({
-                        "log_info": log_info,
-                        "state": state,
-                        "action": action})
-            elif line.action == "create":
-                sale = line._create_sale_order()
-                line._create_sale_order_lines(sale, same_order)
+            if self.action == "create" and not log_info:
+                sale = self._create_sale_order()
+                self._create_sale_order_lines(sale, same_order)
                 sale.action_confirm()
                 sale = sale.id
-            else:
-                continue
             state = "error" if log_info else "done"
-            line.write({
+            action = "nothing"
+            update_values.update({
                 "sale_id": sale,
                 "log_info": log_info,
-                "state": state})
-            line_values.append(
-                (
-                    1,
-                    line.id,
-                    {
-                        "sale_id": sale,
-                        "log_info": log_info,
-                        "state": state,
-                    },
-                )
-            )
-        return line_values
+                "state": state,
+                "action": action,
+            })
+        return update_values
 
     def _check_partner(self):
         self.ensure_one()
