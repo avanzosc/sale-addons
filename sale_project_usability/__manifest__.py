@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Project Usability",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "category": "Sales/Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -13,6 +13,8 @@
     ],
     "data": [
         "views/project_task_view.xml",
+        "views/product_template_view.xml",
+        "views/product_product_view.xml",
     ],
     "installable": True,
 }

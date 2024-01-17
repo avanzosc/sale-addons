@@ -7,6 +7,7 @@ Sale project usability
 ======================
 
 * In task form, display the product and quantity of the sale line.
+* In products search, and group by "Project Template".
 
 Bug Tracker
 ===========
