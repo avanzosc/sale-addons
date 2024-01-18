@@ -1,0 +1,252 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_service_create_purchase_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-30 09:34+0000\n"
+"PO-Revision-Date: 2024-01-30 09:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_sale_order__sale_line_count
+msgid "# Sale line"
+msgstr "# Líneas de venta"
+
+#. module: sale_service_create_purchase_order
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.view_order_form
+msgid "<span class=\"o_stat_text\">Sale Lines</span>"
+msgstr "<span class=\"o_stat_text\">Líneas de venta</span>"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,help:sale_service_create_purchase_order.field_sale_order_line__detailed_type
+msgid ""
+"A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
+"A consumable product is a product for which stock is not managed.\n"
+"A service is a non-material product you provide."
+msgstr ""
+"Un producto almacenable es un producto para el que gestiona stock. La aplicación de inventario debe estar instalada.\n"
+"Un producto consumible es un producto para el que no se gestionan las existencias.\n"
+"Un servicio es un producto no material."
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_change_sequence_in_sale_line__actual_sequence
+msgid "Actual Sequence"
+msgstr "Secuencia actual"
+
+#. module: sale_service_create_purchase_order
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.wiz_change_sequence_in_sale_line_form_view
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.wiz_duplicate_sale_line_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.actions.server,name:sale_service_create_purchase_order.model_sale_order_line_action_change_sequence
+msgid "Change Sequence"
+msgstr "Cambiar secuencia"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.actions.act_window,name:sale_service_create_purchase_order.wiz_change_sequence_in_sale_line_action
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.wiz_change_sequence_in_sale_line_form_view
+msgid "Change sale line sequence"
+msgstr "Cambiar secuencienia línea venta"
+
+#. module: sale_service_create_purchase_order
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.wiz_change_sequence_in_sale_line_form_view
+msgid "Change sequence"
+msgstr "Cambiar secuencia"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.actions.server,name:sale_service_create_purchase_order.model_sale_order_action_create_purchase
+#: model:ir.actions.server,name:sale_service_create_purchase_order.model_sale_order_line_action_create_purchase
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.sale_order_line_editable_tree
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.view_order_form
+msgid "Create purchase order"
+msgstr "Crear pedido compra"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_change_sequence_in_sale_line__create_uid
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_duplicate_sale_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_change_sequence_in_sale_line__create_date
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_duplicate_sale_line__create_date
+msgid "Created on"
+msgstr "Creado por"
+
+#. module: sale_service_create_purchase_order
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.sale_order_line_editable_tree
+msgid "Disc.%"
+msgstr "Desc.%"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_change_sequence_in_sale_line__display_name
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_duplicate_sale_line__display_name
+msgid "Display Name"
+msgstr "Mostrar nombre"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.actions.server,name:sale_service_create_purchase_order.model_sale_order_line_action_duplicate
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.wiz_duplicate_sale_line_form_view
+msgid "Duplicate Line"
+msgstr "Duplicar línea"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.actions.act_window,name:sale_service_create_purchase_order.wiz_duplicate_sale_line_action
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.wiz_duplicate_sale_line_form_view
+msgid "Duplicate Sale Order Line"
+msgstr "Duplir línea pedido de venta"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_change_sequence_in_sale_line__id
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_duplicate_sale_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_change_sequence_in_sale_line____last_update
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_duplicate_sale_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_change_sequence_in_sale_line__write_uid
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_duplicate_sale_line__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_change_sequence_in_sale_line__write_date
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_duplicate_sale_line__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_change_sequence_in_sale_line__new_sequence
+msgid "New Sequence"
+msgstr "Nueva secuencia"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.actions.act_window,name:sale_service_create_purchase_order.action_editabable_orders_lines
+msgid "Order Lines"
+msgstr "Líneas pedido"
+
+#. module: sale_service_create_purchase_order
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.sale_order_line_editable_tree
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_sale_order_line__product_categ_id
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.view_sales_order_line_filter
+msgid "Product Category"
+msgstr "Categoría producto"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_sale_order_line__product_supplier_id
+msgid "Product Supplier"
+msgstr "Proveedor producto"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_sale_order_line__detailed_type
+msgid "Product Type"
+msgstr "Tipo producto"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_sale_order_line__product_supplier_ids
+msgid "Product suppliers"
+msgstr "Proveedores producto"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_sale_order_line__purchase_line_id
+msgid "Purchase Line"
+msgstr "Línea compra"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_sale_order_line__purchase_id
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.view_sales_order_line_filter
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_sale_order_line__ref_catalogue
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.view_sales_order_line_filter
+msgid "Ref. Catalogue"
+msgstr "Ref. Catálogo"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_change_sequence_in_sale_line__sale_line_id
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_wiz_duplicate_sale_line__sale_line_id
+msgid "Sale Order Line"
+msgstr "Línea pedido de venta"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model,name:sale_service_create_purchase_order.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model,name:sale_service_create_purchase_order.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_service_create_purchase_order
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.sale_order_line_editable_tree
+msgid "Sales Order Lines"
+msgstr "Líneas de pedido de venta"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_sale_order_line__sequence_to_view
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model.fields,field_description:sale_service_create_purchase_order.field_sale_order_line__supplier_id
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.view_sales_order_line_filter
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: sale_service_create_purchase_order
+#: model_terms:ir.ui.view,arch_db:sale_service_create_purchase_order.sale_order_line_editable_tree
+msgid "UoM"
+msgstr "UdM"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model,name:sale_service_create_purchase_order.model_wiz_change_sequence_in_sale_line
+msgid "Wizard for change sequence in line"
+msgstr "Asistente para cambiar secuencia en línea"
+
+#. module: sale_service_create_purchase_order
+#: model:ir.model,name:sale_service_create_purchase_order.model_wiz_duplicate_sale_line
+msgid "Wizard for duplicate sale line"
+msgstr "Asistente para duplicar línea venta"
+
+#. module: sale_service_create_purchase_order
+#. odoo-python
+#: code:addons/sale_service_create_purchase_order/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"You can only duplicate 1 at a time, because then the screenmust be "
+"refreshed."
+msgstr ""
+"Sólo puede duplicar 1 a la vez, porque la pantalla se debe "
+"refrescar."
+
+#. module: sale_service_create_purchase_order
+#. odoo-python
+#: code:addons/sale_service_create_purchase_order/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"You can only modify 1 sequence, because then the screenmust be refreshed."
+msgstr ""
+"Sólo puoedo modificar 1 secuencia, porque la pantalla se debe de refrescar."
+

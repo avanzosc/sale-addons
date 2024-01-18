@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="action_view_sale_lines" type="object"
+                    icon="fa-bars" 
+                    attrs="{'invisible': [('sale_line_count', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value"><field name="sale_line_count"/></span>
+                        <span class="o_stat_text">Sale Lines</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='sequence']" position="after">
+                <field name="sequence_to_view" readonly="1" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="product_categ_id" optional="show" readonly="1"/>
+                <field name="ref_catalogue" optional="show" />
+                <field name="detailed_type" invisible="1"/>
+                <field name="product_supplier_ids" invisible="1"/>
+                <field name="product_supplier_id" optional="show"
+                    domain="[('id', 'in', product_supplier_ids)]"
+                    attrs="{'readonly': [('detailed_type', '!=', 'service')]}"/>
+                <button name="create_purchase_order_for_service" class="text-warning" type="object"
+                    string="Create purchase order" icon="fa-bell-slash"
+                    attrs="{'invisible': ['|', ('product_supplier_id', '=', False), ('purchase_id', '!=', False)]}"/>
+                <field name="purchase_line_id" optional="show" readonly="1"/>
+                <field name="purchase_id" optional="show" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="model_sale_order_action_create_purchase" model="ir.actions.server">
+        <field name="name">Create purchase order</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_create_purchase_order_for_service()</field>
+    </record>
+</odoo>
