@@ -49,3 +49,9 @@ msgstr "Fecha de pedido"
 #: model:ir.model,name:sale_order_usability.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
+
+#. module: sale_order_usability
+#: model_terms:ir.ui.view,arch_db:sale_order_usability.view_sales_order_filter
+msgid "Product/Line description"
+msgstr "Producto/Descripción línea"
+
