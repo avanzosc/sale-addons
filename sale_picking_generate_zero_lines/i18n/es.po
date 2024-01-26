@@ -1,0 +1,101 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_picking_generate_zero_lines
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 09:16+0000\n"
+"PO-Revision-Date: 2024-02-05 09:16+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_picking_generate_zero_lines
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_procurement_group__display_name
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_stock_return_picking__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_picking_generate_zero_lines
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_procurement_group__id
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_stock_picking__id
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_stock_return_picking__id
+msgid "ID"
+msgstr "Identificador"
+
+#. module: sale_picking_generate_zero_lines
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_procurement_group____last_update
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_stock_return_picking____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_picking_generate_zero_lines
+#: code:addons/sale_picking_generate_zero_lines/models/procurement_group.py:0
+#, python-format
+msgid ""
+"No rule has been found to replenish \"%s\" in \"%s\".\n"
+"Verify the routes configuration on the product."
+msgstr ""
+"No se ha encontrado ninguna regla para reponer \"%s\" en \"%s\".\n"
+"Verificar la configuración de rutas en el producto."
+#. module: sale_picking_generate_zero_lines
+#: model:ir.model.fields,field_description:sale_picking_generate_zero_lines.field_sale_order__picking_count
+msgid "Picking Count"
+msgstr "Nº albaranes"
+
+#. module: sale_picking_generate_zero_lines
+#: model:ir.model,name:sale_picking_generate_zero_lines.model_procurement_group
+msgid "Procurement Group"
+msgstr "Grupo de abastecimiento"
+
+#. module: sale_picking_generate_zero_lines
+#: model:ir.model,name:sale_picking_generate_zero_lines.model_stock_return_picking
+#: model_terms:ir.ui.view,arch_db:sale_picking_generate_zero_lines.view_order_form
+msgid "Return Picking"
+msgstr "Devolver albarán"
+
+#. module: sale_picking_generate_zero_lines
+#: model:ir.model,name:sale_picking_generate_zero_lines.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_picking_generate_zero_lines
+#: model:ir.model,name:sale_picking_generate_zero_lines.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_picking_generate_zero_lines
+#: code:addons/sale_picking_generate_zero_lines/wizard/stock_return_picking.py:0
+#, python-format
+msgid "The picking is not done."
+msgstr "El albarán no está hecho"
+
+#. module: sale_picking_generate_zero_lines
+#: model:ir.model,name:sale_picking_generate_zero_lines.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
+
+#. module: sale_picking_generate_zero_lines
+#: code:addons/sale_picking_generate_zero_lines/models/sale_order.py:0
+#, python-format
+msgid "You can only return one done picking."
+msgstr "Sólo puede devolver un albarán que esté realizado."
+
+#. module: sale_picking_generate_zero_lines
+#: code:addons/sale_picking_generate_zero_lines/wizard/stock_return_picking.py:0
+#, python-format
+msgid "You may only return one picking at a time."
+msgstr "Sólo puede devolver un albarán cada vez."
