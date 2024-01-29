@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_template_view_form" model="ir.ui.view">
+        <field name="model">sale.order.template</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form" />
+        <field name="arch" type="xml">
+            <field name="mail_template_id" position="after">
+                <field name="sequence" />
+                <field name="space_ids" widget="many2many_tags"/>
+            </field>
+            <xpath expr="//field[@name='sale_order_template_line_ids']/tree/field[@name='sequence']"
+                    position="after">
+                <field name="sequence_to_view" optional="show" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_line_ids']/tree/field[@name='product_id']"
+                    position="after">
+                <field name="product_categ_id" optional="show" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_line_ids']/tree/field[@name='name']"
+                    position="after">
+                <field name="space_ids" widget="many2many_tags" />
+            </xpath>
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" name="action_view_sale_template_lines" type="object"
+                    icon="fa-bars" 
+                    attrs="{'invisible': [('sale_template_line_count', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value"><field name="sale_template_line_count"/></span>
+                        <span class="o_stat_text">Sale Template Lines</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <record id="sale_order_template_view_tree" model="ir.ui.view">
+        <field name="model">sale.order.template</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="id" />
+                <field name="sequence" widget="handle"/>
+                <field name="sequence_to_view" optional="show" readonly="1"/>
+            </field>
+            <field name="name" position="after">
+                <field name="space_ids" widget="many2many_tags" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_template_view_search" model="ir.ui.view">
+        <field name="model">sale.order.template</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_search" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="space_ids"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="model_sale_template_action_renumber_lines" model="ir.actions.server">
+        <field name="name">Renumber Sequence Lines</field>
+        <field name="model_id" ref="sale_management.model_sale_order_template"/>
+        <field name="binding_model_id" ref="sale_management.model_sale_order_template"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_renumber_lines()</field>
+    </record>
+</odoo>
