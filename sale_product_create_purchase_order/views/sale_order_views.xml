@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="product_categ_id" optional="show" readonly="1"/>
+                <field name="ref_catalogue" optional="show" />
+                <field name="detailed_type" invisible="1"/>
+                <field name="product_supplier_ids" invisible="1"/>
+                <field name="product_supplier_id" optional="show"
+                    domain="[('id', 'in', product_supplier_ids)]"/>
+                <button name="create_purchase_order_for_product" class="text-warning" type="object"
+                    string="Create purchase order" icon="fa-bell-slash"
+                    attrs="{'invisible': ['|', ('product_supplier_id', '=', False), ('purchase_id', '!=', False)]}"/>
+                <field name="purchase_line_id" optional="show" readonly="1"/>
+                <field name="purchase_id" optional="show" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="model_sale_order_action_create_purchase" model="ir.actions.server">
+        <field name="name">Create purchase order</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_create_purchase_order_for_product()</field>
+    </record>
+</odoo>
