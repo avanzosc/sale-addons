@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="wiz_duplicate_sale_line_form_view" model="ir.ui.view">
+        <field name="name">wiz.duplicate.sale.line.form.view</field>
+        <field name="model">wiz.duplicate.sale.line</field>
+        <field name="arch" type="xml">
+            <form string="Duplicate Sale Order Line">
+                <group>
+                    <field name="sale_line_id" invisible="1"/>
+                </group>
+                <newline />
+                <footer>
+                    <button string="Duplicate Line"  name="button_duplicate"
+                        type="object" class="oe_highlight" />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wiz_duplicate_sale_line_action" model="ir.actions.act_window">
+        <field name="name">Duplicate Sale Order Line</field>
+        <field name="res_model">wiz.duplicate.sale.line</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>
