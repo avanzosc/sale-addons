@@ -8,7 +8,9 @@ class SaleOrder(models.Model):
 
     @api.onchange("type_id")
     def onchange_type_id(self):
-        result = super().onchange_type_id()
+        result = None
+        if hasattr(super(), "onchange_type_id"):
+            result = super().onchange_type_id()
         for order in self:
             if order.type_id and order.type_id.carrier_id:
                 order.carrier_id = order.type_id.carrier_id.id
