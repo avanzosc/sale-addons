@@ -22,11 +22,12 @@ class SaleOrder(models.Model):
     @api.depends("picking_ids", "picking_ids.state")
     def _compute_picking_done(self):
         for sale in self:
-            sale.picking_done = False
+            sale.picking_done = True
             if (
-                sale.picking_ids) and any(
-                    [picking.state == "done" for picking in sale.picking_ids]):
-                sale.picking_done = True
+                sale.picking_ids) and any([picking.state not in (
+                    "done", "cancel") for picking in sale.picking_ids]
+            ) or not sale.picking_ids:
+                sale.picking_done = False
 
     @api.depends("invoice_ids", "invoice_ids.amount_total",
                  "invoice_ids.amount_residual")
@@ -48,7 +49,8 @@ class SaleOrder(models.Model):
 
     def button_confirm_pickings(self):
         self.ensure_one()
-        self.action_confirm()
+        if self.state == "draft":
+            self.action_confirm()
         for line in self.order_line:
             if line.product_id and (
                 line.product_id.tracking != "none") and not (
@@ -56,13 +58,17 @@ class SaleOrder(models.Model):
                 raise ValidationError(
                     _("The product {} has not lot").format(
                         line.product_id.name))
-        for picking in self.picking_ids:
+        for picking in self.picking_ids.filtered(
+            lambda c: c.state not in ("done", "cancel")
+        ):
             picking.do_unreserve()
             picking.button_force_done_detailed_operations()
             for line in picking.move_line_ids_without_package:
                 if line.product_id:
                     line.lot_id = line.move_id.sale_line_id.lot_id.id
-                    line.qty_done = line.move_id.sale_line_id.product_uom_qty
+                    line.qty_done = (
+                        line.move_id.sale_line_id.product_uom_qty - (
+                            line.move_id.sale_line_id.qty_delivered))
             res = picking.button_validate()
             return res
 
