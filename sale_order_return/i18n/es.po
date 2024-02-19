@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_return
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-19 10:02+0000\n"
+"PO-Revision-Date: 2024-02-19 10:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_return
+#: model:ir.model.fields,field_description:sale_order_return.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_return.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_order_return
+#: model:ir.model.fields,field_description:sale_order_return.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_return.field_sale_order_line__id
+msgid "ID"
+msgstr "Identificador"
+
+#. module: sale_order_return
+#: model:ir.model.fields,field_description:sale_order_return.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_order_return.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_order_return
+#: model:ir.model.fields,field_description:sale_order_return.field_sale_order_line__product_uom_qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: sale_order_return
+#: model:ir.model.fields,field_description:sale_order_return.field_sale_order_line__return_qty
+msgid "Return Qty"
+msgstr "A devolver"
+
+#. module: sale_order_return
+#: model_terms:ir.ui.view,arch_db:sale_order_return.view_order_form
+msgid "Return Qty:"
+msgstr "A devolver:"
+
+#. module: sale_order_return
+#: model:ir.model,name:sale_order_return.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_return
+#: model:ir.model,name:sale_order_return.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
