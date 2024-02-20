@@ -17,7 +17,8 @@ class SaleOrderLine(models.Model):
     @api.onchange("product_id")
     def product_id_change(self):
         result = super(SaleOrderLine, self).product_id_change()
-        self.product_uom_qty = 0
+        if self.product_uom_qty == 1 and not self.auto_purchase_line_id:
+            self.product_uom_qty = 0
         return result
 
     @api.model
