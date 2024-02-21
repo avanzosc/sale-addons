@@ -8,13 +8,17 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def default_commitment_date(self):
+        date = False
         if "params" in self.env.context and "id" in (
-            self.env.context["params"]) and "model" in (
-                self.env.context["params"]) and (
-                    self.env.context["params"]["model"] == "sale.order"):
+            self.env.context["params"]
+        ) and "model" in self.env.context["params"] and (
+            self.env.context["params"]["model"] == "sale.order"
+        ) and self.env.context["params"]["id"]:
             order = self.env["sale.order"].search([
                 ("id", "=", self.env.context["params"]["id"])])
-            return order.expected_date
+            if order:
+                date =  order.expected_date
+        return date
 
     category_ids = fields.Many2many(
         comodel_name="res.partner.category",
