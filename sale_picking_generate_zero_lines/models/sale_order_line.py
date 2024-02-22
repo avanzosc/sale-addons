@@ -8,10 +8,12 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     def _action_launch_stock_rule(self, previous_product_uom_qty=False):
-        super(SaleOrderLine, self)._action_launch_stock_rule(previous_product_uom_qty)
+        super(SaleOrderLine, self)._action_launch_stock_rule(
+            previous_product_uom_qty=previous_product_uom_qty
+        )
         precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
         procurements = []
-        for line in self:
+        for line in self.filtered(lambda c: c.product_id):
             line = line.with_company(line.company_id)
             qty = line._get_qty_procurement(previous_product_uom_qty)
             if float_compare(qty, line.product_uom_qty, precision_digits=precision) >= 0 and line.product_uom_qty == 0:
