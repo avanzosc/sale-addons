@@ -38,6 +38,6 @@ class SaleOrderLine(models.Model):
                     line.product_id, product_qty, procurement_uom,
                     line.order_id.partner_shipping_id.property_stock_customer,
                     line.product_id.display_name, line.order_id.name, line.order_id.company_id, values))
-                if procurements:
-                    self.env['procurement.group'].run(procurements)
+        if procurements:
+            self.env['procurement.group'].run(procurements)
         return True
