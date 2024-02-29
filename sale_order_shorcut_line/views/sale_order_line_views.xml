@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_line_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="product_categ_id" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <field name="salesman_id" position="after">
+                <field name="product_categ_id"/>
+                <field name="section_line_id"/>
+            </field>
+            <filter name="salesperson" position="after">
+                <filter string="Product Category" name="product-categ" domain="[]"
+                    context="{'group_by':'product_categ_id'}"/>
+                <filter string="Section line" name="section-line" domain="[]"
+                    context="{'group_by':'section_line_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="sale_order_line_editable_tree" model="ir.ui.view">
+        <field name="name">sale.order.line.editable.tree</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Order Lines" editable="top" create="1" delete="1" multi_edit="1">
+                <field name="sequence" widget="handle" />
+                <field name="order_id" invisible="1"/>
+                <field name="sequence_to_view" optional="show"/>
+                <field name="display_type" invisible="1"/>
+                <field name="product_uom_category_id" invisible="1"/>
+                <field name="product_type" invisible="1"/>
+                <field name="product_updatable" invisible="1"/>
+                <field name="product_id" widget="sol_product_many2one"
+                    attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="product_template_id" string="Product" invisible="1" widget="sol_product_many2one"/>
+                <field name="name" widget="section_and_note_text" optional="show" />
+                <field name="product_categ_id" optional="show" readonly="1"/>
+                <field name="analytic_distribution" widget="analytic_distribution"
+                           optional="hide" groups="analytic.group_analytic_accounting" readonly="1"/>
+                <field name="product_uom_qty"
+                    decoration-info="(not display_type and invoice_status == 'to invoice')"
+                    decoration-bf="(not display_type and invoice_status == 'to invoice')"/>
+                <field name="product_uom" string="UoM" optional="show" readonly="1" groups="uom.group_uom"/>
+                <field  name="customer_lead" optional="hide" readonly="1"/>
+                <field name="product_packaging_qty" attrs="{'invisible': ['|', ('product_id', '=', False), ('product_packaging_id', '=', False)]}" groups="product.group_stock_packaging" optional="show" readonly="1"/>
+                <field name="product_packaging_id" attrs="{'invisible': [('product_id', '=', False)]}"  groups="product.group_stock_packaging" optional="show" readonly="1"/>
+                <field name="price_unit" />
+                <field name="tax_id" widget="many2many_tags" optional="show" />
+                <field name="discount" string="Disc.%" groups="product.group_discount_per_so_line" optional="show" widget="sol_discount" readonly="1"/>
+                <field name="is_downpayment" invisible="1"/>
+                <field name="price_subtotal" readonly="1" widget="monetary" groups="account.group_show_line_subtotals_tax_excluded" attrs="{'invisible': [('is_downpayment', '=', True)]}"/>
+                <field name="price_total" readonly="1" widget="monetary" groups="account.group_show_line_subtotals_tax_included" attrs="{'invisible': [('is_downpayment', '=', True)]}"/>
+                <field name="state" invisible="1"/>
+                <field name="invoice_status" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="price_tax" invisible="1"/>
+                <field name="company_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_editabable_orders_lines" model="ir.actions.act_window">
+        <field name="name">Order Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="sale_order_shorcut_line.sale_order_line_editable_tree" />
+    </record>
+
+    <record id="model_sale_order_line_action_duplicate" model="ir.actions.server">
+        <field name="name">Duplicate Line</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="binding_model_id" ref="sale.model_sale_order_line"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_duplicate_line()</field>
+    </record>
+
+    <record id="model_sale_order_line_action_change_sequence" model="ir.actions.server">
+        <field name="name">Change Sequence</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="binding_model_id" ref="sale.model_sale_order_line"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_change_sequence()</field>
+    </record>
+</odoo>
