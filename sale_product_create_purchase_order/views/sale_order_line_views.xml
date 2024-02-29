@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_line_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale_order_shorcut_line.sale_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="product_categ_id" position="after">
+                <field name="ref_catalogue" optional="show"/>
+                <field name="supplier_id" optional="show"/>
+                <field name="purchase_line_id" optional="show"/>
+                <field name="purchase_id" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale_order_shorcut_line.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <field name="product_categ_id" position="before">
+                <separator/>
+                <field name="supplier_id"/>
+                <field name="ref_catalogue"/>
+                <field name="purchase_id"/>
+            </field>
+            <filter name="product-categ" position="before">
+                <filter string="Supplier" name="supplier" domain="[]"
+                    context="{'group_by':'supplier_id'}"/>
+                <filter string="Ref. Catalogue" name="ref_catalogue" domain="[]"
+                    context="{'group_by':'ref_catalogue'}"/>
+                <filter string="Purchase Order" name="puchase" domain="[]"
+                    context="{'group_by':'purchase_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="sale_order_line_editable_tree" model="ir.ui.view">
+        <field name="name">sale.order.line.editable.tree</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale_order_shorcut_line.sale_order_line_editable_tree" />
+        <field name="arch" type="xml">
+            <field name="product_categ_id" position="after">
+                <field name="ref_catalogue" optional="show" />
+                <field name="detailed_type" invisible="1"/>
+                <field name="product_supplier_ids" invisible="1"/>
+                <field name="product_supplier_id" optional="show"
+                    domain="[('id', 'in', product_supplier_ids)]"/>
+                <button name="create_purchase_order_for_product" class="text-warning" type="object"
+                    string="Create purchase order" icon="fa-bell-slash"
+                    attrs="{'invisible': ['|', ('product_supplier_id', '=', False), ('purchase_id', '!=', False)]}"/>
+                <field name="purchase_line_id" optional="show" readonly="1"/>
+                <field name="purchase_id" optional="show" readonly="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="model_sale_order_line_action_create_purchase" model="ir.actions.server">
+        <field name="name">Create purchase order</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="binding_model_id" ref="sale.model_sale_order_line"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_create_purchase_order_for_service()</field>
+    </record>
+</odoo>
