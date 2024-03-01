@@ -13,6 +13,19 @@
         </field>
     </record>
 
+    <record id="view_order_line_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field
+      name="inherit_id"
+      ref="sale.view_order_line_tree"
+    />
+        <field name="arch" type="xml">
+            <field name="order_partner_id" position="after">
+                <field name="partner_invoice_id" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
     <record id="sale_order_line_view_search" model="ir.ui.view">
         <field name="model">sale.order.line</field>
         <field
@@ -25,6 +38,11 @@
           name="group_date_order"
           string="Order Date"
           context="{'group_by': 'date_order'}"
+        />
+         <filter
+          name="group_partner_invoice"
+          string="Partner Invoice"
+          context="{'group_by': 'partner_invoice_id'}"
         />
             </filter>
         </field>
