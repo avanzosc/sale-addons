@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="group_show_private_note_in_sale" model="res.groups">
+        <field name="name">Show private note in sale orders</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+
+</odoo>
