@@ -17,4 +17,5 @@
     ],
     "installable": True,
     "auto_install": True,
+    "post_init_hook": "_post_install_put_cost_in_sales",
 }
