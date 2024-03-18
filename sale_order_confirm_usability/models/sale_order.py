@@ -62,13 +62,21 @@ class SaleOrder(models.Model):
             lambda c: c.state not in ("done", "cancel")
         ):
             picking.do_unreserve()
+            sale_lines = []
             picking.button_force_done_detailed_operations()
             for line in picking.move_line_ids_without_package:
-                if line.product_id:
-                    line.lot_id = line.move_id.sale_line_id.lot_id.id
-                    line.qty_done = (
+                if line.product_id and line.move_id and (
+                    line.move_id.sale_line_id
+                ) and line.move_id.sale_line_id not in sale_lines:
+                    sale_lines.append(line.move_id.sale_line_id)
+                    line.write({
+                        "lot_id": line.move_id.sale_line_id.lot_id.id,
+                        "qty_done": (
                         line.move_id.sale_line_id.product_uom_qty - (
-                            line.move_id.sale_line_id.qty_delivered))
+                            line.move_id.sale_line_id.qty_delivered)),
+                    })
+                else:
+                    line.qty_done = 0
             res = picking.button_validate()
             return res
 
