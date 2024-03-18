@@ -122,7 +122,7 @@
                                         <td/>
                                         <td/>
                                         <td/>
-                                        <td/>
+                                        <td name="total_inv_percentage_average_commission"/>
                                         <td/>
                                         <td class="text-right">
                                             <span t-esc="invoice_commissionable_tax_base"
@@ -149,7 +149,7 @@
                                     <td/>
                                     <td/>
                                     <td/>
-                                    <td/>
+                                    <td name="total_percentage_average_commission"/>
                                     <td/>
                                     <td class="text-right">
                                         <span t-esc="total_commissionable_tax_base"
@@ -276,7 +276,7 @@
                                         <td/>
                                         <td/>
                                         <td/>
-                                        <td/>
+                                        <td name="total_inv_percentage_average_commission"/>
                                         <td/>
                                         <td class="text-right">
                                             <span t-esc="invoice_commissionable_tax_base"
@@ -302,7 +302,7 @@
                                     </td>
                                     <td/>
                                     <td/>
-                                    <td/>
+                                    <td name="total_percentage_average_commission"/>
                                     <td/>
                                     <td/>
                                     <td class="text-right">
