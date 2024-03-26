@@ -2,16 +2,16 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Sale Import Wizard",
-    "version": "14.0.1.1.0",
+    "version": "12.0.1.1.0",
     "category": "Hidden/Tools",
     "license": "AGPL-3",
     "author": "AvanzOSC",
-    "website": "https://www.avanzosc.es/",
+    "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
-        "sale",
+        "sale_stock",
         "sales_team",
         "base_import_wizard",
-        "product_trim_name"
+        "sale_order_line_comment",
     ],
     "data": [
         "security/ir.model.access.csv",

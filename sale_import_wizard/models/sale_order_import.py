@@ -27,9 +27,11 @@ class SaleOrderImport(models.Model):
         string="Company",
         index=True,
         required=True,
-        default=lambda self: self.env.company.id,
+        default=lambda self: self.env.user.company_id.id
     )
-    warehouse_id = fields.Many2one(string="Warehouse", comodel_name="stock.warehouse")
+    warehouse_id = fields.Many2one(
+        string="Warehouse", comodel_name="stock.warehouse"
+    )
 
     def _get_line_values(self, row_values, datemode=False):
         self.ensure_one()
@@ -45,14 +47,28 @@ class SaleOrderImport(models.Model):
             customer_code = row_values.get("CodigoCliente", "")
             customer_reference = row_values.get("ReferenciaCliente", "")
             product_customer_code = row_values.get("CodigoProductoCliente", "")
-            invoice_address_name = row_values.get("NombreDireccionFacturacion", "")
-            invoice_address_code = row_values.get("CodigoDireccionFacturacion", "")
+            invoice_address_name = row_values.get(
+                "NombreDireccionFacturacion", ""
+            )
+            invoice_address_code = row_values.get(
+                "CodigoDireccionFacturacion", ""
+            )
             invoice_address_reference = row_values.get(
                 "ReferenciaDireccionFacturacion", ""
             )
-            delivery_address_name = row_values.get("NombreDireccionEnvio", "")
+            delivery_address_name = row_values.get(
+                "NombreDireccionEnvio", ""
+            )
             delivery_address_code = row_values.get("CodigoDireccionEnvio", "")
-            delivery_address_reference = row_values.get("ReferenciaDireccionEnvio", "")
+            delivery_address_reference = row_values.get(
+                "ReferenciaDireccionEnvio", ""
+            )
+            description = row_values.get(
+                "DescripcionPedido", ""
+            )
+            line_comment = row_values.get(
+                "DescripcionLinea", ""
+            )
             values.update(
                 {
                     "client_order_ref": convert2str(client_order_ref),
@@ -62,22 +78,36 @@ class SaleOrderImport(models.Model):
                     "customer_name": convert2str(customer_name),
                     "customer_code": convert2str(customer_code),
                     "customer_reference": convert2str(customer_reference),
-                    "product_customer_code": convert2str(product_customer_code),
+                    "product_customer_code": convert2str(
+                        product_customer_code
+                    ),
                     "invoice_address_name": convert2str(invoice_address_name),
                     "invoice_address_code": convert2str(invoice_address_code),
-                    "invoice_address_reference": convert2str(invoice_address_reference),
-                    "delivery_address_name": convert2str(delivery_address_name),
-                    "delivery_address_code": convert2str(delivery_address_code),
+                    "invoice_address_reference": convert2str(
+                        invoice_address_reference
+                    ),
+                    "delivery_address_name": convert2str(
+                        delivery_address_name
+                    ),
+                    "delivery_address_code": convert2str(
+                        delivery_address_code
+                    ),
                     "delivery_address_reference": convert2str(
                         delivery_address_reference
                     ),
-                    "date_order": convert2date(date_order) if date_order else False,
-                    "delivery_date": convert2date(delivery_date)
-                    if delivery_date
-                    else False,
+                    "date_order": convert2date(
+                        date_order
+                    ).date() if date_order else False,
+                    "delivery_date": convert2date(
+                        delivery_date
+                    ).date() if delivery_date else False,
                     "quantity": row_values.get("Cantidad", ""),
                     "price_unit": row_values.get("PrecioUnitario", ""),
-                    "total_order_amount": row_values.get("TotalImportePedido", ""),
+                    "total_order_amount": row_values.get(
+                        "TotalImportePedido", ""
+                    ),
+                    "description": convert2str(description),
+                    "line_comment": convert2str(line_comment),
                     "log_info": "",
                 }
             )
@@ -92,8 +122,10 @@ class SaleOrderImport(models.Model):
     def button_open_sale_order(self):
         self.ensure_one()
         orders = self.mapped("import_line_ids.sale_order_id")
-        action = self.env["ir.actions.actions"]._for_xml_id("sale.action_quotations")
-        action["domain"] = expression.AND(
-            [[("id", "in", orders.ids)], safe_eval(action.get("domain") or "[]")]
+        action = self.env.ref("sale.action_quotations")
+        action_dict = action.read()[0] if action else {}
+        domain = expression.AND(
+            [[("id", "in", orders.ids)], safe_eval(action.domain or "[]")]
         )
-        return action
+        action_dict.update({"domain": domain})
+        return action_dict
