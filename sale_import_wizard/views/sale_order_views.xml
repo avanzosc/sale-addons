@@ -4,12 +4,12 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_quotation_tree"/>
         <field name="arch" type="xml">
-            <field name="create_date" position="after">
-                <field name="sale_import_id" optional="show"/>
+            <field name="message_needaction" position="after">
+                <field name="sale_import_id"/>
             </field>
-            <field name="amount_untaxed" position="before">
-                <field name="different_amounts" optional="show"/>
-                <field name="total_amount_from_import" optional="show"/>
+            <field name="amount_total" position="before">
+                <field name="different_amounts"/>
+                <field name="total_amount_from_import"/>
             </field>
         </field>
     </record>
@@ -18,12 +18,12 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_tree"/>
         <field name="arch" type="xml">
-            <field name="date_order" position="before">
-                <field name="sale_import_id" optional="show"/>
+            <field name="expected_date" position="before">
+                <field name="sale_import_id"/>
             </field>
-            <field name="amount_untaxed" position="before">
-                <field name="different_amounts" optional="show"/>
-                <field name="total_amount_from_import" optional="show"/>
+            <field name="amount_total" position="before">
+                <field name="different_amounts"/>
+                <field name="total_amount_from_import"/>
             </field>
         </field>
     </record>
@@ -49,15 +49,15 @@
         <field name="inherit_id" ref="sale.view_sales_order_filter"/>
         <field name="arch" type="xml">
             <filter name="my_sale_orders_filter" position="before">
-                <field name="sale_import_id" />
+                <field name="sale_import_id"/>
             </filter>
             <filter name="my_sale_orders_filter" position="after">
                 <filter string="From sales import"
                     name="filter-from_sales_import"
-                    domain="[('sale_import_id', '!=', False)]" />
+                    domain="[('sale_import_id', '!=', False)]"/>
                 <filter string="From sales import with different amounts"
                     name="filter-from_sales_import"
-                    domain="[('sale_import_id', '!=', False), ('different_amounts', '=', True)]" />
+                    domain="[('sale_import_id', '!=', False), ('different_amounts', '=', True)]"/>
             </filter>
         </field>
     </record>

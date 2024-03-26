@@ -153,6 +153,16 @@ class SaleOrderImportLine(models.Model):
         states={"done": [("readonly", True)]},
         copy=False,
     )
+    description = fields.Text(
+        string="Description",
+        states={"done": [("readonly", True)]},
+        copy=False,
+    )
+    line_comment = fields.Text(
+        string="Line Commend",
+        states={"done": [("readonly", True)]},
+        copy=False,
+    )
 
     def action_validate(self):
         super().action_validate()
@@ -361,9 +371,10 @@ class SaleOrderImportLine(models.Model):
                 search_domain = []
                 if address_name:
                     literal = "%{}%".format(address_name)
-                    search_domain.append(
+                    search_domain = [
                         "|", ("name", "=ilike", address_name),
-                        ("name", "=ilike", literal))
+                        ("name", "=ilike", literal)
+                    ]
                 if address_reference:
                     search_domain.append(
                         ("ref", "=", address_reference))
@@ -391,16 +402,16 @@ class SaleOrderImportLine(models.Model):
                                  ("barcode", "=", self.product_barcode)]
         elif self.product_name and not self.product_code:
             if not self.product_barcode:
-                search_domain = [("trim_name", "=ilike", name)]
+                search_domain = [("name", "=ilike", name)]
             else:
-                search_domain = ["|", ("trim_name", "=ilike", name),
+                search_domain = ["|", ("name", "=ilike", name),
                                  ("barcode", "=", self.product_barcode)]
         elif self.product_code and self.product_name:
             if not self.product_barcode:
-                search_domain = ["|", ("trim_name", "=ilike", name),
+                search_domain = ["|", ("name", "=ilike", name),
                                  ("default_code", "=", self.product_code)]
             else:
-                search_domain = ["|", ("trim_name", "=ilike", name),
+                search_domain = ["|", ("name", "=ilike", name),
                                  "|", ("default_code", "=", self.product_code),
                                  ("barcode", "=", self.product_barcode)]
         elif not self.product_code and not self.product_name:
@@ -415,7 +426,7 @@ class SaleOrderImportLine(models.Model):
                 search_domain = []
                 if self.product_name:
                     search_domain.append(
-                        ("trim_name", "=ilike", name))
+                        ("name", "=ilike", name))
                 if self.product_code:
                     search_domain.append(
                         ("default_code", "=", self.product_code))
@@ -572,7 +583,8 @@ class SaleOrderImportLine(models.Model):
     def _sale_order_values(self):
         values = {"partner_id": self.sale_customer_id.id,
                   "company_id": self.company_id.id,
-                  "sale_import_id": self.import_id.id}
+                  "sale_import_id": self.import_id.id,
+                  "note": self.description}
         if self.date_order:
             date_order = "{} 08:00:00".format(
                 fields.Date.to_string(self.date_order))
@@ -613,5 +625,6 @@ class SaleOrderImportLine(models.Model):
             "product_id": self.sale_product_id.id,
             "product_uom": self.sale_product_id.uom_id.id,
             "product_uom_qty": self.quantity,
-            "price_unit": self.price_unit}
+            "price_unit": self.price_unit,
+            "line_comment": self.line_comment}
         return values

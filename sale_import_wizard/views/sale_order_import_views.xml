@@ -104,6 +104,10 @@
                       >Delivery Date</b></li>
                                         <li><code>TotalImportePedido</code>: this will fill <b
                       >Total amount from import</b></li>
+                                        <li><code>Descripcion</code>: this will fill <b
+                      >Sale Note</b></li>
+                                        <li><code>DescripcionLinea</code>: this will fill <b
+                      >Sale Line Comment</b></li>
                                     </ul>
                                 </div>
                             </group>
