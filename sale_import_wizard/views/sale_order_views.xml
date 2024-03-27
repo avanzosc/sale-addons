@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="message_needaction" position="after">
+                <field name="sale_import_id"/>
+            </field>
+            <field name="amount_total" position="before">
+                <field name="different_amounts"/>
+                <field name="total_amount_from_import"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="expected_date" position="before">
+                <field name="sale_import_id"/>
+            </field>
+            <field name="amount_total" position="before">
+                <field name="different_amounts"/>
+                <field name="total_amount_from_import"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_shipping_id" position="after">
+                <field name="different_amounts" invisible="1"/>
+                <field name="sale_import_id"
+                    attrs="{'invisible': [('sale_import_id', '=', False)]}"/>
+                <field name="total_amount_from_import" style="color:Red;"
+                    attrs="{'invisible': ['|',('total_amount_from_import', '=', 0), ('different_amounts', '=', False)]}"/>
+                <field name="total_amount_from_import"
+                    attrs="{'invisible': ['|',('total_amount_from_import', '=', 0), ('different_amounts', '=', True)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="before">
+                <field name="sale_import_id"/>
+            </filter>
+            <filter name="my_sale_orders_filter" position="after">
+                <filter string="From sales import"
+                    name="filter-from_sales_import"
+                    domain="[('sale_import_id', '!=', False)]"/>
+                <filter string="From sales import with different amounts"
+                    name="filter-from_sales_import"
+                    domain="[('sale_import_id', '!=', False), ('different_amounts', '=', True)]"/>
+            </filter>
+        </field>
+    </record>
+</odoo>
