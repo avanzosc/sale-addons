@@ -30,6 +30,8 @@
                     <separator/>
                     <filter name="group_status" string="Status"
                         context="{'group_by': 'state'}"/>
+                    <filter name="group_log_info" string="Log Info"
+                        context="{'group_by': 'log_info'}"/>
                 </group>
             </search>
         </field>
