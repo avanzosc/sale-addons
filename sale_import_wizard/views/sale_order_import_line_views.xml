@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_import_line_view_search" model="ir.ui.view">
+        <field name="model">sale.order.import.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sale_product_id"/>
+                <field name="sale_customer_id"/>
+                <field name="sale_invoice_address_id"/>
+                <field name="sale_delivery_address_id"/>
+                <separator/>
+                <filter string="Errored" name="error"
+                    domain="[('state', '=', 'error')]"/>
+                <separator/>
+                <filter string="To Create" name="2create"
+                    domain="[('action', '=', 'create')]"/>
+                <group expand="0" name="group_by" string="Group By">
+                    <filter name="group_product"
+                        string="Product"
+                        context="{'group_by': 'sale_product_id'}"/>
+                    <filter name="group_sale_customer_id"
+                        string="Customer"
+                        context="{'group_by': 'sale_customer_id'}"/>
+                    <filter name="group_invoice_address"
+                        string="Invoice Address"
+                        context="{'group_by': 'sale_invoice_address_id'}"/>
+                    <filter name="group_delivery_address"
+                        string="Delivery Address"
+                        context="{'group_by': 'sale_delivery_address_id'}"/>
+                    <separator/>
+                    <filter name="group_status" string="Status"
+                        context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="sale_order_import_line_view_form" model="ir.ui.view">
+        <field name="model">sale.order.import.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_validate" string="Validate" type="object"
+                        class="oe_read_only" states="2validate,error"/>
+                    <button name="action_process" string="Process" type="object"
+                        class="oe_read_only" states="error,pass"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="client_order_ref"/>
+                            <field name="product_name"/>
+                            <field name="product_code"/>
+                            <field name="product_barcode"/>
+                            <field name="customer_name"/>
+                            <field name="customer_code"/>
+                            <field name="customer_reference"/>
+                            <field name="product_customer_code"/>
+                            <field name="invoice_address_name"/>
+                            <field name="invoice_address_code"/>
+                            <field name="invoice_address_reference"/>
+                            <field name="delivery_address_name"/>
+                            <field name="delivery_address_code"/>
+                            <field name="delivery_address_reference"/>
+                            <field name="date_order"/>
+                            <field name="delivery_date"/>
+                            <field name="quantity"/>
+                            <field name="price_unit"/>
+                            <field name="total_order_amount"/>
+                            <field name="description"/>
+                            <field name="line_comment"/>
+                            <field name="state"/>
+                        </group>
+                        <group>
+                            <field name="sale_product_id"/>
+                            <field name="sale_customer_id"/>
+                            <field name="sale_invoice_address_id"/>
+                            <field name="sale_delivery_address_id"/>
+                        </group>
+                    </group>
+                    <field name="log_info"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_order_import_line_view_tree" model="ir.ui.view">
+        <field name="model">sale.order.import.line</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="state == 'error'"
+                    decoration-muted="state == 'done'"
+                    decoration-it="log_info"
+                    editable="top" >
+                <field name="action"/>
+                <field name="client_order_ref"/>
+                <field name="product_name"/>
+                <field name="product_code"/>
+                <field name="product_barcode"/>
+                <field name="product_customer_code"/>
+                <field name="sale_product_id"/>
+                <field name="customer_name"/>
+                <field name="customer_code"/>
+                <field name="customer_reference"/>
+                <field name="sale_customer_id"/>
+                <field name="invoice_address_name"/>
+                <field name="invoice_address_code"/>
+                <field name="invoice_address_reference"/>
+                <field name="sale_invoice_address_id"/>
+                <field name="delivery_address_name"/>
+                <field name="delivery_address_code"/>
+                <field name="delivery_address_reference"/>
+                <field name="sale_delivery_address_id"/>
+                <field name="date_order"/>
+                <field name="delivery_date"/>
+                <field name="quantity"/>
+                <field name="price_unit"/>
+                <field name="total_order_amount"/>
+                <field name="description"/>
+                <field name="line_comment"/>
+                <field name="state"/>
+                <field name="log_info"/>
+                <field name="sale_order_id" invisible="1"/>
+                <field name="sale_customer_id" invisible="1"/>
+                <field name="sale_invoice_address_id" invisible="1"/>
+                <field name="sale_delivery_address_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_order_import_line_action" model="ir.actions.act_window">
+        <field name="name">Import Sale Order Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.import.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="sale_order_import_line_view_tree"/>
+    </record>
+</odoo>
