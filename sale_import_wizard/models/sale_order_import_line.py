@@ -281,6 +281,9 @@ class SaleOrderImportLine(models.Model):
 
     def _check_customer(self, data):
         log_info = data.get("log_info")
+        if self.sale_customer_id:
+            data["sale_customer"] = self.sale_customer_id
+            return data
         data, customer = self._search_customer(
             data, self.customer_reference, self.customer_name)
         if not customer:
@@ -338,6 +341,9 @@ class SaleOrderImportLine(models.Model):
         return data, customer
 
     def _check_product(self, data):
+        if self.sale_product_id:
+            data["sale_product"] = self.sale_product_id
+            return data
         log_info = data.get("log_info")
         product_obj = self.env["product.product"]
         search_domain = []
@@ -568,8 +574,11 @@ class SaleOrderImportLine(models.Model):
         values = self._sale_order_line_values()
         sale.order_line = [(0, 0, values)]
         for line in sale.order_line:
+            price_unit = line.price_unit
             line.product_id_change()
             line.product_uom_change()
+            if price_unit:
+                line.price_unit = price_unit
 
     def _sale_order_line_values(self):
         values = {
