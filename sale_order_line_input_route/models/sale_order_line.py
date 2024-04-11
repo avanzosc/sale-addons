@@ -9,6 +9,9 @@ class SaleOrderLine(models.Model):
 
     product_route_ids = fields.Many2many(
         comodel_name="stock.location.route",
-        column1="line_id", column2="route_id",
+        column1="line_id",
+        column2="route_id",
         relation="rel_stock_route_sale_line",
-        related="product_id.route_ids", string="Routes", store=True)
+        related="product_id.route_ids",
+        string="Routes",
+    )
