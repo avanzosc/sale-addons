@@ -13,7 +13,6 @@
     ],
     "data": [
         "views/product_template_view.xml",
-        "views/sale_order_view.xml",
         "views/sale_order_line_view.xml",
         "views/purchase_order_view.xml",
         "views/stock_move_line_view.xml",
