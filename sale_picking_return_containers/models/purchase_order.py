@@ -43,8 +43,3 @@ class PurchaseOrder(models.Model):
                             lines.mapped("pending_qty")) * line.price_unit,
                         "order_id": self.id,
                         "sale_order_line_ids": [(6, 0, lines.ids)]})
-
-    def action_create_invoice(self):
-        result = super(PurchaseOrder, self.with_context(
-            is_devolution=self.is_devolution)).action_create_invoice()
-        return result
