@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_wiz_duplicate_sale_line_user,wiz.duplicate.sale.line.user,model_wiz_duplicate_sale_line,sales_team.group_sale_salesman,1,1,1,1
-access_wiz_change_sequence_in_sale_line_user,wiz.change.sequence.in.sale.line.user,model_wiz_change_sequence_in_sale_line,sales_team.group_sale_salesman,1,1,1,1

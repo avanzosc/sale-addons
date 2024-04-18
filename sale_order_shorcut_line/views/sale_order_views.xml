@@ -14,9 +14,6 @@
                     </div>
                 </button>
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='sequence']" position="after">
-                <field name="sequence_to_view" readonly="1" optional="show"/>
-            </xpath>
         </field>
     </record>
 
