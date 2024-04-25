@@ -82,8 +82,9 @@ class SaleOrder(models.Model):
 
     def button_create_invoice_and_paid(self):
         self.ensure_one()
-        if not self.invoice_ids:
-            self._create_invoices()
+        vals = {'advance_payment_method': 'delivered'}
+        sale_payment = self.env['sale.advance.payment.inv'].create(vals)
+        sale_payment.with_context(active_ids=self.ids).create_invoices()
         for invoice in self.invoice_ids:
             if invoice.state == "draft":
                 invoice.action_post()
