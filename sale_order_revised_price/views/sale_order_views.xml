@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <odoo>
+      <data>
+          <record id="view_order_form" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="sale_order_template_id" position="after">
+                    <field name="revised_price" />
+                </field>
+            </field>
+          </record>
+
+          <record id="view_order_tree" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="revised_price" optional="show"/>
+                </field>
+            </field>
+          </record>
+
+          <record id="view_quotation_tree" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="revised_price" optional="show"/>
+                </field>
+            </field>
+          </record>
+
+          <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <filter name="activities_upcoming_all" position="after">
+                    <separator/>
+                    <filter name="revised-price" string="Revised price"
+                        domain="[('revised_price','=', True)]" />
+                    <filter name="no-revised-price" string="NO Revised price"
+                        domain="[('revised_price','=', False)]" />
+                </filter>
+                <filter name="order_month" position="after">
+                    <filter name="group-revised-price" string="Revised price"
+                        domain="[]" context="{'group_by':'revised_price'}"/>
+                </filter>
+            </field>
+          </record>
+  </data>
+</odoo>
