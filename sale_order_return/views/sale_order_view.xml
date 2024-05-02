@@ -20,6 +20,9 @@
                     <t t-esc="record.product_uom.value"/>
                 </span>
             </xpath>
+            <button name="button_return_picking" position="attributes">
+                <attribute name="attrs">{'invisible': [('picking_count', '>', 1)]}</attribute>
+            </button>
         </field>
     </record>
 </odoo>
