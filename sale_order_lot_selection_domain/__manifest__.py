@@ -9,6 +9,7 @@
     "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
         "sale_order_lot_selection",
+        "sale_order_type_picking"
     ],
     "data": [
         "views/sale_order_view.xml",
