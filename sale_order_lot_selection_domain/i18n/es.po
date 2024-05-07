@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-16 14:34+0000\n"
-"PO-Revision-Date: 2023-02-16 14:34+0000\n"
+"POT-Creation-Date: 2024-05-02 07:17+0000\n"
+"PO-Revision-Date: 2024-05-02 07:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,11 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: sale_order_lot_selection_domain
+#: model:ir.model.fields,help:sale_order_lot_selection_domain.field_sale_order_line__tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr "Garantice la trazabilidad de un producto almacenable en su almacén."
+
+#. module: sale_order_lot_selection_domain
 #: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_line__id
 msgid "ID"
 msgstr "Identificador"
@@ -31,6 +36,16 @@ msgid "Last Modified on"
 msgstr "Última modificación el"
 
 #. module: sale_order_lot_selection_domain
+#: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_line__possible_lot_ids
+msgid "Possible Lot"
+msgstr "Lotes posibles"
+
+#. module: sale_order_lot_selection_domain
 #: model:ir.model,name:sale_order_lot_selection_domain.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
+
+#. module: sale_order_lot_selection_domain
+#: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_line__tracking
+msgid "Tracking"
+msgstr "Seguimiento"
