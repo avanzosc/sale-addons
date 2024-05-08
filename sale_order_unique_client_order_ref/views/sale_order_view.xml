@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_order_form_inh_uniq_ref_desc">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <field name="client_order_ref" position="after">
+                    <field name="control_unique_client_order_ref" />
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
