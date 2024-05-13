@@ -37,7 +37,6 @@ class SaleOrderLine(models.Model):
                             self.env["stock.move.line"].create(
                                 move._prepare_move_line_vals()
                             )
-                        print(picking.name)
                         if not picking.move_ids_without_package:
                             picking.unlink()
         return line
