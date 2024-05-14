@@ -8,7 +8,15 @@
                 <field name="tracking" invisible="1"/>
                 <field name="possible_lot_ids" force_save="1" invisible="1"/>
             </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='lot_id']" position="before">
+                <field name="tracking" invisible="1"/>
+                <field name="possible_lot_ids" force_save="1" invisible="1"/>
+            </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='lot_id']" position="attributes">
+                <attribute name="attrs">{'readonly': [('tracking', '=', 'none')]}</attribute>
+                <attribute name="domain">[('id', 'in', possible_lot_ids)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='lot_id']" position="attributes">
                 <attribute name="attrs">{'readonly': [('tracking', '=', 'none')]}</attribute>
                 <attribute name="domain">[('id', 'in', possible_lot_ids)]</attribute>
             </xpath>
