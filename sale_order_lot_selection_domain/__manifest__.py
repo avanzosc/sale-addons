@@ -13,6 +13,7 @@
     ],
     "data": [
         "views/sale_order_view.xml",
+        "views/sale_order_type_view.xml",
     ],
     'installable': True,
 }
