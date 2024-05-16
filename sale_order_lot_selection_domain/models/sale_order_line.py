@@ -1,6 +1,6 @@
 # Copyright 2022 Berezi Amubieta - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -46,10 +46,7 @@ class SaleOrderLine(models.Model):
                         ("product_id", "=", line.product_id.id),
                         ("company_id", "=", line.company_id.id)
                     ])
-                    for lot in lots:
-                        qty = lot.product_qty
-                        if qty > 0:
-                            lot_ids += lot
+                    lot_ids += lots
             if lot_ids:
                 line.possible_lot_ids = [(6, 0, lot_ids.ids)]
             else:
