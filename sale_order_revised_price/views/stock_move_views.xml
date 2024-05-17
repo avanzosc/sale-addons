@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <odoo>
+      <data>
+          <record id="view_move_tree_receipt_picking" model="ir.ui.view">
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree_receipt_picking"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="revised_price" optional="show" readonly="1"/>
+                </field>
+            </field>
+          </record>
+
+          <record id="view_move_tree" model="ir.ui.view">
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree"/>
+            <field name="arch" type="xml">
+                <field name="product_uom" position="after">
+                    <field name="revised_price" optional="show" readonly="1"/>
+                </field>
+            </field>
+          </record>
+
+          <record id="view_picking_move_tree" model="ir.ui.view">
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_picking_move_tree"/>
+            <field name="arch" type="xml">
+                <field name="product_uom" position="after">
+                    <field name="revised_price" optional="show" readonly="1"/>
+                </field>
+            </field>
+          </record>
+
+          <record id="view_move_search" model="ir.ui.view">
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_search"/>
+            <field name="arch" type="xml">
+                <filter name="done" position="after">
+                    <separator/>
+                    <filter name="revised-price" string="Revised price"
+                        domain="[('revised_price','=', True)]" />
+                    <filter name="no-revised-price" string="NO Revised price"
+                        domain="[('revised_price','=', False)]" />
+                    <separator/>
+                </filter>
+                <filter name="groupby_date" position="after">
+                    <filter name="groupby-revised_price" string="Revised price"
+                        domain="[]" context="{'group_by':'revised_price'}"/>
+                </filter>
+            </field>
+          </record>
+  </data>
+</odoo>
