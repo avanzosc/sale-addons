@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_account_payment_search" model="ir.ui.view">
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_search"/>
+        <field name="arch" type="xml">
+            <filter name="date" position="after">
+                <filter string="Today" name="today" domain="[('date','&gt;', (datetime.datetime.combine(context_today(), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d %H:%M:%S'))]"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record id="action_my_account_payment" model="ir.actions.act_window">
+        <field name="name">My Payments</field>
+        <field name="res_model">account.payment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('payment_type', '=', 'inbound'), ('invoice_user_id', '=', uid)]</field>
+        <field name="context">{"search_default_today": 1}</field>
+    </record>
+
+    <menuitem id="deliverymen_menu_my_payments" name="My Payments" parent="deliverymen_menu" sequence="10"/>
+
+    <menuitem action="action_my_account_payment" name="My Payments" id="menu_my_payments" parent="deliverymen_menu_my_payments" sequence="5"/>
+
+</odoo>
