@@ -14,7 +14,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/kanban/field[@name='price_unit']" position="before">
+            <xpath expr="//field[@name='order_line']/kanban//field[@name='price_unit']" position="before">
                 <field name="qty_delivered"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/kanban//t[@t-esc='record.product_uom.value']/.." position="after">
