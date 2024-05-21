@@ -68,7 +68,7 @@ class SaleOrder(models.Model):
                 picking.group_id = self.procurement_group_id.id
                 picking.action_confirm()
                 entry_picking.action_cancel()
-                entry_picking.unlink()
+                entry_picking.sudo().unlink()
                 return picking.button_validate()
         else:
             picking_act = super(SaleOrder, self).button_return_picking()
