@@ -92,7 +92,7 @@
         <field name="name">Sales</field>
         <field name="res_model">sale.order</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="domain">[('not_route_type', '=', False)]</field>
         <field name="context">{"search_default_sale_type": 1, "default_deliverement_menu": True, "search_default_pending_delivery": 1}</field>
     </record>
@@ -101,7 +101,7 @@
         <field name="name">My Sales</field>
         <field name="res_model">sale.order</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="domain">[('not_route_type', '=', False), ('user_id', '=', uid)]</field>
         <field name="context">{"default_deliverement_menu": True, "search_default_pending_delivery": 1}</field>
     </record>
