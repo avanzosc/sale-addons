@@ -6,14 +6,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-17 06:36+0000\n"
-"PO-Revision-Date: 2024-05-17 06:36+0000\n"
+"POT-Creation-Date: 2024-05-22 11:05+0000\n"
+"PO-Revision-Date: 2024-05-22 11:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: custom_sale_order_type_route
+#: model:ir.actions.act_window,name:custom_sale_order_type_route.action_carry_stock_picking
+#: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_carry_pickings
+#: model:ir.ui.menu,name:custom_sale_order_type_route.menu_carry_pickings
+msgid "Carry Pickings"
+msgstr "Cargas de hoy"
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking__is_carry_type
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking_type__is_carry_type
+msgid "Carry Type"
+msgstr "Tipo carga"
 
 #. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__deliverement_menu
@@ -28,20 +41,33 @@ msgstr "Repartidor"
 #. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_type__display_name
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking_type__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__id
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_type__id
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking__id
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking_type__id
 msgid "ID"
 msgstr "Identificador"
 
 #. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_type____last_update
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking_type____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
+
+#. module: custom_sale_order_type_route
+#: model:ir.actions.act_window,name:custom_sale_order_type_route.action_my_account_move
+#: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_my_invoices
+#: model:ir.ui.menu,name:custom_sale_order_type_route.menu_my_invoices
+msgid "My Invoices"
+msgstr "Mis facturas"
 
 #. module: custom_sale_order_type_route
 #: model:ir.actions.act_window,name:custom_sale_order_type_route.action_my_account_payment
@@ -64,6 +90,11 @@ msgid "Not Route Type"
 msgstr "No es tipo ruta"
 
 #. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_stock_picking_type
+msgid "Picking Type"
+msgstr "Tipo de albarán"
+
+#. module: custom_sale_order_type_route
 #: model:ir.actions.act_window,name:custom_sale_order_type_route.action_route_type_sales
 #: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_sales
 #: model:ir.ui.menu,name:custom_sale_order_type_route.menu_route_type_sales
@@ -77,8 +108,14 @@ msgstr "Pedido de venta"
 
 #. module: custom_sale_order_type_route
 #: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.view_account_payment_search
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.view_picking_internal_search
 msgid "Today"
 msgstr "Hoy"
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
 
 #. module: custom_sale_order_type_route
 #: model:ir.model,name:custom_sale_order_type_route.model_sale_order_type

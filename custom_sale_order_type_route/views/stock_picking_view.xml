@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_picking_internal_search" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <filter name="activities_exception" position="after">
+                <filter string="Today" name="today" domain="[('custom_date_done','&gt;', (datetime.datetime.combine(context_today(), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d %H:%M:%S'))]"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record id="action_carry_stock_picking" model="ir.actions.act_window">
+        <field name="name">Carry Pickings</field>
+        <field name="res_model">stock.picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_carry_type', '=', True)]</field>
+        <field name="context">{"search_default_today": 1}</field>
+    </record>
+
+    <menuitem id="deliverymen_menu_carry_pickings" name="Carry Pickings" parent="deliverymen_menu" sequence="15"/>
+
+    <menuitem action="action_carry_stock_picking" name="Carry Pickings" id="menu_carry_pickings" parent="deliverymen_menu_carry_pickings" sequence="5"/>
+
+</odoo>
