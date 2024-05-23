@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="action_my_account_move" model="ir.actions.act_window">
+        <field name="name">My Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('move_type', 'in', ('out_invoice', 'out_refund')), ('payment_state', 'in', ('not_paid', 'partial')), ('invoice_user_id', '=', uid)]</field>
+        <field name="context"></field>
+    </record>
+
+    <menuitem id="deliverymen_menu_my_invoices" name="My Invoices" parent="deliverymen_menu" sequence="15"/>
+
+    <menuitem action="action_my_account_move" name="My Invoices" id="menu_my_invoices" parent="deliverymen_menu_my_invoices" sequence="5"/>
+
+</odoo>
