@@ -8,6 +8,17 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    def button_confirm_pickings(self):
+        result = super(SaleOrder, self).button_confirm_pickings()
+        for line in self.order_line:
+            if line.product_id and (
+                line.product_id.tracking != "none") and not (
+                    line.lot_id) and line.return_qty:
+                raise ValidationError(
+                    _("The product {} has not lot").format(
+                        line.product_id.name))
+        return result
+
     def button_return_picking(self):
         if not self.picking_ids and any(
             [line.product_uom_qty != 0 for line in self.order_line]
