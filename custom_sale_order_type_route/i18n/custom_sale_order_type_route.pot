@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-22 11:04+0000\n"
-"PO-Revision-Date: 2024-05-22 11:04+0000\n"
+"POT-Creation-Date: 2024-06-19 07:43+0000\n"
+"PO-Revision-Date: 2024-06-19 07:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_move_line__burden_partner_id
+msgid "Burden Partner"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_type__burden_picking_type
+msgid "Burden Picking Type"
+msgstr ""
 
 #. module: custom_sale_order_type_route
 #: model:ir.actions.act_window,name:custom_sale_order_type_route.action_carry_stock_picking
@@ -29,6 +39,27 @@ msgid "Carry Type"
 msgstr ""
 
 #. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model_terms:ir.actions.act_window,help:custom_sale_order_type_route.action_my_route_type_sales
+#: model_terms:ir.actions.act_window,help:custom_sale_order_type_route.action_route_type_sales
+msgid "Crear nuevos Pedido de Venta"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model_terms:ir.actions.act_window,help:custom_sale_order_type_route.action_my_account_move
+msgid "Crear nuevos documento"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.actions.server,name:custom_sale_order_type_route.action_create_burden_picking
+msgid "Create Burden Picking"
+msgstr ""
+
+#. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__deliverement_menu
 msgid "Deliverement Menu"
 msgstr ""
@@ -39,24 +70,33 @@ msgid "Deliverymen"
 msgstr ""
 
 #. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__display_name
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_type__display_name
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_move_line__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking_type__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner__id
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__id
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line__id
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_type__id
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_move_line__id
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking__id
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking_type__id
 msgid "ID"
 msgstr ""
 
 #. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order____last_update
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_type____last_update
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_move_line____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking_type____last_update
 msgid "Last Modified on"
@@ -95,6 +135,11 @@ msgid "Picking Type"
 msgstr ""
 
 #. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: custom_sale_order_type_route
 #: model:ir.actions.act_window,name:custom_sale_order_type_route.action_route_type_sales
 #: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_sales
 #: model:ir.ui.menu,name:custom_sale_order_type_route.menu_route_type_sales
@@ -104,6 +149,53 @@ msgstr ""
 #. module: custom_sale_order_type_route
 #: model:ir.model,name:custom_sale_order_type_route.model_sale_order
 msgid "Sales Order"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner__special_burden
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_users__special_burden
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__special_burden
+msgid "Special Burden"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line__special_partner_id
+msgid "Special Partner"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
+#, python-format
+msgid "The burden picking type has not destination location."
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
+#, python-format
+msgid "The burden picking type has not source location."
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
+#, python-format
+msgid "The product {} of sale {} needs lot."
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
+#, python-format
+msgid "The sale order has not type."
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
+#, python-format
+msgid "The sale order type has not burden picking type."
 msgstr ""
 
 #. module: custom_sale_order_type_route

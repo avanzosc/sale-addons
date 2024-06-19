@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <field name="incoterm_id" position="after">
                 <field name="not_route_type"/>
+                <field name="burden_picking_type" domain="[('is_carry_type', '=', True)]"/>
             </field>
         </field>
     </record>
