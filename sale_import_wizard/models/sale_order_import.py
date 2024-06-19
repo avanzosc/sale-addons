@@ -44,14 +44,10 @@ class SaleOrderImport(models.Model):
             product_code = row_values.get("CodigoProducto", "")
             product_barcode = row_values.get("CodigoBarrasProducto", "")
             customer_name = row_values.get("NombreCliente", "")
-            customer_code = row_values.get("CodigoCliente", "")
             customer_reference = row_values.get("ReferenciaCliente", "")
             product_customer_code = row_values.get("CodigoProductoCliente", "")
             invoice_address_name = row_values.get(
                 "NombreDireccionFacturacion", ""
-            )
-            invoice_address_code = row_values.get(
-                "CodigoDireccionFacturacion", ""
             )
             invoice_address_reference = row_values.get(
                 "ReferenciaDireccionFacturacion", ""
@@ -59,7 +55,6 @@ class SaleOrderImport(models.Model):
             delivery_address_name = row_values.get(
                 "NombreDireccionEnvio", ""
             )
-            delivery_address_code = row_values.get("CodigoDireccionEnvio", "")
             delivery_address_reference = row_values.get(
                 "ReferenciaDireccionEnvio", ""
             )
@@ -76,21 +71,16 @@ class SaleOrderImport(models.Model):
                     "product_code": convert2str(product_code),
                     "product_barcode": convert2str(product_barcode),
                     "customer_name": convert2str(customer_name),
-                    "customer_code": convert2str(customer_code),
                     "customer_reference": convert2str(customer_reference),
                     "product_customer_code": convert2str(
                         product_customer_code
                     ),
                     "invoice_address_name": convert2str(invoice_address_name),
-                    "invoice_address_code": convert2str(invoice_address_code),
                     "invoice_address_reference": convert2str(
                         invoice_address_reference
                     ),
                     "delivery_address_name": convert2str(
                         delivery_address_name
-                    ),
-                    "delivery_address_code": convert2str(
-                        delivery_address_code
                     ),
                     "delivery_address_reference": convert2str(
                         delivery_address_reference
