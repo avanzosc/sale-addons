@@ -1,17 +1,20 @@
 # Copyright 2023 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import fields, models, _
+from odoo import _, fields, models
 
 
 class StockProductionLot(models.Model):
     _inherit = "stock.production.lot"
 
     sale_line_ids = fields.One2many(
-        string="Sale lines", comodel_name="sale.order.line",
-        inverse_name="spare_serial_number_id", copy=False)
+        string="Sale lines",
+        comodel_name="sale.order.line",
+        inverse_name="spare_serial_number_id",
+        copy=False,
+    )
     count_sale_lines = fields.Integer(
-        string="Count sale lines",
-        compute="_compute_count_sale_lines")
+        string="Count sale lines", compute="_compute_count_sale_lines"
+    )
 
     def _compute_count_sale_lines(self):
         for lot in self:

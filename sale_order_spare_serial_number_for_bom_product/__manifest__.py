@@ -8,7 +8,7 @@
         "stock",
         "mrp",
     ],
-    "author":  "AvanzOSC",
+    "author": "AvanzOSC",
     "license": "AGPL-3",
     "website": "https://github.com/avanzosc/sale-addons",
     "data": [
