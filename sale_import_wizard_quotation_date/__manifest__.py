@@ -6,13 +6,9 @@
     "category": "Hidden/Tools",
     "license": "AGPL-3",
     "author": "AvanzOSC",
-    "website": "https://www.avanzosc.es/",
-    "depends": [
-        "sale_import_wizard",
-        "sale_order_quotation_date"
-    ],
-    "data": [
-    ],
+    "website": "https://github.com/avanzosc/sale-addons",
+    "depends": ["sale_import_wizard", "sale_order_quotation_date"],
+    "data": [],
     "installable": True,
     "auto_install": True,
 }
