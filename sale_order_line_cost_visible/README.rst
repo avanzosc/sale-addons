@@ -7,7 +7,7 @@ Sale order line cost visible
 ============================
 
 * Show "Cost", and "Margin" fields in sale order line, if the user is in the
-group "Visible costs and margin in sale lines".
+  group "Visible costs and margin in sale lines".
 
 Bug Tracker
 ===========

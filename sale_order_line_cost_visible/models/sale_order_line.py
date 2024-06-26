@@ -7,4 +7,5 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     purchase_price = fields.Float(
-        groups="product_cost_visible.group_product_cost_visible")
+        groups="product_cost_visible.group_product_cost_visible"
+    )
