@@ -10,15 +10,15 @@
         "sale",
         "sale_management",
     ],
-    "author":  "AvanzOSC",
+    "author": "AvanzOSC",
     "license": "AGPL-3",
     "summary": """Sale Invoice Lines History""",
-    "website": "https://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/sale-addons",
     "data": [
         "views/invoice_history_view.xml",
         "views/sale_history_view.xml",
         "security/ir.model.access.csv",
-        ],
+    ],
     "installable": True,
     "auto_install": False,
 }

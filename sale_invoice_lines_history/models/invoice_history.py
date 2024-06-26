@@ -24,8 +24,9 @@ class InvoiceHistory(models.Model):
     partner = fields.Char(string="Partner")
     partner_id = fields.Many2one(comodel_name="res.partner", string="Partner")
     history_line_ids = fields.One2many(
-        comodel_name="invoice.move.line.history", inverse_name="invoice_id",
-        string="Invoce Lines History"
+        comodel_name="invoice.move.line.history",
+        inverse_name="invoice_id",
+        string="Invoce Lines History",
     )
     type = fields.Char(string="Type")
 
@@ -35,13 +36,16 @@ class InvoiceMoveLineHistory(models.Model):
     _description = "Invoice Move Line History"
 
     invoice_id = fields.Many2one(
-        comodel_name="invoice.history", string="Invoice Reference",
-        required=True)
-    partner = fields.Char(string="Partner", related="invoice_id.partner",
-                          store=True)
+        comodel_name="invoice.history", string="Invoice Reference", required=True
+    )
+    partner = fields.Char(string="Partner", related="invoice_id.partner", store=True)
     partner_id = fields.Many2one(
-        relation="invoice.history", string="Partner",
-        readonly=True, related="invoice_id.partner_id", store=True)
+        relation="invoice.history",
+        string="Partner",
+        readonly=True,
+        related="invoice_id.partner_id",
+        store=True,
+    )
     name = fields.Text(string="Description", required=True)
     product = fields.Char(string="Product")
     quantity = fields.Float(string="Quantity", default=1)
