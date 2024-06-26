@@ -7,7 +7,7 @@ from odoo.tests import common, tagged
 class TestSaleLinePendingInfo(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestSaleLinePendingInfo, cls).setUpClass()
+        super().setUpClass()
         cls.sale_model = cls.env["sale.order"]
         cls.report_model = cls.env["sale.report"]
 
