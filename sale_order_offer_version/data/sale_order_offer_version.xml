@@ -4,7 +4,7 @@
         <field name="code">sale.order</field>
         <field name="prefix">OFFER-</field>
         <field name="padding">5</field>
-        <field name="company_id" eval="False"/>
+        <field name="company_id" eval="False" />
     </record>
 
     <record id="offer_type" model="sale.order.type">
