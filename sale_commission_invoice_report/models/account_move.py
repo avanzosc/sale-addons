@@ -9,12 +9,14 @@ class AccountMove(models.Model):
     commissionable_tax_base = fields.Monetary(
         string="Commissionable tax base",
         compute="_compute_commissionable_tax_base_and_percentage",
-        store=True, copy=False
+        store=True,
+        copy=False,
     )
     percentage_average_commission = fields.Float(
         string="% Average commission",
         compute="_compute_commissionable_tax_base_and_percentage",
-        store=False, copy=False
+        store=False,
+        copy=False,
     )
 
     @api.depends("line_ids.price_subtotal", "commission_total")
@@ -28,7 +30,7 @@ class AccountMove(models.Model):
                     commissionable_tax_base += line.price_subtotal
             if commissionable_tax_base and invoice.commission_total:
                 percentage_average_commission = (
-                    invoice.commission_total / commissionable_tax_base)
+                    invoice.commission_total / commissionable_tax_base
+                )
             invoice.commissionable_tax_base = commissionable_tax_base
-            invoice.percentage_average_commission = (
-                percentage_average_commission * 100)
+            invoice.percentage_average_commission = percentage_average_commission * 100
