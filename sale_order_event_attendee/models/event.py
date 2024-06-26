@@ -74,8 +74,8 @@ class EventRegistration(models.Model):
 
     def event_attendee_create_sale_order_line(self, order, select_ticket):
         ticket_line = order.order_line.filtered(
-            lambda l: l.product_id.id == select_ticket.product_id.id
-            and l.event_id.id == self.event_id.id
+            lambda ln: ln.product_id.id == select_ticket.product_id.id
+            and ln.event_id.id == self.event_id.id
         )
         order_line = None
         if not ticket_line:
