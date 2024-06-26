@@ -6,14 +6,18 @@
         <field name="arch" type="xml">
             <form string="Change sale line sequence">
                 <group>
-                    <field name="sale_line_id" invisible="1"/>
-                    <field name="actual_sequence" readonly="1"/>
-                    <field name="new_sequence" required="1"/>
+                    <field name="sale_line_id" invisible="1" />
+                    <field name="actual_sequence" readonly="1" />
+                    <field name="new_sequence" required="1" />
                 </group>
                 <newline />
                 <footer>
-                    <button string="Change sequence"  name="button_change_sequence"
-                        type="object" class="oe_highlight" />
+                    <button
+            string="Change sequence"
+            name="button_change_sequence"
+            type="object"
+            class="oe_highlight"
+          />
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>

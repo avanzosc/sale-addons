@@ -8,15 +8,22 @@ class WizDuplicateSaleLine(models.TransientModel):
     _description = "Wizard for duplicate sale line"
 
     sale_line_id = fields.Many2one(
-        string="Sale Order Line", comodel_name="sale.order.line",
+        string="Sale Order Line",
+        comodel_name="sale.order.line",
     )
 
     @api.model
     def default_get(self, fields):
-        result = super(WizDuplicateSaleLine, self).default_get(fields)
-        if ("active_model" in self.env.context and
-                self.env.context.get("active_model", "aa") == "sale.order.line"):
-            result.update({"sale_line_id": self.env.context.get("active_id"),})
+        result = super().default_get(fields)
+        if (
+            "active_model" in self.env.context
+            and self.env.context.get("active_model", "aa") == "sale.order.line"
+        ):
+            result.update(
+                {
+                    "sale_line_id": self.env.context.get("active_id"),
+                }
+            )
         return result
 
     def button_duplicate(self):

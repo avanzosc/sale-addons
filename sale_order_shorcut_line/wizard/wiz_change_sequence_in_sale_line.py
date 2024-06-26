@@ -8,24 +8,25 @@ class WizChangeSequenceInSaleLine(models.TransientModel):
     _description = "Wizard for change sequence in line"
 
     sale_line_id = fields.Many2one(
-        string="Sale Order Line", comodel_name="sale.order.line",
+        string="Sale Order Line",
+        comodel_name="sale.order.line",
     )
     actual_sequence = fields.Integer(
-        string="Actual Sequence", default=0,
+        default=0,
     )
     new_sequence = fields.Integer(
-        string="New Sequence", default=0
+        default=0,
     )
 
     @api.model
     def default_get(self, fields):
-        result = super(WizChangeSequenceInSaleLine, self).default_get(fields)
-        if ("active_model" in self.env.context and
-                self.env.context.get("active_model", "aa") == "sale.order.line"):
-            line = self.env["sale.order.line"].browse(
-                self.env.context.get("active_id"))
-            result.update({"sale_line_id": line.id,
-                           "actual_sequence": line.sequence})
+        result = super().default_get(fields)
+        if (
+            "active_model" in self.env.context
+            and self.env.context.get("active_model", "aa") == "sale.order.line"
+        ):
+            line = self.env["sale.order.line"].browse(self.env.context.get("active_id"))
+            result.update({"sale_line_id": line.id, "actual_sequence": line.sequence})
         return result
 
     def button_change_sequence(self):

@@ -6,12 +6,16 @@
         <field name="arch" type="xml">
             <form string="Duplicate Sale Order Line">
                 <group>
-                    <field name="sale_line_id" invisible="1"/>
+                    <field name="sale_line_id" invisible="1" />
                 </group>
                 <newline />
                 <footer>
-                    <button string="Duplicate Line"  name="button_duplicate"
-                        type="object" class="oe_highlight" />
+                    <button
+            string="Duplicate Line"
+            name="button_duplicate"
+            type="object"
+            class="oe_highlight"
+          />
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>

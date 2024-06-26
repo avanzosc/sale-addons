@@ -7,10 +7,7 @@
     "license": "AGPL-3",
     "author": "AvanzOSC",
     "website": "https://github.com/avanzosc/sale-addons",
-    "depends": [
-        "sale",
-        "sales_team"
-    ],
+    "depends": ["sale", "sales_team"],
     "excludes": [],
     "data": [
         "security/ir.model.access.csv",
