@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
-from odoo.addons.base_import_wizard.models.base_import import (convert2date,
-                                                               convert2str)
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
+
+from odoo.addons.base_import_wizard.models.base_import import convert2date, convert2str
 
 str2date = fields.Date.to_date
 
