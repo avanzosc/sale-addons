@@ -8,7 +8,8 @@ class SaleOrder(models.Model):
 
     def _prepare_purchase_order_data(self, company, company_partner):
         values = super(SaleOrder, self)._prepare_purchase_order_data(
-            company, company_partner)
+            company, company_partner
+        )
         if self.origin:
             values["origin"] = self.origin
         return values
