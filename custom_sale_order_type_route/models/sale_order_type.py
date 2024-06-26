@@ -11,3 +11,7 @@ class SaleOrderType(models.Model):
         string="Not Route Type",
         default=False,
     )
+    burden_picking_type = fields.Many2one(
+        string="Burden Picking Type",
+        comodel_name="stock.picking.type"
+    )

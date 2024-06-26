@@ -4,6 +4,9 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+            <group name="order_details" position="inside">
+                <field name="special_burden"/>
+            </group>
             <field name="partner_invoice_id" position="after">
                 <field name="deliverement_menu" invisible="1"/>
             </field>
