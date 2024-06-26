@@ -3,17 +3,13 @@
 {
     "name": "Sale Order Line Availability",
     "version": "14.0.1.0.0",
-    "depends": [
-        "sale",
-        "stock",
-        "sale_stock"
-    ],
-    "author":  "AvanzOSC",
+    "depends": ["sale", "stock", "sale_stock"],
+    "author": "AvanzOSC",
     "license": "AGPL-3",
     "website": "https://github.com/avanzosc/sale-addons",
     "data": [
         "views/sale_order_line_view.xml",
         "views/sale_order_view.xml",
-        ],
+    ],
     "installable": True,
 }
