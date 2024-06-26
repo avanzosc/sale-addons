@@ -6,5 +6,4 @@ from odoo import fields, models
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    sale_type_id = fields.Many2one(
-        comodel_name="sale.order.type", string="Sale type")
+    sale_type_id = fields.Many2one(comodel_name="sale.order.type", string="Sale type")

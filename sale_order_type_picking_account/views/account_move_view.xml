@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="account.view_invoice_tree" />
         <field name="arch" type="xml">
             <field name="invoice_origin" position="after">
-                <field name="sale_type_id" optional="show"/>
+                <field name="sale_type_id" optional="show" />
             </field>
         </field>
     </record>
@@ -15,10 +15,15 @@
         <field name="inherit_id" ref="account.view_account_invoice_filter" />
         <field name="arch" type="xml">
             <field name="date" position="after">
-                <field name="sale_type_id"/>
+                <field name="sale_type_id" />
             </field>
             <filter name="duedate" position="after">
-                <filter string="Sale type" name="sale-type" domain="[]" context="{'group_by': 'sale_type_id'}"/>
+                <filter
+          string="Sale type"
+          name="sale-type"
+          domain="[]"
+          context="{'group_by': 'sale_type_id'}"
+        />
             </filter>
         </field>
     </record>
