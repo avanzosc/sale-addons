@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="contract_contract_form_view" model="ir.ui.view">
         <field name="model">contract.contract</field>
-        <field name="inherit_id" ref="contract.contract_contract_form_view"/>
+        <field name="inherit_id" ref="contract.contract_contract_form_view" />
         <field name="arch" type="xml">
             <field name="tag_ids" position="after">
                 <field name="headquarter_id" />
@@ -11,7 +11,7 @@
     </record>
     <record id="contract_contract_tree_view" model="ir.ui.view">
         <field name="model">contract.contract</field>
-        <field name="inherit_id" ref="contract.contract_contract_tree_view"/>
+        <field name="inherit_id" ref="contract.contract_contract_tree_view" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
                 <field name="headquarter_id" />
@@ -20,13 +20,18 @@
     </record>
     <record id="contract_contract_search_view" model="ir.ui.view">
         <field name="model">contract.contract</field>
-        <field name="inherit_id" ref="contract.contract_contract_search_view"/>
+        <field name="inherit_id" ref="contract.contract_contract_search_view" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
                 <field name="headquarter_id" />
             </field>
             <filter name="group_by_partner" position="after">
-                <filter string="Headquarter" name="group_by_headquarter" domain="[]" context="{'group_by':'headquarter_id'}"/>
+                <filter
+          string="Headquarter"
+          name="group_by_headquarter"
+          domain="[]"
+          context="{'group_by':'headquarter_id'}"
+        />
             </filter>
         </field>
     </record>

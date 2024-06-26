@@ -4,10 +4,10 @@ from odoo import models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     def _catch_values_for_create_contract(self, line):
         vals = super(SaleOrder, self)._catch_values_for_create_contract(line)
         if self.headquarter_id:
-            vals['headquarter_id'] = self.headquarter_id.id
+            vals["headquarter_id"] = self.headquarter_id.id
         return vals
