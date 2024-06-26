@@ -4,22 +4,22 @@ from odoo import fields, models
 
 
 class Company(models.Model):
-    _inherit = 'res.company'
-
-    return_journal_id = fields.Many2one(
-        string="Return Journal",
-        comodel_name="account.journal",
-        domain=[("type", "=", "sale")]
-    )
-
-
-class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.company"
 
     return_journal_id = fields.Many2one(
         string="Return Journal",
         comodel_name="account.journal",
         domain=[("type", "=", "sale")],
-        related='company_id.return_journal_id',
-        readonly=False
+    )
+
+
+class ResConfigSettings(models.TransientModel):
+    _inherit = "res.config.settings"
+
+    return_journal_id = fields.Many2one(
+        string="Return Journal",
+        comodel_name="account.journal",
+        domain=[("type", "=", "sale")],
+        related="company_id.return_journal_id",
+        readonly=False,
     )

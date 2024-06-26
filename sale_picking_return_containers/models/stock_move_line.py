@@ -11,23 +11,29 @@ class StockMoveLine(models.Model):
         string="Partner",
         comodel_name="res.partner",
         related="picking_id.partner_id",
-        store=True)
+        store=True,
+    )
     max_return = fields.Float(
         string="Max. Qty to Return",
         related="move_id.purchase_line_id.max_return",
-        store=True)
+        store=True,
+    )
     returnable = fields.Boolean(
-        string="Returnable",
-        default=False,
-        related="product_id.returnable",
-        store=True)
+        string="Returnable", default=False, related="product_id.returnable", store=True
+    )
 
     @api.constrains("max_return", "qty_done")
     def _check_max_return(self):
         for line in self:
-            if line.product_id.returnable and line.max_return != 0 and (
-                line.qty_done > line.max_return) and (
-                    line.standard_price != 0):
+            if (
+                line.product_id.returnable
+                and line.max_return != 0
+                and (line.qty_done > line.max_return)
+                and (line.standard_price != 0)
+            ):
                 raise ValidationError(
-                        _("The quantity can't be bigger than the maximum " +
-                          "quantity to return."))
+                    _(
+                        "The quantity can't be bigger than the maximum "
+                        + "quantity to return."
+                    )
+                )
