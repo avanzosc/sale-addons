@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="create_date" position="after">
-                <field name="date_order" optional="show" widget="date"/>
+                <field name="date_order" optional="show" widget="date" />
             </field>
         </field>
     </record>
@@ -14,14 +14,20 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/kanban//field[@name='price_unit']" position="before">
-                <field name="qty_delivered"/>
+            <xpath
+        expr="//field[@name='order_line']/kanban//field[@name='price_unit']"
+        position="before"
+      >
+                <field name="qty_delivered" />
             </xpath>
-            <xpath expr="//field[@name='order_line']/kanban//t[@t-esc='record.product_uom.value']/.." position="after">
+            <xpath
+        expr="//field[@name='order_line']/kanban//t[@t-esc='record.product_uom.value']/.."
+        position="after"
+      >
                 <span>
                     Delivered:
-                    <t t-esc="record.qty_delivered.value"/>
-                    <t t-esc="record.product_uom.value"/>
+                    <t t-esc="record.qty_delivered.value" />
+                    <t t-esc="record.product_uom.value" />
                 </span>
             </xpath>
         </field>
