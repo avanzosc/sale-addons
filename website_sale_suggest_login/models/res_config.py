@@ -5,17 +5,20 @@ from odoo import fields, models
 
 
 class Company(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
     website_checkout_redirect = fields.Selection(
-        selection=[('login', 'Login'),
-                   ('create_account', 'Create Account')],
-        string='Website Checkout Redirect', default='login')
+        selection=[("login", "Login"), ("create_account", "Create Account")],
+        string="Website Checkout Redirect",
+        default="login",
+    )
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     website_checkout_redirect = fields.Selection(
-        'Website Checkout Redirect',
-        related='company_id.website_checkout_redirect', readonly=False)
+        "Website Checkout Redirect",
+        related="company_id.website_checkout_redirect",
+        readonly=False,
+    )

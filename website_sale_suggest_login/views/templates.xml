@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="cart" inherit_id="website_sale_suggest_create_account.cart" customize_show="True">
+    <template
+    id="cart"
+    inherit_id="website_sale_suggest_create_account.cart"
+    customize_show="True"
+    priority="100"
+  >
         <xpath expr="//a[@t-if='suggest_login']" position="replace">
             <a
-                t-if="suggest_login or request.env.user.company_id.website_checkout_redirect == 'login'"
-                role="button"
-                class="btn btn-primary pull-right mb32 d-none d-xl-inline-block"
-                href="/web/login?redirect=/shop/checkout?express=1"
-            >
+        t-if="suggest_login or request.env.user.company_id.website_checkout_redirect == 'login'"
+        role="button"
+        class="btn btn-primary pull-right mb32 d-none d-xl-inline-block"
+        href="/web/login?redirect=/shop/checkout?express=1"
+      >
                 <span>Log in and checkout</span>
                 <span class="fa fa-long-arrow-right" />
             </a>
         </xpath>
         <xpath expr="//t[@t-if='suggest_create_account']" position="replace">
-            <t t-if="suggest_create_account and request.env.user.company_id.website_checkout_redirect == 'create_account'">
+            <t
+        t-if="suggest_create_account and request.env.user.company_id.website_checkout_redirect == 'create_account'"
+      >
                 <a
-                    class="btn btn-primary pull-right mb32 d-none d-xl-inline-block"
-                    role="button"
-                    href="/web/signup?redirect=/shop/checkout?express=1"
-                >
+          class="btn btn-primary pull-right mb32 d-none d-xl-inline-block"
+          role="button"
+          href="/web/signup?redirect=/shop/checkout?express=1"
+        >
                     <span>Sign up and checkout</span>
                     <span class="fa fa-long-arrow-right" />
                 </a>
@@ -27,27 +34,30 @@
     </template>
     <!-- Cart summary -->
     <template
-        id="short_cart_summary"
-        inherit_id="website_sale_suggest_create_account.short_cart_summary"
-        customize_show="True"
-    >
+    id="short_cart_summary"
+    inherit_id="website_sale_suggest_create_account.short_cart_summary"
+    customize_show="True"
+    priority="100"
+  >
         <xpath expr="//a[@t-if='suggest_login']" position="replace">
             <a
-                t-if="suggest_login or request.env.user.company_id.website_checkout_redirect == 'login'"
-                role="button"
-                class="btn btn-secondary float-right d-none d-xl-inline-block"
-                href="/web/login?redirect=/shop/checkout?express=1"
-            >
+        t-if="suggest_login or request.env.user.company_id.website_checkout_redirect == 'login'"
+        role="button"
+        class="btn btn-secondary float-right d-none d-xl-inline-block"
+        href="/web/login?redirect=/shop/checkout?express=1"
+      >
                 <span>Log in and checkout</span>
             </a>
         </xpath>
         <xpath expr="//t[@t-if='suggest_create_account']" position="replace">
-            <t t-if="suggest_create_account and request.env.user.company_id.website_checkout_redirect == 'create_account'">
+            <t
+        t-if="suggest_create_account and request.env.user.company_id.website_checkout_redirect == 'create_account'"
+      >
                 <a
-                    class="btn btn-secondary float-right d-none d-xl-inline-block"
-                    role="button"
-                    href="/web/signup?redirect=/shop/checkout?express=1"
-                >
+          class="btn btn-secondary float-right d-none d-xl-inline-block"
+          role="button"
+          href="/web/signup?redirect=/shop/checkout?express=1"
+        >
                     <span>Sign up and checkout</span>
                 </a>
             </t>
