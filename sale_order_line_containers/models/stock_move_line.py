@@ -7,8 +7,7 @@ from odoo import api, fields, models
 class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
 
-    container = fields.Integer(
-        string="Container")
+    container = fields.Integer(string="Container")
 
     @api.onchange("move_id")
     def onchange_move_id(self):

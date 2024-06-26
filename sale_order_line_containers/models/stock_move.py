@@ -8,9 +8,8 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     container = fields.Integer(
-        string="Container",
-        related="sale_line_id.container",
-        store=True)
+        string="Container", related="sale_line_id.container", store=True
+    )
 
     @api.onchange("sale_line_id")
     def onchange_sale_line_id(self):
