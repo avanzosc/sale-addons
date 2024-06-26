@@ -10,19 +10,18 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         result = super(SaleOrder, self).action_confirm()
         for sale in self.filtered(lambda x: x.analytic_account_id):
-            pickings = sale.picking_ids.filtered(
-                lambda z: not z.analytic_account_id)
+            pickings = sale.picking_ids.filtered(lambda z: not z.analytic_account_id)
             if pickings:
-                pickings.write(
-                    {'analytic_account_id': sale.analytic_account_id})
+                pickings.write({"analytic_account_id": sale.analytic_account_id})
         return result
 
     def put_analytic_in_out_picking_from_sale(self):
-        sales = self.filtered(lambda x: x.analytic_account_id and
-                              x.state not in ('draft', 'cancel'))
+        sales = self.filtered(
+            lambda x: x.analytic_account_id and x.state not in ("draft", "cancel")
+        )
         for sale in sales:
             pickings = sale.picking_ids.filtered(
-                lambda z: not z.analytic_account_id and z.state == "done")
+                lambda z: not z.analytic_account_id and z.state == "done"
+            )
             if pickings:
-                pickings.write(
-                    {'analytic_account_id': sale.analytic_account_id})
+                pickings.write({"analytic_account_id": sale.analytic_account_id})
