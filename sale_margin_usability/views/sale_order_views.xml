@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="sale_margin_sale_order" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order"/>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order" />
         <field name="arch" type="xml">
             <label for="margin" position="before">
                 <field name="total_cost" />
@@ -13,10 +13,13 @@
 
     <record id="sale_margin_sale_order_line_form" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form"/>
-        <field name="priority" eval="20"/>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form" />
+        <field name="priority" eval="20" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
+            <xpath
+        expr="//field[@name='order_line']/tree//field[@name='price_subtotal']"
+        position="after"
+      >
                 <field name="total_cost" optional="show" />
             </xpath>
         </field>
@@ -24,7 +27,7 @@
 
     <record id="view_order_tree" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="amount_untaxed" position="before">
                 <field name="total_cost" optional="show" sum="Total Cost" />
@@ -34,7 +37,7 @@
 
     <record id="view_quotation_tree" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="company_id" position="after">
                 <field name="total_cost" optional="show" sum="Total Cost" />
