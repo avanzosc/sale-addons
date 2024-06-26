@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="product_template_form_view" model="ir.ui.view">
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//sheet/notebook/page[@name='sales']/group/group" position="after">
+            <xpath
+        expr="//sheet/notebook/page[@name='sales']/group/group"
+        position="after"
+      >
                 <group>
-                    <field name="service_hour"/>
-                    <field name="price_hour"/>
-                    <field name="workforce_cost"/>
-                    <field name="material_cost"/>
+                    <field name="service_hour" />
+                    <field name="price_hour" />
+                    <field name="workforce_cost" />
+                    <field name="material_cost" />
                 </group>
             </xpath>
         </field>

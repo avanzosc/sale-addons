@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_order_line_tree" model="ir.ui.view">
         <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
             <field name="price_subtotal" position="before">
-                <field name="workforce_cost" optional="show"/>
-                <field name="material_cost" optional="show"/>
-                <field name="cost_unit" optional="show"/>
-                <field name="cost_subtotal" optional="show"/>
+                <field name="workforce_cost" optional="show" />
+                <field name="material_cost" optional="show" />
+                <field name="cost_unit" optional="show" />
+                <field name="cost_subtotal" optional="show" />
             </field>
         </field>
     </record>
