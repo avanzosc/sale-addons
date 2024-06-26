@@ -6,7 +6,8 @@ from odoo import api, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.onchange('product_id')
+    @api.onchange("product_id")
     def product_id_change(self):
-        return super(SaleOrderLine, self.with_context(
-            display_default_code=False)).product_id_change()
+        return super(
+            SaleOrderLine, self.with_context(display_default_code=False)
+        ).product_id_change()

@@ -10,7 +10,6 @@
     "depends": [
         "sale",
     ],
-    "data": [
-    ],
+    "data": [],
     "installable": True,
 }
