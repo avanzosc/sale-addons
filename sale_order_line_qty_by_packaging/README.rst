@@ -7,7 +7,7 @@ Sale order line qty by packaging
 ================================
 
 * On sales order lines, if "Packaging Quantity" is entered, calculate the
- "Quantity".
+  "Quantity".
 
 Bug Tracker
 ===========
