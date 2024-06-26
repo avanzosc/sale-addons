@@ -55,8 +55,9 @@ class SaleOrder(models.Model):
 
     @api.model
     def _default_type_id(self):
-        if ("default_is_offer_type" in self.env.context and
-                self.env.context.get("default_is_offer_type", False)):
+        if "default_is_offer_type" in self.env.context and self.env.context.get(
+            "default_is_offer_type", False
+        ):
             cond = [("is_offer_type", "=", True)]
             return self.env["sale.order.type"].search(cond, limit=1)
         return super(SaleOrder, self)._default_type_id()
@@ -70,9 +71,7 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         if any(self.filtered("is_offer_type")):
-            raise UserError(_(
-                "It is not allowed to confirm an offer type sale order"
-            ))
+            raise UserError(_("It is not allowed to confirm an offer type sale order"))
         return super(SaleOrder, self).action_confirm()
 
     def action_offer_to_quotation(self):
@@ -101,13 +100,17 @@ class SaleOrder(models.Model):
 
     def action_view_sale_orders(self):
         self.ensure_one()
-        action = self.env.ref(
-            "sale_order_offer_version.action_view_all_sale_orders")
+        action = self.env.ref("sale_order_offer_version.action_view_all_sale_orders")
         action_dict = action.read()[0] if action else {}
-        domain = expression.AND([
-            [("id", "in", self.mapped("sale_ids").ids)],
-            safe_eval(action.domain or "[]")])
-        action_dict.update({
-            "domain": domain,
-        })
+        domain = expression.AND(
+            [
+                [("id", "in", self.mapped("sale_ids").ids)],
+                safe_eval(action.domain or "[]"),
+            ]
+        )
+        action_dict.update(
+            {
+                "domain": domain,
+            }
+        )
         return action_dict
