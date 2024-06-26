@@ -8,7 +8,7 @@ class StockMove(models.Model):
 
     def _get_new_picking_values(self):
         values = super(StockMove, self)._get_new_picking_values()
-        group = self.mapped('group_id')
+        group = self.mapped("group_id")
         if group and group.sale_id and group.sale_id.type_id:
-            values['sale_type_id'] = group.sale_id.type_id.id
+            values["sale_type_id"] = group.sale_id.type_id.id
         return values
