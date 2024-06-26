@@ -6,9 +6,7 @@
         <field name="priority">50</field>
         <field name="arch" type="xml">
             <field name="partner_id" position="attributes">
-	            <attribute
-          name="domain"
-        >[('is_company','=', True)]</attribute>
+	            <attribute name="domain">[('is_company','=', True)]</attribute>
 	        </field>
         </field>
     </record>
