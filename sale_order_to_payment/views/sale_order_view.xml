@@ -1,13 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
      <record model="ir.ui.view" id="view_order_form">
          <field name="model">sale.order</field>
          <field name="inherit_id" ref="sale.view_order_form" />
          <field name="arch" type="xml">
             <div name="button_box" position="inside">
-                <button name="action_view_payments" class="oe_stat_button" icon="fa-money" type="object">
-                    <field name="payment_count"  widget="statinfo" string="Payments"/>
-                    <field name="payment_ids" invisible="1"/>
+                <button
+          name="action_view_payments"
+          class="oe_stat_button"
+          icon="fa-money"
+          type="object"
+        >
+                    <field name="payment_count" widget="statinfo" string="Payments" />
+                    <field name="payment_ids" invisible="1" />
                 </button>
             </div>
          </field>
