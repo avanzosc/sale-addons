@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="sot_view_order_form" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_order_type.sot_view_order_form"/>
+        <field name="inherit_id" ref="sale_order_type.sot_view_order_form" />
         <field name="arch" type="xml">
             <field name="type_id" position="attributes">
                 <attribute name="required">1</attribute>
@@ -12,10 +12,14 @@
 
     <record id="view_account_invoice_filter" model="ir.ui.view">
         <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
         <field name="arch" type="xml">
             <filter name="status" position="after">
-                <filter name="sale_type" string="Sale Type" context="{'group_by':'sale_type_id'}"/>
+                <filter
+          name="sale_type"
+          string="Sale Type"
+          context="{'group_by':'sale_type_id'}"
+        />
             </filter>
         </field>
     </record>
