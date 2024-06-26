@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_form_view" />
         <field name="arch" type="xml">
             <field name="description" position="before">
-                <separator string="Terms and Conditions" colspan="4"/>
+                <separator string="Terms and Conditions" colspan="4" />
             </field>
         </field>
     </record>

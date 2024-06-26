@@ -6,6 +6,4 @@ from odoo import fields, models
 class SaleOrderType(models.Model):
     _inherit = "sale.order.type"
 
-    description = fields.Text(
-        string="Terms and Conditions"
-    )
+    description = fields.Text(string="Terms and Conditions")
