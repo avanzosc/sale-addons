@@ -7,7 +7,4 @@ from odoo import fields, models
 class StockPickingType(models.Model):
     _inherit = "stock.picking.type"
 
-    is_carry_type = fields.Boolean(
-        string="Carry Type",
-        default=False
-    )
+    is_carry_type = fields.Boolean(string="Carry Type", default=False)
