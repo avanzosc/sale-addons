@@ -26,7 +26,8 @@ class SaleOrderLine(models.Model):
         line = super().create(values)
         if "return_qty" in values:
             done_picking = line.order_id.picking_ids.filtered(
-                lambda c: c.state == "done")
+                lambda c: c.state == "done"
+            )
             if done_picking:
                 for move in line.move_ids:
                     if move.picking_id != done_picking[:1]:
