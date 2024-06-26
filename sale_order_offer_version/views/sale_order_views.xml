@@ -99,7 +99,6 @@
         <field name="priority">4</field>
         <field name="arch" type="xml">
             <tree
-        string="Offer"
         class="o_sale_order"
         multi_edit="1"
         sample="1"
