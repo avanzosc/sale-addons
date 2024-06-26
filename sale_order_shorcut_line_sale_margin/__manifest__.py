@@ -7,10 +7,7 @@
     "license": "AGPL-3",
     "author": "AvanzOSC",
     "website": "https://github.com/avanzosc/sale-addons",
-    "depends": [
-        "sale_order_shorcut_line",
-        "sale_margin"
-    ],
+    "depends": ["sale_order_shorcut_line", "sale_margin"],
     "excludes": [],
     "data": [
         "views/sale_order_line_views.xml",
