@@ -8,11 +8,16 @@
                 <field name="sale_order_cost" />
                 <field name="sale_order_margin" />
             </field>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='company_id']" position="after">
-                <field name="sale_line_cost" optional="show"
-                    sum="Total lines costs"/>
-                <field name="sale_line_margin" optional="show"
-                    sum="Total lines margin"/>
+            <xpath
+        expr="//field[@name='order_line']/tree/field[@name='company_id']"
+        position="after"
+      >
+                <field name="sale_line_cost" optional="show" sum="Total lines costs" />
+                <field
+          name="sale_line_margin"
+          optional="show"
+          sum="Total lines margin"
+        />
             </xpath>
         </field>
     </record>
@@ -22,10 +27,16 @@
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="amount_untaxed" position="after">
-                <field name="sale_order_cost" optional="show"
-                    sum="Total orders costs"/>
-                <field name="sale_order_margin" optional="show"
-                    sum="Total orders margin"/>
+                <field
+          name="sale_order_cost"
+          optional="show"
+          sum="Total orders costs"
+        />
+                <field
+          name="sale_order_margin"
+          optional="show"
+          sum="Total orders margin"
+        />
             </field>
         </field>
     </record>
@@ -35,10 +46,16 @@
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="amount_untaxed" position="after">
-                <field name="sale_order_cost" optional="show"
-                    sum="Total orders costs"/>
-                <field name="sale_order_margin" optional="show"
-                    sum="Total orders margin"/>
+                <field
+          name="sale_order_cost"
+          optional="show"
+          sum="Total orders costs"
+        />
+                <field
+          name="sale_order_margin"
+          optional="show"
+          sum="Total orders margin"
+        />
             </field>
         </field>
     </record>
