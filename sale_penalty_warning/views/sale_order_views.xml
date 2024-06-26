@@ -5,8 +5,12 @@
       <field name="inherit_id" ref="sale.view_order_form" />
       <field name="arch" type="xml">
           <field name="name" readonly="1" position="after">
-              <br/>
-              <field name="penalty_warning_description" nolabel="1" style="color:Red;"/>
+              <br />
+              <field
+          name="penalty_warning_description"
+          nolabel="1"
+          style="color:Red;"
+        />
           </field>
           <field name="partner_shipping_id" position="after">
               <field name="penalty_warning_id" />
@@ -19,8 +23,8 @@
       <field name="inherit_id" ref="sale.view_quotation_tree" />
       <field name="arch" type="xml">
           <field name="partner_id" position="after">
-              <field name="penalty_warning_id" optional="show"/>
-              <field name="penalty_warning_description" optional="show"/>
+              <field name="penalty_warning_id" optional="show" />
+              <field name="penalty_warning_description" optional="show" />
           </field>
       </field>
   </record>
@@ -30,8 +34,8 @@
       <field name="inherit_id" ref="sale.view_order_tree" />
       <field name="arch" type="xml">
           <field name="partner_id" position="after">
-              <field name="penalty_warning_id" optional="show"/>
-              <field name="penalty_warning_description" optional="show"/>
+              <field name="penalty_warning_id" optional="show" />
+              <field name="penalty_warning_description" optional="show" />
           </field>
       </field>
   </record>
@@ -41,17 +45,27 @@
       <field name="inherit_id" ref="sale.view_sales_order_filter" />
       <field name="arch" type="xml">
           <field name="analytic_account_id" position="after">
-              <field name="penalty_warning_id"/>
+              <field name="penalty_warning_id" />
           </field>
           <filter name="my_sale_orders_filter" position="after">
-              <filter string="With penalty warning"
-                 domain="[('penalty_warning_id', '!=', False)]" name="with-penalty_warning"/>
-              <filter string="Without penalty warning"
-                 domain="[('penalty_warning_id', '=', False)]" name="without-penalty_warning"/>
+              <filter
+          string="With penalty warning"
+          domain="[('penalty_warning_id', '!=', False)]"
+          name="with-penalty_warning"
+        />
+              <filter
+          string="Without penalty warning"
+          domain="[('penalty_warning_id', '=', False)]"
+          name="without-penalty_warning"
+        />
           </filter>
           <filter name="order_month" position="after">
-              <filter string="Penalty warning" name="penalty_warning" domain="[]"
-                context="{'group_by': 'penalty_warning_id'}"/>
+              <filter
+          string="Penalty warning"
+          name="penalty_warning"
+          domain="[]"
+          context="{'group_by': 'penalty_warning_id'}"
+        />
           </filter>
       </field>
   </record>
