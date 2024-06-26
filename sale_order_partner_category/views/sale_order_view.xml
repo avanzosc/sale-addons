@@ -5,8 +5,12 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="tag_ids" position="after">
-                <field name="customer_category_ids" 
-                    widget="many2many_tags" options="{'color_field': 'color'}" placeholder="Tags..." />
+                <field
+          name="customer_category_ids"
+          widget="many2many_tags"
+          options="{'color_field': 'color'}"
+          placeholder="Tags..."
+        />
             </field>
             <field name="tag_ids" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -19,7 +23,12 @@
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="tag_ids" position="after">
-                <field name="customer_category_ids" optional="show" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field
+          name="customer_category_ids"
+          optional="show"
+          widget="many2many_tags"
+          options="{'color_field': 'color'}"
+        />
             </field>
         </field>
     </record>
@@ -29,7 +38,12 @@
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="tag_ids" position="after">
-                <field name="customer_category_ids" optional="show" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field
+          name="customer_category_ids"
+          optional="show"
+          widget="many2many_tags"
+          options="{'color_field': 'color'}"
+        />
             </field>
         </field>
     </record>
