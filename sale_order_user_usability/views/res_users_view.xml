@@ -1,11 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
      <record model="ir.ui.view" id="view_users_search">
          <field name="model">res.users</field>
          <field name="inherit_id" ref="base.view_users_search" />
          <field name="arch" type="xml">
             <filter name="Inactive" position="after">
-                <filter string="Company" name="company" context="{'group_by':'company_id'}"/>
+                <filter
+          string="Company"
+          name="company"
+          context="{'group_by':'company_id'}"
+        />
             </filter>
          </field>
      </record>
