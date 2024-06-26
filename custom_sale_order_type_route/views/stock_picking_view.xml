@@ -3,18 +3,21 @@
 
     <record id="view_picking_internal_search" model="ir.ui.view">
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="inherit_id" ref="stock.view_picking_internal_search" />
         <field name="arch" type="xml">
             <filter name="activities_exception" position="after">
-                <filter string="Today" name="today" domain="[('custom_date_done','&gt;', (datetime.datetime.combine(context_today(), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d %H:%M:%S'))]"
-                />
+                <filter
+          string="Today"
+          name="today"
+          domain="[('custom_date_done','&gt;', (datetime.datetime.combine(context_today(), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d %H:%M:%S'))]"
+        />
             </filter>
         </field>
     </record>
 
     <record id="view_carry_stock_picking_tree" model="ir.ui.view">
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="inherit_id" ref="stock.vpicktree" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree position="attributes">
@@ -25,17 +28,18 @@
 
     <record id="view_picking_form" model="ir.ui.view">
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
             <field name="origin" position="after">
-                <field name="is_carry_type" invisible="1"/>
+                <field name="is_carry_type" invisible="1" />
             </field>
         </field>
     </record>
 
     <record id="view_carry_stock_picking_form" model="ir.ui.view">
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="priority" eval="100" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <form position="attributes">
@@ -44,7 +48,11 @@
             </form>
             <header position="replace">
                 <header>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,assigned,done"/>
+                    <field
+            name="state"
+            widget="statusbar"
+            statusbar_visible="draft,confirmed,assigned,done"
+          />
                 </header>
             </header>
         </field>
@@ -55,26 +63,37 @@
         <field name="res_model">stock.picking</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_carry_stock_picking_tree"/>
+        <field name="view_id" ref="view_carry_stock_picking_tree" />
         <field name="domain">[('is_carry_type', '=', True)]</field>
         <field name="context">{"search_default_today": 1}</field>
     </record>
 
     <record model="ir.actions.act_window.view" id="action_carry_picking_tree">
-        <field name="sequence" eval="2"/>
+        <field name="sequence" eval="2" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_carry_stock_picking_tree"/>
-        <field name="act_window_id" ref="action_carry_stock_picking"/>
+        <field name="view_id" ref="view_carry_stock_picking_tree" />
+        <field name="act_window_id" ref="action_carry_stock_picking" />
     </record>
     <record model="ir.actions.act_window.view" id="action_carry_picking_form">
-        <field name="sequence" eval="2"/>
+        <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_carry_stock_picking_form"/>
-        <field name="act_window_id" ref="action_carry_stock_picking"/>
+        <field name="view_id" ref="view_carry_stock_picking_form" />
+        <field name="act_window_id" ref="action_carry_stock_picking" />
     </record>
 
-    <menuitem id="deliverymen_menu_carry_pickings" name="Carry Pickings" parent="deliverymen_menu" sequence="15"/>
+    <menuitem
+    id="deliverymen_menu_carry_pickings"
+    name="Carry Pickings"
+    parent="deliverymen_menu"
+    sequence="15"
+  />
 
-    <menuitem action="action_carry_stock_picking" name="Carry Pickings" id="menu_carry_pickings" parent="deliverymen_menu_carry_pickings" sequence="5"/>
+    <menuitem
+    action="action_carry_stock_picking"
+    name="Carry Pickings"
+    id="menu_carry_pickings"
+    parent="deliverymen_menu_carry_pickings"
+    sequence="5"
+  />
 
 </odoo>

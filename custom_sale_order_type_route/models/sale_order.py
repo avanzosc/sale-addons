@@ -13,14 +13,14 @@ class SaleOrder(models.Model):
         store=True,
     )
     deliverement_menu = fields.Boolean(
-        string="Deliverement Menu",
-        compute="compute_deliverement_menu")
+        string="Deliverement Menu", compute="_compute_deliverement_menu"
+    )
     special_burden = fields.Boolean(
         string="Special Burden",
         default=False,
     )
 
-    def compute_deliverement_menu(self):
+    def _compute_deliverement_menu(self):
         for sale in self:
             deliverement = False
             if "default_deliverement_menu" in self.env.context and (
@@ -32,16 +32,21 @@ class SaleOrder(models.Model):
     @api.onchange("partner_id")
     def onchange_type_domain(self):
         result = {"domain": {"type_id": []}}
-        if self.partner_id and "default_deliverement_menu" in (
-            self.env.context
-        ) and self.env.context["default_deliverement_menu"]:
-            types = self.env["sale.order.type"].search([
-                ("not_route_type", "=", False),
-                ("company_id", "=", self.company_id.id)])
-            result = {"domain": {"type_id": [('id', 'in', types.ids)]}}
+        if (
+            self.partner_id
+            and "default_deliverement_menu" in (self.env.context)
+            and self.env.context["default_deliverement_menu"]
+        ):
+            types = self.env["sale.order.type"].search(
+                [
+                    ("not_route_type", "=", False),
+                    ("company_id", "=", self.company_id.id),
+                ]
+            )
+            result = {"domain": {"type_id": [("id", "in", types.ids)]}}
         return result
 
-    @api.onchange('partner_id')
+    @api.onchange("partner_id")
     def onchange_partner_id(self):
         result = super(SaleOrder, self).onchange_partner_id()
         if self.partner_id:
