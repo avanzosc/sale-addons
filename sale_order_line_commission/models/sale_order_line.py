@@ -1,7 +1,7 @@
 # © 2022 Berezi Amubieta - AvanzOSC
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import models, api
+from odoo import api, models
 
 
 class SaleOrderLine(models.Model):
