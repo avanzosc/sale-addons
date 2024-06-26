@@ -5,12 +5,16 @@
         <field name="inherit_id" ref="sale_project.view_sale_project_inherit_form" />
         <field name="arch" type="xml">
             <field name="sale_line_id" position="after">
-                <field name="sale_line_product_id"
-                    attrs="{'invisible': [('partner_id', '=', False)]}"
-                    readonly="1" />
-                <field name="sale_line_product_uom_qty"
-                    attrs="{'invisible': [('partner_id', '=', False)]}"
-                    readonly="1" />
+                <field
+          name="sale_line_product_id"
+          attrs="{'invisible': [('partner_id', '=', False)]}"
+          readonly="1"
+        />
+                <field
+          name="sale_line_product_uom_qty"
+          attrs="{'invisible': [('partner_id', '=', False)]}"
+          readonly="1"
+        />
             </field>
         </field>
     </record>
