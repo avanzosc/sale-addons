@@ -6,16 +6,21 @@ from odoo import api, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.depends("product_uom_qty", "qty_delivered_method", "qty_delivered",
-                 "price_unit", "discount", "discount2", "discount3")
+    @api.depends(
+        "product_uom_qty",
+        "qty_delivered_method",
+        "qty_delivered",
+        "price_unit",
+        "discount",
+        "discount2",
+        "discount3",
+    )
     def _compute_qty_amount_pending_delivery(self):
-        result = super(
-            SaleOrderLine, self)._compute_qty_amount_pending_delivery()
+        result = super(SaleOrderLine, self)._compute_qty_amount_pending_delivery()
         for line in self:
             qty_pending_delivery = amount_pending_delivery = 0
             if line.qty_delivered_method == "stock_move":
-                qty_pending_delivery = (
-                    line.product_uom_qty - line.qty_delivered)
+                qty_pending_delivery = line.product_uom_qty - line.qty_delivered
                 if qty_pending_delivery < 0:
                     qty_pending_delivery = 0
                 amount = qty_pending_delivery * line.price_unit
@@ -29,11 +34,16 @@ class SaleOrderLine(models.Model):
             line.amount_pending_delivery = amount_pending_delivery
         return result
 
-    @api.depends("product_uom_qty", "qty_invoiced", "discount", "discount2",
-                 "discount3", "price_unit")
+    @api.depends(
+        "product_uom_qty",
+        "qty_invoiced",
+        "discount",
+        "discount2",
+        "discount3",
+        "price_unit",
+    )
     def _compute_qty_amount_pending_invoicing(self):
-        result = super(
-            SaleOrderLine, self)._compute_qty_amount_pending_invoicing()
+        result = super(SaleOrderLine, self)._compute_qty_amount_pending_invoicing()
         for line in self:
             amount = line.qty_pending_invoicing * line.price_unit
             if line.discount:
@@ -45,11 +55,16 @@ class SaleOrderLine(models.Model):
             line.amount_pending_invoicing = amount
         return result
 
-    @api.depends("qty_delivered", "qty_invoiced", "discount", "discount2",
-                 "discount3", "price_unit")
+    @api.depends(
+        "qty_delivered",
+        "qty_invoiced",
+        "discount",
+        "discount2",
+        "discount3",
+        "price_unit",
+    )
     def _compute_qty_shipped_pending_invoicing(self):
-        result = super(
-            SaleOrderLine, self)._compute_qty_shipped_pending_invoicing()
+        result = super(SaleOrderLine, self)._compute_qty_shipped_pending_invoicing()
         for line in self:
             amount = 0
             qty = line.qty_delivered - line.qty_invoiced

@@ -10,6 +10,5 @@
         "sale_line_pending_info",
         "sale_triple_discount",
     ],
-    "data": [
-        ],
+    "data": [],
 }
