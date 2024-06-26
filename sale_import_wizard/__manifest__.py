@@ -6,13 +6,8 @@
     "category": "Hidden/Tools",
     "license": "AGPL-3",
     "author": "AvanzOSC",
-    "website": "https://www.avanzosc.es/",
-    "depends": [
-        "sale",
-        "sales_team",
-        "base_import_wizard",
-        "product_trim_name"
-    ],
+    "website": "https://github.com/avanzosc/sale-addons",
+    "depends": ["sale", "sales_team", "base_import_wizard", "product_trim_name"],
     "data": [
         "security/ir.model.access.csv",
         "security/sale_import_wizard_security.xml",
