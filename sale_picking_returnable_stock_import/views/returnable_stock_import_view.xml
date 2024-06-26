@@ -4,10 +4,10 @@
         <field name="model">returnable.stock.import</field>
         <field name="arch" type="xml">
             <tree decoration-muted="state == 'done'" decoration-bf="state == 'pass'">
-                <field name="name"/>
-                <field name="file_date"/>
-                <field name="company_id" groups="base.group_multi_company"/>
-                <field name="state"/>
+                <field name="name" />
+                <field name="file_date" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="state" />
             </tree>
         </field>
     </record>
@@ -38,7 +38,7 @@
             class="oe_read_only"
             states="pass,error"
           />
-                    <field name="state" widget="statusbar"/>
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -57,24 +57,26 @@
               class="oe_stat_button"
               icon="fa-folder-open"
             >
-                            <field name="sale_count" widget="statinfo"/>
+                            <field name="sale_count" widget="statinfo" />
                         </button>
                     </div>
                     <group>
                         <group>
                             <field name="filename" />
-                            <field name="data" filename="filename"/>
+                            <field name="data" filename="filename" />
                             <field name="file_date" />
                         </group>
                         <group>
-                            <field name="company_id"
-                                   groups="base.group_multi_company"
-                                   options="{'no_create': True}"/>
+                            <field
+                name="company_id"
+                groups="base.group_multi_company"
+                options="{'no_create': True}"
+              />
                         </group>
                     </group>
                     <notebook>
                         <page string="Imported Lines">
-                            <field name="import_line_ids"/>
+                            <field name="import_line_ids" />
                         </page>
                         <page
               string="Error Log"
@@ -93,18 +95,19 @@
                                     <p
                   >You must use this column names in order to fill the table:</p>
                                     <ul name="tutorial">
-                                        <li><code>CodigoCliente</code>: this will fill <b
+                                        <li><code
+                      >CodigoCliente</code>: this will fill <b
                       >Supplier Reference</b></li>
-                                        <li><code>NombreCliente</code>: this will fill <b
-                      >Supplier Name</b></li>
-                                        <li><code>CodigoProducto</code>: this will fill <b
-                      >Product Code</b></li>
-                                        <li><code>NombreProducto</code>: this will fill <b
-                      >Product Name</b></li>
+                                        <li><code
+                      >NombreCliente</code>: this will fill <b>Supplier Name</b></li>
+                                        <li><code
+                      >CodigoProducto</code>: this will fill <b>Product Code</b></li>
+                                        <li><code
+                      >NombreProducto</code>: this will fill <b>Product Name</b></li>
                                         <li><code>Cantidad</code>: this will fill <b
                       >Quantity</b></li>
-                                        <li><code>PrecioUnitario</code>: this will fill <b
-                      >Price Unit</b></li>
+                                        <li><code
+                      >PrecioUnitario</code>: this will fill <b>Price Unit</b></li>
                                         <li><code>TipoDePedido</code>: this will fill <b
                       >Sale Order Type</b></li>
                                     </ul>
@@ -114,9 +117,9 @@
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"/>
-                    <field name="activity_ids" widget="mail_activity"/>
-                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
                 </div>
             </form>
         </field>
@@ -159,7 +162,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">returnable.stock.import</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="returnable_stock_import_view_tree"/>
+        <field name="view_id" ref="returnable_stock_import_view_tree" />
     </record>
 
     <menuitem

@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Sale Picking Returnable Stock Import",
-    'version': '14.0.1.0.0',
+    "version": "14.0.1.0.0",
     "author": "Avanzosc",
     "category": "Inventory",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
         "sale_stock",
         "base_import_wizard",
@@ -19,5 +19,5 @@
         "views/returnable_stock_import_line_view.xml",
     ],
     "license": "AGPL-3",
-    'installable': True,
+    "installable": True,
 }

@@ -4,12 +4,12 @@
         <field name="model">returnable.stock.import.line</field>
         <field name="arch" type="xml">
             <search>
-                <field name="sale_partner_ref"/>
-                <field name="sale_partner_name"/>
-                <field name="sale_product_code"/>
-                <field name="sale_product_name"/>
-                <field name="sale_order_type"/>
-                <separator/>
+                <field name="sale_partner_ref" />
+                <field name="sale_partner_name" />
+                <field name="sale_product_code" />
+                <field name="sale_product_name" />
+                <field name="sale_order_type" />
+                <separator />
                 <filter
           string="Errored"
           name="error"
@@ -43,11 +43,12 @@
             string="Status"
             context="{'group_by': 'state'}"
           />
-          <filter 
+          <filter
             string="Log Info"
             name="log_info"
             domain="[]"
-            context="{'group_by': 'log_info'}"/>
+            context="{'group_by': 'log_info'}"
+          />
                 </group>
             </search>
         </field>
@@ -77,13 +78,13 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="sale_partner_ref"/>
-                            <field name="sale_partner_name"/>
-                            <field name="sale_product_code"/>
-                            <field name="sale_product_name"/>
-                            <field name="sale_order_type"/>
-                            <field name="sale_qty"/>
-                            <field name="sale_price_unit"/>
+                            <field name="sale_partner_ref" />
+                            <field name="sale_partner_name" />
+                            <field name="sale_product_code" />
+                            <field name="sale_product_name" />
+                            <field name="sale_order_type" />
+                            <field name="sale_qty" />
+                            <field name="sale_price_unit" />
                         </group>
                         <group>
                             <field
@@ -100,7 +101,7 @@
               />
                         </group>
                     </group>
-                    <field name="log_info"/>
+                    <field name="log_info" />
                 </sheet>
             </form>
         </field>
@@ -115,20 +116,20 @@
         decoration-it="log_info"
         editable="top"
       >
-                <field name="action" readonly="1"/>
-                <field name="import_id" invisible="1"/>
-                <field name="sale_partner_ref"/>
-                <field name="sale_partner_name"/>
-                <field name="partner_id" optional="show"/>
-                <field name="sale_product_code"/>
-                <field name="sale_product_name"/>
-                <field name="product_id" optional="show"/>
-                <field name="sale_order_type"/>
-                <field name="sale_order_type_id" optional="show"/>
-                <field name="sale_qty"/>
-                <field name="sale_price_unit"/>
-                <field name="state"/>
-                <field name="log_info" optional="show"/>
+                <field name="action" readonly="1" />
+                <field name="import_id" invisible="1" />
+                <field name="sale_partner_ref" />
+                <field name="sale_partner_name" />
+                <field name="partner_id" optional="show" />
+                <field name="sale_product_code" />
+                <field name="sale_product_name" />
+                <field name="product_id" optional="show" />
+                <field name="sale_order_type" />
+                <field name="sale_order_type_id" optional="show" />
+                <field name="sale_qty" />
+                <field name="sale_price_unit" />
+                <field name="state" />
+                <field name="log_info" optional="show" />
             </tree>
         </field>
     </record>
@@ -138,6 +139,6 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">returnable.stock.import.line</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="returnable_stock_import_line_view_tree"/>
+        <field name="view_id" ref="returnable_stock_import_line_view_tree" />
     </record>
 </odoo>
