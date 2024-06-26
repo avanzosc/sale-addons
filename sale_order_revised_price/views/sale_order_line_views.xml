@@ -1,40 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
-  <odoo>
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
       <data>
           <record id="view_order_line_tree" model="ir.ui.view">
             <field name="model">sale.order.line</field>
-            <field name="inherit_id" ref="sale.view_order_line_tree"/>
+            <field name="inherit_id" ref="sale.view_order_line_tree" />
             <field name="arch" type="xml">
                 <field name="order_partner_id" position="after">
-                    <field name="revised_price" optional="show" readonly="1"/>
+                    <field name="revised_price" optional="show" readonly="1" />
                 </field>
             </field>
           </record>
 
           <record id="sale_order_line_view_form_readonly" model="ir.ui.view">
             <field name="model">sale.order.line</field>
-            <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly"/>
+            <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
             <field name="arch" type="xml">
                 <field name="product_uom" position="after">
-                    <field name="revised_price" readonly="1"/>
+                    <field name="revised_price" readonly="1" />
                 </field>
             </field>
           </record>
 
           <record id="view_sales_order_line_filter" model="ir.ui.view">
             <field name="model">sale.order.line</field>
-            <field name="inherit_id" ref="sale.view_sales_order_line_filter"/>
+            <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
             <field name="arch" type="xml">
                 <filter name="my_sales_order_lines" position="after">
-                    <separator/>
-                    <filter name="revised-price" string="Revised price"
-                        domain="[('revised_price','=', True)]" />
-                    <filter name="no-revised-price" string="NO Revised price"
-                        domain="[('revised_price','=', False)]" />
+                    <separator />
+                    <filter
+            name="revised-price"
+            string="Revised price"
+            domain="[('revised_price','=', True)]"
+          />
+                    <filter
+            name="no-revised-price"
+            string="NO Revised price"
+            domain="[('revised_price','=', False)]"
+          />
                 </filter>
                 <filter name="salesperson" position="after">
-                    <filter name="group-revised-price" string="Revised price"
-                        domain="[]" context="{'group_by':'revised_price'}"/>
+                    <filter
+            name="group-revised-price"
+            string="Revised price"
+            domain="[]"
+            context="{'group_by':'revised_price'}"
+          />
                 </filter>
             </field>
           </record>
