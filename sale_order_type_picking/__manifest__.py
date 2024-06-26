@@ -7,10 +7,7 @@
     "category": "Warehouse",
     "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "depends": [
-        "sale_order_type",
-        "delivery"
-    ],
+    "depends": ["sale_order_type", "delivery"],
     "data": [
         "views/sale_order_type_views.xml",
     ],
