@@ -7,11 +7,11 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     spare_serial_number_id = fields.Many2one(
-        string="Spare serial number", comodel_name="stock.production.lot",
-        copy=False
+        string="Spare serial number", comodel_name="stock.production.lot", copy=False
     )
     allowed_product_ids = fields.Many2many(
-        string="Allowed products", comodel_name="product.product")
+        string="Allowed products", comodel_name="product.product"
+    )
 
     @api.onchange("spare_serial_number_id")
     def onchange_spare_serial_number_id(self):
@@ -22,19 +22,21 @@ class SaleOrder(models.Model):
                 if bom and bom.bom_line_ids:
                     allowed_product = bom.bom_line_ids.mapped("product_id")
             sale.allowed_product_ids = (
-                [(6, 0, allowed_product.ids)] if allowed_product else
-                [(6, 0, [])])
+                [(6, 0, allowed_product.ids)] if allowed_product else [(6, 0, [])]
+            )
             if sale.spare_serial_number_id:
                 sale.order_line.write(
-                    {"spare_serial_number_id": sale.spare_serial_number_id})
+                    {"spare_serial_number_id": sale.spare_serial_number_id}
+                )
             else:
-                sale.order_line.write(
-                    {"spare_serial_number_id": False})
+                sale.order_line.write({"spare_serial_number_id": False})
 
     def search_boms_for_allowed_product_ids(self):
         mrp_bom_obj = self.env["mrp.bom"]
-        cond = [("product_id", "!=", False),
-                ("product_id", "=", self.spare_serial_number_id.product_id.id)]
+        cond = [
+            ("product_id", "!=", False),
+            ("product_id", "=", self.spare_serial_number_id.product_id.id),
+        ]
         boms = mrp_bom_obj.search(cond)
         if not boms:
             product = self.spare_serial_number_id.product_id
