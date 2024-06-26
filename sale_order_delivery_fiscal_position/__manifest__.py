@@ -5,16 +5,16 @@
     "name": "Sale Order Delivery Fiscal Position",
     "version": "14.0.1.0.0",
     "category": "Sales/Sales",
-    "author":  "AvanzOSC",
+    "author": "AvanzOSC",
     "license": "AGPL-3",
-    "website": "https://github.com/avanzosc/sale-addons.git",
+    "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
         "account",
         "sale",
     ],
     "data": [
         "views/res_partner_views.xml",
-        ],
+    ],
     "installable": True,
     "auto_install": False,
 }
