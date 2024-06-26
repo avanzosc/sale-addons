@@ -7,10 +7,7 @@
     "category": "Sales/Sales",
     "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "depends": [
-        "product",
-        "sale"
-    ],
+    "depends": ["product", "sale"],
     "data": [
         "views/sale_order_views.xml",
     ],
