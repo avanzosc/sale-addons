@@ -5,10 +5,18 @@
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
             <field name="price_subtotal" position="after">
-                <field name="sale_line_cost" optional="show"
-                    sum="Total Cost" widget="monetary"/>
-                <field name="sale_line_margin" optional="show"
-                    sum="Total Margin" widget="monetary"/>
+                <field
+          name="sale_line_cost"
+          optional="show"
+          sum="Total Cost"
+          widget="monetary"
+        />
+                <field
+          name="sale_line_margin"
+          optional="show"
+          sum="Total Margin"
+          widget="monetary"
+        />
             </field>
         </field>
     </record>
