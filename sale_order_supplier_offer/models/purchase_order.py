@@ -7,15 +7,20 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     sale_order_id = fields.Many2one(
-        string="Sale order", comodel_name="sale.order", copy=False)
+        string="Sale order", comodel_name="sale.order", copy=False
+    )
     supplier_offer_number = fields.Char(
-        string="Supplier offer number", copy=False, store=True,
-        related="sale_order_id.supplier_offer_number"
+        string="Supplier offer number",
+        copy=False,
+        store=True,
+        related="sale_order_id.supplier_offer_number",
     )
     supplier_offer_file = fields.Many2one(
-        string="Supplier offer file", copy=False, store=True,
+        string="Supplier offer file",
+        copy=False,
+        store=True,
         comodel_name="ir.attachment",
-        related="sale_order_id.supplier_offer_file"
+        related="sale_order_id.supplier_offer_file",
     )
 
     @api.model
