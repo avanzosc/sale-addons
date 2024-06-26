@@ -7,6 +7,7 @@
     "category": "Sales",
     "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
+        "stock",
         "sale_stock",
         "sale_order_type",
         "sale_order_user_usability",
@@ -23,6 +24,9 @@
         "views/account_move_view.xml",
         "views/stock_picking_view.xml",
         "views/stock_picking_type_view.xml",
+        "views/res_partner_view.xml",
+        "views/stock_move_line_view.xml",
+        "views/sale_order_line_view.xml",
     ],
     "license": "AGPL-3",
     'installable': True,
