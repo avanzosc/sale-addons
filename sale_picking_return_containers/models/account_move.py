@@ -8,8 +8,14 @@ class AccountMove(models.Model):
 
     @api.model
     def create(self, values):
-        if "is_devolution" in self.env.context and self.env.context["is_devolution"] is True:
-            values.update({
-                "move_type": "out_refund",
-                "journal_id": self.env.company.return_journal_id.id})
+        if (
+            "is_devolution" in self.env.context
+            and self.env.context["is_devolution"] is True
+        ):
+            values.update(
+                {
+                    "move_type": "out_refund",
+                    "journal_id": self.env.company.return_journal_id.id,
+                }
+            )
         return super(AccountMove, self).create(values)

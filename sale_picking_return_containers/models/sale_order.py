@@ -14,19 +14,22 @@ class SaleOrder(models.Model):
         if not self.type_id:
             raise UserError(_("The sale order does not have the type."))
         if not self.type_id.picking_type_id:
-            raise UserError(
-                _("The sales order type does not have the picking type."))
+            raise UserError(_("The sales order type does not have the picking type."))
         if self.type_id.picking_type_id.code != "outgoing":
             raise UserError(_("The picking type must be outgoing."))
         if not self.type_id.picking_type_id.return_picking_type_id:
-            raise UserError(_(
-                "The picking type must have informed the return picking type.")
+            raise UserError(
+                _("The picking type must have informed the return picking type.")
             )
-        purchase = self.env["purchase.order"].create({
-            "partner_id": self.partner_id.id,
-            "picking_type_id": (
-                self.type_id.picking_type_id.return_picking_type_id.id),
-            "is_devolution": True})
+        purchase = self.env["purchase.order"].create(
+            {
+                "partner_id": self.partner_id.id,
+                "picking_type_id": (
+                    self.type_id.picking_type_id.return_picking_type_id.id
+                ),
+                "is_devolution": True,
+            }
+        )
         purchase.action_return_returnable()
         return {
             "name": _("Return Purchase Order"),

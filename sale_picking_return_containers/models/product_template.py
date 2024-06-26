@@ -6,6 +6,4 @@ from odoo import fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    returnable = fields.Boolean(
-        string="Returnable",
-        default=False)
+    returnable = fields.Boolean(string="Returnable", default=False)
