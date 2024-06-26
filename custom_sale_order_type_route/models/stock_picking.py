@@ -8,7 +8,5 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     is_carry_type = fields.Boolean(
-        string="Carry Type",
-        related="picking_type_id.is_carry_type",
-        store=True
+        string="Carry Type", related="picking_type_id.is_carry_type", store=True
     )

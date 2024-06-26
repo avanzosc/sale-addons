@@ -3,18 +3,18 @@
 
     <record id="view_order_line_tree" model="ir.ui.view">
         <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
             <field name="salesman_id" position="after">
-                <field name="special_partner_id" optional="show"/>
+                <field name="special_partner_id" optional="show" />
             </field>
         </field>
     </record>
 
     <record id="action_create_burden_picking" model="ir.actions.server">
         <field name="name">Create Burden Picking</field>
-        <field name="model_id" ref="sale.model_sale_order_line"/>
-        <field name="binding_model_id" ref="sale.model_sale_order_line"/>
+        <field name="model_id" ref="sale.model_sale_order_line" />
+        <field name="binding_model_id" ref="sale.model_sale_order_line" />
         <field name="state">code</field>
         <field name="code">
             if records:
