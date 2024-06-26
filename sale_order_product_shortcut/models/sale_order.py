@@ -9,7 +9,8 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     count_products = fields.Integer(
-        string="Products counter", compute="_compute_count_products")
+        string="Products counter", compute="_compute_count_products"
+    )
 
     def _compute_count_products(self):
         for sale in self:
@@ -23,10 +24,9 @@ class SaleOrder(models.Model):
         products = self.order_line.mapped("product_id")
         action = self.env.ref("product.product_normal_action")
         action_dict = action and action.read()[0]
-        action_dict["context"] = safe_eval(
-            action_dict.get("context", "{}"))
-        domain = expression.AND([
-            [("id", "in", products.ids)],
-            safe_eval(action.domain or "[]")])
+        action_dict["context"] = safe_eval(action_dict.get("context", "{}"))
+        domain = expression.AND(
+            [[("id", "in", products.ids)], safe_eval(action.domain or "[]")]
+        )
         action_dict.update({"domain": domain})
         return action_dict
