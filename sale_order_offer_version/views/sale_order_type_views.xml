@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="sot_sale_order_type_form_view" model="ir.ui.view">
         <field name="model">sale.order.type</field>
-        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_form_view"/>
+        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_form_view" />
         <field name="arch" type="xml">
             <field name="sequence_id" position="after">
                 <field name="is_offer_type" />
@@ -12,7 +12,7 @@
 
     <record id="sot_sale_order_type_tree_view" model="ir.ui.view">
         <field name="model">sale.order.type</field>
-        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_tree_view"/>
+        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_tree_view" />
         <field name="arch" type="xml">
             <field name="sequence_id" position="after">
                 <field name="is_offer_type" />
@@ -22,21 +22,28 @@
 
     <record id="sot_sale_order_type_search_view" model="ir.ui.view">
         <field name="model">sale.order.type</field>
-        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_search_view"/>
+        <field
+      name="inherit_id"
+      ref="sale_order_type.sot_sale_order_type_search_view"
+    />
         <field name="arch" type="xml">
             <field name="sequence_id" position="after">
                 <field name="is_offer_type" />
             </field>
             <field name="company_id" position="after">
-                <filter string="Is it offer type?"
-                        domain="[('is_offer_type', '=', True)]"
-                        name="offer_type_filter"/>
+                <filter
+          string="Is it offer type?"
+          domain="[('is_offer_type', '=', True)]"
+          name="offer_type_filter"
+        />
             </field>
             <filter name="warehouse" position="after">
-                <filter name="is-offer"
-                        string="Offer Type"
-                        domain="[]"
-                        context="{'group_by':'is_offer_type'}" />
+                <filter
+          name="is-offer"
+          string="Offer Type"
+          domain="[]"
+          context="{'group_by':'is_offer_type'}"
+        />
             </filter>
         </field>
     </record>
