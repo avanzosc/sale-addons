@@ -11,13 +11,13 @@ class StockPicking(models.Model):
             lambda c: c.quantity_done == 0
         )
         for move in zero_moves:
-            move.write({
-                "state": "done",
-                "product_uom_qty": move.quantity_done,
-            })
+            move.write(
+                {
+                    "state": "done",
+                    "product_uom_qty": move.quantity_done,
+                }
+            )
             if not move.move_line_ids:
-                self.env["stock.move.line"].create(
-                    move._prepare_move_line_vals()
-                )
+                self.env["stock.move.line"].create(move._prepare_move_line_vals())
         result = super(StockPicking, self).button_validate()
         return result
