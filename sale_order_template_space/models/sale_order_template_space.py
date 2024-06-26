@@ -9,10 +9,14 @@ class SaleOrderTemplateSpace(models.Model):
     _order = "name"
 
     name = fields.Char(
-        string="Name", required=True, copy=False,
+        required=True,
+        copy=False,
     )
     sale_template_ids = fields.Many2many(
-        string="Sale Order Templates", comodel_name="sale.order.template",
-        relation="rel_sale_templates_spaces", column1="sale_template_space_id",
-        column2="sale_template_id", copy=False,
+        string="Sale Order Templates",
+        comodel_name="sale.order.template",
+        relation="rel_sale_templates_spaces",
+        column1="sale_template_space_id",
+        column2="sale_template_id",
+        copy=False,
     )

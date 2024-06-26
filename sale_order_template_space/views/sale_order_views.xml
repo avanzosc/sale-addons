@@ -5,30 +5,46 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="payment_term_id" position="after">
-                <field name="sale_order_space_ids"
-                        attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}">
+                <field
+          name="sale_order_space_ids"
+          attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+        >
                     <tree string="Sale Order Spaces" editable="bottom">
                         <field name="sequence" />
-                        <field name="sale_order_id" invisible="1"/>
-                        <field name="space_id"/>
-                        <field name="sale_template_id"/>
-                        <field name="name" readonly="1"/>
-                        <button name="action_create_lines"
-                            help="Create sale lines"
-                            type="object" class="btn-link" icon="fa-arrow-right"
-                            attrs="{'invisible': [('num_sale_lines','!=', 0)]}"/>
-                        <button name="action_delete_lines"
-                            help="Delete sale lines"
-                            type="object" class="btn-link" icon="fa-times"
-                            attrs="{'invisible': [('num_sale_lines','=', 0)]}"/>
+                        <field name="sale_order_id" invisible="1" />
+                        <field name="space_id" />
+                        <field name="sale_template_id" />
+                        <field name="name" readonly="1" />
+                        <button
+              name="action_create_lines"
+              help="Create sale lines"
+              type="object"
+              class="btn-link"
+              icon="fa-arrow-right"
+              attrs="{'invisible': [('num_sale_lines','!=', 0)]}"
+            />
+                        <button
+              name="action_delete_lines"
+              help="Delete sale lines"
+              type="object"
+              class="btn-link"
+              icon="fa-times"
+              attrs="{'invisible': [('num_sale_lines','=', 0)]}"
+            />
                         <field name="num_sale_lines" />
                     </tree>
                  </field>
             </field>
-            <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="after">
+            <xpath
+        expr="//field[@name='order_line']/form//field[@name='tax_id']"
+        position="after"
+      >
                 <field name="sale_order_space_id" readonly="1" />
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='analytic_distribution']" position="after">
+            <xpath
+        expr="//field[@name='order_line']/tree/field[@name='analytic_distribution']"
+        position="after"
+      >
                 <field name="sale_order_space_id" optional="show" readonly="1" />
             </xpath>
         </field>
@@ -39,10 +55,16 @@
         <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
             <field name="order_line" position="after">
-                <field name="sale_order_space_ids" string="Sale Order Space"
-                    filter_domain="[('sale_order_space_ids.name', 'ilike', self)]"/>
-                <field name="order_line" string="Sale Order Line Space"
-                    filter_domain="[('order_line.sale_order_space_id', 'ilike', self)]"/>
+                <field
+          name="sale_order_space_ids"
+          string="Sale Order Space"
+          filter_domain="[('sale_order_space_ids.name', 'ilike', self)]"
+        />
+                <field
+          name="order_line"
+          string="Sale Order Line Space"
+          filter_domain="[('order_line.sale_order_space_id', 'ilike', self)]"
+        />
             </field>
         </field>
     </record>

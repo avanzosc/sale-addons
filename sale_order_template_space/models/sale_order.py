@@ -7,14 +7,16 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     sale_order_space_ids = fields.One2many(
-        string="Sale Order Spaces", comodel_name="sale.order.space",
-        inverse_name="sale_order_id", copy=True,
+        string="Sale Order Spaces",
+        comodel_name="sale.order.space",
+        inverse_name="sale_order_id",
+        copy=True,
     )
 
-    @api.returns('self', lambda value: value.id)
+    @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
         default = dict(default or {})
-        sale = super(SaleOrder, self).copy(default=default)
+        sale = super().copy(default=default)
         if sale.sale_order_space_ids:
             sale.order_line.unlink()
         return sale

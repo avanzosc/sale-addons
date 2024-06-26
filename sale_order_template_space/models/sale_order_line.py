@@ -7,6 +7,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     sale_order_space_id = fields.Many2one(
-        string="Sale Order Space", comodel_name="sale.order.space",
+        string="Sale Order Space",
+        comodel_name="sale.order.space",
         copy=False,
     )

@@ -6,7 +6,7 @@
     "category": "Sales/Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
-    "website": "https://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
         "sale_management",
         "sales_team",

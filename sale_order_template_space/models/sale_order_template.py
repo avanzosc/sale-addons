@@ -10,25 +10,32 @@ class SaleOrderTemplate(models.Model):
     _order = "sequence, name"
 
     space_ids = fields.Many2many(
-        string="Spaces", comodel_name="sale.order.template.space",
-        relation="rel_sale_templates_spaces", column1="sale_template_id",
-        column2="sale_template_space_id", copy=False,
+        string="Spaces",
+        comodel_name="sale.order.template.space",
+        relation="rel_sale_templates_spaces",
+        column1="sale_template_id",
+        column2="sale_template_space_id",
+        copy=False,
     )
     sequence = fields.Integer(
-        string="Sequence", default=0, copy=False)
+        default=0,
+        copy=False,
+    )
     sale_template_line_count = fields.Integer(
-        string="# Sale Template Lines",
-        compute="_compute_sale_template_line_count"
+        string="# Sale Template Lines", compute="_compute_sale_template_line_count"
     )
     sequence_to_view = fields.Integer(
-        string="Sequence", compute="_compute_sequence_to_view", store=True,
+        string="Sequence",
+        compute="_compute_sequence_to_view",
+        store=True,
         copy=False,
     )
 
     def _compute_sale_template_line_count(self):
         for template in self:
             template.sale_template_line_count = len(
-                template.sale_order_template_line_ids)
+                template.sale_order_template_line_ids
+            )
 
     @api.depends("sequence")
     def _compute_sequence_to_view(self):
@@ -38,16 +45,19 @@ class SaleOrderTemplate(models.Model):
     def action_view_sale_template_lines(self):
         self.ensure_one()
         action = self.env["ir.actions.actions"]._for_xml_id(
-            "sale_order_template_space.action_editabable_template_orders_lines")
+            "sale_order_template_space.action_editabable_template_orders_lines"
+        )
         action["domain"] = expression.AND(
-            [[("id", "in", self.sale_order_template_line_ids.ids)],
-             safe_eval(action.get("domain") or "[]")]
+            [
+                [("id", "in", self.sale_order_template_line_ids.ids)],
+                safe_eval(action.get("domain") or "[]"),
+            ]
         )
         action["context"] = dict(self._context, create=False)
         return action
 
     def write(self, vals):
-        result = super(SaleOrderTemplate, self).write(vals)
+        result = super().write(vals)
         if "sequence" in vals:
             for template in self:
                 template._recalculate_sequence_lines()

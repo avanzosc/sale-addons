@@ -7,14 +7,21 @@ class SaleOrderTemplateLine(models.Model):
     _inherit = "sale.order.template.line"
 
     space_ids = fields.Many2many(
-        string="Spaces", comodel_name="sale.order.template.space", copy=False,
+        string="Spaces",
+        comodel_name="sale.order.template.space",
+        copy=False,
     )
     product_categ_id = fields.Many2one(
-        string="Product Category", comodel_name="product.category",
-        related="product_id.categ_id", store=True, copy=False,
+        string="Product Category",
+        comodel_name="product.category",
+        related="product_id.categ_id",
+        store=True,
+        copy=False,
     )
     sequence_to_view = fields.Integer(
-        string="Sequence", compute="_compute_sequence_to_view", store=True,
+        string="Sequence",
+        compute="_compute_sequence_to_view",
+        store=True,
         copy=False,
     )
 
