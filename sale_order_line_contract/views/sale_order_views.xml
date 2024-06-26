@@ -1,24 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_order_form" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="after">
+            <xpath
+        expr="//field[@name='order_line']/tree//field[@name='name']"
+        position="after"
+      >
                 <field name="contract_line_id" />
             </xpath>
-            <xpath expr="//field[@name='order_line']/form//field[@name='analytic_tag_ids']/.." position="after">
+            <xpath
+        expr="//field[@name='order_line']/form//field[@name='analytic_tag_ids']/.."
+        position="after"
+      >
                 <field name="contract_line_id" />
             </xpath>
             <button name="action_view_invoice" position="after">
-                <button name="action_view_contracts" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('count_contracts', '=', 0)]}">
-                    <field name="count_contracts" widget="statinfo" string="Contracts"/>
+                <button
+          name="action_view_contracts"
+          type="object"
+          class="oe_stat_button"
+          icon="fa-pencil-square-o"
+          attrs="{'invisible': [('count_contracts', '=', 0)]}"
+        >
+                    <field
+            name="count_contracts"
+            widget="statinfo"
+            string="Contracts"
+          />
                 </button>
             </button>
             <notebook position="before">
                 <group>
-                    <field name="contract_created_literal" nolabel="1"
-                        attrs="{'invisible': [('contract_created_literal', '=', False)]}"/>
+                    <field
+            name="contract_created_literal"
+            nolabel="1"
+            attrs="{'invisible': [('contract_created_literal', '=', False)]}"
+          />
                 </group>
             </notebook>
         </field>
