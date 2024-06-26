@@ -29,8 +29,11 @@
         <field name="arch" type="xml">
             <field name="order_line" position="replace">
                 <field name="origin" />
-                <field name="order_line" string="Product/Line description"
-                    filter_domain="['|', ('order_line.product_id', 'ilike', self), ('order_line.name', 'ilike', self)]"/>
+                <field
+          name="order_line"
+          string="Product/Line description"
+          filter_domain="['|', ('order_line.product_id', 'ilike', self), ('order_line.name', 'ilike', self)]"
+        />
             </field>
         </field>
     </record>
