@@ -24,7 +24,7 @@ class SaleReport(models.Model):
     )
 
     def _select_sale(self):
-        result = super(SaleReport, self)._select_sale()
+        result = super()._select_sale()
         result += (
             ", sum(l.qty_pending_delivery / u.factor * u2.factor) "
             "as qty_pending_delivery"
@@ -36,6 +36,5 @@ class SaleReport(models.Model):
             "sum(l.amount_pending_invoicing / CASE COALESCE(s.currency_rate,"
             " 0) WHEN 0 THEN 1.0 ELSE s.currency_rate END) as "
             "amount_pending_invoicing"
-            )
+        )
         return result
-
