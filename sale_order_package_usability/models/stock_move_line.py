@@ -7,13 +7,11 @@ from odoo import api, fields, models
 class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
 
-    package_qty = fields.Integer(
-        string="Packages")
-    container = fields.Integer(
-        string="Container")
+    package_qty = fields.Integer(string="Packages")
+    container = fields.Integer(string="Container")
     product_packaging = fields.Many2one(
-        string="Packaging",
-        comodel_name="product.packaging")
+        string="Packaging", comodel_name="product.packaging"
+    )
 
     @api.onchange("package_qty", "product_packaging", "product_packaging.qty")
     def onchange_product_packaging(self):

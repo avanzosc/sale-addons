@@ -8,18 +8,17 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     package_qty = fields.Integer(
-        string="Packages",
-        related="sale_line_id.package_qty",
-        store=True)
+        string="Packages", related="sale_line_id.package_qty", store=True
+    )
     container = fields.Integer(
-        string="Container",
-        related="sale_line_id.container",
-        store=True)
+        string="Container", related="sale_line_id.container", store=True
+    )
     product_packaging = fields.Many2one(
         string="Packaging",
         comodel_name="product.packaging",
         related="sale_line_id.product_packaging",
-        store=True)
+        store=True,
+    )
 
     @api.onchange("sale_line_id")
     def onchange_sale_line_id(self):
