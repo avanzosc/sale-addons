@@ -10,6 +10,7 @@
         "stock",
         "sale_stock",
         "sale_order_type",
+        "sale_order_type_config",
         "sale_order_user_usability",
         "sale_line_pending_info",
         "sale_order_line_qty_by_packaging",
