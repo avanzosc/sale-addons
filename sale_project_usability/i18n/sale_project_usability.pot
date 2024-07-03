@@ -44,3 +44,11 @@ msgstr ""
 #: model:ir.model,name:sale_project_usability.model_project_task
 msgid "Task"
 msgstr ""
+
+#. module: sale_project_usability
+#: model:ir.model.fields,field_description:sale_project_usability.field_product_product__project_template_group_by_id
+#: model:ir.model.fields,field_description:sale_project_usability.field_product_template__project_template_group_by_id
+#: model_terms:ir.ui.view,arch_db:sale_project_usability.product_template_search_view
+msgid "Project Template"
+msgstr ""
+
