@@ -33,21 +33,17 @@ class StockRule(models.Model):
                 sale_line.order_id.type_id
                 and sale_line.order_id.type_id.picking_type_id
             ):
-                values[
-                    "picking_type_id"
-                ] = sale_line.order_id.type_id.picking_type_id.id
-                values[
-                    "location_id"
-                ] = (
+                values["picking_type_id"] = (
+                    sale_line.order_id.type_id.picking_type_id.id
+                )
+                values["location_id"] = (
                     sale_line.order_id.type_id.picking_type_id.default_location_src_id.id
                 )
-                values[
-                    "location_dest_id"
-                ] = (
+                values["location_dest_id"] = (
                     sale_line.order_id.type_id.picking_type_id.default_location_dest_id.id
                 )
                 if sale_line.order_id.type_id.picking_type_id.sequence_id:
-                    values[
-                        "sequence"
-                    ] = sale_line.order_id.type_id.picking_type_id.sequence_id.id
+                    values["sequence"] = (
+                        sale_line.order_id.type_id.picking_type_id.sequence_id.id
+                    )
         return values
