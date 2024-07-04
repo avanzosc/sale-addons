@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_line_form_view_inherited" model="ir.ui.view">
+        <field name="name">sale.order.line.form.inherited</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_qty']" position="after">
+                <field name="basket" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_line_tree_view_inherited" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.inherited</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="basket" optional="show" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_line_search_view_inherited" model="ir.ui.view">
+        <field name="name">sale.order.line.search.inherited</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="basket" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
