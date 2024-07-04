@@ -62,7 +62,3 @@ class SaleOrderLine(models.Model):
                 line.possible_lot_ids = [(6, 0, lot_ids.ids)]
             else:
                 line.possible_lot_ids = False
-
-    @api.onchange("product_id")
-    def _onchange_product_id_set_lot_domain(self):
-        super()._onchange_product_id_set_lot_domain()
