@@ -39,6 +39,6 @@ class SaleOrderLine(models.Model):
                 if line.product_uom_qty > 0 and temp_sale_hourly_rate > 0:
                     hours = line.price_subtotal / temp_sale_hourly_rate
 
-                    line.task_id.planned_hours = hours
+                line.task_id.planned_hours = hours
                 else:
                     line.task_id.planned_hours = 0
