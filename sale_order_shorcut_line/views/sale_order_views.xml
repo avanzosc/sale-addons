@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+          class="oe_stat_button"
+          name="action_view_sale_lines"
+          type="object"
+          icon="fa-bars"
+          attrs="{'invisible': [('sale_line_count', '=', 0)]}"
+        >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value"><field
+                name="sale_line_count"
+              /></span>
+                        <span class="o_stat_text">Sale Lines</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath
+        expr="//field[@name='order_line']/tree/field[@name='sequence']"
+        position="after"
+      >
+                <field name="sequence_to_view" readonly="1" optional="show" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="model_sale_order_action_put_section_in_lines" model="ir.actions.server">
+        <field name="name">Put section in lines</field>
+        <field name="model_id" ref="sale.model_sale_order" />
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_put_section_in_lines()</field>
+    </record>
+</odoo>

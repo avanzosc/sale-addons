@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="project_project_view_tree" model="ir.ui.view">
+        <field name="model">project.project</field>
+        <field
+      name="inherit_id"
+      ref="project_profitability_usability.project_project_view_tree"
+    />
+        <field name="arch" type="xml">
+            <field name="profitability_pending_amount" position="after">
+                <field
+          name="out_invoice_amount_total"
+          optional="show"
+          string="Total out invoice with tax"
+          widget="monetary"
+          options="{'currency_field': 'currency_id'}"
+        />
+                <field
+          name="amount_collected"
+          optional="show"
+          string="Amount collected"
+          widget="monetary"
+          options="{'currency_field': 'currency_id'}"
+        />
+               <field
+          name="in_invoice_amount_total"
+          optional="show"
+          string="aTotal in invoice with tax"
+          widget="monetary"
+          options="{'currency_field': 'currency_id'}"
+        />
+               <field
+          name="amount_paid"
+          optional="show"
+          string="bAmount paid"
+          widget="monetary"
+          options="{'currency_field': 'currency_id'}"
+        />
+            </field>
+        </field>
+    </record>
+</odoo>

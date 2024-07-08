@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="create_date" position="after">
+                <field name="date_order" optional="show" widget="date" />
+            </field>
+            <field name="user_id" position="after">
+                <field name="origin" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="origin" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <field name="order_line" position="replace">
+                <field name="origin" />
+                <field
+          name="order_line"
+          string="Product/Line description"
+          filter_domain="['|', ('order_line.product_id', 'ilike', self), ('order_line.name', 'ilike', self)]"
+        />
+            </field>
+        </field>
+    </record>
+</odoo>
