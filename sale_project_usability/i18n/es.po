@@ -1,0 +1,54 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_project_usability
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-01 14:25+0000\n"
+"PO-Revision-Date: 2022-03-01 14:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_project_usability
+#: model:ir.model.fields,field_description:sale_project_usability.field_project_task__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_project_usability
+#: model:ir.model.fields,field_description:sale_project_usability.field_project_task__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_project_usability
+#: model:ir.model.fields,field_description:sale_project_usability.field_project_task____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_project_usability
+#: model:ir.model.fields,field_description:sale_project_usability.field_project_task__sale_line_product_id
+msgid "Sale line product"
+msgstr "Producto de línea de venta"
+
+#. module: sale_project_usability
+#: model:ir.model.fields,field_description:sale_project_usability.field_project_task__sale_line_product_uom_qty
+msgid "Sale line quantity"
+msgstr "Cantidad de línea de venta"
+
+#. module: sale_project_usability
+#: model:ir.model,name:sale_project_usability.model_project_task
+msgid "Task"
+msgstr "Tarea"
+
+#. module: sale_project_usability
+#: model:ir.model.fields,field_description:sale_project_usability.field_product_product__project_template_group_by_id
+#: model:ir.model.fields,field_description:sale_project_usability.field_product_template__project_template_group_by_id
+#: model_terms:ir.ui.view,arch_db:sale_project_usability.product_template_search_view
+msgid "Project Template"
+msgstr "Plantilla de proyecto"
+
