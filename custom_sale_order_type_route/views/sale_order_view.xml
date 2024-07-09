@@ -227,17 +227,10 @@
   />
 
     <menuitem
-    id="deliverymen_menu_my_sales"
-    name="My Sales"
-    parent="deliverymen_menu"
-    sequence="5"
-  />
-
-    <menuitem
     id="deliverymen_menu_sales"
     name="Sales"
     parent="deliverymen_menu"
-    sequence="10"
+    sequence="5"
   />
 
     <menuitem
@@ -252,7 +245,7 @@
     action="action_my_route_type_sales"
     name="My Sales"
     id="menu_my_route_type_sales"
-    parent="deliverymen_menu_my_sales"
+    parent="deliverymen_menu_sales"
     sequence="5"
   />
 
