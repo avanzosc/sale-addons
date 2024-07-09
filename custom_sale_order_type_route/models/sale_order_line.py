@@ -94,6 +94,7 @@ class SaleOrderLine(models.Model):
                             lambda c: c.product_id == (same_type_line.product_id)
                             and c.product_packaging
                             == (same_type_line.product_packaging)
+                            and not c.order_id.special_burden
                         )
                         self.env["stock.move.line"].create(
                             {

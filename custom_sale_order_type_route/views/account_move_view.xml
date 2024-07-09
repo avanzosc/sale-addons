@@ -12,19 +12,38 @@
         <field name="context" />
     </record>
 
+    <record id="action_supplier_account_move" model="ir.actions.act_window">
+        <field name="name">Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field
+      name="domain"
+    >[('move_type', 'in', ('out_invoice', 'out_refund')), ('payment_state', 'in', ('not_paid', 'partial'))]</field>
+        <field name="context">{"search_default_sale_type": 1}</field>
+    </record>
+
     <menuitem
-    id="deliverymen_menu_my_invoices"
-    name="My Invoices"
+    id="deliverymen_menu_invoices"
+    name="Invoices"
     parent="deliverymen_menu"
-    sequence="15"
+    sequence="7"
   />
 
     <menuitem
     action="action_my_account_move"
     name="My Invoices"
     id="menu_my_invoices"
-    parent="deliverymen_menu_my_invoices"
+    parent="deliverymen_menu_invoices"
     sequence="5"
+  />
+
+    <menuitem
+    action="action_supplier_account_move"
+    name="Invoices"
+    id="menu_all_invoices"
+    parent="deliverymen_menu_invoices"
+    sequence="10"
   />
 
 </odoo>
