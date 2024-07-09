@@ -26,6 +26,7 @@
     <record id="view_sales_order_filter" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="priority">100</field>
         <field name="arch" type="xml">
             <field name="order_line" position="replace">
                 <field name="origin" />

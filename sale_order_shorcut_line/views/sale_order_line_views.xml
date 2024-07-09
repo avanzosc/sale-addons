@@ -36,16 +36,9 @@
     </record>
 
     <record id="sale_order_line_editable_tree" model="ir.ui.view">
-        <field name="name">sale.order.line.editable.tree</field>
         <field name="model">sale.order.line</field>
         <field name="arch" type="xml">
-            <tree
-        string="Sales Order Lines"
-        editable="top"
-        create="1"
-        delete="1"
-        multi_edit="1"
-      >
+            <tree editable="top" create="1" delete="1" multi_edit="1">
                 <field name="sequence" widget="handle" />
                 <field name="order_id" invisible="1" />
                 <field name="sequence_to_view" optional="show" />

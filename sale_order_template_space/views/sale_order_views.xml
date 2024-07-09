@@ -9,7 +9,7 @@
           name="sale_order_space_ids"
           attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
         >
-                    <tree string="Sale Order Spaces" editable="bottom">
+                    <tree editable="bottom">
                         <field name="sequence" />
                         <field name="sale_order_id" invisible="1" />
                         <field name="space_id" />
