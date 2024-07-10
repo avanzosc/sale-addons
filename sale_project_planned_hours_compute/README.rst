@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=======================================
+=====================================
 Compute Planned Hours on Tasks Module
-=======================================
+=====================================
 
 Summary
 =======
@@ -34,10 +34,3 @@ Credits
 Author
 ------
 - Unai Beristain <unaiberistain@avanzosc.es>
-
-License
-=======
-
-- License: AGPL-3.0 or later
-
-Do not contact contributors directly about support or help with technical issues.
