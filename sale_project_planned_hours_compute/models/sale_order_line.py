@@ -13,12 +13,10 @@ class SaleOrderLine(models.Model):
     @api.depends("task_id.planned_hours")
     def _compute_order_project_sale_hourly_rate(self):
         temp_sale_hourly_rate = float(
-            float(
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_param(
-                    "sale_project_planned_hours_compute.sale_hourly_rate", default=50
-                )
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param(
+                "sale_project_planned_hours_compute.sale_hourly_rate", default=50
             )
         )
 
@@ -37,12 +35,10 @@ class SaleOrderLine(models.Model):
     )
     def _compute_planned_hours(self):
         temp_sale_hourly_rate = float(
-            float(
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_param(
-                    "sale_project_planned_hours_compute.sale_hourly_rate", default=50
-                )
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param(
+                "sale_project_planned_hours_compute.sale_hourly_rate", default=50
             )
         )
 

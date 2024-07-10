@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-19 07:43+0000\n"
-"PO-Revision-Date: 2024-06-19 07:43+0000\n"
+"POT-Creation-Date: 2024-07-08 08:09+0000\n"
+"PO-Revision-Date: 2024-07-08 08:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr ""
 #. module: custom_sale_order_type_route
 #: model:ir.actions.server,name:custom_sale_order_type_route.action_create_burden_picking
 msgid "Create Burden Picking"
-msgstr ""
+msgstr "Crear albarán de carga"
 
 #. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__deliverement_menu
@@ -92,6 +92,13 @@ msgid "ID"
 msgstr "Identificador"
 
 #. module: custom_sale_order_type_route
+#: model:ir.actions.act_window,name:custom_sale_order_type_route.action_supplier_account_move
+#: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_invoices
+#: model:ir.ui.menu,name:custom_sale_order_type_route.menu_all_invoices
+msgid "Invoices"
+msgstr "Facturas"
+
+#. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line____last_update
@@ -104,7 +111,6 @@ msgstr "Última modificación el"
 
 #. module: custom_sale_order_type_route
 #: model:ir.actions.act_window,name:custom_sale_order_type_route.action_my_account_move
-#: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_my_invoices
 #: model:ir.ui.menu,name:custom_sale_order_type_route.menu_my_invoices
 msgid "My Invoices"
 msgstr "Mis facturas"
@@ -118,7 +124,6 @@ msgstr "Mis pagos"
 
 #. module: custom_sale_order_type_route
 #: model:ir.actions.act_window,name:custom_sale_order_type_route.action_my_route_type_sales
-#: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_my_sales
 #: model:ir.ui.menu,name:custom_sale_order_type_route.menu_my_route_type_sales
 msgid "My Sales"
 msgstr "Mis ventas"
@@ -170,11 +175,13 @@ msgstr "Cliente carga especial"
 
 #. module: custom_sale_order_type_route
 #: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
 #, python-format
 msgid "The burden picking type has not destination location."
 msgstr "El tipo de operación de carga no tiene ubicación de destino."
 
 #. module: custom_sale_order_type_route
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
 #: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
 #, python-format
 msgid "The burden picking type has not source location."
@@ -182,17 +189,13 @@ msgstr "El tipo de operación de carga no tiene ubicación de origen."
 
 #. module: custom_sale_order_type_route
 #: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
-#, python-format
-msgid "The product {} of sale {} needs lot."
-msgstr "El producto {} del pedido {} no tiene lote."
-
-#. module: custom_sale_order_type_route
 #: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
 #, python-format
 msgid "The sale order has not type."
 msgstr "El pedido de venta no tiene tipo."
 
 #. module: custom_sale_order_type_route
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
 #: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
 #, python-format
 msgid "The sale order type has not burden picking type."
