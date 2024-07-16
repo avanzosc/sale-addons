@@ -29,59 +29,57 @@ class SaleOrderImport(models.Model):
         required=True,
         default=lambda self: self.env.company.id,
     )
-    warehouse_id = fields.Many2one(string="Warehouse", comodel_name="stock.warehouse")
+    warehouse_id = fields.Many2one(
+        string="Warehouse",
+        comodel_name="stock.warehouse",
+    )
 
     def _get_line_values(self, row_values, datemode=False):
         self.ensure_one()
         values = super()._get_line_values(row_values, datemode=datemode)
         if row_values:
-            date_order = row_values.get("FechaPedido", "")
-            delivery_date = row_values.get("FechaEntrega", "")
-            client_order_ref = row_values.get("NumeroPedidoCliente", "")
-            product_name = row_values.get("NombreProducto", "")
-            product_code = row_values.get("CodigoProducto", "")
-            product_barcode = row_values.get("CodigoBarrasProducto", "")
-            customer_name = row_values.get("NombreCliente", "")
-            customer_code = row_values.get("CodigoCliente", "")
-            customer_reference = row_values.get("ReferenciaCliente", "")
-            product_customer_code = row_values.get("CodigoProductoCliente", "")
-            invoice_address_name = row_values.get("NombreDireccionFacturacion", "")
-            invoice_address_code = row_values.get("CodigoDireccionFacturacion", "")
-            invoice_address_reference = row_values.get(
-                "ReferenciaDireccionFacturacion", ""
-            )
-            delivery_address_name = row_values.get("NombreDireccionEnvio", "")
-            delivery_address_code = row_values.get("CodigoDireccionEnvio", "")
-            delivery_address_reference = row_values.get("ReferenciaDireccionEnvio", "")
-            values.update(
-                {
-                    "client_order_ref": convert2str(client_order_ref),
-                    "product_name": convert2str(product_name),
-                    "product_code": convert2str(product_code),
-                    "product_barcode": convert2str(product_barcode),
-                    "customer_name": convert2str(customer_name),
-                    "customer_code": convert2str(customer_code),
-                    "customer_reference": convert2str(customer_reference),
-                    "product_customer_code": convert2str(product_customer_code),
-                    "invoice_address_name": convert2str(invoice_address_name),
-                    "invoice_address_code": convert2str(invoice_address_code),
-                    "invoice_address_reference": convert2str(invoice_address_reference),
-                    "delivery_address_name": convert2str(delivery_address_name),
-                    "delivery_address_code": convert2str(delivery_address_code),
-                    "delivery_address_reference": convert2str(
-                        delivery_address_reference
-                    ),
-                    "date_order": convert2date(date_order) if date_order else False,
-                    "delivery_date": convert2date(delivery_date)
-                    if delivery_date
-                    else False,
-                    "quantity": row_values.get("Cantidad", ""),
-                    "price_unit": row_values.get("PrecioUnitario", ""),
-                    "total_order_amount": row_values.get("TotalImportePedido", ""),
-                    "log_info": "",
-                }
-            )
+            line_vals = self._get_line_fields_values(row_values)
+            values.update(line_vals)
         return values
+
+    def _get_line_fields_values(self, row_values):
+        date_order = row_values.get("FechaPedido", "")
+        delivery_date = row_values.get("FechaEntrega", "")
+        client_order_ref = row_values.get("NumeroPedidoCliente", "")
+        product_name = row_values.get("NombreProducto", "")
+        product_code = row_values.get("CodigoProducto", "")
+        product_barcode = row_values.get("CodigoBarrasProducto", "")
+        customer_name = row_values.get("NombreCliente", "")
+        customer_reference = row_values.get("ReferenciaCliente", "")
+        customer_vat = row_values.get("NIFCliente", "")
+        invoice_address_name = row_values.get("NombreDireccionFacturacion", "")
+        invoice_address_reference = row_values.get("ReferenciaDireccionFacturacion", "")
+        invoice_address_vat = row_values.get("NIFDireccionFacturacion", "")
+        delivery_address_name = row_values.get("NombreDireccionEnvio", "")
+        delivery_address_reference = row_values.get("ReferenciaDireccionEnvio", "")
+        delivery_address_vat = row_values.get("NIFDireccionEnvio", "")
+        line_vals = {
+            "client_order_ref": convert2str(client_order_ref),
+            "product_name": convert2str(product_name),
+            "product_code": convert2str(product_code),
+            "product_barcode": convert2str(product_barcode),
+            "customer_name": convert2str(customer_name),
+            "customer_reference": convert2str(customer_reference),
+            "customer_vat": convert2str(customer_vat),
+            "invoice_address_name": convert2str(invoice_address_name),
+            "invoice_address_reference": convert2str(invoice_address_reference),
+            "invoice_address_vat": convert2str(invoice_address_vat),
+            "delivery_address_name": convert2str(delivery_address_name),
+            "delivery_address_reference": convert2str(delivery_address_reference),
+            "delivery_address_vat": convert2str(delivery_address_vat),
+            "date_order": convert2date(date_order) if date_order else False,
+            "delivery_date": convert2date(delivery_date) if delivery_date else False,
+            "quantity": row_values.get("Cantidad", ""),
+            "price_unit": row_values.get("PrecioUnitario", ""),
+            "total_order_amount": row_values.get("TotalImportePedido", ""),
+            "log_info": "",
+        }
+        return line_vals
 
     def _compute_sale_order_count(self):
         for record in self:

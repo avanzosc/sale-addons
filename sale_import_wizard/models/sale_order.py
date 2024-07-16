@@ -7,10 +7,15 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     sale_import_id = fields.Many2one(
-        string="", comodel_name="sale.order.import", copy=False, readonly="1"
+        string="From Sale Import",
+        comodel_name="sale.order.import",
+        copy=False,
+        readonly="1",
     )
     total_amount_from_import = fields.Float(
-        string="Total amount from import", readonly="1", copy=False
+        string="Total amount from import",
+        readonly="1",
+        copy=False,
     )
     different_amounts = fields.Boolean(
         string="Different import and total untaxed amounts",
