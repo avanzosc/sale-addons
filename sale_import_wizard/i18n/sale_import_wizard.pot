@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0+e\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-20 07:04+0000\n"
-"PO-Revision-Date: 2023-10-20 07:04+0000\n"
+"POT-Creation-Date: 2024-07-11 09:08+0000\n"
+"PO-Revision-Date: 2024-07-11 09:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,33 +32,7 @@ msgstr ""
 
 #. module: sale_import_wizard
 #: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
-msgid "<code>CodigoCliente</code>: this will fill <b>Customer</b>"
-msgstr ""
-
-#. module: sale_import_wizard
-#: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
-msgid ""
-"<code>CodigoDireccionEnvio</code>: this will fill <b>Delivery Address and "
-"Customer</b>"
-msgstr ""
-
-#. module: sale_import_wizard
-#: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
-msgid ""
-"<code>CodigoDireccionFacturacion</code>: this will fill <b>Invoice Address "
-"and Customer</b>"
-msgstr ""
-
-#. module: sale_import_wizard
-#: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
 msgid "<code>CodigoProducto</code>: this will fill <b>Product</b>"
-msgstr ""
-
-#. module: sale_import_wizard
-#: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
-msgid ""
-"<code>CodigoProductoCliente</code>: this will fill <b>Product and "
-"Customer</b>"
 msgstr ""
 
 #. module: sale_import_wizard
@@ -73,21 +47,36 @@ msgstr ""
 
 #. module: sale_import_wizard
 #: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
+msgid "<code>NIFCliente</code>: this will fill <b>Customer</b>"
+msgstr ""
+
+#. module: sale_import_wizard
+#: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
+msgid "<code>NIFDireccionEnvio</code>: this will fill <b>Delivery Address</b>"
+msgstr ""
+
+#. module: sale_import_wizard
+#: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
+msgid ""
+"<code>NIFDireccionFacturacion</code>: this will fill <b>Invoice Address</b>"
+msgstr ""
+
+#. module: sale_import_wizard
+#: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
 msgid "<code>NombreCliente</code>: this will fill <b>Customer</b>"
 msgstr ""
 
 #. module: sale_import_wizard
 #: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
 msgid ""
-"<code>NombreDireccionEnvio</code>: this will fill <b>Delivery Address and "
-"Customer</b>"
+"<code>NombreDireccionEnvio</code>: this will fill <b>Delivery Address</b>"
 msgstr ""
 
 #. module: sale_import_wizard
 #: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
 msgid ""
-"<code>NombreDireccionFacturacion</code>: this will fill <b>Invoice Address "
-"and Customer</b>"
+"<code>NombreDireccionFacturacion</code>: this will fill <b>Invoice "
+"Address</b>"
 msgstr ""
 
 #. module: sale_import_wizard
@@ -115,15 +104,15 @@ msgstr ""
 #. module: sale_import_wizard
 #: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
 msgid ""
-"<code>ReferenciaDireccionEnvio</code>: this will fill <b>Delivery Address "
-"and Customer</b>"
+"<code>ReferenciaDireccionEnvio</code>: this will fill <b>Delivery "
+"Address</b>"
 msgstr ""
 
 #. module: sale_import_wizard
 #: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
 msgid ""
 "<code>ReferenciaDireccionFacturacion</code>: this will fill <b>Invoice "
-"Address and Customer</b>"
+"Address</b>"
 msgstr ""
 
 #. module: sale_import_wizard
@@ -192,14 +181,9 @@ msgid "Created on"
 msgstr ""
 
 #. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__sale_customer_id
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__customer_id
 #: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_line_view_search
 msgid "Customer"
-msgstr ""
-
-#. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__customer_code
-msgid "Customer Code"
 msgstr ""
 
 #. module: sale_import_wizard
@@ -218,19 +202,26 @@ msgid "Customer Reference"
 msgstr ""
 
 #. module: sale_import_wizard
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__customer_vat
+msgid "Customer Vat"
+msgstr ""
+
+#. module: sale_import_wizard
+#. odoo-python
+#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
+#, python-format
+msgid "Customer not found."
+msgstr ""
+
+#. module: sale_import_wizard
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__date_order
 msgid "Date Order"
 msgstr ""
 
 #. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__sale_delivery_address_id
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__delivery_address_id
 #: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_line_view_search
 msgid "Delivery Address"
-msgstr ""
-
-#. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__delivery_address_code
-msgid "Delivery Address Code"
 msgstr ""
 
 #. module: sale_import_wizard
@@ -244,6 +235,18 @@ msgid "Delivery Address Reference"
 msgstr ""
 
 #. module: sale_import_wizard
+#. odoo-python
+#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
+#, python-format
+msgid "Delivery Address not found."
+msgstr ""
+
+#. module: sale_import_wizard
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__delivery_address_vat
+msgid "Delivery Address vat"
+msgstr ""
+
+#. module: sale_import_wizard
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__delivery_date
 msgid "Delivery Date"
 msgstr ""
@@ -254,7 +257,6 @@ msgid "Different import and total untaxed amounts"
 msgstr ""
 
 #. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__display_name
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__display_name
 msgid "Display Name"
@@ -276,99 +278,7 @@ msgid "Error Log"
 msgstr ""
 
 #. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid "Error: Customer not found."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid "Error: Delivery Address not found."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid ""
-"Error: Different client found with client data entered, and client product "
-"code client."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid "Error: Different customers between delivery and billing addresses."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid ""
-"Error: Different customers found between shipping/invoice addresses, and "
-"customer data entered."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid "Error: Invoice Address not found."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid "Error: More than one Customer found."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid "Error: More than one Delivery Address found."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid "Error: More than one Invoice Address found."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid "Error: More than one Product found with Product Customer Code."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid ""
-"Error: More than one product with the same name, or code, or barcode found."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid "Error: No product found."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid "Error: Previously uploaded order."
-msgstr ""
-
-#. module: sale_import_wizard
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
-#, python-format
-msgid "Error: Product with Product Customer Code not found."
-msgstr ""
-
-#. module: sale_import_wizard
+#. odoo-python
 #: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
 #, python-format
 msgid ""
@@ -377,10 +287,12 @@ msgid ""
 msgstr ""
 
 #. module: sale_import_wizard
+#. odoo-python
 #: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
 #, python-format
 msgid ""
-"Error: There is another line with the same origin document with some errors."
+"Error: Sale Order already exist with this Client Order Ref.: "
+"%(client_order_ref)s."
 msgstr ""
 
 #. module: sale_import_wizard
@@ -401,11 +313,6 @@ msgstr ""
 #. module: sale_import_wizard
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__message_follower_ids
 msgid "Followers"
-msgstr ""
-
-#. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__message_channel_ids
-msgid "Followers (Channels)"
 msgstr ""
 
 #. module: sale_import_wizard
@@ -435,6 +342,11 @@ msgid "Group By"
 msgstr ""
 
 #. module: sale_import_wizard
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: sale_import_wizard
 #: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_view_form
 msgid "Help"
 msgstr ""
@@ -445,7 +357,6 @@ msgid "Help with Excel column names"
 msgstr ""
 
 #. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__id
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__id
 msgid "ID"
@@ -463,7 +374,6 @@ msgstr ""
 
 #. module: sale_import_wizard
 #: model:ir.model.fields,help:sale_import_wizard.field_sale_order_import__message_needaction
-#: model:ir.model.fields,help:sale_import_wizard.field_sale_order_import__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -511,14 +421,9 @@ msgid "Imported Lines"
 msgstr ""
 
 #. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__sale_invoice_address_id
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__invoice_address_id
 #: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_line_view_search
 msgid "Invoice Address"
-msgstr ""
-
-#. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__invoice_address_code
-msgid "Invoice Address Code"
 msgstr ""
 
 #. module: sale_import_wizard
@@ -532,12 +437,23 @@ msgid "Invoice Address Reference"
 msgstr ""
 
 #. module: sale_import_wizard
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__invoice_address_vat
+msgid "Invoice Address Vat"
+msgstr ""
+
+#. module: sale_import_wizard
+#. odoo-python
+#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
+#, python-format
+msgid "Invoice Address not found."
+msgstr ""
+
+#. module: sale_import_wizard
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__message_is_follower
 msgid "Is Follower"
 msgstr ""
 
 #. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import____last_update
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line____last_update
 msgid "Last Modified on"
@@ -582,6 +498,34 @@ msgid "Messages"
 msgstr ""
 
 #. module: sale_import_wizard
+#. odoo-python
+#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
+#, python-format
+msgid "More than one Delivery Address already exist."
+msgstr ""
+
+#. module: sale_import_wizard
+#. odoo-python
+#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
+#, python-format
+msgid "More than one Invoice Address already exist."
+msgstr ""
+
+#. module: sale_import_wizard
+#. odoo-python
+#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
+#, python-format
+msgid "More than one customer already exist."
+msgstr ""
+
+#. module: sale_import_wizard
+#. odoo-python
+#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
+#, python-format
+msgid "More than one product already exist."
+msgstr ""
+
+#. module: sale_import_wizard
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__my_activity_date_deadline
 msgid "My Activity Deadline"
 msgstr ""
@@ -589,6 +533,11 @@ msgstr ""
 #. module: sale_import_wizard
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__name
 msgid "Name"
+msgstr ""
+
+#. module: sale_import_wizard
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
 msgstr ""
 
 #. module: sale_import_wizard
@@ -623,17 +572,12 @@ msgstr ""
 
 #. module: sale_import_wizard
 #: model:ir.model.fields,help:sale_import_wizard.field_sale_order_import__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: sale_import_wizard
 #: model:ir.model.fields,help:sale_import_wizard.field_sale_order_import__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: sale_import_wizard
-#: model:ir.model.fields,help:sale_import_wizard.field_sale_order_import__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: sale_import_wizard
@@ -653,7 +597,7 @@ msgid "Process"
 msgstr ""
 
 #. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__sale_product_id
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__product_id
 #: model_terms:ir.ui.view,arch_db:sale_import_wizard.sale_order_import_line_view_search
 msgid "Product"
 msgstr ""
@@ -669,13 +613,15 @@ msgid "Product Code"
 msgstr ""
 
 #. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__product_customer_code
-msgid "Product Customer Code"
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__product_name
+msgid "Product Name"
 msgstr ""
 
 #. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__product_name
-msgid "Product Name"
+#. odoo-python
+#: code:addons/sale_import_wizard/models/sale_order_import_line.py:0
+#, python-format
+msgid "Product not found."
 msgstr ""
 
 #. module: sale_import_wizard
@@ -701,6 +647,11 @@ msgstr ""
 #. module: sale_import_wizard
 #: model:ir.model,name:sale_import_wizard.model_sale_order
 msgid "Sales Order"
+msgstr ""
+
+#. module: sale_import_wizard
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__split_size
+msgid "Split Size"
 msgstr ""
 
 #. module: sale_import_wizard
@@ -738,16 +689,6 @@ msgstr ""
 #. module: sale_import_wizard
 #: model:ir.model.fields,help:sale_import_wizard.field_sale_order_import__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
-
-#. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: sale_import_wizard
@@ -790,3 +731,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order_import_line__sale_order_id
 msgid "sale Order"
 msgstr ""
+
+#. module: sale_import_wizard
+#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order__sale_import_id
+msgid "From Sale Import"
+msgstr ""
+

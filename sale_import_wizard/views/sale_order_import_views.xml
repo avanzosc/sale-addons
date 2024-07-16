@@ -21,22 +21,19 @@
             name="action_import_file"
             string="Import"
             type="object"
-            class="oe_read_only"
-            states="draft,2validate,pass,error"
+            attrs="{'invisible': [('state', '=', 'done')]}"
           />
                     <button
             name="action_validate"
             string="Validate"
             type="object"
-            class="oe_read_only"
-            states="2validate,error"
+            attrs="{'invisible': [('state', 'not in', ('2validate','error'))]}"
           />
                     <button
             name="action_process"
             string="Process"
             type="object"
-            class="oe_read_only"
-            states="2validate,pass,error"
+            attrs="{'invisible': [('state', 'not in', ('2validate','pass','error'))]}"
           />
                     <field name="state" widget="statusbar" />
                 </header>
@@ -107,31 +104,28 @@
                       >CodigoBarrasProducto</code>: this will fill <b>Product</b></li>
                                         <li><code
                       >NombreCliente</code>: this will fill <b>Customer</b></li>
-                                        <li><code
-                      >CodigoCliente</code>: this will fill <b>Customer</b></li>
+                                        <li><code>NIFCliente</code>: this will fill <b
+                      >Customer</b></li>
                                         <li><code
                       >ReferenciaCliente</code>: this will fill <b>Customer</b></li>
                                         <li><code
-                      >CodigoProductoCliente</code>: this will fill <b
-                      >Product and Customer</b></li>
-                                        <li><code
                       >NombreDireccionFacturacion</code>: this will fill <b
-                      >Invoice Address and Customer</b></li>
+                      >Invoice Address</b></li>
                                         <li><code
-                      >CodigoDireccionFacturacion</code>: this will fill <b
-                      >Invoice Address and Customer</b></li>
+                      >NIFDireccionFacturacion</code>: this will fill <b
+                      >Invoice Address</b></li>
                                         <li><code
                       >ReferenciaDireccionFacturacion</code>: this will fill <b
-                      >Invoice Address and Customer</b></li>
+                      >Invoice Address</b></li>
                                         <li><code
                       >NombreDireccionEnvio</code>: this will fill <b
-                      >Delivery Address and Customer</b></li>
+                      >Delivery Address</b></li>
                                         <li><code
-                      >CodigoDireccionEnvio</code>: this will fill <b
-                      >Delivery Address and Customer</b></li>
+                      >NIFDireccionEnvio</code>: this will fill <b
+                      >Delivery Address</b></li>
                                         <li><code
                       >ReferenciaDireccionEnvio</code>: this will fill <b
-                      >Delivery Address and Customer</b></li>
+                      >Delivery Address</b></li>
                                         <li><code>Cantidad</code>: this will fill <b
                       >Quantity</b></li>
                                         <li><code
