@@ -4,10 +4,10 @@
         <field name="model">sale.order.import.line</field>
         <field name="arch" type="xml">
             <search>
-                <field name="sale_product_id" />
-                <field name="sale_customer_id" />
-                <field name="sale_invoice_address_id" />
-                <field name="sale_delivery_address_id" />
+                <field name="product_id" />
+                <field name="customer_id" />
+                <field name="invoice_address_id" />
+                <field name="delivery_address_id" />
                 <separator />
                 <filter
           string="Errored"
@@ -24,22 +24,22 @@
                     <filter
             name="group_product"
             string="Product"
-            context="{'group_by': 'sale_product_id'}"
+            context="{'group_by': 'product_id'}"
           />
                     <filter
             name="group_sale_customer_id"
             string="Customer"
-            context="{'group_by': 'sale_customer_id'}"
+            context="{'group_by': 'customer_id'}"
           />
                     <filter
             name="group_invoice_address"
             string="Invoice Address"
-            context="{'group_by': 'sale_invoice_address_id'}"
+            context="{'group_by': 'invoice_address_id'}"
           />
                     <filter
             name="group_delivery_address"
             string="Delivery Address"
-            context="{'group_by': 'sale_delivery_address_id'}"
+            context="{'group_by': 'delivery_address_id'}"
           />
                     <separator />
                     <filter
@@ -81,15 +81,14 @@
                             <field name="product_code" />
                             <field name="product_barcode" />
                             <field name="customer_name" />
-                            <field name="customer_code" />
                             <field name="customer_reference" />
-                            <field name="product_customer_code" />
+                            <field name="customer_vat" />
                             <field name="invoice_address_name" />
-                            <field name="invoice_address_code" />
                             <field name="invoice_address_reference" />
+                            <field name="invoice_address_vat" />
                             <field name="delivery_address_name" />
-                            <field name="delivery_address_code" />
                             <field name="delivery_address_reference" />
+                            <field name="delivery_address_vat" />
                             <field name="date_order" />
                             <field name="delivery_date" />
                             <field name="quantity" />
@@ -99,19 +98,19 @@
                         </group>
                         <group>
                             <field
-                name="sale_product_id"
+                name="product_id"
                 options="{'no_create': True, 'no_open': True}"
               />
                             <field
-                name="sale_customer_id"
+                name="customer_id"
                 options="{'no_create': True, 'no_open': True}"
               />
                             <field
-                name="sale_invoice_address_id"
+                name="invoice_address_id"
                 options="{'no_create': True, 'no_open': True}"
               />
                             <field
-                name="sale_delivery_address_id"
+                name="delivery_address_id"
                 options="{'no_create': True, 'no_open': True}"
               />
                         </group>
@@ -136,20 +135,19 @@
                 <field name="product_name" optional="show" />
                 <field name="product_code" optional="hide" />
                 <field name="product_barcode" optional="hide" />
-                <field name="product_customer_code" optional="hide" />
-                <field name="sale_product_id" optional="hide" />
+                <field name="product_id" optional="show" />
                 <field name="customer_name" optional="show" />
-                <field name="customer_code" optional="hide" />
                 <field name="customer_reference" optional="show" />
-                <field name="sale_customer_id" optional="hide" />
+                <field name="customer_vat" optional="hide" />
+                <field name="customer_id" optional="show" />
                 <field name="invoice_address_name" optional="show" />
-                <field name="invoice_address_code" optional="hide" />
                 <field name="invoice_address_reference" optional="hide" />
-                <field name="sale_invoice_address_id" optional="hide" />
+                <field name="invoice_address_vat" optional="hide" />
+                <field name="invoice_address_id" optional="show" />
                 <field name="delivery_address_name" optional="show" />
-                <field name="delivery_address_code" optional="hide" />
                 <field name="delivery_address_reference" optional="hide" />
-                <field name="sale_delivery_address_id" optional="hide" />
+                <field name="delivery_address_vat" optional="hide" />
+                <field name="delivery_address_id" optional="show" />
                 <field name="date_order" optional="show" />
                 <field name="delivery_date" optional="show" />
                 <field name="quantity" optional="show" />
