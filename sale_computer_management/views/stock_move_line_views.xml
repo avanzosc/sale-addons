@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_line_tree" model="ir.ui.view">
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="ram_id" optional="show" readonly="1" />
+                <field name="storage1_size_id" optional="show" readonly="1" />
+                <field name="grade_id" optional="show" readonly="1" />
+                <field name="grade_tested" optional="show" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_detailed_operation_tree" model="ir.ui.view">
+        <field name="model">stock.move.line</field>
+        <field
+      name="inherit_id"
+      ref="stock.view_stock_move_line_detailed_operation_tree"
+    />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="ram_id" optional="show" readonly="1" />
+                <field name="storage1_size_id" optional="show" readonly="1" />
+                <field name="grade_id" optional="show" readonly="1" />
+                <field name="grade_tested" optional="show" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_operation_tree" model="ir.ui.view">
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree" />
+        <field name="arch" type="xml">
+            <field name="lot_id" position="after">
+                <field
+          name="ram_id"
+          optional="show"
+          readonly="1"
+          invisible="not context.get('show_lots_m2o')"
+        />
+                <field
+          name="storage1_size_id"
+          optional="show"
+          readonly="1"
+          invisible="not context.get('show_lots_m2o')"
+        />
+                <field
+          name="grade_id"
+          optional="show"
+          readonly="1"
+          invisible="not context.get('show_lots_m2o')"
+        />
+                <field
+          name="grade_tested"
+          optional="show"
+          readonly="1"
+          invisible="not context.get('show_lots_m2o')"
+        />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_operation_tree_lot_filter" model="ir.ui.view">
+        <field name="model">stock.move.line</field>
+        <field
+      name="inherit_id"
+      ref="stock_picking_filter_lot.view_stock_move_line_operation_tree"
+    />
+        <field name="arch" type="xml">
+            <field name="lot_id" position="attributes">
+                <attribute name="domain">
+picking_type_use_filter_lots and [('product_id','=', product_id), ('company_id', '=', company_id), ('location_ids', 'child_of', location_id),('grade_tested', '=', 'ok'), ('id', 'in', parent.allowed_lots_ids)]
+                </attribute>
+            </field>
+        </field>
+    </record>
+
+    <record
+    id="view_stock_move_line_detailed_operation_tree_lot_filter"
+    model="ir.ui.view"
+  >
+        <field name="model">stock.move.line</field>
+        <field
+      name="inherit_id"
+      ref="stock_picking_filter_lot.view_stock_move_line_detailed_operation_tree"
+    />
+        <field name="arch" type="xml">
+            <field name="lot_id" position="before">
+                <field name="allowed_lots_ids" invisible="1" />
+            </field>
+            <field name="lot_id" position="attributes">
+                <attribute name="domain">
+picking_type_use_filter_lots and [('product_id','=', product_id), ('company_id', '=', company_id), ('location_ids', 'child_of', location_id),('grade_tested', '=', 'ok'), ('id', 'in', allowed_lots_ids)]
+                </attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_move_line_form" model="ir.ui.view">
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="ram_id" readonly="1" />
+                <field name="storage1_size_id" readonly="1" />
+                <field name="grade_id" readonly="1" />
+                <field name="grade_tested" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="stock_move_line_view_search" model="ir.ui.view">
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.stock_move_line_view_search" />
+        <field name="arch" type="xml">
+            <field name="location_dest_id" position="after">
+                <separator />
+                <field name="ram_id" />
+                <field name="storage1_size_id" />
+                <field name="grade_id" />
+                <field name="grade_tested" />
+            </field>
+            <filter name="by_date" position="after">
+                <filter
+          string="RAM"
+          name="groupby_ram"
+          domain="[]"
+          context="{'group_by': 'ram_id'}"
+        />
+                <filter
+          string="Storage 1 Size"
+          name="groupby_storage1_size"
+          domain="[]"
+          context="{'group_by': 'storage1_size_id'}"
+        />
+                <filter
+          string="Grade"
+          name="groupby_grade"
+          domain="[]"
+          context="{'group_by': 'grade_id'}"
+        />
+                <filter
+          string="Grade tested"
+          name="groupby_grade_tested"
+          domain="[]"
+          context="{'group_by': 'grade_tested'}"
+        />
+            </filter>
+        </field>
+    </record>
+</odoo>

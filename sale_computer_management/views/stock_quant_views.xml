@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_stock_quant_tree" model="ir.ui.view">
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree" />
+        <field name="arch" type="xml">
+            <field name="lot_id" position="after">
+                <field
+          name="ram_id"
+          optional="show"
+          readonly="1"
+          groups="stock.group_production_lot"
+          invisible="context.get('hide_lot', False)"
+        />
+                <field
+          name="storage1_size_id"
+          optional="show"
+          readonly="1"
+          groups="stock.group_production_lot"
+          invisible="context.get('hide_lot', False)"
+        />
+                <field
+          name="grade_id"
+          optional="show"
+          readonly="1"
+          groups="stock.group_production_lot"
+          invisible="context.get('hide_lot', False)"
+        />
+                <field
+          name="grade_tested"
+          optional="show"
+          readonly="1"
+          groups="stock.group_production_lot"
+          invisible="context.get('hide_lot', False)"
+        />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_quant_tree_editable" model="ir.ui.view">
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_editable" />
+        <field name="arch" type="xml">
+            <field name="lot_id" position="after">
+                <field
+          name="ram_id"
+          optional="show"
+          readonly="1"
+          groups="stock.group_production_lot"
+          invisible="context.get('hide_lot', False)"
+        />
+                <field
+          name="storage1_size_id"
+          optional="show"
+          readonly="1"
+          groups="stock.group_production_lot"
+          invisible="context.get('hide_lot', False)"
+        />
+                <field
+          name="grade_id"
+          optional="show"
+          readonly="1"
+          groups="stock.group_production_lot"
+          invisible="context.get('hide_lot', False)"
+        />
+                <field
+          name="grade_tested"
+          optional="show"
+          readonly="1"
+          groups="stock.group_production_lot"
+          invisible="context.get('hide_lot', False)"
+        />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_quant_form" model="ir.ui.view">
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_form" />
+        <field name="arch" type="xml">
+            <field name="lot_id" position="after">
+                <field name="ram_id" readonly="1" groups="stock.group_production_lot" />
+                <field
+          name="storage1_size_id"
+          readonly="1"
+          groups="stock.group_production_lot"
+        />
+                <field
+          name="grade_id"
+          readonly="1"
+          groups="stock.group_production_lot"
+        />
+                <field
+          name="grade_tested"
+          readonly="1"
+          groups="stock.group_production_lot"
+        />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_quant_form_editable" model="ir.ui.view">
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_form_editable" />
+        <field name="arch" type="xml">
+            <field name="lot_id" position="after">
+                <field name="ram_id" readonly="1" groups="stock.group_production_lot" />
+                <field
+          name="storage1_size_id"
+          readonly="1"
+          groups="stock.group_production_lot"
+        />
+                <field
+          name="grade_id"
+          readonly="1"
+          groups="stock.group_production_lot"
+        />
+                <field
+          name="grade_tested"
+          readonly="1"
+          groups="stock.group_production_lot"
+        />
+            </field>
+        </field>
+    </record>
+
+    <record id="quant_search_view" model="ir.ui.view">
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.quant_search_view" />
+        <field name="arch" type="xml">
+            <field name="owner_id" position="after">
+                <separator />
+                <field name="ram_id" groups="stock.group_production_lot" />
+                <field name="storage1_size_id" groups="stock.group_production_lot" />
+                <field name="grade_id" groups="stock.group_production_lot" />
+                <field name="grade_tested" groups="stock.group_production_lot" />
+            </field>
+            <filter name="Lot_Serial_number" position="after">
+                <filter
+          string="RAM"
+          name="groupby_ram"
+          domain="[]"
+          context="{'group_by': 'ram_id'}"
+          groups="stock.group_production_lot"
+        />
+                <filter
+          string="Storage 1 Size"
+          name="groupby_storage1_size"
+          domain="[]"
+          context="{'group_by': 'storage1_size_id'}"
+          groups="stock.group_production_lot"
+        />
+                <filter
+          string="Grade"
+          name="groupby_grade"
+          domain="[]"
+          context="{'group_by': 'grade_id'}"
+          groups="stock.group_production_lot"
+        />
+                <filter
+          string="Grade tested"
+          name="groupby_grade_tested"
+          domain="[]"
+          context="{'group_by': 'grade_tested'}"
+          groups="stock.group_production_lot"
+        />
+            </filter>
+        </field>
+    </record>
+</odoo>
