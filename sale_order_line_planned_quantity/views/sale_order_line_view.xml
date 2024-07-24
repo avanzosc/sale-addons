@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_line_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="product_uom_qty" position="after">
+                <field name="planned_quantity" optional="show" />
+                <field name="difference_between_ordered_planned" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_line_view_form_readonly" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <field name="product_uom_qty" position="after">
+                <field name="planned_quantity" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <field name="order_id" position="before">
+                <separator />
+                <filter
+          string="Difference Between Ordered And Planned"
+          name="diff-ordered-planned"
+          domain="[('difference_between_ordered_planned','=',True)]"
+        />
+            </field>
+        </field>
+    </record>
+</odoo>
