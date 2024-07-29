@@ -1,0 +1,88 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_product_create_purchase_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 10:32+0000\n"
+"PO-Revision-Date: 2024-02-05 10:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_product_create_purchase_order
+#: model:ir.model.fields,field_description:sale_product_create_purchase_order.field_sale_order__sale_line_count
+msgid "# Sale line"
+msgstr "# Líneas venta"
+
+#. module: sale_product_create_purchase_order
+#: model:ir.model.fields,help:sale_product_create_purchase_order.field_sale_order_line__detailed_type
+msgid ""
+"A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
+"A consumable product is a product for which stock is not managed.\n"
+"A service is a non-material product you provide."
+msgstr ""
+"Un producto almacenable es un producto para el que gestiona stock. La aplicación de inventario debe estar instalada.\n"
+"Un producto consumible es un producto para el que no se gestionan las existencias.\n"
+"Un servicio es un producto no material."
+
+#. module: sale_product_create_purchase_order
+#: model:ir.actions.server,name:sale_product_create_purchase_order.model_sale_order_action_create_purchase
+#: model:ir.actions.server,name:sale_product_create_purchase_order.model_sale_order_line_action_create_purchase
+#: model_terms:ir.ui.view,arch_db:sale_product_create_purchase_order.sale_order_line_editable_tree
+#: model_terms:ir.ui.view,arch_db:sale_product_create_purchase_order.view_order_form
+msgid "Create purchase order"
+msgstr "Crear pedido de compra"
+
+#. module: sale_product_create_purchase_order
+#: model:ir.model.fields,field_description:sale_product_create_purchase_order.field_sale_order_line__product_supplier_id
+msgid "Product Supplier"
+msgstr "Proveedor producto"
+
+#. module: sale_product_create_purchase_order
+#: model:ir.model.fields,field_description:sale_product_create_purchase_order.field_sale_order_line__detailed_type
+msgid "Product Type"
+msgstr "Tipo producto"
+
+#. module: sale_product_create_purchase_order
+#: model:ir.model.fields,field_description:sale_product_create_purchase_order.field_sale_order_line__product_supplier_ids
+msgid "Product suppliers"
+msgstr "Proveedores producto"
+
+#. module: sale_product_create_purchase_order
+#: model:ir.model.fields,field_description:sale_product_create_purchase_order.field_sale_order_line__purchase_line_id
+msgid "Purchase Line"
+msgstr "Línea compra"
+
+#. module: sale_product_create_purchase_order
+#: model:ir.model.fields,field_description:sale_product_create_purchase_order.field_sale_order_line__purchase_id
+#: model_terms:ir.ui.view,arch_db:sale_product_create_purchase_order.view_sales_order_line_filter
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: sale_product_create_purchase_order
+#: model:ir.model.fields,field_description:sale_product_create_purchase_order.field_sale_order_line__ref_catalogue
+#: model_terms:ir.ui.view,arch_db:sale_product_create_purchase_order.view_sales_order_line_filter
+msgid "Ref. Catalogue"
+msgstr "Ref. Catálogo"
+
+#. module: sale_product_create_purchase_order
+#: model:ir.model,name:sale_product_create_purchase_order.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_product_create_purchase_order
+#: model:ir.model,name:sale_product_create_purchase_order.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_product_create_purchase_order
+#: model:ir.model.fields,field_description:sale_product_create_purchase_order.field_sale_order_line__supplier_id
+#: model_terms:ir.ui.view,arch_db:sale_product_create_purchase_order.view_sales_order_line_filter
+msgid "Supplier"
+msgstr "Proveedor"
