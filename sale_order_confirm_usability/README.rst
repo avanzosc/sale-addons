@@ -8,7 +8,7 @@ Sale Order Confirm Usability
 
 * Button in sale orders to force operations and confirm the pickings.
 * Button in sale orders to create the invoice and paid it.
-* To new fields in sale order, amount payment done and amount payment pending.
+* Two new fields in sale order, amount payment done and amount payment pending.
 
 ===========
 

@@ -23,6 +23,7 @@
         >
                     <field name="pending_payment" invisible="1" />
                     <field name="payment_done" invisible="1" />
+                    <field name="picking_ids" invisible="1" />
                 </button>
             </header>
         </field>
