@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_sale_order_tree_inherit" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherit.country.state</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sale_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="partner_country_id" />
+                <field name="partner_state_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_pivot_inherit" model="ir.ui.view">
+        <field name="name">sale.order.pivot.inherit.country.state</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sale_order_pivot" />
+        <field name="arch" type="xml">
+            <xpath expr="//pivot" position="inside">
+                <field name="partner_country_id" />
+                <field name="partner_state_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_line_tree_inherit" model="ir.ui.view">
+        <field
+      name="name"
+    >sale.order.line.tree.inherit.fiscal.position.country.state</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="partner_country_id" optional="show" />
+                <field name="partner_state_id" optional="show" />
+                <field name="fiscal_position_id" optional="show" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
