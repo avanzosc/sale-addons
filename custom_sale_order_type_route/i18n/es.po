@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-08 08:09+0000\n"
-"PO-Revision-Date: 2024-07-08 08:09+0000\n"
+"POT-Creation-Date: 2024-07-30 10:42+0000\n"
+"PO-Revision-Date: 2024-07-30 10:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_account_payment__amount_signed
+msgid "Amount"
+msgstr "Importe"
+
+#. module: custom_sale_order_type_route
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.view_account_payment_tree
+msgid "Amount Signed"
+msgstr "Suma del importe"
 
 #. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_move_line__burden_partner_id
@@ -60,6 +70,11 @@ msgid "Create Burden Picking"
 msgstr "Crear albarán de carga"
 
 #. module: custom_sale_order_type_route
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.view_in_invoice_tree
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__deliverement_menu
 msgid "Deliverement Menu"
 msgstr "Menu repartidor"
@@ -70,6 +85,7 @@ msgid "Deliverymen"
 msgstr "Repartidor"
 
 #. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_account_payment__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line__display_name
@@ -81,6 +97,7 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_account_payment__id
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner__id
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__id
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line__id
@@ -99,6 +116,7 @@ msgid "Invoices"
 msgstr "Facturas"
 
 #. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_account_payment____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line____last_update
@@ -107,7 +125,7 @@ msgstr "Facturas"
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking_type____last_update
 msgid "Last Modified on"
-msgstr "Última modificación el"
+msgstr "Última modificación en"
 
 #. module: custom_sale_order_type_route
 #: model:ir.actions.act_window,name:custom_sale_order_type_route.action_my_account_move
@@ -133,6 +151,11 @@ msgstr "Mis ventas"
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_type__not_route_type
 msgid "Not Route Type"
 msgstr "No es tipo ruta"
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_account_payment
+msgid "Payments"
+msgstr "Pagos"
 
 #. module: custom_sale_order_type_route
 #: model:ir.model,name:custom_sale_order_type_route.model_stock_picking_type
