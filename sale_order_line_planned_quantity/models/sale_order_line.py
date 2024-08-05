@@ -32,15 +32,18 @@ class SaleOrderLine(models.Model):
     def _compute_planned_quantity(self):
         for line in self:
             planned_quantity = 0
+            moves_planned_quantities = False
             if line.move_ids:
-                moves = line.move_ids.filtered(
-                    lambda x: x.state != "cancel"
-                    and x.picking_type_id
-                    and x.picking_type_id.use_to_calculate_planned_quantities
+                moves_planned_quantities = line.move_ids.filtered(
+                    lambda x: x.picking_type_id.use_to_calculate_planned_quantities
                 )
-                if moves:
-                    planned_quantity = sum(moves.mapped("product_uom_qty"))
-            line.planned_quantity = planned_quantity
+                if moves_planned_quantities:
+                    moves = moves_planned_quantities.filtered(
+                        lambda x: x.state != "cancel"
+                    )
+                    if moves:
+                        planned_quantity = sum(moves.mapped("product_uom_qty"))
+            line.planned_quantity = planned_quantity if moves_planned_quantities else 0
 
     @api.depends(
         "planned_quantity",
@@ -49,6 +52,15 @@ class SaleOrderLine(models.Model):
     )
     def _compute_difference_between_ordered_planned(self):
         for line in self:
-            line.difference_between_ordered_planned = bool(
-                line.product_uom_qty != line.planned_quantity and line.state != "draft"
-            )
+            moves_planned_quantities = False
+            if line.move_ids:
+                moves_planned_quantities = line.move_ids.filtered(
+                    lambda x: x.picking_type_id.use_to_calculate_planned_quantities
+                )
+            if moves_planned_quantities:
+                line.difference_between_ordered_planned = bool(
+                    line.product_uom_qty != line.planned_quantity
+                    and line.state != "draft"
+                )
+            else:
+                line.difference_between_ordered_planned = False
