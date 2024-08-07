@@ -6,11 +6,11 @@ class SaleOrder(models.Model):
 
     partner_country_id = fields.Many2one(
         related="partner_id.country_id",
-        string="Country",
+        string="Customer Country",
         store=True,
     )
     partner_state_id = fields.Many2one(
         related="partner_id.state_id",
-        string="State",
+        string="Customer State",
         store=True,
     )

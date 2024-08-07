@@ -6,12 +6,12 @@ class SaleOrderLine(models.Model):
 
     partner_country_id = fields.Many2one(
         related="order_id.partner_country_id",
-        string="Country",
+        string="Customer Country",
         store=True,
     )
     partner_state_id = fields.Many2one(
         related="order_id.partner_state_id",
-        string="State",
+        string="Customer State",
         store=True,
     )
     fiscal_position_id = fields.Many2one(
