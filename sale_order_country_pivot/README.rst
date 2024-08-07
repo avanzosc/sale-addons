@@ -25,11 +25,6 @@ Usage
 - In the pivot view, you can group and aggregate by `Country` and `State`.
 - In the sales order line tree view, you will see the `Country`, `State`, and `Fiscal Position` fields.
 
-License
--------
-
-This module is licensed under the AGPL-3 License. See `License Information <http://www.gnu.org/licenses/agpl-3.0-standalone.html>`_
-
 Bug Tracker
 ===========
 
