@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+    id="report_saleorder_document"
+    inherit_id="sale.report_saleorder_document"
+    priority="100"
+  >
+        <xpath expr="//t[@t-set='information_block']/.." position="replace">
+            <t
+        t-if="doc.partner_shipping_id == doc.partner_invoice_id
+                     and doc.partner_invoice_id != doc.partner_id
+                     or doc.partner_shipping_id != doc.partner_invoice_id
+                     or doc.partner_contact_id and doc.partner_contact_id != doc.partner_id"
+      >
+                <t t-set="information_block">
+                    <t
+            t-if="doc.partner_shipping_id == doc.partner_invoice_id
+                             and doc.partner_invoice_id != doc.partner_id
+                             or doc.partner_shipping_id != doc.partner_invoice_id"
+          >
+                        <strong
+              t-if="doc.partner_shipping_id == doc.partner_invoice_id"
+            >Invoicing and Shipping Address:</strong>
+                        <strong
+              t-if="doc.partner_shipping_id != doc.partner_invoice_id"
+            >Invoicing Address:</strong>
+                        <div
+              t-field="doc.partner_invoice_id"
+              t-options="{'widget': 'contact', 'fields': ['address', 'name', 'phone'], 'no_marker': True, 'phone_icons': True}"
+            />
+                        <t t-if="doc.partner_shipping_id != doc.partner_invoice_id">
+                            <strong>Shipping Address:</strong>
+                            <div
+                t-field="doc.partner_shipping_id"
+                t-options="{'widget': 'contact', 'fields': ['address', 'name', 'phone'], 'no_marker': True, 'phone_icons': True}"
+              />
+                        </t>
+                    </t>
+                    <t
+            t-if="doc.partner_contact_id
+                             and doc.partner_contact_id != doc.partner_id"
+          >
+                        <strong>Contact:</strong>
+                        <div t-field="doc.partner_contact_id.name" />
+                    </t>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

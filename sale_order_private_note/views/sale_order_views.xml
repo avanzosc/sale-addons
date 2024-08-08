@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <page name="other_information" position="after">
+                <page
+          string="Private Note"
+          name="private_note"
+          groups="sale_order_private_note.group_show_private_note_in_sale"
+        >
+                    <field name="private_note" nolabel="1" />
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
