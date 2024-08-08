@@ -32,8 +32,9 @@ class SaleOrderImportLine(models.Model):
         required=True,
     )
     sale_order_id = fields.Many2one(
-        string="sale Order",
-        comodel_name="sale.order")
+        string="Sale Order",
+        comodel_name="sale.order",
+    )
     client_order_ref = fields.Char(
         string="Customer Order Reference",
         states={"done": [("readonly", True)]},
@@ -59,11 +60,6 @@ class SaleOrderImportLine(models.Model):
         states={"done": [("readonly", True)]},
         copy=False,
     )
-    customer_code = fields.Char(
-        string="Customer Code",
-        states={"done": [("readonly", True)]},
-        copy=False,
-    )
     customer_reference = fields.Char(
         string="Customer Reference",
         states={"done": [("readonly", True)]},
@@ -79,11 +75,6 @@ class SaleOrderImportLine(models.Model):
         states={"done": [("readonly", True)]},
         copy=False,
     )
-    invoice_address_code = fields.Char(
-        string="Invoice Address Code",
-        states={"done": [("readonly", True)]},
-        copy=False,
-    )
     invoice_address_reference = fields.Char(
         string="Invoice Address Reference",
         states={"done": [("readonly", True)]},
@@ -91,11 +82,6 @@ class SaleOrderImportLine(models.Model):
     )
     delivery_address_name = fields.Char(
         string="Delivery Address Name",
-        states={"done": [("readonly", True)]},
-        copy=False,
-    )
-    delivery_address_code = fields.Char(
-        string="Delivery Address Code",
         states={"done": [("readonly", True)]},
         copy=False,
     )
@@ -165,20 +151,16 @@ class SaleOrderImportLine(models.Model):
     )
 
     def action_validate(self):
-        super().action_validate()
-        line_values = []
+        line_values = super().action_validate()
         for line in self.filtered(lambda x: x.state != "done"):
             data = line.initialize_sale_data()
             if line.client_order_ref:
                 data = line._check_origin(data)
             if not data.get("log_info"):
-                if (line.invoice_address_name or line.invoice_address_code or
-                    line.invoice_address_reference or
-                    line.delivery_address_name or line.delivery_address_code or
-                        line.delivery_address_reference):
+                if (line.invoice_address_name or line.invoice_address_reference or
+                    line.delivery_address_name or line.delivery_address_reference):
                     data = line._check_invoice_delivery_address(data)
-                if (line.customer_name or line.customer_code or
-                        line.customer_reference):
+                if (line.customer_name or line.customer_reference):
                     data = line._check_customer(data)
                 if (line.product_name or line.product_code or
                         line.product_barcode):
@@ -217,14 +199,11 @@ class SaleOrderImportLine(models.Model):
             if lines:
                 found = lines.filtered(
                     lambda x: x.customer_name != self.customer_name or
-                    x.customer_code != self.customer_code or
                     x.customer_reference != self.customer_reference or
                     x.invoice_address_name != self.invoice_address_name or
-                    x.invoice_address_code != self.invoice_address_code or
                     x.invoice_address_reference !=
                     self.invoice_address_reference or
                     x.delivery_address_name != self.delivery_address_name or
-                    x.delivery_address_code != self.delivery_address_code or
                     x.delivery_address_reference !=
                     self.delivery_address_reference or
                     x.date_order != self.date_order or
@@ -236,11 +215,9 @@ class SaleOrderImportLine(models.Model):
         return data
 
     def _check_invoice_delivery_address(self, data):
-        if (self.invoice_address_name or self.invoice_address_code or
-                self.invoice_address_reference):
+        if self.invoice_address_name or self.invoice_address_reference:
             data = self._search_invoice_address(data)
-        if (self.delivery_address_name or self.delivery_address_code or
-                self.delivery_address_reference):
+        if self.delivery_address_name or self.delivery_address_reference:
             data = self._search_delivery_address(data)
         partner_invoice_address = False
         partner_delivery_address = False
@@ -271,8 +248,7 @@ class SaleOrderImportLine(models.Model):
     def _search_invoice_address(self, data):
         log_info = data.get("log_info")
         data, customer = self._search_customer(
-            data, self.invoice_address_reference, self.invoice_address_name,
-            self.invoice_address_code)
+            data, self.invoice_address_reference, self.invoice_address_name)
         if not customer:
             error = _("Error: Invoice Address not found.")
             log_info = (
@@ -289,8 +265,7 @@ class SaleOrderImportLine(models.Model):
     def _search_delivery_address(self, data):
         log_info = data.get("log_info")
         data, customer = self._search_customer(
-            data, self.delivery_address_reference, self.delivery_address_name,
-            self.delivery_address_code)
+            data, self.delivery_address_reference, self.delivery_address_name)
         if not customer:
             error = _("Error: Delivery Address not found.")
             log_info = (
@@ -310,8 +285,7 @@ class SaleOrderImportLine(models.Model):
             data["sale_customer"] = self.sale_customer_id
             return data
         data, customer = self._search_customer(
-            data, self.customer_reference, self.customer_name,
-            self.customer_code)
+            data, self.customer_reference, self.customer_name)
         if not customer:
             error = _("Error: Customer not found.")
             log_info = (
@@ -335,40 +309,21 @@ class SaleOrderImportLine(models.Model):
         data["log_info"] = log_info
         return data
 
-    def _search_customer(self, data, address_reference, address_name,
-                         address_code):
+    def _search_customer(self, data, address_reference, address_name):
         customer_obj = self.env["res.partner"]
         search_domain = []
         customer = False
         if address_reference and not address_name:
-            if not address_code:
-                search_domain = [("ref", "=", address_reference)]
-            else:
-                search_domain = ["|", ("ref", "=", address_reference),
-                                 ("customer_code", "=", address_code)]
+            search_domain = [("ref", "=", address_reference)]
         elif address_name and not address_reference:
             literal = "%{}".format(address_name)
-            if not address_code:
-                search_domain = ["|", ("name", "=ilike", address_name),
-                                 ("name", "=ilike", literal)]
-            else:
-                search_domain = ["|", ("name", "=ilike", address_name),
-                                 "|", ("name", "=ilike", literal),
-                                 ("customer_code", "=", address_code)]
+            search_domain = ["|", ("name", "=ilike", address_name),
+                             ("name", "=ilike", literal)]
         elif address_reference and address_name:
             literal = "%{}%".format(address_name)
-            if not address_code:
-                search_domain = ["|", ("name", "=ilike", address_name),
-                                 "|", ("name", "=ilike", literal),
-                                 ("ref", "=", address_reference)]
-            else:
-                search_domain = ["|", ("name", "=ilike", address_name),
-                                 "|", ("name", "=ilike", literal),
-                                 "|", ("ref", "=", address_reference),
-                                 ("customer_code", "=", address_code)]
-        elif not address_reference and not address_name:
-            if address_code:
-                search_domain = [("customer_code", "=", address_code)]
+            search_domain = ["|", ("name", "=ilike", address_name),
+                             "|", ("name", "=ilike", literal),
+                             ("ref", "=", address_reference)]
         if search_domain:
             customer = customer_obj.search(search_domain)
             if customer and len(customer) > 1:
@@ -382,9 +337,6 @@ class SaleOrderImportLine(models.Model):
                 if address_reference:
                     search_domain.append(
                         ("ref", "=", address_reference))
-                if address_code:
-                    search_domain.append(
-                        ("customer_code", "=", address_code))
                 customer = customer_obj.search(search_domain)
         return data, customer
 
