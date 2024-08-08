@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_line_view_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="order_partner_id" position="after">
+                <field name="partner_country_id" optional="hide" />
+                <field name="partner_state_id" optional="hide" />
+                <field name="fiscal_position_id" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_line_view_search" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <filter name="salesperson" position="after">
+                <filter
+          string="Customer"
+          name="partner"
+          domain="[]"
+          context="{'group_by':'salesman_id'}"
+        />
+                <filter
+          string="Customer Country"
+          name="partner_country"
+          domain="[]"
+          context="{'group_by':'partner_country_id'}"
+        />
+                <filter
+          string="Customer State"
+          name="partner_state"
+          domain="[]"
+          context="{'group_by':'partner_state_id'}"
+        />
+                <filter
+          string="Fiscal Position"
+          name="fiscal_position"
+          domain="[]"
+          context="{'group_by':'fiscal_position_id'}"
+        />
+            </filter>
+        </field>
+    </record>
+</odoo>

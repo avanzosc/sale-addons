@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+        expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+        position="after"
+      >
+                <field name="planned_quantity" optional="show" />
+                <field name="difference_between_ordered_planned" optional="show" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="difference_between_ordered_planned" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="difference_between_ordered_planned" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="after">
+                <separator />
+                <filter
+          string="Difference Between Ordered And Planned"
+          name="diff-ordered-planned"
+          domain="[('difference_between_ordered_planned','=',True)]"
+        />
+            </filter>
+        </field>
+    </record>
+</odoo>
