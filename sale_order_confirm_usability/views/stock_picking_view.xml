@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_picking_form">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock_move_line_force_done.view_picking_form" />
+        <field name="arch" type="xml">
+            <button name="button_force_done_detailed_operations" position="attributes">
+                <attribute name="string">Force Operations</attribute>
+            </button>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_normal_form_view" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <field name="product_tooltip" position="before">
+                <field name="sale_import_id" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="product_product_tree_view" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <field name="product_template_variant_value_ids" position="after">
+                <field name="sale_import_id" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="product_search_form_view" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="product.product_template_search_view" />
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <separator />
+                <field name="sale_import_id" />
+            </field>
+            <filter name="categ_id" position="after">
+                <filter
+          string="From Sale Import"
+          name="sale-import"
+          context="{'group_by':'sale_import_id'}"
+        />
+            </filter>
+        </field>
+    </record>
+</odoo>

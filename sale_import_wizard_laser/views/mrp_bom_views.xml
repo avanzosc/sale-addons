@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_qty']/.." position="after">
+                <field name="sale_import_id" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_bom_tree_view" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="sale_import_id" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_mrp_bom_filter" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
+        <field name="arch" type="xml">
+            <field name="bom_line_ids" position="after">
+                <field name="sale_import_id" />
+            </field>
+            <filter name="default_unit_of_measure" position="after">
+                <filter
+          string="From Sale Import"
+          name="sale-import"
+          context="{'group_by':'sale_import_id'}"
+        />
+            </filter>
+        </field>
+    </record>
+</odoo>

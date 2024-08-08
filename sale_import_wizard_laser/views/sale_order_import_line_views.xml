@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_import_line_view_form" model="ir.ui.view">
+        <field name="model">sale.order.import.line</field>
+        <field
+      name="inherit_id"
+      ref="sale_import_wizard.sale_order_import_line_view_form"
+    />
+        <field name="arch" type="xml">
+            <field name="product_code" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="product_barcode" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="customer_reference" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="customer_vat" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="invoice_address_name" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="invoice_address_reference" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="invoice_address_vat" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="delivery_address_name" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="delivery_address_reference" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="delivery_address_vat" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="delivery_date" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="price_unit" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="total_order_amount" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="quantity" position="after">
+                <field name="material" />
+                <field name="grade" />
+                <field name="thickness" />
+                <field name="component_id" />
+                <field name="material_cost" />
+                <field name="operations_costs_part" />
+                <field name="weight" />
+                <field name="part_size" />
+                <field name="unit_cost" />
+                <field name="total_cost" />
+            </field>
+            <field name="product_barcode" position="after">
+                <field name="product_uom_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_import_line_view_tree" model="ir.ui.view">
+        <field name="model">sale.order.import.line</field>
+        <field
+      name="inherit_id"
+      ref="sale_import_wizard.sale_order_import_line_view_tree"
+    />
+        <field name="arch" type="xml">
+            <field name="product_name" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+            <field name="product_code" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="product_barcode" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="customer_reference" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="customer_vat" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="invoice_address_name" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="invoice_address_reference" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="invoice_address_vat" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="delivery_address_name" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="delivery_address_reference" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="delivery_address_vat" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="delivery_date" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="price_unit" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="total_order_amount" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="quantity" position="after">
+                <field name="material" optional="show" />
+                <field name="grade" optional="show" />
+                <field name="thickness" optional="show" />
+                <field name="component_id" optional="show" />
+                <field name="material_cost" optional="show" />
+                <field name="operations_costs_part" optional="show" />
+                <field name="weight" optional="show" />
+                <field name="part_size" optional="show" />
+                <field name="unit_cost" optional="show" />
+                <field name="total_cost" optional="show" />
+            </field>
+            <field name="product_id" position="before">
+                <field name="product_uom_id" optional="show" />
+            </field>
+        </field>
+    </record>
+</odoo>
