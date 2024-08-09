@@ -49,12 +49,11 @@
         </field>
     </record>
 
-    <record id="sale_order_line_editable_tree" model="ir.ui.view">
-        <field name="name">sale.order.line.editable.tree</field>
+    <record id="view_sales_order_line_input_tree" model="ir.ui.view">
         <field name="model">sale.order.line</field>
         <field
       name="inherit_id"
-      ref="sale_order_shorcut_line.sale_order_line_editable_tree"
+      ref="sale_order_shorcut_line.view_sales_order_line_input_tree"
     />
         <field name="arch" type="xml">
             <field name="product_categ_id" position="after">
