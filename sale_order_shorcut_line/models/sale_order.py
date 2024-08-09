@@ -20,7 +20,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         self.action_put_section_in_lines()
         action = self.env["ir.actions.actions"]._for_xml_id(
-            "sale_order_shorcut_line.action_editabable_orders_lines"
+            "sale_order_line_input.action_sales_order_line_input"
         )
         action["domain"] = expression.AND(
             [

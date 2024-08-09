@@ -7,12 +7,9 @@
     "license": "AGPL-3",
     "author": "AvanzOSC",
     "website": "https://github.com/avanzosc/sale-addons",
-    "depends": ["sale", "sales_team"],
+    "depends": ["sale", "sales_team", "sale_order_line_input"],
     "excludes": [],
     "data": [
-        "security/ir.model.access.csv",
-        "wizard/wiz_change_sequence_in_sale_line_views.xml",
-        "wizard/wiz_duplicate_sale_line_views.xml",
         "views/sale_order_views.xml",
         "views/sale_order_line_views.xml",
     ],
