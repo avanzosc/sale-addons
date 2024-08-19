@@ -86,6 +86,7 @@ class SaleOrderSpace(models.Model):
                             template_lines += line
                 if template_lines:
                     sale_space._template_lines_to_sale_lines(template_lines)
+            sale_space.sale_order_id.action_put_section_in_lines()
 
     def _template_lines_to_sale_lines(self, template_lines):
         for line in template_lines:
@@ -93,17 +94,13 @@ class SaleOrderSpace(models.Model):
             self.env["sale.order.line"].create(vals)
 
     def _catch_values_to_create_sale_line(self, line):
-        space_sequence = self.sequence
-        line_sequence = "{}{}{}".format(
-            line.sale_order_template_id.sequence, space_sequence, line.sequence
-        )
         vals = {
             "order_id": self.sale_order_id.id,
-            "sequence": int(line_sequence),
             "name": line.name,
             "display_type": line.display_type,
             "product_uom_qty": line.product_uom_qty,
             "sale_order_space_id": self.id,
+            "sale_order_template_line_sequence": str(line.sequence).zfill(3),
         }
         if line.product_id:
             vals["product_id"] = line.product_id.id
