@@ -8,10 +8,7 @@ class SaleOrderTemplateSpace(models.Model):
     _description = "Spaces For Sale Order Templates"
     _order = "name"
 
-    name = fields.Char(
-        required=True,
-        copy=False,
-    )
+    name = fields.Char(required=True, copy=False)
     sale_template_ids = fields.Many2many(
         string="Sale Order Templates",
         comodel_name="sale.order.template",
