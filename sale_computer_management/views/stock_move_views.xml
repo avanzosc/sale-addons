@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_move_tree" model="ir.ui.view">
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_picking_move_tree" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="ram_id" optional="show" readonly="1" />
+                <field name="storage1_size_id" optional="show" readonly="1" />
+                <field name="grade_id" optional="show" readonly="1" />
+                <field name="grade_tested" optional="show" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_move_tree" model="ir.ui.view">
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="ram_id" optional="show" readonly="1" />
+                <field name="storage1_size_id" optional="show" readonly="1" />
+                <field name="grade_id" optional="show" readonly="1" />
+                <field name="grade_tested" optional="show" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="ram_id" readonly="1" />
+                <field name="storage1_size_id" readonly="1" />
+                <field name="grade_id" readonly="1" />
+                <field name="grade_tested" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_move_operations" model="ir.ui.view">
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_stock_move_operations" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="ram_id" readonly="1" />
+                <field name="storage1_size_id" readonly="1" />
+                <field name="grade_id" readonly="1" />
+                <field name="grade_tested" readonly="1" />
+            </field>
+            <field name="display_assign_serial" position="after">
+                <field name="allowed_lots_ids" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_move_search" model="ir.ui.view">
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_search" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="ram_id" />
+                <field name="storage1_size_id" />
+                <field name="grade_id" />
+                <field name="grade_tested" />
+            </field>
+            <filter name="groupby_date" position="after">
+                <filter
+          string="RAM"
+          name="groupby_ram"
+          domain="[]"
+          context="{'group_by': 'ram_id'}"
+        />
+                <filter
+          string="Storage 1 Size"
+          name="groupby_storage1_size"
+          domain="[]"
+          context="{'group_by': 'storage1_size_id'}"
+        />
+                <filter
+          string="Grade"
+          name="groupby_grade"
+          domain="[]"
+          context="{'group_by': 'grade_id'}"
+        />
+                <filter
+          string="Grade tested"
+          name="groupby_grade_tested"
+          domain="[]"
+          context="{'group_by': 'grade_tested'}"
+        />
+            </filter>
+        </field>
+    </record>
+</odoo>
