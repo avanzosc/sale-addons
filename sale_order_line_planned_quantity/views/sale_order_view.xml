@@ -8,7 +8,13 @@
         expr="//page/field[@name='order_line']/tree/field[@name='product_uom_qty']"
         position="after"
       >
-                <field name="planned_quantity" string="Planned" optional="show" />
+                <field
+          name="planned_quantity"
+          string="Planned"
+          decoration-warning="(not display_type and difference_between_ordered_planned)"
+          decoration-bf="(not display_type and difference_between_ordered_planned)"
+          optional="show"
+        />
                 <field
           name="difference_between_ordered_planned"
           string="Ordered vs Planned"
