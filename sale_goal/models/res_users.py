@@ -25,12 +25,14 @@ class ResUsers(models.Model):
         string="Monthly Sales Goal",
         compute="_compute_sales_goal",
         default=0.0,
+        compute_sudo=True,
         store=True,
     )
     sales_goal_yearly = fields.Float(
         string="Yearly Sales Goal",
         compute="_compute_sales_goal",
         default=0.0,
+        compute_sudo=True,
         store=True,
     )
     current_month_sale_amount = fields.Float(
