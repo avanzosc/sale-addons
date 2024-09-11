@@ -9,12 +9,4 @@ class SaleOrderLine(models.Model):
 
     def show_product_inventory(self):
         self.ensure_one()
-        action = self.env.ref("stock.action_view_quants").read()[0]
-        action.update(
-            {
-                "context": {
-                    "search_default_product_id": self.product_id.product_tmpl_id.id
-                }
-            }
-        )
-        return action
+        return self.product_id.action_open_quants()

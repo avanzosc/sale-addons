@@ -12,6 +12,7 @@
           name="show_product_inventory"
           type="object"
           string="Inventory"
+          icon="fa-cubes"
         />
             </xpath>
         </field>
