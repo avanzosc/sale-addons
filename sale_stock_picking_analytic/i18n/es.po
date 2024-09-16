@@ -1,0 +1,65 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_stock_picking_analytic
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-22 09:05+0000\n"
+"PO-Revision-Date: 2022-11-22 09:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_stock_picking_analytic
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_analytic.view_picking_form
+msgid "Analytic movements"
+msgstr "Mvtos. Analítica"
+
+#. module: sale_stock_picking_analytic
+#: model:ir.model.fields,field_description:sale_stock_picking_analytic.field_stock_picking__count_analytic_lines
+msgid "Count analytic lines"
+msgstr "Contaldor líneas analítica"
+
+#. module: sale_stock_picking_analytic
+#: model:ir.model.fields,field_description:sale_stock_picking_analytic.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_stock_picking_analytic.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_stock_picking_analytic
+#: model:ir.actions.server,name:sale_stock_picking_analytic.action_create_analytic_line_from_out_picking
+msgid "Generate movement analytics in out pickings"
+msgstr "Generar mvto. analítica en albaranes de salida"
+
+#. module: sale_stock_picking_analytic
+#: model:ir.model.fields,field_description:sale_stock_picking_analytic.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_stock_picking_analytic.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_stock_picking_analytic
+#: model:ir.model.fields,field_description:sale_stock_picking_analytic.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_stock_picking_analytic.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_stock_picking_analytic
+#: model:ir.actions.server,name:sale_stock_picking_analytic.action_put_analytic_in_out_picking_from_sale
+msgid "Put analytic account in pickings"
+msgstr "Poner cta. analítica en albaranes"
+
+#. module: sale_stock_picking_analytic
+#: model:ir.model,name:sale_stock_picking_analytic.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_stock_picking_analytic
+#: model:ir.model,name:sale_stock_picking_analytic.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
+
