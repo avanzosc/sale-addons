@@ -31,10 +31,10 @@ class SaleOrderLine(models.Model):
         burden_type = []
         sale_line = []
         for line in self:
-            if not line.order_id and not line.order_id.type_id:
+            if line.order_id and not line.order_id.type_id:
                 raise ValidationError(_("The sale order has not type."))
             if (
-                not line.order_id
+                line.order_id
                 and line.order_id.type_id
                 and not (line.order_id.type_id.burden_picking_type)
             ):
