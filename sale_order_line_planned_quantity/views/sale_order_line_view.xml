@@ -5,8 +5,12 @@
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
             <field name="product_uom_qty" position="after">
-                <field name="planned_quantity" optional="show" />
-                <field name="difference_between_ordered_planned" optional="show" />
+                <field name="planned_quantity" string="Planned" optional="show" />
+                <field
+          name="difference_between_ordered_planned"
+          string="Ordered vs Planned"
+          optional="hide"
+        />
             </field>
         </field>
     </record>
@@ -19,10 +23,16 @@
     />
         <field name="arch" type="xml">
             <field name="product_uom_qty" position="after">
-                <field name="planned_quantity" optional="show" readonly="1" />
+                <field
+          name="planned_quantity"
+          string="Planned"
+          optional="show"
+          readonly="1"
+        />
                 <field
           name="difference_between_ordered_planned"
-          optional="show"
+          optional="hide"
+          string="Ordered vs Planned"
           readonly="1"
         />
             </field>
@@ -34,7 +44,12 @@
         <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
         <field name="arch" type="xml">
             <field name="product_uom_qty" position="after">
-                <field name="planned_quantity" readonly="1" />
+                <field
+          name="planned_quantity"
+          string="Planned"
+          optional="show"
+          readonly="1"
+        />
             </field>
         </field>
     </record>
@@ -46,7 +61,7 @@
             <field name="order_id" position="before">
                 <separator />
                 <filter
-          string="Difference Between Ordered And Planned"
+          string="Ordered vs Planned"
           name="diff-ordered-planned"
           domain="[('difference_between_ordered_planned','=',True)]"
         />
