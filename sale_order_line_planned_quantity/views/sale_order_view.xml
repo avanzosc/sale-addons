@@ -8,8 +8,12 @@
         expr="//page/field[@name='order_line']/tree/field[@name='product_uom_qty']"
         position="after"
       >
-                <field name="planned_quantity" optional="show" />
-                <field name="difference_between_ordered_planned" optional="show" />
+                <field name="planned_quantity" string="Planned" optional="show" />
+                <field
+          name="difference_between_ordered_planned"
+          string="Ordered vs Planned"
+          optional="hide"
+        />
             </xpath>
         </field>
     </record>
@@ -19,7 +23,11 @@
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="difference_between_ordered_planned" optional="show" />
+                <field
+          name="difference_between_ordered_planned"
+          string="Ordered vs Planned"
+          optional="hide"
+        />
             </field>
         </field>
     </record>
@@ -29,7 +37,11 @@
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="difference_between_ordered_planned" optional="show" />
+                <field
+          name="difference_between_ordered_planned"
+          string="Ordered vs Planned"
+          optional="hide"
+        />
             </field>
         </field>
     </record>
@@ -41,7 +53,7 @@
             <filter name="my_sale_orders_filter" position="after">
                 <separator />
                 <filter
-          string="Difference Between Ordered And Planned"
+          string="Ordered vs Planned"
           name="diff-ordered-planned"
           domain="[('difference_between_ordered_planned','=',True)]"
         />
