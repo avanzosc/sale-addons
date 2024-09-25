@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+    id="report_blanketorder_document"
+    inherit_id="sale_blanket_order.report_blanketorder_document"
+  >
+        <div t-if="doc.currency_id" position="after">
+            <div t-if="doc.description" class="col-3">
+                <strong>Description:</strong>
+                <p t-field="doc.description" />
+            </div>
+        </div>
+    </template>
+</odoo>
