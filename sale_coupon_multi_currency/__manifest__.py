@@ -3,7 +3,7 @@
 {
     "name": "Sale Coupon Multi Currency",
     "summary": "Allow to use custom currency on coupon/promotion program",
-    "version": "13.0.1.0.3",
+    "version": "12.0.1.0.0",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Camptocamp, Odoo Community Association (OCA)",
