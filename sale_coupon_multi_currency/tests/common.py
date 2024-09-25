@@ -12,7 +12,7 @@ class TestSaleCouponMultiCurrencyCommon(SavepointCase):
         super().setUpClass()
         # Records.
         # Coupon Programs.
-        cls.program_coupon_percentage = cls.env.ref("sale_coupon.10_percent_coupon")
+        cls.program_coupon_percentage = cls.env.ref("sale_coupon.10_percent_auto_applied")
         # Currencies.
         cls.company_main = cls.env.ref("base.main_company")
         cls.currency_company = cls.company_main.currency_id
