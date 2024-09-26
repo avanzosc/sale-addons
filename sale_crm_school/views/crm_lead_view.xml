@@ -21,6 +21,12 @@
             <xpath expr="//field[@name='future_student_ids']/form//field[@name='year_birth']" position="after">
                 <field name="sale_order_id" />
             </xpath>
+            <xpath expr="//field[@name='future_student_ids']/form//group[@name='head']" position="after">
+                <separator string="Additional Products"
+                           attrs="{'invisible': [('child_id','!=',False)]}"/>
+                <field name="additional_product_ids"
+                       attrs="{'invisible': [('child_id','!=',False)]}"/>
+            </xpath>
         </field>
     </record>
 
