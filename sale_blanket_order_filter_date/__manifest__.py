@@ -7,11 +7,10 @@
     "license": "AGPL-3",
     "author": "AvanzOSC",
     "website": "https://github.com/avanzosc/sale-addons",
-    "depends": [
-        "sale_blanket_order",
-    ],
+    "depends": ["sale_blanket_order", "sale_order_line_date"],
     "data": [
         "views/sale_blanket_order_views.xml",
+        "wizard/create_sale_order_views.xml",
     ],
     "installable": True,
 }

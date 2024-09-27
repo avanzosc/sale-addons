@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-25 05:24+0000\n"
-"PO-Revision-Date: 2024-09-25 05:24+0000\n"
+"POT-Creation-Date: 2024-09-27 06:32+0000\n"
+"PO-Revision-Date: 2024-09-27 06:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,3 +39,15 @@ msgstr "Fecha Hasta"
 #: model:ir.model.fields,field_description:sale_blanket_order_filter_date.field_sale_blanket_order_wizard__line_ids
 msgid "Lines"
 msgstr "Líneas"
+
+#. module: sale_blanket_order_filter_date
+#: model:ir.model,name:sale_blanket_order_filter_date.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_blanket_order_filter_date
+#. odoo-python
+#: code:addons/sale_blanket_order_filter_date/wizard/create_sale_orders.py:0
+#, python-format
+msgid "Sales Orders"
+msgstr "Pedidos de venta"
