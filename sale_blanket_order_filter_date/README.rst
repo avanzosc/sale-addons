@@ -10,9 +10,8 @@ Sale blanket order filter date
 * When you press the "create order" button, load those lines into the wizard
   that have scheduled data equal null or scheduled date is between the two new
   dates created if they are reported.
-* When the sales order is created, the minimum scheduled date will be taken
-  from the wizard lines, and said date will be entered in the delivery date
-  field of said sales order.
+* As many sales orders will be created as different scheduled data are found in
+  the lines of the sales order creation wizard.
 
 Bug Tracker
 ===========

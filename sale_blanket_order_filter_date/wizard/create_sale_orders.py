@@ -1,6 +1,6 @@
 # Copyright 2024 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class BlanketOrderWizard(models.TransientModel):
@@ -33,15 +33,23 @@ class BlanketOrderWizard(models.TransientModel):
         default=_default_lines_filter_date,
     )
 
-    def create_sale_order(self):
-        min_date = False
-        lines = self.line_ids.filtered(lambda x: x.date_schedule)
-        if lines:
-            line = min(lines, key=lambda x: x.date_schedule)
-            min_date = line.date_schedule
-        return super(
-            BlanketOrderWizard, self.with_context(min_date=min_date)
-        ).create_sale_order()
+    def create_sale_order_by_date(self):
+        dates = set(self.line_ids.mapped("date_schedule"))
+        new_sales = []
+        for date in dates:
+            result = self.with_context(sale_blanker_order_date=date).create_sale_order()
+            if "domain" in result:
+                domain = result.get("domain")
+                new_sales += domain[0][2]
+        return {
+            "domain": [("id", "in", new_sales)],
+            "name": _("Sales Orders"),
+            "view_type": "form",
+            "view_mode": "tree,form",
+            "res_model": "sale.order",
+            "context": {"from_sale_order": True},
+            "type": "ir.actions.act_window",
+        }
 
     def _prepare_so_vals(
         self,
@@ -60,6 +68,15 @@ class BlanketOrderWizard(models.TransientModel):
             payment_term_id,
             order_lines_by_customer,
         )
-        if "min_date" in self.env.context and self.env.context.get("min_date", False):
-            vals["commitment_date"] = self.env.context.get("min_date")
+        if "sale_blanker_order_date" in self.env.context:
+            vals["commitment_date"] = self.env.context.get("sale_blanker_order_date")
+        return vals
+
+    def _prepare_so_line_vals(self, line):
+        vals = super()._prepare_so_line_vals(line)
+        if (
+            "sale_blanker_order_date" in self.env.context
+            and line.date_schedule == self.env.context.get("sale_blanker_order_date")
+        ):
+            vals["commitment_date"] = self.env.context.get("sale_blanker_order_date")
         return vals
