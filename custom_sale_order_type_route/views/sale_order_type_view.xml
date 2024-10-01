@@ -4,6 +4,15 @@
         <field name="model">sale.order.type</field>
         <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_form_view" />
         <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+          class="oe_stat_button"
+          icon="fa-users"
+          type="object"
+          name="action_view_contact"
+          string="Contacts"
+        />
+            </div>
             <field name="incoterm_id" position="after">
                 <field name="not_route_type" />
                 <field

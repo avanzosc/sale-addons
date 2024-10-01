@@ -52,16 +52,22 @@ class SaleOrderLine(models.Model):
             if line.order_id.type_id.burden_picking_type not in burden_type:
                 burden_picking_type = line.order_id.type_id.burden_picking_type
                 burden_type.append(burden_picking_type)
-                picking = self.env["stock.picking"].create(
-                    {
-                        "picking_type_id": burden_picking_type.id,
-                        "location_id": burden_picking_type.default_location_src_id.id,
-                        "location_dest_id": burden_picking_type.default_location_dest_id.id,
-                        "custom_date_done": fields.datetime.now(),
-                        "user_id": self.env.user.id,
-                        "company_id": line.company_id.id,
-                    }
-                )
+                picking_obj = self.env["stock.picking"]
+                vals = {
+                    "picking_type_id": burden_picking_type.id,
+                    "location_id": burden_picking_type.default_location_src_id.id,
+                    "location_dest_id": burden_picking_type.default_location_dest_id.id,
+                    "custom_date_done": fields.datetime.now(),
+                    "user_id": self.env.user.id,
+                    "company_id": line.company_id.id,
+                }
+                picking = picking_obj.new(vals)
+                for comp_onchange in picking._onchange_methods[
+                    "picking_type_id",
+                ]:
+                    comp_onchange(picking)
+                picking = picking._convert_to_write(picking._cache)
+                picking = picking_obj.create(picking)
                 lines = []
                 same_type_lines = self.filtered(
                     lambda c: c.order_id.type_id.burden_picking_type
@@ -69,24 +75,32 @@ class SaleOrderLine(models.Model):
                 )
                 for same_type_line in same_type_lines:
                     if same_type_line.order_id.special_burden:
-                        self.env["stock.move.line"].create(
-                            {
-                                "picking_id": picking.id,
-                                "product_id": same_type_line.product_id.id,
-                                "burden_partner_id": (
-                                    same_type_line.special_partner_id.id
-                                ),
-                                "product_uom_id": (same_type_line.product_id.uom_id.id),
-                                "location_id": picking.location_id.id,
-                                "location_dest_id": picking.location_dest_id.id,
-                                "product_packaging_id": (
-                                    same_type_line.product_packaging.id
-                                ),
-                                "product_packaging_qty": (
-                                    same_type_line.product_packaging_qty
-                                ),
-                            }
-                        )
+                        move_line_obj = self.env["stock.move.line"]
+                        vals = {
+                            "picking_id": picking.id,
+                            "product_id": same_type_line.product_id.id,
+                            "burden_partner_id": (same_type_line.special_partner_id.id),
+                            "product_uom_id": (same_type_line.product_id.uom_id.id),
+                            "location_id": picking.location_id.id,
+                            "location_dest_id": picking.location_dest_id.id,
+                            "product_packaging_id": (
+                                same_type_line.product_packaging.id
+                            ),
+                            "product_packaging_qty": (
+                                same_type_line.product_packaging_qty
+                            ),
+                        }
+                        move_line = move_line_obj.new(vals)
+                        for comp_onchange in move_line._onchange_methods[
+                            "picking_id",
+                            "product_id",
+                            "product_uom_id",
+                            "product_packaging_id",
+                            "product_packaging_qty",
+                        ]:
+                            comp_onchange(move_line)
+                        move_line = move_line._convert_to_write(move_line._cache)
+                        move_line = move_line_obj.create(move_line)
                     if not same_type_line.order_id.special_burden and (
                         same_type_line not in lines
                     ):
@@ -96,23 +110,31 @@ class SaleOrderLine(models.Model):
                             == (same_type_line.product_packaging)
                             and not c.order_id.special_burden
                         )
-                        self.env["stock.move.line"].create(
-                            {
-                                "picking_id": picking.id,
-                                "product_id": same_type_line.product_id.id,
-                                "burden_partner_id": (
-                                    same_type_line.special_partner_id.id
-                                ),
-                                "product_uom_id": (same_type_line.product_id.uom_id.id),
-                                "location_id": picking.location_id.id,
-                                "location_dest_id": picking.location_dest_id.id,
-                                "product_packaging_id": (
-                                    same_type_line.product_packaging.id
-                                ),
-                                "product_packaging_qty": sum(
-                                    same_product_package.mapped("product_packaging_qty")
-                                ),
-                            }
-                        )
+                        move_line_obj = self.env["stock.move.line"]
+                        vals = {
+                            "picking_id": picking.id,
+                            "product_id": same_type_line.product_id.id,
+                            "burden_partner_id": (same_type_line.special_partner_id.id),
+                            "product_uom_id": (same_type_line.product_id.uom_id.id),
+                            "location_id": picking.location_id.id,
+                            "location_dest_id": picking.location_dest_id.id,
+                            "product_packaging_id": (
+                                same_type_line.product_packaging.id
+                            ),
+                            "product_packaging_qty": sum(
+                                same_product_package.mapped("product_packaging_qty")
+                            ),
+                        }
+                        move_line = move_line_obj.new(vals)
+                        for comp_onchange in move_line._onchange_methods[
+                            "picking_id",
+                            "product_id",
+                            "product_uom_id",
+                            "product_packaging_id",
+                            "product_packaging_qty",
+                        ]:
+                            comp_onchange(move_line)
+                        move_line = move_line._convert_to_write(move_line._cache)
+                        move_line = move_line_obj.create(move_line)
                         for sale_line in same_product_package:
                             lines.append(sale_line)

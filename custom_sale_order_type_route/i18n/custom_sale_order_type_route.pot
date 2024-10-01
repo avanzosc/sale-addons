@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-30 10:42+0000\n"
-"PO-Revision-Date: 2024-07-30 10:42+0000\n"
+"POT-Creation-Date: 2024-10-03 07:42+0000\n"
+"PO-Revision-Date: 2024-10-03 07:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -54,6 +54,13 @@ msgid "Contact"
 msgstr ""
 
 #. module: custom_sale_order_type_route
+#: code:addons/custom_sale_order_type_route/models/sale_order_type.py:0
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.sot_sale_order_type_form_view
+#, python-format
+msgid "Contacts"
+msgstr ""
+
+#. module: custom_sale_order_type_route
 #: model_terms:ir.actions.act_window,help:custom_sale_order_type_route.action_my_route_type_sales
 #: model_terms:ir.actions.act_window,help:custom_sale_order_type_route.action_route_type_sales
 msgid "Crear nuevos Pedido de Venta"
@@ -94,6 +101,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking_type__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner__distribution_sequence
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_users__distribution_sequence
+msgid "Distribution Sequence"
 msgstr ""
 
 #. module: custom_sale_order_type_route
@@ -150,6 +163,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__not_route_type
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_type__not_route_type
 msgid "Not Route Type"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__partner_distribution_sequence
+msgid "Partner Distribution Sequence"
 msgstr ""
 
 #. module: custom_sale_order_type_route
