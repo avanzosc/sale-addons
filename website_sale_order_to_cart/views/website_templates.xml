@@ -38,5 +38,17 @@
                 </div>
             </t>
         </xpath>
+
+        <xpath expr="//a[@id='o_sale_portal_paynow']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+
+        <xpath
+      expr="//div[@id='sale_order_communication']/preceding-sibling::div[1]"
+      position="attributes"
+    >
+            <attribute name="t-if">False</attribute>
+        </xpath>
+
     </template>
 </odoo>
