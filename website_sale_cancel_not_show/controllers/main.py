@@ -32,7 +32,7 @@ class CustomSalePortal(CustomerPortal):
     def _prepare_quotations_domain(self, partner):
         domain = [
             ("message_partner_ids", "child_of", [partner.commercial_partner_id.id]),
-            ("state", "in", ["sent", "cancel", "draft"]),
+            ("state", "in", ["sent", "draft"]),
         ]
         return domain
 
@@ -68,7 +68,7 @@ class CustomSalePortal(CustomerPortal):
         if quotation_page:
             domain = [
                 ("partner_id", "=", partner_id),
-                ("state", "in", ["draft", "sent", "cancel"]),
+                ("state", "in", ["draft", "sent"]),
             ]
         else:
             domain = [("partner_id", "=", partner_id), ("state", "in", ["sale"])]
