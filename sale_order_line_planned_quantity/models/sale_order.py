@@ -19,7 +19,6 @@ class SaleOrder(models.Model):
     )
     def _compute_planned_quantity(self):
         for sale in self:
-            if any([x.difference_between_ordered_planned for x in sale.order_line]):
-                sale.difference_between_ordered_planned = True
-            else:
-                sale.difference_between_ordered_planned = False
+            sale.difference_between_ordered_planned = any(
+                [x.difference_between_ordered_planned for x in sale.order_line]
+            )
