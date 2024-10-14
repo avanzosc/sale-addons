@@ -25,14 +25,10 @@ class SaleOrderImportLine(models.Model):
         store=True,
     )
     action = fields.Selection(
-        selection=[
+        selection_add=[
             ("create", "Create"),
-            ("nothing", "Nothing"),
         ],
-        default="nothing",
-        states={"done": [("readonly", True)]},
-        copy=False,
-        required=True,
+        ondelete={"create": "set default"},
     )
     sale_order_id = fields.Many2one(
         string="Sale Order",
