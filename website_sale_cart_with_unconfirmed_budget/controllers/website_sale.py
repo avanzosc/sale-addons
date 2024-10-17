@@ -8,12 +8,29 @@ class WebsiteSale(WebsiteSale):
 
     @http.route(["/shop/cart"], type="http", auth="public", website=True, sitemap=False)
     def cart(self, access_token=None, revive="", **post):
+        response = super().cart(access_token=access_token, revive=revive, **post)
         order = request.website.sale_get_order()
+
         if order and order.state != "draft":
             request.session["sale_order_id"] = None
             order = request.website.sale_get_order()
 
-        request.session["website_sale_cart_quantity"] = order.cart_quantity
+        if not order:
+            last_order = request.env["sale.order"].search(
+                [
+                    ("partner_id", "=", request.env.user.partner_id.id),
+                    ("state", "=", "sent"),
+                ],
+                order="date_order desc",
+                limit=1,
+            )
+            if last_order:
+                last_order.write({"state": "draft"})
+                order = last_order
+
+        request.session["website_sale_cart_quantity"] = (
+            order.cart_quantity if order else 0
+        )
 
         values = {
             "website_sale_order": order,
@@ -29,7 +46,8 @@ class WebsiteSale(WebsiteSale):
             values["suggested_products"] = order._cart_accessories()
             values.update(self._get_express_shop_payment_values(order))
 
-        return request.render("website_sale.cart", values)
+        response.qcontext.update(values)
+        return response
 
     @http.route(
         ["/shop/cart/update"],
@@ -46,7 +64,7 @@ class WebsiteSale(WebsiteSale):
         product_custom_attribute_values=None,
         no_variant_attribute_values=None,
         express=False,
-        **kwargs
+        **kwargs,
     ):
         sale_order = super().cart_update(
             product_id=product_id,
@@ -55,7 +73,7 @@ class WebsiteSale(WebsiteSale):
             product_custom_attribute_values=product_custom_attribute_values,
             no_variant_attribute_values=no_variant_attribute_values,
             express=express,
-            **kwargs
+            **kwargs,
         )
 
         request.session["website_sale_cart_quantity"] = sale_order.cart_quantity
@@ -82,7 +100,7 @@ class WebsiteSale(WebsiteSale):
         display=True,
         product_custom_attribute_values=None,
         no_variant_attribute_values=None,
-        **kw
+        **kw,
     ):
         values = super().cart_update_json(
             product_id=product_id,
@@ -92,7 +110,7 @@ class WebsiteSale(WebsiteSale):
             display=display,
             product_custom_attribute_values=product_custom_attribute_values,
             no_variant_attribute_values=no_variant_attribute_values,
-            **kw
+            **kw,
         )
 
         request.session["website_sale_cart_quantity"] = values.get("cart_quantity", 0)
