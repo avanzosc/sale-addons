@@ -8,6 +8,7 @@
     "license": "AGPL-3",
     "depends": ["website_sale", "sale", "portal"],
     "data": [
+        "views/ir_rule.xml",
         "views/website_sale_my_account_state_templates.xml",
     ],
     "installable": True,

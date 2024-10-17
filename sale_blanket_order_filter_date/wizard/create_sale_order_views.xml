@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_create_sale_order" model="ir.ui.view">
+        <field name="model">sale.blanket.order.wizard</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_create_sale_order" />
+        <field name="arch" type="xml">
+            <button name="create_sale_order" position="attributes">
+                <attribute name="name">create_sale_order_by_date</attribute>
+            </button>
+        </field>
+    </record>
+</odoo>
