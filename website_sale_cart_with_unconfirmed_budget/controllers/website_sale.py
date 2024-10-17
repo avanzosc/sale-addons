@@ -8,7 +8,10 @@ class WebsiteSale(WebsiteSale):
 
     @http.route(["/shop/cart"], type="http", auth="public", website=True, sitemap=False)
     def cart(self, access_token=None, revive="", **post):
+        response = super().cart(access_token=access_token, revive=revive, **post)
+
         order = request.website.sale_get_order()
+
         if order and order.state != "draft":
             request.session["sale_order_id"] = None
             order = request.website.sale_get_order()
@@ -29,7 +32,9 @@ class WebsiteSale(WebsiteSale):
             values["suggested_products"] = order._cart_accessories()
             values.update(self._get_express_shop_payment_values(order))
 
-        return request.render("website_sale.cart", values)
+        response.qcontext.update(values)
+
+        return response
 
     @http.route(
         ["/shop/cart/update"],
