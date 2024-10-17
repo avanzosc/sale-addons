@@ -31,15 +31,21 @@ class CustomSalePortal(CustomerPortal):
 
     def _prepare_quotations_domain(self, partner):
         domain = [
-            ("message_partner_ids", "child_of", [partner.commercial_partner_id.id]),
+            "&",
             ("state", "in", ["sent", "draft"]),
+            "|",
+            ("message_partner_ids", "child_of", [partner.commercial_partner_id.id]),
+            ("partner_id", "child_of", [partner.commercial_partner_id.id]),
         ]
         return domain
 
     def _prepare_orders_domain(self, partner):
         domain = [
-            ("message_partner_ids", "child_of", [partner.commercial_partner_id.id]),
+            "&",
             ("state", "in", ["sale"]),
+            "|",
+            ("message_partner_ids", "child_of", [partner.commercial_partner_id.id]),
+            ("partner_id", "child_of", [partner.commercial_partner_id.id]),
         ]
         return domain
 
