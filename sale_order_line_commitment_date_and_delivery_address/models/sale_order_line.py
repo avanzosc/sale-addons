@@ -10,7 +10,14 @@ class SaleOrderLine(models.Model):
         store=True,
     )
     delivery_address = fields.Many2one(
-        related="order_id.partner_shipping_id",
-        string="Delivery Address",
-        # store=True, Cannot be stored because it's a computed field
+        "res.partner",
+        compute="_compute_delivery_address",
+        store=True,
     )
+
+    def _compute_delivery_address(self):
+        for line in self:
+            if line.order_id and line.order_id.partner_shipping_id:
+                line.delivery_address = line.order_id.partner_shipping_id.id
+            else:
+                line.delivery_address = False
