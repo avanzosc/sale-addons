@@ -10,11 +10,13 @@ class SaleOrderLine(models.Model):
         string="Planned Quantity",
         compute="_compute_planned_quantity",
         digits="Product Unit of Measure",
+        compute_sudo=True,
         store=True,
         copy=False,
     )
     difference_between_ordered_planned = fields.Boolean(
         string="Difference Between Ordered And Planned",
+        compute_sudo=True,
         store=True,
         copy=False,
         compute="_compute_planned_quantity",
