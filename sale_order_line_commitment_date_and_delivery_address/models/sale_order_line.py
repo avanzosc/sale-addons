@@ -9,8 +9,8 @@ class SaleOrderLine(models.Model):
         string="Commitment Date",
         store=True,
     )
-    delivery_address = fields.Many2one(
+    delivery_address_id = fields.Many2one(
+        "res.partner",
         related="order_id.partner_shipping_id",
-        string="Delivery Address",
-        # store=True, Cannot be stored because it's a computed field
+        store=True,
     )
