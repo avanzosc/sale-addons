@@ -61,6 +61,7 @@ class SaleOrder(models.Model):
                             or self.env.ref("stock.stock_location_customers").id
                         ),
                         "company_id": self.company_id.id,
+                        "origin": entry_picking.origin,
                     }
                 )
                 picking.onchange_picking_type()
