@@ -7,10 +7,7 @@
     "license": "AGPL-3",
     "author": "AvanzOSC",
     "website": "https://github.com/avanzosc/sale-addons",
-    "depends": [
-        "stock",
-        "sale_stock",
-    ],
+    "depends": ["stock", "sale_stock", "picking_generate_zero_lines"],
     "data": [
         "views/sale_order_view.xml",
     ],
