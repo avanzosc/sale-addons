@@ -28,7 +28,6 @@
     <field name="arch" type="xml">
       <xpath expr="//tree" position="inside">
         <field name="origin" optional="show" />
-        <field name="commitment_date" optional="show" />
       </xpath>
     </field>
   </record>
