@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
   <record id="sale_order_view_search_inherit_quotation" model="ir.ui.view">
-    <field name="name">sale.order.view.search.inherit</field>
     <field name="model">sale.order</field>
     <field name="inherit_id" ref="sale.view_sales_order_filter" />
     <field name="arch" type="xml">
@@ -23,19 +22,7 @@
     </field>
   </record>
 
-  <record id="view_quotation_tree_with_onboarding_custom" model="ir.ui.view">
-    <field name="name">sale.order.tree.inherit.origin</field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
-    <field name="arch" type="xml">
-      <xpath expr="//tree" position="inside">
-        <field name="origin" optional="show" />
-        <field name="commitment_date" optional="show" />
-      </xpath>
-    </field>
-  </record>
   <record id="view_quotation_tree_custom" model="ir.ui.view">
-    <field name="name">sale.order.tree.inherit.origin</field>
     <field name="model">sale.order</field>
     <field name="inherit_id" ref="sale.view_quotation_tree" />
     <field name="arch" type="xml">
