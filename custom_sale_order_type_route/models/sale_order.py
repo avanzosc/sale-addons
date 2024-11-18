@@ -19,6 +19,11 @@ class SaleOrder(models.Model):
         string="Special Burden",
         default=False,
     )
+    partner_distribution_sequence = fields.Integer(
+        string="Partner Distribution Sequence",
+        related="partner_shipping_id.distribution_sequence",
+        store=True,
+    )
 
     def _compute_deliverement_menu(self):
         for sale in self:
