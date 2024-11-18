@@ -12,6 +12,7 @@
                 <field
           name="burden_partner_id"
           attrs="{'column_invisible':[('parent.is_carry_type', '=', False)]}"
+          optional="show"
         />
             </field>
         </field>

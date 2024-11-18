@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+    id="address_b2b_vat_required"
+    inherit_id="website_sale.address_b2b"
+    name="Make VAT Required"
+  >
+        <xpath expr="//input[@name='vat']" position="attributes">
+            <attribute name="required">True</attribute>
+        </xpath>
+    </template>
+</odoo>

@@ -17,12 +17,15 @@ class SaleCommissionSettlement(models.Model):
             lines = self.line_ids.filtered(
                 lambda x: x.invoice_id == invoice and x.commission_id == commission
             )
+            amount_untaxed = invoice.amount_untaxed
+            if invoice.move_type == "out_refund":
+                amount_untaxed = amount_untaxed * -1
             vals = {
                 "invoice_date": invoice.date,
                 "invoice_name": invoice.name,
                 "invoice_customer": invoice.partner_id.name,
                 "invoice_shipping_address": invoice.partner_shipping_id.name,
-                "invoice_amount_untaxed": invoice.amount_untaxed,
+                "invoice_amount_untaxed": amount_untaxed,
                 "commission_name": commission.name,
             }
             settled_amount = 0
@@ -31,6 +34,8 @@ class SaleCommissionSettlement(models.Model):
                 if line.settled_amount:
                     commissionable_tax_base += line.invoice_line_id.price_subtotal
                     settled_amount += line.settled_amount
+            if commissionable_tax_base and invoice.move_type == "out_refund":
+                commissionable_tax_base = commissionable_tax_base * -1
             vals.update(
                 {
                     "invoice_commissionable_tax_base": commissionable_tax_base,

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_sale_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Delivery Information">
+                    <group>
+                        <group>
+                            <field name="integrator_id" />
+                            <field name="sale_phone" />
+                            <field name="delivery_note" />
+                            <field name="install_address_id" />
+                            <field name="install_date" />
+                            <field name="install_type_id" />
+                        </group>
+                        <group>
+                            <field name="technical_contact_id" />
+                            <field name="training" />
+                            <field name="installation_done_by_id" />
+                            <field name="structure_type_id" />
+                            <field name="initial_order_id" />
+                            <field name="delivery_timetable" />
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

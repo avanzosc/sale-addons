@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Sale Order Line Planned Quantity",
-    "version": "14.0.1.1.0",
+    "version": "14.0.2.0.0",
     "depends": [
         "sale",
         "stock",
@@ -15,7 +15,6 @@
     "data": [
         "views/sale_order_line_view.xml",
         "views/sale_order_view.xml",
-        "views/stock_picking_type_view.xml",
     ],
     "installable": True,
 }
