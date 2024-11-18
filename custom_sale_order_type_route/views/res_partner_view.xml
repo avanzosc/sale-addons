@@ -8,6 +8,26 @@
             <field name="vat" position="after">
                 <field name="special_burden" />
             </field>
+            <field name="sale_type" position="after">
+                <field name="distribution_sequence" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_partner_tree_editable" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree" />
+        <field name="mode">primary</field>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="create">0</attribute>
+                <attribute name="editable">bottom</attribute>
+                <attribute name="default_order">distribution_sequence, name</attribute>
+            </tree>
+            <field name="display_name" position="before">
+                <field name="distribution_sequence" />
+            </field>
         </field>
     </record>
 

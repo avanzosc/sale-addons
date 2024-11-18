@@ -17,6 +17,7 @@
         "custom_saca_intercompany",
         "sale_order_line_containers",
         "stock_picking_date_done",
+        "sale_order_line_price_history",
     ],
     "data": [
         "views/sale_order_type_view.xml",
