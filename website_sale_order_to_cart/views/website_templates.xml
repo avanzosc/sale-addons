@@ -5,7 +5,7 @@
       expr="//div[hasclass('justify-content-between')]/div[1]"
       position="after"
     >
-            <t t-if="website_sale_order.id">
+            <t t-if="website_sale_order.id and website_sale_order.cart_quantity > 0">
                 <div>
                         <a
             class="btn btn-primary mb32"

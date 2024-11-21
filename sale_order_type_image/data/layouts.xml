@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+    id="external_layout_standard"
+    inherit_id="web.external_layout_boxed"
+    priority="100"
+  >
+        <img t-if="company.logo" position="replace">
+            <t
+        t-if="o._name == 'account.move' and o.move_type in ('out_invoice','out_refund') and o.sale_type_id.sale_type_image"
+      >
+                <img
+          t-att-src="image_data_uri(o.sale_type_id.sale_type_image)"
+          alt="Logo"
+        />
+            </t>
+            <t
+        t-elif="o._name == 'stock.picking' and o.picking_type_id.code == 'outgoing' and o.group_id and o.group_id.sale_id and o.group_id.sale_id.type_id and o.group_id.sale_id.type_id.sale_type_image"
+      >
+                <img
+          t-att-src="image_data_uri(o.group_id.sale_id.type_id.sale_type_image)"
+          alt="Logo"
+        />
+            </t>
+            <t t-elif="o._name == 'sale.order' and o.type_id.sale_type_image">
+                <img t-att-src="image_data_uri(o.type_id.sale_type_image)" alt="Logo" />
+            </t>
+            <t t-else="">
+                <img
+          t-if="company.logo"
+          t-att-src="image_data_uri(company.logo)"
+          alt="Logo"
+        />
+            </t>
+
+        </img>
+    </template>
+</odoo>

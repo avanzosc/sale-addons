@@ -41,9 +41,12 @@ class SaleOrderController(http.Controller):
         if order_id:
             sale_order = request.env["sale.order"].sudo().browse(int(order_id))
             # Only cancel the order if the partner_id of the order is the user
-            # if sale_order.partner_id == request.env.user.partner_id: --> ...
-            # ... Doesn't work as expected
-            if sale_order and sale_order.state not in ["sale"]:
-                sale_order.action_cancel()
+            if (
+                sale_order
+                and sale_order.partner_id == request.env.user.partner_id
+                and sale_order.state not in ["sale"]
+            ):
+                sale_order._action_cancel()
+                request.session["website_sale_cart_quantity"] = 0
 
         return request.redirect("/shop")
