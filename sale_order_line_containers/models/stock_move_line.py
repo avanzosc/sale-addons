@@ -12,5 +12,5 @@ class StockMoveLine(models.Model):
     @api.onchange("move_id")
     def onchange_move_id(self):
         self.ensure_one()
-        if self.move_id:
+        if self.move_id and self.move_id.container:
             self.container = self.move_id.container
