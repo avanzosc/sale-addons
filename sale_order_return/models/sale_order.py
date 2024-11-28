@@ -52,19 +52,12 @@ class SaleOrder(models.Model):
                     {
                         "partner_id": self.partner_id.id,
                         "picking_type_id": pick_type.return_picking_type_id.id,
-                        "location_id": (
-                            pick_type.return_picking_type_id.default_location_src_id.id
-                            or self.env.ref("stock.stock_location_suppliers").id
-                        ),
-                        "location_dest_id": (
-                            pick_type.return_picking_type_id.default_location_dest_id.id
-                            or self.env.ref("stock.stock_location_customers").id
-                        ),
+                        "location_id": entry_picking.location_dest_id.id,
+                        "location_dest_id": entry_picking.location_id.id,
                         "company_id": self.company_id.id,
                         "origin": entry_picking.origin,
                     }
                 )
-                picking.onchange_picking_type()
                 picking.group_id.sale_id = self.id
                 for line in self.order_line:
                     previous_product_uom_qty = {
