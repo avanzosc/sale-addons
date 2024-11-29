@@ -94,6 +94,10 @@ class CrmLeadFutureStudent(models.Model):
     sale_order_state = fields.Selection(
         string="Sale Order Status", related="sale_order_id.state",
         store=True)
+    additional_product_ids = fields.Many2many(
+        comodel_name="product.product", string="Additional Products",
+        relation="rel_future_student_addproduct", column1="student_id",
+        column2="product_id")
 
     @api.multi
     def create_new_student(self, partner_id=False):
@@ -103,6 +107,11 @@ class CrmLeadFutureStudent(models.Model):
         else:
             super(CrmLeadFutureStudent,
                   self).create_new_student(partner_id=partner_id)
+            if self.additional_product_ids:
+                self.child_id.write({
+                    "additional_product_ids": [
+                        (4, x.id) for x in self.additional_product_ids],
+                })
 
     @api.multi
     def create_sale_order_for_student(self):

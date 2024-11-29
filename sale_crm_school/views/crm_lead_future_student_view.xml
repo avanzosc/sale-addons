@@ -45,6 +45,12 @@
             <field name="year_birth" position="after">
                 <field name="sale_order_id" />
             </field>
+            <group name="head" position="after">
+                <separator string="Additional Products"
+                           attrs="{'invisible': [('child_id','!=',False)]}"/>
+                <field name="additional_product_ids"
+                       attrs="{'invisible': [('child_id','!=',False)]}"/>
+            </group>
         </field>
     </record>
 
