@@ -11,3 +11,6 @@ class ResPartner(models.Model):
         string="Special Burden",
         default=False,
     )
+    distribution_sequence = fields.Integer(
+        string="Distribution Sequence",
+    )

@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute
+          name="default_order"
+        >partner_distribution_sequence, name</attribute>
+            </tree>
+            <field name="name" position="before">
+                <field name="partner_distribution_sequence" optional="hide" />
+            </field>
+        </field>
+    </record>
+
     <record id="view_order_form" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
@@ -191,6 +206,22 @@
                 <attribute
           name="attrs"
         >{'readonly': [('parent.deliverement_menu', '=', True)]}</attribute>
+            </xpath>
+            <xpath
+        expr="//field[@name='order_line']/form//field[@name='price_unit']"
+        position="attributes"
+      >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath
+        expr="//field[@name='order_line']/form//field[@name='price_unit']"
+        position="after"
+      >
+                <label for="price_unit" />
+                <div class="o_row" name="price_unit">
+                    <field name="price_unit" />
+                    <widget name="sale_line_price_history_widget" width="20px" />
+                </div>
             </xpath>
         </field>
     </record>
