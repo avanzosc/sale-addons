@@ -29,7 +29,6 @@ class SaleOrderLine(models.Model):
 
     def action_create_burden_picking(self):
         burden_type = []
-        sale_line = []
         for line in self:
             if line.order_id and not line.order_id.type_id:
                 raise ValidationError(_("The sale order has not type."))

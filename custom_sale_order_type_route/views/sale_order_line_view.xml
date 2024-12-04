@@ -11,15 +11,12 @@
         </field>
     </record>
 
-    <record id="action_create_burden_picking" model="ir.actions.server">
-        <field name="name">Create Burden Picking</field>
-        <field name="model_id" ref="sale.model_sale_order_line" />
+    <record id="action_create_burden_wizard" model="ir.actions.act_window">
+        <field name="name">Create Burden</field>
+        <field name="res_model">burden.picking.wizard</field>
         <field name="binding_model_id" ref="sale.model_sale_order_line" />
-        <field name="state">code</field>
-        <field name="code">
-            if records:
-                records.action_create_burden_picking()
-        </field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
     </record>
 
 </odoo>
