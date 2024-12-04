@@ -20,6 +20,7 @@
         "sale_order_line_price_history",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/sale_order_type_view.xml",
         "views/sale_order_view.xml",
         "views/account_payment_view.xml",
@@ -29,6 +30,7 @@
         "views/res_partner_view.xml",
         "views/stock_move_line_view.xml",
         "views/sale_order_line_view.xml",
+        "wizards/burden_picking_wizard_view.xml",
     ],
     "license": "AGPL-3",
     "installable": True,

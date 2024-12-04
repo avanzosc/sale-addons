@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-03 07:42+0000\n"
-"PO-Revision-Date: 2024-10-03 07:42+0000\n"
+"POT-Creation-Date: 2024-12-04 13:03+0000\n"
+"PO-Revision-Date: 2024-12-04 13:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: custom_sale_order_type_route
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.burden_picking_wizard_view_form
+msgid "Accept"
+msgstr "Aceptar"
 
 #. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_account_payment__amount_signed
@@ -36,6 +41,11 @@ msgid "Burden Picking Type"
 msgstr "Tipo de operación de carga"
 
 #. module: custom_sale_order_type_route
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.burden_picking_wizard_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: custom_sale_order_type_route
 #: model:ir.actions.act_window,name:custom_sale_order_type_route.action_carry_stock_picking
 #: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_carry_pickings
 #: model:ir.ui.menu,name:custom_sale_order_type_route.menu_carry_pickings
@@ -55,6 +65,7 @@ msgstr "Contacto"
 
 #. module: custom_sale_order_type_route
 #: code:addons/custom_sale_order_type_route/models/sale_order_type.py:0
+#: code:addons/custom_sale_order_type_route/models/sale_order_type.py:0
 #: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.sot_sale_order_type_form_view
 #, python-format
 msgid "Contacts"
@@ -72,9 +83,19 @@ msgid "Crear nuevos documento"
 msgstr ""
 
 #. module: custom_sale_order_type_route
-#: model:ir.actions.server,name:custom_sale_order_type_route.action_create_burden_picking
-msgid "Create Burden Picking"
+#: model:ir.actions.act_window,name:custom_sale_order_type_route.action_create_burden_wizard
+msgid "Create Burden"
 msgstr "Crear albarán de carga"
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
 
 #. module: custom_sale_order_type_route
 #: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.view_in_invoice_tree
@@ -93,6 +114,7 @@ msgstr "Repartidor"
 
 #. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_account_payment__display_name
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__display_name
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line__display_name
@@ -111,6 +133,7 @@ msgstr "Órden de reparto"
 
 #. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_account_payment__id
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__id
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner__id
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__id
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line__id
@@ -129,7 +152,14 @@ msgid "Invoices"
 msgstr "Facturas"
 
 #. module: custom_sale_order_type_route
+#: code:addons/custom_sale_order_type_route/wizards/burden_picking_wizard.py:0
+#, python-format
+msgid "It is going to create a burden picking for all these lines."
+msgstr "Se va ha crear el albarán de carga para estas líneas."
+
+#. module: custom_sale_order_type_route
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_account_payment____last_update
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order____last_update
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line____last_update
@@ -139,6 +169,16 @@ msgstr "Facturas"
 #: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking_type____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por"
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__write_date
+msgid "Last Updated on"
+msgstr "Actualizado el"
 
 #. module: custom_sale_order_type_route
 #: model:ir.actions.act_window,name:custom_sale_order_type_route.action_my_account_move
@@ -215,6 +255,11 @@ msgid "Special Partner"
 msgstr "Cliente carga especial"
 
 #. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__text
+msgid "Text"
+msgstr "Texto"
+
+#. module: custom_sale_order_type_route
 #: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
 #: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
 #, python-format
@@ -257,3 +302,13 @@ msgstr "Albarán"
 #: model:ir.model,name:custom_sale_order_type_route.model_sale_order_type
 msgid "Type of sale order"
 msgstr "Tipo de pedido de venta"
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_burden_picking_wizard
+msgid "Wizard when burden picking is created"
+msgstr "Asistente para crear albarán de carga"
+
+#. module: custom_sale_order_type_route
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.burden_picking_wizard_view_form
+msgid "or"
+msgstr "o"
