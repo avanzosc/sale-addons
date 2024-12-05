@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
         related="partner_id.category_id",
         store=True,
     )
-    commitment_date = fields.Datetime(default=default_commitment_date)
+    commitment_date = fields.Datetime(default=default_commitment_date, tracking=2)
 
     @api.onchange("expected_date")
     def _onchange_expected_date(self):
