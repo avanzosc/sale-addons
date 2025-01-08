@@ -59,11 +59,11 @@ class SaleOrder(models.Model):
                     }
                 )
                 picking.group_id.sale_id = self.id
-                for line in self.order_line:
-                    previous_product_uom_qty = {
-                        ln.id: ln.product_uom_qty for ln in line
-                    }
-                    line._action_launch_stock_rule(previous_product_uom_qty)
+                # for line in self.order_line:
+                #     previous_product_uom_qty = {
+                #         ln.id: ln.product_uom_qty for ln in line
+                #     }
+                #     line._action_launch_stock_rule(previous_product_uom_qty)
                 for line in entry_picking.move_line_ids_without_package:
                     move = self.env["stock.move"].create(
                         {
