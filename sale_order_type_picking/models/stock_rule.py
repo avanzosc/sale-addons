@@ -17,7 +17,7 @@ class StockRule(models.Model):
         company_id,
         values,
     ):
-        values = super()._get_stock_move_values(
+        res = super()._get_stock_move_values(
             product_id,
             product_qty,
             product_uom,
@@ -27,23 +27,25 @@ class StockRule(models.Model):
             company_id,
             values,
         )
-        if "sale_line_id" in values and values.get("sale_line_id", False):
-            sale_line = self.env["sale.order.line"].browse(values.get("sale_line_id"))
-            if (
+        if values.get("sale_line_id", False):
+            sale_line = (
+                self.env["sale.order.line"].sudo().browse(values.get("sale_line_id"))
+            )
+            picking_type = (
                 sale_line.order_id.type_id
                 and sale_line.order_id.type_id.picking_type_id
-            ):
-                values["picking_type_id"] = (
-                    sale_line.order_id.type_id.picking_type_id.id
+            )
+            if picking_type:
+                res.update(
+                    {
+                        "picking_type_id": picking_type.id
+                        or res.get("picking_type_id"),
+                        "location_id": picking_type.default_location_src_id.id
+                        or res.get("location_id"),
+                        "location_dest_id": picking_type.default_location_dest_id.id
+                        or res.get("location_dest_id"),
+                    }
                 )
-                values["location_id"] = (
-                    sale_line.order_id.type_id.picking_type_id.default_location_src_id.id
-                )
-                values["location_dest_id"] = (
-                    sale_line.order_id.type_id.picking_type_id.default_location_dest_id.id
-                )
-                if sale_line.order_id.type_id.picking_type_id.sequence_id:
-                    values["sequence"] = (
-                        sale_line.order_id.type_id.picking_type_id.sequence_id.id
-                    )
-        return values
+                if picking_type.sequence_id:
+                    res["sequence"] = picking_type.sequence_id.id
+        return res
