@@ -19,14 +19,21 @@ class StockPicking(models.Model):
     def action_analytic_movements_from_picking(self):
         lines = self._get_count_analytic_lines()
         if lines:
-            action = self.env.ref("analytic.account_analytic_line_action_entries")
-            action_dict = action and action.read()[0]
-            action_dict["context"] = safe_eval(action_dict.get("context", "{}"))
-            domain = expression.AND(
-                [[("id", "in", lines.ids)], safe_eval(action.domain or "[]")]
+            action = self.env["ir.actions.actions"]._for_xml_id(
+                "analytic.account_analytic_line_action_entries"
             )
-            action_dict.update({"domain": domain})
-            return action_dict
+            domain = expression.AND(
+                [
+                    [("id", "in", lines.ids)],
+                    safe_eval(action.get("domain") or "[]"),
+                ]
+            )
+            action.update(
+                {
+                    "domain": domain,
+                }
+            )
+            return action
 
     def _get_count_analytic_lines(self):
         lines = self.env["account.analytic.line"]
