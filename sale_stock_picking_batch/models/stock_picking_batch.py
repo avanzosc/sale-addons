@@ -24,13 +24,16 @@ class StockPickingBatch(models.Model):
             batch.count_sale_orders = len(sale_orders)
 
     def action_view_sale_orders(self):
-        action = self.env.ref("sale.action_quotations")
-        action_dict = action and action.read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id("sale.action_quotations")
         domain = expression.AND(
             [
                 [("id", "in", self.sale_order_ids.ids)],
-                safe_eval(action.domain or "[]"),
+                safe_eval(action.get("domain") or "[]"),
             ]
         )
-        action_dict.update({"domain": domain})
-        return action_dict
+        action.update(
+            {
+                "domain": domain,
+            }
+        )
+        return action
