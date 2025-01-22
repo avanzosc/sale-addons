@@ -1,5 +1,5 @@
 {
-    "name": "Sale Subscription TicketBai Disable",
+    "name": "Sale Subscription Auto Validate Disable",
     "version": "16.0.1.0.0",
     "category": "Sales",
     "author": "Avanzosc",

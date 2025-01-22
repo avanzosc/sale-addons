@@ -2,32 +2,32 @@
    :target: https://opensource.org/licenses/LGPL-3.0
    :alt: License: LGPL-3
 
-===================================
-Sale Subscription TicketBai Disable
-===================================
+=======================================
+Sale Subscription Auto Validate Disable
+=======================================
 
 Overview
 ========
 
-The **Sale Subscription TicketBai Disable** module is designed to disable the functionality for validating and sending invoices related to the TicketBai system in the **Sale Subscription** module. This is useful when you need to prevent the automatic integration with the TicketBai system for subscriptions.
+The **Sale Subscription Auto Validate Disable** module is designed to disable the functionality for validating and sending invoices related to the Auto Validate system in the **Sale Subscription** module. This is useful when you need to prevent the automatic integration with the Auto Validate system for subscriptions.
 
 Features
 ========
 
-- **Disable TicketBai Integration**:
+- **Disable Auto Validate Integration**:
 
-  - Disables the `validate_and_send_invoice` function in the **Sale Order** model, effectively preventing the automatic validation and sending of invoices tied to the TicketBai system.
+  - Disables the `validate_and_send_invoice` function in the **Sale Order** model, effectively preventing the automatic validation and sending of invoices tied to the Auto Validate system.
 
 Usage
 =====
 
 1. **Install the Module**:
 
-   - Install the **Sale Subscription TicketBai Disable** module from the Apps menu.
+   - Install the **Sale Subscription Auto Validate Disable** module from the Apps menu.
 
 2. **Effect on Sales Orders**:
 
-   - After installing this module, the `validate_and_send_invoice` method will be disabled for sales orders created under the **Sale Subscription** module. This prevents the automatic validation and sending of invoices related to TicketBai.
+   - After installing this module, the `validate_and_send_invoice` method will be disabled for sales orders created under the **Sale Subscription** module. This prevents the automatic validation and sending of invoices related to Auto Validate.
 
 
 Bug Tracker
