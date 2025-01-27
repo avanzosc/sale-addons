@@ -88,6 +88,7 @@ class SaleOrderLine(models.Model):
                             "product_packaging_qty": (
                                 same_type_line.product_packaging_qty
                             ),
+                            "surplus": same_type_line.surplus,
                         }
                         move_line = move_line_obj.new(vals)
                         for comp_onchange in move_line._onchange_methods[
@@ -108,6 +109,7 @@ class SaleOrderLine(models.Model):
                             and c.product_packaging
                             == (same_type_line.product_packaging)
                             and not c.order_id.special_burden
+                            and (c.surplus == same_type_line.surplus)
                         )
                         move_line_obj = self.env["stock.move.line"]
                         vals = {
@@ -123,6 +125,7 @@ class SaleOrderLine(models.Model):
                             "product_packaging_qty": sum(
                                 same_product_package.mapped("product_packaging_qty")
                             ),
+                            "surplus": same_type_line.surplus,
                         }
                         move_line = move_line_obj.new(vals)
                         for comp_onchange in move_line._onchange_methods[
