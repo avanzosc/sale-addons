@@ -11,3 +11,4 @@ class StockMoveLine(models.Model):
         string="Burden Partner",
         comodel_name="res.partner",
     )
+    surplus = fields.Boolean(default=False)

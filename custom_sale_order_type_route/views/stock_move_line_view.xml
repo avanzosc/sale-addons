@@ -14,6 +14,11 @@
           attrs="{'column_invisible':[('parent.is_carry_type', '=', False)]}"
           optional="show"
         />
+                 <field
+          name="surplus"
+          attrs="{'column_invisible':[('parent.is_carry_type', '=', False)]}"
+          optional="show"
+        />
             </field>
         </field>
     </record>
