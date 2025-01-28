@@ -11,4 +11,6 @@ class SaleOrder(models.Model):
         result = super(SaleOrder, self).onchange_type_id()
         for order in self.filtered(lambda x: x.type_id and x.type_id.description):
             order.note = order.type_id.description
+        for order in self.filtered(lambda x: not x.type_id):
+            order.note = ""
         return result
