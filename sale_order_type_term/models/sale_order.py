@@ -9,7 +9,13 @@ class SaleOrder(models.Model):
     @api.onchange("type_id")
     def onchange_type_id(self):
         result = super(SaleOrder, self).onchange_type_id()
-        for order in self.filtered(lambda x: x.type_id and x.type_id.description):
+        for order in self.filtered(
+            lambda x: (
+                x.type_id
+                and x.type_id.description
+                and (not x.partner_id or x.partner_id.sale_type)
+            )
+        ):
             order.note = order.type_id.description
         return result
 
