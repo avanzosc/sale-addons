@@ -12,3 +12,15 @@ class SaleOrder(models.Model):
         for order in self.filtered(lambda x: x.type_id and x.type_id.description):
             order.note = order.type_id.description
         return result
+
+    @api.onchange("partner_id")
+    def onchange_partner_id(self):
+        """
+        Overrides the default behavior when changing the partner
+        on a sale order to keep the 'note' field unchanged.
+        """
+        original_note = self.note
+        result = super(SaleOrder, self).onchange_partner_id()
+        if original_note:
+            self.note = original_note
+        return result
