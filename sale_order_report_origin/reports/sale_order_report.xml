@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+    id="report_saleorder_document"
+    inherit_id="sale.report_saleorder_document"
+  >
+        <div name="informations_reference" position="after">
+            <div
+        t-if="doc.origin"
+        class="col-auto col-3 mw-100 mb-2"
+        name="informations_origin"
+      >
+                <strong>Origin:</strong>
+                <p class="m-0" t-field="doc.origin" />
+            </div>
+        </div>
+    </template>
+</odoo>
