@@ -23,18 +23,32 @@ class SaleReport(models.Model):
         readonly=True,
     )
 
-    def _select_sale(self):
-        result = super()._select_sale()
-        result += (
-            ", sum(l.qty_pending_delivery / u.factor * u2.factor) "
-            "as qty_pending_delivery"
-            ", sum(l.qty_pending_invoicing / u.factor * u2.factor) as "
-            "qty_pending_invoicing, "
-            "sum(l.amount_pending_delivery / CASE COALESCE(s.currency_rate,0)"
-            " WHEN 0 THEN 1.0 ELSE s.currency_rate END) "
-            "as amount_pending_delivery, "
-            "sum(l.amount_pending_invoicing / CASE COALESCE(s.currency_rate,"
-            " 0) WHEN 0 THEN 1.0 ELSE s.currency_rate END) as "
-            "amount_pending_invoicing"
+    def _select_additional_fields(self):
+        res = super()._select_additional_fields()
+        res.update(
+            {
+                "qty_pending_delivery": """
+            CASE WHEN l.product_id IS NOT NULL THEN
+            SUM(l.qty_pending_delivery / u.factor * u2.factor) ELSE 0
+            END
+            """,
+                "qty_pending_invoicing": """
+            CASE WHEN l.product_id IS NOT NULL THEN
+            SUM(l.qty_pending_invoicing / u.factor * u2.factor) ELSE 0
+            END
+        """,
+                "amount_pending_delivery": f"""
+            CASE WHEN l.product_id IS NOT NULL THEN SUM(l.amount_pending_delivery
+            / {self._case_value_or_one('s.currency_rate')}
+            * {self._case_value_or_one('currency_table.rate')}) ELSE 0
+            END
+        """,
+                "amount_pending_invoicing": f"""
+            CASE WHEN l.product_id IS NOT NULL THEN SUM(l.amount_pending_invoicing
+            / {self._case_value_or_one('s.currency_rate')}
+            * {self._case_value_or_one('currency_table.rate')}) ELSE 0
+            END
+        """,
+            }
         )
-        return result
+        return res
