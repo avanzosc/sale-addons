@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t
+    t-name="website_sale_free_qty_virtual_available.product_availability"
+    inherit_id="website_sale_stock.product_availability"
+  >
+        <xpath expr="//t[@t-if='has_out_of_stock_message']/../.." position="attributes">
+            <attribute name="t-if">virtual_available lte 0 and !cart_qty</attribute>
+        </xpath>
+    </t>
+</templates>
