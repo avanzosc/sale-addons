@@ -25,6 +25,9 @@
             <field name="amount" position="after">
                 <field name="amount_signed" sum="Amount Signed" />
             </field>
+            <field name="date" position="after">
+                <field name="date_due" />
+            </field>
         </field>
     </record>
 

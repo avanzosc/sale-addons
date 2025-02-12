@@ -18,6 +18,7 @@
         "sale_order_line_containers",
         "stock_picking_date_done",
         "sale_order_line_price_history",
+        "account_payment_promissory_note",
     ],
     "data": [
         "security/ir.model.access.csv",
