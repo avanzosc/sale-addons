@@ -203,6 +203,7 @@ class SaleOrderImportLine(models.Model):
             "dimensional_uom_id": uom.id,
             "sale_import_id": self.import_id.id,
             "route_ids": [(6, 0, self.import_id.route_ids.ids)],
+            "standard_price": self.unit_cost,
         }
         return vals
 
