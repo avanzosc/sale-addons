@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_extra_dates" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.extra.dates</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field
+          name="date1"
+          string="Customer Order Creation Date"
+          help="Customer order creation date"
+        />
+            </xpath>
+            <xpath expr="//tree" position="inside">
+                <field name="date1" string="Customer Order Creation Date" />
+                <field name="date2" string="Reconfirmed Date" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
