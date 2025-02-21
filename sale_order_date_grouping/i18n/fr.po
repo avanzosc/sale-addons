@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_date_grouping
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-21 08:26+0000\n"
+"PO-Revision-Date: 2025-02-21 08:26+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_date_grouping
+#: model:ir.model.fields,field_description:sale_order_date_grouping.field_sale_order__sale_month
+#: model:ir.model.fields,field_description:sale_order_date_grouping.field_sale_order_line__sale_month
+#: model_terms:ir.ui.view,arch_db:sale_order_date_grouping.view_sales_order_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_date_grouping.view_sales_order_line_filter
+msgid "Sale Month"
+msgstr ""
+
+#. module: sale_order_date_grouping
+#: model:ir.model,name:sale_order_date_grouping.model_sale_order
+msgid "Sale Order"
+msgstr "Bon de commande"
+
+#. module: sale_order_date_grouping
+#: model:ir.model.fields,field_description:sale_order_date_grouping.field_sale_order__sale_quarter
+#: model:ir.model.fields,field_description:sale_order_date_grouping.field_sale_order_line__sale_quarter
+#: model_terms:ir.ui.view,arch_db:sale_order_date_grouping.view_sales_order_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_date_grouping.view_sales_order_line_filter
+msgid "Sale Quarter"
+msgstr ""
+
+#. module: sale_order_date_grouping
+#: model:ir.model.fields,field_description:sale_order_date_grouping.field_sale_order__sale_year
+#: model:ir.model.fields,field_description:sale_order_date_grouping.field_sale_order_line__sale_year
+#: model_terms:ir.ui.view,arch_db:sale_order_date_grouping.view_sales_order_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_date_grouping.view_sales_order_line_filter
+msgid "Sale Year"
+msgstr ""
+
+#. module: sale_order_date_grouping
+#: model:ir.model,name:sale_order_date_grouping.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+

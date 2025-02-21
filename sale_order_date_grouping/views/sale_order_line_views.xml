@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <filter name="salesperson" position="after">
+                <separator/>
+                <filter
+          string="Sale Year"
+          name="sale_year"
+          context="{'group_by': 'sale_year'}"
+        />
+                <filter
+          string="Sale Month"
+          name="sale_month"
+          context="{'group_by': 'sale_month'}"
+        />
+                <filter
+          string="Sale Quarter"
+          name="sale_quarter"
+          context="{'group_by': 'sale_quarter'}"
+        />
+                <separator/>
+            </filter>
+            <field name="salesman_id" position="after">
+                <separator/>
+                <field name="sale_year"/>
+                <field name="sale_month"/>
+                <field name="sale_quarter"/>
+            </field>
+        </field>
+    </record>
+</odoo>
