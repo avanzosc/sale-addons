@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_line_tree_inherit_extra_dates" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.inherit.extra.dates</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="date1" string="Customer Order Creation Date" />
+                <field name="date2" string="Reconfirmed Date" />
+            </xpath>
+        </field>
+    </record>
+
+    <record
+    id="sale_order_line_view_form_readonly_inherit_extra_dates"
+    model="ir.ui.view"
+  >
+        <field name="name">sale.order.line.form.readonly.inherit.extra.dates</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_id']" position="after">
+                <field name="date1" string="Customer Order Creation Date" />
+                <field name="date2" string="Reconfirmed Date" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
