@@ -17,17 +17,14 @@ class SaleOrder(models.Model):
             sale.picking_count = len(sale.picking_ids)
 
     def button_return_picking(self):
-        for sale in self:
-            if (
-                sale.picking_ids
-                and len(sale.picking_ids) == 1
-                and sale.picking_ids[:1].state == "done"
-            ):
-                wiz_obj = self.env["stock.return.picking"]
-                vals = {"picking_id": sale.picking_ids[:1].id}
-                wiz = wiz_obj.create(vals)
-                wiz._onchange_picking_id()
-                result = wiz.sudo().create_returns()
-                return result
-            else:
-                raise UserError(_("You can only return one done picking."))
+        self.ensure_one()
+        if len(self.picking_ids) != 1 or self.picking_ids.state != "done":
+            raise UserError(_("You can only return one done picking."))
+        picking = self.picking_ids[0]
+        wiz = self.env["stock.return.picking"].create(
+            {
+                "picking_id": picking.id,
+            }
+        )
+        wiz._onchange_picking_id()
+        return wiz.sudo().create_returns()
