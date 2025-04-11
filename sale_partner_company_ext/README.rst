@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-====================
-Sale Partner Company
-====================
+==============================
+Sale Partner Company Extension
+==============================
 
 New domain in sale orders on partner field.
 
