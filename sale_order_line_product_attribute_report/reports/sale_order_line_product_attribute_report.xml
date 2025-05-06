@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report id="report_sale_order_product_attribute_report"
+        string="Sale line products attributes"
+        model="sale.order" 
+        report_type="qweb-pdf"
+        file="sale_order_line_product_attribute_report.sale_order_product_attribute_report_printing" 
+        name="sale_order_line_product_attribute_report.sale_order_product_attribute_report_printing"
+        print_report_name="'Sale: %s, Products, attributes' % (object.name)"
+        paperformat="sale_order_line_product_attribute_report.paperformat_sale_line_product_attribute_report"
+    />
+
+    <report id="report_sale_line_product_attribute_report"
+        string="Sale line products attributes"
+        model="sale.order.line" 
+        report_type="qweb-pdf"
+        file="sale_order_line_product_attribute_report.sale_line_product_attribute_report_printing" 
+        name="sale_order_line_product_attribute_report.sale_line_product_attribute_report_printing"
+        print_report_name="'Sale: %s, Product: %s, attributes' % (object.order_id.name, object.name)"
+        paperformat="sale_order_line_product_attribute_report.paperformat_sale_line_product_attribute_report"
+    />
+
+    <template id="sale_line_product_attribute_report_doc">
+        <t t-call="sale_order_line_product_attribute_report.external_layout_sale_line_product_attribute_report">
+        <t t-set="doc" t-value="doc.with_context(lang=doc.order_id.partner_id.lang)" />
+        <div class="page">
+            <div style="width:390mm;
+                        height:540mm;
+                        background-image: url('/sale_order_line_product_attribute_report/static/src/img/background.png');
+                        background-size: 350mm 520mm;
+                        background-repeat: no-repeat;
+                        background-position: 2cm 2cm;">
+            </div>
+            <div class="oe_structure"/>
+            <!-- CUSTOMER -->
+            <strong>
+                <span style="font-size: 28px;position:absolute;width:100%; left:133mm;top:26mm;color: red !important;"
+                t-esc="doc.order_id.partner_id.name"/>
+            </strong>
+            <!-- SALE ORDER -->
+            <strong>
+                <span style="font-size: 28px;position:absolute;width:100%; left:325mm;top:26mm; color: red !important;"
+                    t-esc="doc.order_id.name"/>
+            </strong>
+            <!-- TOP GRAPHIC NAME -->
+            <strong>
+                <span style="font-size: 28px;position:absolute;width:100%; left:164mm;top:42mm; color: red !important;"
+                    t-if="doc.top_graphic and doc.top_graphic != 'ZZZZZ'"
+                    t-esc="doc.top_graphic"/>
+            </strong>
+            <!-- BOTTOM GRAPHIC NAME -->
+            <strong>
+                <span style="font-size: 28px;position:absolute;width:100%; left:185mm;top:57mm; color: red !important;"
+                    t-if="doc.bottom_graphic and doc.bottom_graphic != 'ZZZZZ'"
+                    t-esc="doc.bottom_graphic"/>
+            </strong>
+            <!-- BOTTOM GRAPHIC -->
+            <t t-set="my_attribute" t-value="doc.product_id.attribute_value_ids.filtered(
+                lambda x: x.attribute_id.name == 'Bottom Graphic')" />
+            <t t-if="my_attribute">
+                <table>
+                    <td style="text-align: center; max-width: 101mm;; height: 1cm; background-color: green; font-size: 26px; position:absolute;width:100%; left:26mm;top:84mm !important;">
+                        <strong><span t-esc="my_attribute.name" /></strong>
+                    </td>
+                </table>
+            </t>
+            <!-- TOP GRAPHIC -->
+            <t t-set="my_attribute" t-value="doc.product_id.attribute_value_ids.filtered(
+                lambda x: x.attribute_id.name == 'Top Graphic')" />
+            <t t-if="my_attribute">
+                <table>
+                    <td style="text-align: center; max-width: 100mm;; height: 1cm; background-color: red; font-size: 26px; position:absolute;width:100%; left:129mm;top:84mm !important;">
+                        <strong><span t-esc="my_attribute.name" /></strong>
+                    </td>
+                </table>
+            </t>
+            <!-- QUANTITIES & SHAPES -->
+            <span style="font-size: 26px;position:absolute;width:100%; left:260mm;top:105mm; color: black !important;"
+                    t-esc="doc.quantities_shapes" />
+            <!-- TOP -->
+            <t t-set="my_attribute" t-value="doc.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.name == 'Top')"/>
+            <t t-if="my_attribute">
+                <img t-if="my_attribute.image"
+                     t-att-src="image_data_uri(my_attribute.image)"
+                     style="position: absolute; left: 240mm; top: 190mm; width: 325px; height: 17px;" />
+                <span style="font-size: 15px;position:absolute;width:100%; left:334mm;top:190mm; color: black !important;" t-esc="my_attribute.name"/>
+            </t>
+            <!-- M2 -->
+            <t t-set="my_attribute" t-value="doc.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.name == 'M2')"/>
+            <t t-if="my_attribute">
+                <img t-if="my_attribute.image"
+                     t-att-src="image_data_uri(my_attribute.image)"
+                     style="position: absolute; left: 240mm; top: 194.5mm; width: 325px; height: 17px;" />
+                <span style="font-size: 15px;position:absolute;width:100%; left:334mm;top:194.5mm; color: black !important;" t-esc="my_attribute.name"/>
+            </t>
+            <!-- M3 -->
+            <t t-set="my_attribute" t-value="doc.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.name == 'M3')"/>
+            <t t-if="my_attribute">
+                <img t-if="my_attribute.image"
+                     t-att-src="image_data_uri(my_attribute.image)"
+                     style="position: absolute; left: 240mm; top: 199mm; width: 325px; height: 17px;" />
+                <span style="font-size: 15px;position:absolute;width:100%; left:334mm;top:199mm; color: black !important;" t-esc="my_attribute.name"/>
+            </t>
+            <!-- M4 -->
+            <t t-set="my_attribute" t-value="doc.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.name == 'M4')"/>
+            <t t-if="my_attribute">
+                <img t-if="my_attribute.image"
+                     t-att-src="image_data_uri(my_attribute.image)"
+                     style="position: absolute; left: 240mm; top: 203.5mm; width: 325px; height: 17px;" />
+                <span style="font-size: 15px;position:absolute;width:100%; left:334mm;top:203.5mm; color: black !important;" t-esc="my_attribute.name"/>
+            </t>
+            <!-- M5 -->
+            <t t-set="my_attribute" t-value="doc.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.name == 'M5')"/>
+            <t t-if="my_attribute">
+                <img t-if="my_attribute.image"
+                     t-att-src="image_data_uri(my_attribute.image)"
+                     style="position: absolute; left: 240mm; top: 208mm; width: 325px; height: 17px;" />
+                <span style="font-size: 15px;position:absolute;width:100%; left:334mm;top:208mm; color: black !important;" t-esc="my_attribute.name"/>
+            </t>
+            <!-- M6 -->
+            <t t-set="my_attribute" t-value="doc.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.name == 'M6')"/>
+            <t t-if="my_attribute">
+                <img t-if="my_attribute.image"
+                     t-att-src="image_data_uri(my_attribute.image)"
+                     style="position: absolute; left: 240mm; top: 212.5mm; width: 325px; height: 17px;" />
+                <span style="font-size: 15px;position:absolute;width:100%; left:334mm;top:212.5mm; color: black !important;" t-esc="my_attribute.name"/>
+            </t>
+            <!-- Bottom -->
+            <t t-set="my_attribute" t-value="doc.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.name == 'Bottom')"/>
+            <t t-if="my_attribute">
+                <img t-if="my_attribute.image"
+                     t-att-src="image_data_uri(my_attribute.image)"
+                     style="position: absolute; left: 240mm; top: 217mm; width: 325px; height: 17px;" />
+                <span style="font-size: 15px;position:absolute;width:100%; left:334mm;top:217mm; color: black !important;" t-esc="my_attribute.name"/>
+            </t>
+            <!-- FINISH -->
+            <t t-set="my_attribute" t-value="doc.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.name == 'FINISH')"/>
+            <t t-if="my_attribute">
+                <span style="font-size: 26px;position:absolute;width:100%; left:310mm;top:236mm;color: orange !important;" t-esc="my_attribute.name"/>
+            </t>
+            <div class="oe_structure"/>
+        </div>
+        </t>
+    </template>
+
+    <template id="sale_line_product_attribute_report_printing">
+        <t t-call="web.html_container">
+            <t t-foreach="docs.filtered(lambda x: x.with_all_attributes)" t-as="doc">
+                <t t-call="sale_order_line_product_attribute_report.sale_line_product_attribute_report_doc" t-lang="doc.order_id.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="sale_order_product_attribute_report_printing">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="sale">
+                <t t-foreach="sorted(sale.order_line.filtered(lambda x: x.with_all_attributes), key=lambda x: (x.bottom_graphic, x.top_graphic, x.sequence, x.id))" t-as="doc">
+                    <t t-call="sale_order_line_product_attribute_report.sale_line_product_attribute_report_doc" t-lang="doc.order_id.partner_id.lang"/>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
