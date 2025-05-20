@@ -4,16 +4,26 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0+e\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-07 13:38+0000\n"
-"PO-Revision-Date: 2023-02-07 13:38+0000\n"
+"POT-Creation-Date: 2025-05-20 07:19+0000\n"
+"PO-Revision-Date: 2025-05-20 07:19+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_line_pending_info
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_tree
+msgid "Amount To Deliver"
+msgstr ""
+
+#. module: sale_line_pending_info
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_tree
+msgid "Amount To Invoice"
+msgstr ""
 
 #. module: sale_line_pending_info
 #: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__amount_pending_delivery
@@ -23,27 +33,6 @@ msgstr ""
 #. module: sale_line_pending_info
 #: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__amount_pending_invoicing
 msgid "Amount pending invoicing"
-msgstr ""
-
-#. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__display_name
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__id
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__id
-msgid "ID"
-msgstr ""
-
-#. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line____last_update
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_line_pending_info
@@ -83,23 +72,27 @@ msgid "Pending Invoicing Shipped Qty"
 msgstr ""
 
 #. module: sale_line_pending_info
-#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_order_tree
-msgid "Pending delivery"
-msgstr ""
-
-#. module: sale_line_pending_info
 #: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__qty_pending_delivery
 msgid "Pending delivery qty"
 msgstr ""
 
 #. module: sale_line_pending_info
-#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_order_tree
-msgid "Pending invoicing"
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__qty_pending_invoicing
+msgid "Pending invoicing qty"
 msgstr ""
 
 #. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_report__qty_pending_invoicing
-msgid "Pending invoicing qty"
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__qty_delivered
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_quotation_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_tree
+msgid "Qty Delivered"
+msgstr ""
+
+#. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__qty_ordered
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_quotation_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_tree
+msgid "Qty Ordered"
 msgstr ""
 
 #. module: sale_line_pending_info
@@ -124,6 +117,7 @@ msgid "Sales Team"
 msgstr ""
 
 #. module: sale_line_pending_info
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_order_tree
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_search
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_tree
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_form
@@ -136,6 +130,7 @@ msgid "To Delivery Amount"
 msgstr ""
 
 #. module: sale_line_pending_info
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_order_tree
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_tree
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_form
 msgid "To Invoice"
@@ -185,13 +180,21 @@ msgid "Total Pending Invoicing Shipped Qty"
 msgstr ""
 
 #. module: sale_line_pending_info
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_form
+msgid "Total Qty Delivered"
+msgstr ""
+
+#. module: sale_line_pending_info
+#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_form
+msgid "Total Units Ordered"
+msgstr ""
+
+#. module: sale_line_pending_info
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_order_tree
-#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_tree
 msgid "Total pending delivery"
 msgstr ""
 
 #. module: sale_line_pending_info
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_order_tree
-#: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_tree
 msgid "Total pending invoicing"
 msgstr ""
