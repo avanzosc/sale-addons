@@ -45,6 +45,18 @@ class SaleOrder(models.Model):
         compute="_compute_total_qty_shipped_pending_invoicing",
         store=True,
     )
+    qty_ordered = fields.Float(
+        copy=False,
+        digits="Product Unit of Measure",
+        compute="_compute_qty_ordered",
+        store=True,
+    )
+    qty_delivered = fields.Float(
+        copy=False,
+        digits="Product Unit of Measure",
+        compute="_compute_qty_delivered",
+        store=True,
+    )
 
     @api.depends(
         "order_line",
@@ -86,6 +98,24 @@ class SaleOrder(models.Model):
             )
             sale.total_amount_shipped_pending_invoicing = sum(
                 sale.order_line.mapped("amount_shipped_pending_invoicing")
+            )
+
+    @api.depends("order_line", "order_line.state", "order_line.product_uom_qty")
+    def _compute_qty_ordered(self):
+        for sale in self:
+            sale.qty_ordered = sum(
+                sale.order_line.filtered(lambda x: x.state != "cancel").mapped(
+                    "product_uom_qty"
+                )
+            )
+
+    @api.depends("order_line", "order_line.state", "order_line.qty_delivered")
+    def _compute_qty_delivered(self):
+        for sale in self:
+            sale.qty_delivered = sum(
+                sale.order_line.filtered(lambda x: x.state != "cancel").mapped(
+                    "qty_delivered"
+                )
             )
 
 
