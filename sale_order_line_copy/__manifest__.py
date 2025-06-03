@@ -8,12 +8,10 @@
         "sale",
     ],
     "author": "AvanzOSC",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/sale-addons",
     "category": "",
-    "data": [
-        "views/sale_order_view.xml"
-    ],
-    'demo': [],
-    'installable': True,
-    'auto_install': False,
+    "data": ["views/sale_order_view.xml"],
+    "demo": [],
+    "installable": True,
+    "auto_install": False,
 }
