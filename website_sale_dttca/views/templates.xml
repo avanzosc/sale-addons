@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="products_item" inherit_id="website_sale.products_item">
+        <xpath expr="//span[@itemprop='price']" position="before">
+            <t
+        t-if="combination_info and 'recommended_price' in combination_info and combination_info['recommended_price'] > 0"
+      >
+                <br />
+                <small>
+                    <t t-translate="yes">Recommended Price:</t>
+                    <span
+            t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+            itemprop="recommended_price"
+            t-esc="combination_info['recommended_price']"
+          />
+                </small>
+            </t>
+        </xpath>
+    </template>
+
+    <template
+    id="product"
+    inherit_id="website_sale.product"
+    customize_show="True"
+    active="True"
+    name="Quick add to Cart (product page)"
+  >
+        <xpath expr="//t[@t-call='website_sale.product_price']" position="after">
+            <t
+        t-if="combination_info and 'recommended_price' in combination_info and combination_info['recommended_price'] > 0"
+      >
+                <br />
+                <h4>
+                    <t t-translate="yes">Recommended Price:</t>
+                    <span
+            t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+            itemprop="recommended_price"
+            t-esc="combination_info['recommended_price']"
+          />
+                </h4>
+            </t>
+        </xpath>
+    </template>
+</odoo>
