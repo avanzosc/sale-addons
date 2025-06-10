@@ -104,28 +104,31 @@
                       >CodigoBarrasProducto</code>: this will fill <b>Product</b></li>
                                         <li><code
                       >NombreCliente</code>: this will fill <b>Customer</b></li>
-                                        <li><code>NIFCliente</code>: this will fill <b
-                      >Customer</b></li>
+                                        <li><code
+                      >CodigoCliente</code>: this will fill <b>Customer</b></li>
                                         <li><code
                       >ReferenciaCliente</code>: this will fill <b>Customer</b></li>
                                         <li><code
-                      >NombreDireccionFacturacion</code>: this will fill <b
-                      >Invoice Address</b></li>
+                      >CodigoProductoCliente</code>: this will fill <b
+                      >Product and Customer</b></li>
                                         <li><code
-                      >NIFDireccionFacturacion</code>: this will fill <b
-                      >Invoice Address</b></li>
+                      >NombreDireccionFacturacion</code>: this will fill <b
+                      >Invoice Address and Customer</b></li>
+                                        <li><code
+                      >CodigoDireccionFacturacion</code>: this will fill <b
+                      >Invoice Address and Customer</b></li>
                                         <li><code
                       >ReferenciaDireccionFacturacion</code>: this will fill <b
-                      >Invoice Address</b></li>
+                      >Invoice Address and Customer</b></li>
                                         <li><code
                       >NombreDireccionEnvio</code>: this will fill <b
-                      >Delivery Address</b></li>
+                      >Delivery Address and Customer</b></li>
                                         <li><code
-                      >NIFDireccionEnvio</code>: this will fill <b
-                      >Delivery Address</b></li>
+                      >CodigoDireccionEnvio</code>: this will fill <b
+                      >Delivery Address and Customer</b></li>
                                         <li><code
                       >ReferenciaDireccionEnvio</code>: this will fill <b
-                      >Delivery Address</b></li>
+                      >Delivery Address and Customer</b></li>
                                         <li><code>Cantidad</code>: this will fill <b
                       >Quantity</b></li>
                                         <li><code
