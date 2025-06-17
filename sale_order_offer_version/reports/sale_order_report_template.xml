@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <template
+    id="report_saleorder_offer_document"
+    inherit_id="sale.report_saleorder_document"
+  >
+
+    <!-- Definir variable "offer" -->
+    <xpath expr="//t[@t-set='address']" position="after">
+      <t t-set="offer" t-value="doc.type_id.is_offer_type" />
+    </xpath>
+
+    <!-- Prefijar "Offer #" al nombre si aplica -->
+    <xpath expr="//span[@t-field='doc.name']" position="before">
+      <t t-if="offer">Offer # </t>
+    </xpath>
+
+    <!-- Mostrar fecha de oferta -->
+    <xpath
+      expr="//div[contains(@class, 'col-auto') and contains(., 'Quotation Date')]"
+      position="before"
+    >
+      <div t-if="offer and doc.date_order" class="col-auto col-3 mw-100 mb-2">
+        <strong>Offer Date:</strong>
+        <p class="m-0" t-field="doc.date_order" />
+      </div>
+    </xpath>
+
+    <!-- Ocultar secciones si es oferta -->
+    <xpath expr="//div[@name='so_total_summary']" position="attributes">
+      <attribute name="t-if">not offer</attribute>
+    </xpath>
+
+    <xpath expr="//th[@name='th_taxes']" position="attributes">
+      <attribute name="t-if">not offer</attribute>
+    </xpath>
+
+    <xpath expr="//td[@name='td_taxes']" position="attributes">
+      <attribute name="t-if">not offer</attribute>
+    </xpath>
+
+    <xpath expr="//tr[contains(@class, 'is-subtotal')]" position="attributes">
+      <attribute name="t-if">not offer</attribute>
+    </xpath>
+
+  </template>
+</odoo>
