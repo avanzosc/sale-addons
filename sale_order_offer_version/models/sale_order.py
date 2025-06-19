@@ -18,15 +18,11 @@ class SaleOrder(models.Model):
         comodel_name="sale.order",
         copy=False,
     )
-    introduction = fields.Text(
-        string="Introduction",
-    )
+    introduction = fields.Text()
     acceptance_date = fields.Date(
-        string="Acceptance Date",
         copy=False,
     )
     rejection_date = fields.Date(
-        string="Rejection Date",
         copy=False,
     )
     stage = fields.Selection(
