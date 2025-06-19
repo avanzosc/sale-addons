@@ -60,11 +60,11 @@ class SaleOrder(models.Model):
         ):
             cond = [("is_offer_type", "=", True)]
             return self.env["sale.order.type"].search(cond, limit=1)
-        return super(SaleOrder, self)._default_type_id()
+        return super()._default_type_id()
 
     @api.onchange("type_id")
     def onchange_type_id(self):
-        result = super(SaleOrder, self).onchange_type_id()
+        result = super().onchange_type_id()
         for order in self.filtered(lambda x: x.type_id):
             self.is_offer_type = order.type_id.is_offer_type
         return result
@@ -72,7 +72,7 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         if any(self.filtered("is_offer_type")):
             raise UserError(_("It is not allowed to confirm an offer type sale order"))
-        return super(SaleOrder, self).action_confirm()
+        return super().action_confirm()
 
     def action_offer_to_quotation(self):
         for offer in self.filtered(lambda x: x.is_offer_type):
