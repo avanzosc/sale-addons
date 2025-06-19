@@ -8,7 +8,7 @@ from odoo.tests import common
 class TestSaleOrderOfferVersion(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestSaleOrderOfferVersion, cls).setUpClass()
+        super().setUpClass()
         cond = [("is_offer_type", "=", True)]
         cls.offer_type = cls.env["sale.order.type"].search(cond, limit=1)
         cls.sale_obj = cls.env["sale.order"]
