@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+
     <record id="sot_view_order_form" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale_order_type.sot_view_order_form" />
@@ -12,24 +13,28 @@
           attrs="{'invisible': [('is_offer_type', '=', True)]}"
         />
             </field>
+
             <xpath expr="//header/button[7]" position="attributes">
                 <attribute
           name="attrs"
-        >{'invisible': ['|',('state', 'not in', ['sent']),('is_offer_type', '=', True)]}</attribute>
+        >{'invisible': ['|', ('state', 'not in', ['sent']), ('is_offer_type', '=', True)]}</attribute>
             </xpath>
+
             <xpath expr="//header/button[8]" position="attributes">
                 <attribute
           name="attrs"
-        >{'invisible': ['|',('state', 'not in', ['draft']),('is_offer_type', '=', True)]}</attribute>
+        >{'invisible': ['|', ('state', 'not in', ['draft']), ('is_offer_type', '=', True)]}</attribute>
             </xpath>
+
             <xpath expr="//header/button[8]" position="after">
                 <button
           name="action_offer_to_quotation"
           string="Convert offer to quotation"
           type="object"
-          attrs="{'invisible': ['|',('state', 'not in', ['draft','sent']),('is_offer_type', '=', False)]}"
+          attrs="{'invisible': ['|', ('state', 'not in', ['draft','sent']), ('is_offer_type', '=', False)]}"
         />
             </xpath>
+
             <notebook position="before">
                 <group
           colspan="4"
@@ -41,10 +46,12 @@
                     <field name="rejection_date" />
                 </group>
             </notebook>
+
             <group name="note_group" position="after">
                 <separator string="Introduction" colspan="4" />
                 <field name="introduction" colspan="4" nolabel="1" />
             </group>
+
             <button name="action_view_invoice" position="after">
                 <button
           name="action_view_sale_orders"
@@ -63,112 +70,84 @@
         </field>
     </record>
 
-    <record id="view_quotation_tree" model="ir.ui.view">
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_quotation_tree" />
-        <field name="arch" type="xml">
-            <field name="name" position="after">
-                <field name="from_offer_id" />
-            </field>
-        </field>
-    </record>
-
-    <record id="view_order_tree" model="ir.ui.view">
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree" />
-        <field name="arch" type="xml">
-            <field name="name" position="after">
-                <field name="from_offer_id" />
-            </field>
-        </field>
-    </record>
-
-    <record id="view_sales_order_filter" model="ir.ui.view">
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_sales_order_filter" />
-        <field name="arch" type="xml">
-            <field name="name" position="after">
-                <field name="from_offer_id" />
-            </field>
-        </field>
-    </record>
 
     <record id="sale_order_offer_tree_view" model="ir.ui.view">
-        <field name="name">sale.order.offer.tree.view</field>
-        <field name="model">sale.order</field>
-        <field name="priority">4</field>
-        <field name="arch" type="xml">
-            <tree
+       <field name="name">sale.order.offer.tree.view</field>
+       <field name="model">sale.order</field>
+       <field name="priority">4</field>
+       <field name="arch" type="xml">
+          <tree
         class="o_sale_order"
         multi_edit="1"
         sample="1"
         decoration-success="stage == 'accepted'"
         decoration-danger="stage == 'rejected'"
       >
-                <field name="name" string="Number" readonly="1" decoration-bf="1" />
-                <field
+            <field name="name" string="Number" readonly="1" decoration-bf="1" />
+            <field
           name="stage"
-          decoration-success="stage == 'accepted'"
-          decoration-danger="stage == 'rejected'"
           widget="badge"
           optional="show"
+          decoration-success="stage == 'accepted'"
+          decoration-danger="stage == 'rejected'"
         />
-                <field
-          name="create_date"
-          string="Creation Date"
-          widget="date"
+            <field name="create_date" widget="date" optional="show" />
+            <field name="acceptance_date" widget="date" optional="show" />
+            <field name="rejection_date" widget="date" optional="show" />
+            <field name="partner_id" readonly="1" />
+            <field
+          name="user_id"
+          widget="many2one_avatar_user"
           optional="show"
+          groups="base.group_multi_company"
         />
-                <field name="acceptance_date" widget="date" optional="show" />
-                <field name="rejection_date" widget="date" optional="show" />
-                <field name="partner_id" readonly="1" />
-                <field name="user_id" widget="many2one_avatar_user" optional="show" />
-                <field name="activity_ids" widget="list_activity" optional="show" />
-                <field name="team_id" optional="hide" />
-                <field
+            <field name="activity_ids" widget="list_activity" optional="show" />
+            <field name="team_id" optional="hide" groups="base.group_multi_company" />
+            <field
           name="tag_ids"
-          optional="hide"
           widget="many2many_tags"
+          optional="hide"
           options="{'color_field': 'color'}"
         />
-                <field
+            <field
           name="company_id"
           groups="base.group_multi_company"
-          optional="show"
           readonly="1"
+          optional="show"
         />
-                <field
+            <field
           name="amount_untaxed"
+          widget="monetary"
           sum="Total Tax Excluded"
-          widget="monetary"
           optional="hide"
         />
-                <field
+            <field
           name="amount_tax"
-          sum="Tax Total"
           widget="monetary"
+          sum="Tax Total"
           optional="hide"
         />
-                <field
+            <field
           name="amount_total"
-          sum="Total Tax Included"
           widget="monetary"
+          sum="Total Tax Included"
           decoration-bf="1"
           optional="show"
         />
-                <field
+            <field
           name="state"
-          decoration-success="state == 'sale' or state == 'done'"
-          decoration-info="state == 'draft' or state == 'sent'"
           widget="badge"
           optional="show"
+          decoration-success="state == 'sale' or state == 'done'"
+          decoration-info="state == 'draft' or state == 'sent'"
         />
-                <field name="invoice_status" invisible="1" />
-                <field name="message_needaction" invisible="1" />
-                <field name="currency_id" invisible="1" />
-            </tree>
-        </field>
+            <field name="invoice_status" invisible="1" />
+            <field name="message_needaction" invisible="1" />
+            <field name="currency_id" invisible="1" />
+          </tree>
+       </field>
     </record>
+
 
     <record id="sale_order_offer_search_view" model="ir.ui.view">
         <field name="name">sale.order.offer.search.view</field>
@@ -182,8 +161,8 @@
           filter_domain="['|', '|', ('name', 'ilike', self), ('client_order_ref', 'ilike', self), ('partner_id', 'child_of', self)]"
         />
                 <field name="partner_id" operator="child_of" />
-                <field name="user_id" />
-                <field name="team_id" string="Sales Team" />
+                <field name="user_id" groups="base.group_multi_company" />
+                <field name="team_id" groups="base.group_multi_company" />
                 <field
           name="order_line"
           string="Product"
@@ -224,67 +203,74 @@
           name="filter_create_date"
           date="create_date"
         />
-                <filter
-          invisible="1"
-          string="Late Activities"
-          name="activities_overdue"
-          domain="[('my_activity_date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
-          help="Show all records which has next action date is before today"
-        />
-                <filter
-          invisible="1"
-          string="Today Activities"
-          name="activities_today"
-          domain="[('my_activity_date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"
-        />
-                <filter
-          invisible="1"
-          string="Future Activities"
-          name="activities_upcoming_all"
-          domain="[('my_activity_date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"
-        />
                 <group expand="0" string="Group By">
                     <filter
             string="Salesperson"
             name="salesperson"
-            domain="[]"
             context="{'group_by': 'user_id'}"
           />
                     <filter
-            name="customer"
             string="Customer"
-            domain="[]"
+            name="customer"
             context="{'group_by': 'partner_id'}"
           />
                     <filter
-            name="stage"
             string="Offer Status"
-            domain="[]"
+            name="stage"
             context="{'group_by': 'stage'}"
           />
-                    <separator />
                     <filter
             string="Order Date"
             name="order_month"
-            domain="[]"
             context="{'group_by': 'date_order'}"
           />
                     <filter
-            string="Acceptance date"
+            string="Acceptance Date"
             name="acceptance_date"
-            domain="[]"
             context="{'group_by': 'acceptance_date'}"
           />
                     <filter
-            string="Rejection date"
+            string="Rejection Date"
             name="rejection_date"
-            domain="[]"
             context="{'group_by': 'rejection_date'}"
           />
                 </group>
-           </search>
+            </search>
         </field>
     </record>
+
+
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="from_offer_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="from_offer_id" />
+            </field>
+        </field>
+    </record>
+
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="from_offer_id" />
+            </field>
+        </field>
+    </record>
+
 
     <record id="action_sale_offer" model="ir.actions.act_window">
         <field name="name">Offers</field>
@@ -296,66 +282,44 @@
         <field name="context">{'default_is_offer_type': True}</field>
         <field name="domain">[('is_offer_type', '=', True)]</field>
         <field name="help" type="html">
-          <p class="o_view_nocontent_smiling_face">
-            Create a new quotation, the first step of a new sale!
-          </p><p>
-            Once the quotation is confirmed by the customer, it becomes a sales order.<br
-        /> You will be able to create an invoice and collect the payment.
-          </p>
+            <p
+        class="o_view_nocontent_smiling_face"
+      >Create a new quotation, the first step of a new sale!</p>
+            <p
+      >Once the quotation is confirmed by the customer, it becomes a sales order.</p>
         </field>
     </record>
 
+
     <menuitem
     id="menu_sale_offer"
+    name="Offers"
+    parent="sale.sale_menu_root"
     action="action_sale_offer"
-    parent="sale.sale_order_menu"
-    sequence="0"
-    groups="sales_team.group_sale_salesman"
+    sequence="100"
   />
 
-        <record
-    id="sale.action_quotations_with_onboarding"
-    model="ir.actions.act_window"
-  >
-            <field
+
+    <record id="sale.action_quotations" model="ir.actions.act_window">
+        <field
       name="context"
     >{'search_default_my_quotation': 1, 'default_is_offer_type': False}</field>
-            <field name="domain">[('is_offer_type', '=', False)]</field>
-        </record>
+        <field name="domain">[('is_offer_type', '=', False)]</field>
+    </record>
 
-        <record id="sale.action_quotations" model="ir.actions.act_window">
-            <field
-      name="context"
-    >{'search_default_my_quotation': 1, 'default_is_offer_type': False}</field>
-            <field name="domain">[('is_offer_type', '=', False)]</field>
-        </record>
-
-        <record id="sale.action_quotations_salesteams" model="ir.actions.act_window">
-            <field name="context">{
-                    'search_default_team_id': [active_id],
-                    'default_team_id': active_id,
-                    'show_address': 1,
-                    'default_is_offer_type': False
-                }
-            </field>
-            <field name="domain">[('is_offer_type', '=', False)]</field>
-        </record>
-
-        <record id="sale.action_orders" model="ir.actions.act_window">
-            <field name="context">{'default_is_offer_type': False}</field>
-            <field
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="context">{'default_is_offer_type': False}</field>
+        <field
       name="domain"
     >[('state', 'not in', ('draft', 'sent', 'cancel')), ('is_offer_type', '=', False)]</field>
-        </record>
+    </record>
 
-        <record id="action_view_all_sale_orders" model="ir.actions.act_window">
-            <field name="name">All sale orders</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">sale.order</field>
-            <field
-      name="view_mode"
-    >tree,form,calendar,graph,pivot,kanban,activity</field>
-            <field name="context">{'create': False}</field>
-            <field name="search_view_id" ref="view_sales_order_filter" />
-        </record>
+    <record id="action_view_all_sale_orders" model="ir.actions.act_window">
+        <field name="name">All sale orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form,calendar,graph,pivot,kanban,activity</field>
+        <field name="context">{'create': False}</field>
+        <field name="search_view_id" ref="view_sales_order_filter" />
+    </record>
 </odoo>
