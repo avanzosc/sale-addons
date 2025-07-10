@@ -51,7 +51,7 @@ class SaleOrder(models.Model):
 
     def button_confirm_pickings(self):
         self.ensure_one()
-        if self.state == "draft":
+        if self.state in ("draft", "sent"):
             self.action_confirm()
         for line in self.order_line:
             if (
@@ -88,8 +88,13 @@ class SaleOrder(models.Model):
                     )
                 else:
                     line.qty_done = 0
-            res = picking.button_validate()
-            return res
+            try:
+                if not picking.custom_date_done:
+                    picking.custom_date_done = fields.Datetime.now()
+            except Exception:
+                continue
+            picking.button_validate()
+        return True
 
     def button_create_invoice_and_paid(self):
         self.ensure_one()
