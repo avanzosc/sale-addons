@@ -60,10 +60,10 @@ class SaleOrder(models.Model):
 
     @api.onchange("type_id")
     def onchange_type_id(self):
-        result = super().onchange_type_id()
+        # result = super().onchange_type_id()
         for order in self.filtered(lambda x: x.type_id):
-            self.is_offer_type = order.type_id.is_offer_type
-        return result
+            order.is_offer_type = order.type_id.is_offer_type
+        # return result
 
     def action_confirm(self):
         if any(self.filtered("is_offer_type")):
