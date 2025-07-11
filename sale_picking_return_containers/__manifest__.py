@@ -10,6 +10,7 @@
         "sale_stock",
         "sale_purchase",
         "stock_move_line_force_done",
+        "purchase_requisition",
     ],
     "data": [
         "views/product_template_view.xml",
