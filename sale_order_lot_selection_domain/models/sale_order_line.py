@@ -1,7 +1,6 @@
 # Copyright 2022 Berezi Amubieta - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import api, fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -32,13 +31,15 @@ class SaleOrderLine(models.Model):
                 ):
                     pick_type = line.order_id.type_id.picking_type_id
                     if not pick_type:
-                        raise ValidationError(
-                            _("The order type does not have the picking type.")
-                        )
+                        pass
+                        # raise ValidationError(
+                        #     _("The order type does not have the picking type.")
+                        # )
                     if not pick_type.default_location_src_id:
-                        raise ValidationError(
-                            _("The picking type does not have the source location.")
-                        )
+                        pass
+                        # raise ValidationError(
+                        #     _("The picking type does not have the source location.")
+                        # )
                     quants = self.env["stock.quant"].search(
                         [
                             ("product_id", "=", line.product_id.id),
