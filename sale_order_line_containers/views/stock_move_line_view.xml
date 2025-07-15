@@ -17,4 +17,19 @@
             </field>
          </field>
      </record>
+
+    <record id="stock_move_line_operation_tree" model="ir.ui.view">
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree" />
+        <field name="arch" type="xml">
+            <field name="lot_id" position="after">
+                <field
+          name="container"
+          optional="show"
+          sum="Total Container"
+          attrs="{'readonly': [('state', 'in', ('done', 'cancel')), ('is_locked', '=', True)]}"
+        />
+            </field>
+        </field>
+    </record>
 </odoo>
