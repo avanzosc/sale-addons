@@ -2,15 +2,14 @@
 <odoo>
      <record model="ir.ui.view" id="view_picking_form">
          <field name="model">stock.picking</field>
-         <field name="inherit_id" ref="stock.view_picking_form" />
+         <field name="inherit_id" ref="sale_order_line_containers.view_picking_form" />
          <field name="arch" type="xml">
             <xpath
-        expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom_qty']"
+        expr="//field[@name='move_ids_without_package']/tree/field[@name='container']"
         position="before"
       >
                 <field name="product_packaging" optional="show" />
                 <field name="package_qty" optional="show" />
-                <field name="container" optional="show" sum="Total Container" />
             </xpath>
          </field>
      </record>

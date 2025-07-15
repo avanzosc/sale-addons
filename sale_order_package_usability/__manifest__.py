@@ -6,7 +6,11 @@
     "author": "Avanzosc",
     "website": "https://github.com/avanzosc/sale-addons",
     "category": "Sale",
-    "depends": ["sale_stock", "stock_move_line_force_done"],
+    "depends": [
+        "sale_stock",
+        "stock_move_line_force_done",
+        "sale_order_line_containers",
+    ],
     "data": [
         "views/sale_order_view.xml",
         "views/sale_order_line_view.xml",

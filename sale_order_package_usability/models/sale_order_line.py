@@ -8,7 +8,6 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     package_qty = fields.Integer(string="Packages")
-    container = fields.Integer(string="Container")
     product_packaging = fields.Many2one(string="Packaging")
 
     @api.onchange("product_id")

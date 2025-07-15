@@ -8,9 +8,9 @@ class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
 
     package_qty = fields.Integer(string="Packages")
-    container = fields.Integer(string="Container")
     product_packaging = fields.Many2one(
-        string="Packaging", comodel_name="product.packaging"
+        string="Packaging",
+        comodel_name="product.packaging",
     )
 
     @api.onchange("package_qty", "product_packaging", "product_packaging.qty")
@@ -22,7 +22,7 @@ class StockMoveLine(models.Model):
     @api.onchange("move_id")
     def onchange_move_id(self):
         self.ensure_one()
+        super().onchange_move_id()
         if self.move_id:
             self.package_qty = self.move_id.package_qty
-            self.container = self.move_id.container
             self.product_packaging = self.move_id.product_packaging
