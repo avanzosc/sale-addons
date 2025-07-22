@@ -13,40 +13,27 @@
                 <p class="m-0" t-field="doc.date_order" />
             </div>
         </div>
-        <span t-field="doc.name" position="before">
-            <span t-if="offer">Offer # </span>
+        <span t-else="" position="before">
+            <span t-elif="offer">Offer # </span>
         </span>
-        <t
-      t-if="not (env.context.get('proforma', False) or is_pro_forma)"
-      position="attributes"
-    >
-            <attribute
-        name="t-if"
-      >not offer and not (env.context.get('proforma', False) or is_pro_forma)</attribute>
-        </t>
-        <t
+        <span
       t-if="env.context.get('proforma', False) or is_pro_forma"
       position="attributes"
     >
             <attribute
         name="t-if"
       >not offer and (env.context.get('proforma', False) or is_pro_forma)</attribute>
-        </t>
-        <div
-      t-if="doc.date_order and doc.state not in ['draft','sent']"
-      position="attributes"
-    >
-            <attribute
-        name="t-if"
-      >not offer and doc.date_order and doc.state not in ['draft','sent']</attribute>
+        </span>
+        <span t-elif="doc.state in ['draft','sent']" position="attributes">
+            <attribute name="t-elif">
+                not offer and doc.state in ['draft','sent']
+            </attribute>
+        </span>
+        <div name="informations_date" position="attributes">
+            <attribute name="t-if">not offer</attribute>
         </div>
-        <div
-      t-if="doc.date_order and doc.state in ['draft','sent']"
-      position="attributes"
-    >
-            <attribute
-        name="t-if"
-      >not offer and doc.date_order and doc.state in ['draft','sent']</attribute>
+        <div name="expiration_date" position="attributes">
+            <attribute name="t-if">not offer</attribute>
         </div>
         <th name="th_taxes" position="attributes">
             <attribute name="t-if">not offer</attribute>
