@@ -60,10 +60,8 @@ class SaleOrder(models.Model):
 
     @api.onchange("type_id")
     def onchange_type_id(self):
-        result = super().onchange_type_id()
-        for order in self.filtered(lambda x: x.type_id):
-            self.is_offer_type = order.type_id.is_offer_type
-        return result
+        for order in self:
+            order.is_offer_type = order.type_id and order.type_id.is_offer_type
 
     def action_confirm(self):
         if any(self.filtered("is_offer_type")):
@@ -92,7 +90,7 @@ class SaleOrder(models.Model):
                 vals["acceptance_date"] = fields.Date.context_today(self)
             if order.stage == "rejected":
                 vals["rejection_date"] = fields.Date.context_today(self)
-            order.write(vals)
+            order.update(vals)
 
     def action_view_sale_orders(self):
         self.ensure_one()
