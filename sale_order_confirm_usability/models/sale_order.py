@@ -51,18 +51,18 @@ class SaleOrder(models.Model):
 
     def button_confirm_pickings(self):
         self.ensure_one()
-        if self.state in ("draft", "sent"):
-            self.action_confirm()
         for line in self.order_line:
             if (
                 line.product_id
-                and (line.product_id.tracking != "none")
-                and not (line.lot_id)
+                and line.product_id.tracking != "none"
+                and not line.lot_id
                 and line.product_uom_qty
             ):
                 raise ValidationError(
                     _("The product {} has not lot").format(line.product_id.name)
                 )
+        if self.state in ("draft", "sent"):
+            self.action_confirm()
         for picking in self.picking_ids.filtered(
             lambda c: c.state not in ("done", "cancel")
         ):
