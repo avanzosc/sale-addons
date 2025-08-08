@@ -46,7 +46,7 @@ class SaleOrder(models.Model):
 
     @api.depends("sale_ids")
     def _compute_count_sale_orders(self):
-        for sale in self:
+        for sale in self.with_context(active_test=False):
             sale.count_sale_orders = len(sale.sale_ids)
 
     @api.model
@@ -94,11 +94,17 @@ class SaleOrder(models.Model):
 
     def action_view_sale_orders(self):
         self.ensure_one()
-        action = self.env.ref("sale_order_offer_version.action_view_all_sale_orders")
+        action = self.env.ref("sale.action_quotations")
         action_dict = action.read()[0] if action else {}
         domain = expression.AND(
             [
-                [("id", "in", self.mapped("sale_ids").ids)],
+                [
+                    (
+                        "id",
+                        "in",
+                        self.with_context(active_test=False).mapped("sale_ids").ids,
+                    )
+                ],
                 safe_eval(action.domain or "[]"),
             ]
         )
