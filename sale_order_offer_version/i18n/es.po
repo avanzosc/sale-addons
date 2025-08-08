@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-17 10:15+0000\n"
-"PO-Revision-Date: 2023-08-17 10:15+0000\n"
+"POT-Creation-Date: 2025-08-12 07:58+0000\n"
+"PO-Revision-Date: 2025-08-12 07:58+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,30 +26,15 @@ msgid "Acceptance Date"
 msgstr "Fecha de aceptación"
 
 #. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Acceptance date"
-msgstr "Fecha aceptación"
-
-#. module: sale_order_offer_version
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__accepted
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Accepted"
 msgstr "Aceptado"
 
 #. module: sale_order_offer_version
-#: model:ir.actions.act_window,name:sale_order_offer_version.action_view_all_sale_orders
-msgid "All sale orders"
-msgstr "Todos los pedidos de venta"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Convert offer to quotation"
 msgstr "Convertir valoración en presupuesto"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Create Date"
-msgstr "Fecha creación"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.actions.act_window,help:sale_order_offer_version.action_sale_offer
@@ -57,45 +42,13 @@ msgid "Create a new quotation, the first step of a new sale!"
 msgstr "Cree nuevo presupuesto, primer paso para un nuevo pedido!"
 
 #. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_tree_view
-msgid "Creation Date"
-msgstr "Fecha creación"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Customer"
-msgstr "Cliente"
-
-#. module: sale_order_offer_version
-#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order_type__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__from_offer_id
 msgid "From offer"
 msgstr "Desde valoración"
 
 #. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Future Activities"
-msgstr "Actividades futuras"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Group By"
-msgstr "Agrupar por"
-
-#. module: sale_order_offer_version
-#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order_type__id
-msgid "ID"
-msgstr ""
-
-#. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__introduction
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Introduction"
 msgstr "Introducción"
 
@@ -107,6 +60,7 @@ msgid "Is it offer type?"
 msgstr "Es valoración?"
 
 #. module: sale_order_offer_version
+#. odoo-python
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
 #, python-format
@@ -114,29 +68,17 @@ msgid "It is not allowed to confirm an offer type sale order"
 msgstr "No está permitido confirmar un pedido de tipo valoración"
 
 #. module: sale_order_offer_version
-#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order_type____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Late Activities"
-msgstr "Actividades tardías"
+msgid "My Offers"
+msgstr "Mis valoraciones"
 
 #. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "My Quotations"
-msgstr "Mis presupuestos"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_tree_view
-msgid "Number"
-msgstr "Número"
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
+msgid "New Revision of Quotation"
+msgstr "Nueva revisión de cotización"
 
 #. module: sale_order_offer_version
 #: model:sale.order.type,name:sale_order_offer_version.offer_type
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_tree_view
 msgid "Offer"
 msgstr "Valoración"
 
@@ -147,7 +89,6 @@ msgstr "Valoración"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__stage
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Offer Status"
 msgstr "Estado de la valoración"
 
@@ -173,25 +114,10 @@ msgstr ""
 "pago."
 
 #. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Order"
-msgstr "Pedido"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Order Date"
-msgstr "Fecha pedido"
-
-#. module: sale_order_offer_version
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__pending
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Pending"
 msgstr "Pendiente"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Product"
-msgstr "Producto"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__rejected
@@ -205,19 +131,14 @@ msgid "Rejection Date"
 msgstr "Fecha de rechazo"
 
 #. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Rejection date"
-msgstr "Fecha rechazo"
-
-#. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__count_sale_orders
 msgid "Sale Order Count"
 msgstr "Nº de pedidos de venta"
 
 #. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_view_order_form
-msgid "Sale orders"
-msgstr "Pedidos de venta"
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
+msgid "Sale Orders"
+msgstr "Pedido de venta"
 
 #. module: sale_order_offer_version
 #: model:ir.model,name:sale_order_offer_version.model_sale_order
@@ -226,45 +147,9 @@ msgid "Sales Order"
 msgstr "Pedido de venta"
 
 #. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Sales Team"
-msgstr "Equipo ventas"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Salesperson"
-msgstr "Vendedor"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Search offers"
-msgstr "Buscar valoraciones"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Show all records which has next action date is before today"
-msgstr ""
-"Mostrar todos los registros cuya próxima fecha de acción sea anterior a hoy "
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_tree_view
-msgid "Tax Total"
-msgstr "Total impuestos"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
-msgid "Today Activities"
-msgstr "Actividades de hoy"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_tree_view
-msgid "Total Tax Excluded"
-msgstr "Total impuestos excluidos"
-
-#. module: sale_order_offer_version
-#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_tree_view
-msgid "Total Tax Included"
-msgstr "Total impuestos incluidos"
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
+msgid "Send Offer by Email"
+msgstr "Enviar valoración por correo electrónico"
 
 #. module: sale_order_offer_version
 #: model:ir.model,name:sale_order_offer_version.model_sale_order_type
