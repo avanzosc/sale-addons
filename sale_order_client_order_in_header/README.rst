@@ -7,6 +7,7 @@ Sale order client order ref in header
 =====================================
 
 * Display the "Customer reference" field in the sales order header.
+* Display the "Delivery Date" (`commitment_date`) field in the sales order header.
 
 Bug Tracker
 ===========
