@@ -1,7 +1,8 @@
 # Copyright 2021 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo.tests import common
 import base64
+
+from odoo.tests import common
 
 
 class TestSaleOrderLineAttachment(common.SavepointCase):

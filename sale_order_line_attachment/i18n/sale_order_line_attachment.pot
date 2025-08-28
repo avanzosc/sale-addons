@@ -148,7 +148,8 @@ msgstr ""
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product__sale_order_line_id
 msgid "Sale order line"
-<<<<<<< HEAD
+msgstr ""
+#. module: sale_order_line_attachment
 #: model:ir.model,name:sale_order_line_attachment.model_sale_order
 msgid "Sale Order"
 msgstr ""
@@ -182,5 +183,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.wiz_catch_attachment_from_product_form
 msgid "or"
 msgstr ""
+
 
 

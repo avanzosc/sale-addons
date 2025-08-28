@@ -18,7 +18,7 @@ class WizCatchAttachmentFromProduct(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(WizCatchAttachmentFromProduct, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         sale_line = self.env["sale.order.line"].browse(
             self.env.context.get("active_id")
         )
@@ -78,5 +78,3 @@ class WizCatchAttachmentFromProductLine(models.TransientModel):
     catch_attachment = fields.Boolean(string="Catch attachment", default=False)
     attachment_id = fields.Many2one(string="Attachment", comodel_name="ir.attachment")
     attachment_name = fields.Char(string="Attachment name")
-
-         

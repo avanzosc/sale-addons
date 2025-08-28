@@ -3,7 +3,6 @@
 from odoo import models
 
 
-
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
@@ -19,4 +18,3 @@ class SaleOrderLine(models.Model):
             "default_res_id": self.id,
         }
         return res
-

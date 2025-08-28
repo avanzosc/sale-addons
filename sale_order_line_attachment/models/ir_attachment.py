@@ -19,4 +19,3 @@ class IrAttachment(models.Model):
     def _compute_show_attach_in_sale(self):
         for att in self:
             att.show_attach_in_sale = att.res_model == "product.template"
-

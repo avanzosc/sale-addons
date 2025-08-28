@@ -4,7 +4,7 @@
     "name": "Sale Order Line Attachment",
     "version": "16.0.1.1.0",
     "author": "AvanzOSC",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/sale-addons",
     "license": "AGPL-3",
     "depends": ["sale", "mail"],
     "category": "Sales",
