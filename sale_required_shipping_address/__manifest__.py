@@ -8,7 +8,7 @@
         "sale_management",
     ],
     "author": "AvanzOSC",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/sale-addons",
     "category": "Sales",
     "data": [
         "views/sale_order_view.xml",
