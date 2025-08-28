@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-12 07:58+0000\n"
-"PO-Revision-Date: 2025-08-12 07:58+0000\n"
+"POT-Creation-Date: 2025-08-28 11:29+0000\n"
+"PO-Revision-Date: 2025-08-28 11:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,46 +18,46 @@ msgstr ""
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.report_saleorder_offer_document
 msgid "<strong>Offer Date:</strong>"
-msgstr ""
+msgstr "<strong>Date de l'offre:</strong>"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__acceptance_date
 msgid "Acceptance Date"
-msgstr ""
+msgstr "Date d'acceptation"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__accepted
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Accepted"
-msgstr ""
+msgstr "Acceptée"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Convert offer to quotation"
-msgstr ""
+msgstr "Convertir l'offre en devis"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.actions.act_window,help:sale_order_offer_version.action_sale_offer
 msgid "Create a new quotation, the first step of a new sale!"
-msgstr ""
+msgstr "Créez un nouveau devis, première étape d'une nouvelle vente!"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__from_offer_id
 msgid "From offer"
-msgstr ""
+msgstr "Depuis l'offre"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__introduction
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Introduction"
-msgstr ""
+msgstr "Introduction"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__is_offer_type
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order_type__is_offer_type
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_sale_order_type_search_view
 msgid "Is it offer type?"
-msgstr ""
+msgstr "Est-ce un type d'offre?"
 
 #. module: sale_order_offer_version
 #. odoo-python
@@ -65,77 +65,80 @@ msgstr ""
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
 #, python-format
 msgid "It is not allowed to confirm an offer type sale order"
-msgstr ""
+msgstr "Il n'est pas autorisé de confirmer une commande de type offre"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "My Offers"
-msgstr ""
+msgstr "Mes offres"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "New Revision of Quotation"
-msgstr ""
+msgstr "Nouvelle révision du devis"
 
 #. module: sale_order_offer_version
 #: model:sale.order.type,name:sale_order_offer_version.offer_type
 msgid "Offer"
-msgstr ""
+msgstr "Offre"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.report_saleorder_offer_document
 msgid "Offer #"
-msgstr ""
+msgstr "Offre #"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__stage
 msgid "Offer Status"
-msgstr ""
+msgstr "Statut de l'offre"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_sale_order_type_search_view
 msgid "Offer Type"
-msgstr ""
+msgstr "Type d'offre"
 
 #. module: sale_order_offer_version
 #: model:ir.actions.act_window,name:sale_order_offer_version.action_sale_offer
 #: model:ir.ui.menu,name:sale_order_offer_version.menu_sale_offer
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Offers"
-msgstr ""
+msgstr "Offres"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.actions.act_window,help:sale_order_offer_version.action_sale_offer
 msgid ""
-"Once the quotation is confirmed by the customer, it becomes a sales "
-"order.<br> You will be able to create an invoice and collect the payment."
+"Once the quotation is confirmed by the customer, it becomes a\n"
+"                sales order.<br> You will be able to create an invoice and\n"
+"                collect the payment."
 msgstr ""
+"Une fois le devis confirmé par le client, il devient une commande.<br> Vous pourrez créer une facture et encaisser le paiement."
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__pending
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Pending"
-msgstr ""
+msgstr "En attente"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__rejected
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Rejected"
-msgstr ""
+msgstr "Rejetée"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__rejection_date
 msgid "Rejection Date"
-msgstr ""
+msgstr "Date de rejet"
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__count_sale_orders
 msgid "Sale Order Count"
-msgstr ""
+msgstr "Nombre de commandes"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Sale Orders"
-msgstr ""
+msgstr "Commandes"
 
 #. module: sale_order_offer_version
 #: model:ir.model,name:sale_order_offer_version.model_sale_order
@@ -146,7 +149,7 @@ msgstr "Bon de commande"
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Send Offer by Email"
-msgstr ""
+msgstr "Envoyer l'offre par e-mail"
 
 #. module: sale_order_offer_version
 #: model:ir.model,name:sale_order_offer_version.model_sale_order_type
