@@ -56,11 +56,6 @@
             </xpath>
             <field name="type_id" position="after">
                 <field name="is_offer_type" invisible="1" />
-                <field
-          name="from_offer_id"
-          readonly="1"
-          attrs="{'invisible': [('is_offer_type', '=', True)]}"
-        />
             </field>
             <notebook position="before">
                 <group
@@ -76,6 +71,18 @@
                 <separator string="Introduction" colspan="4" />
                 <field name="introduction" colspan="4" nolabel="1" />
             </group>
+            <xpath
+        expr="//page[@name='other_information']/group[last()]"
+        position="after"
+      >
+                <group string="Offers" name="offers">
+                    <field
+            name="from_offer_id"
+            readonly="1"
+            attrs="{'invisible': [('is_offer_type', '=', True)]}"
+          />
+                </group>
+            </xpath>
         </field>
     </record>
 
