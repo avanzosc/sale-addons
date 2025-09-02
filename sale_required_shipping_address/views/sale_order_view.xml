@@ -5,10 +5,12 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="partner_shipping_id" position="after">
-                <field name="allowed_shipping_ids" invisible="1"/>
+                <field name="allowed_shipping_ids" invisible="1" />
             </field>
             <field name="partner_shipping_id" position="attributes">
-                <attribute name="domain">[('id', 'in', allowed_shipping_ids)]</attribute>
+                <attribute
+          name="domain"
+        >[('id', 'in', allowed_shipping_ids)]</attribute>
             </field>
         </field>
     </record>
