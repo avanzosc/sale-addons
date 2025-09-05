@@ -1,10 +1,9 @@
 # Copyright 2019 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestSaleRequiredShippingAddress(common.SavepointCase):
 
     @classmethod
