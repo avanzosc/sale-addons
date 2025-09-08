@@ -32,12 +32,12 @@ class TestSaleRequiredShippingAddress(common.SavepointCase):
         cond = [("state", "=", "draft")]
         sale = self.sale_model.search(cond, limit=1)
         sale.partner_id = self.partner.id
-        sale.onchange_partner_id()
+        sale._onchange_partner_id()
         self.assertEqual(len(sale.allowed_shipping_ids), 3)
-        result = sale.onchange_partner_id_warning()
+        result = sale._onchange_partner_id_warning()
         self.assertIn("warning", result)
         self.partner.write({"sale_warn": "warning", "sale_warn_msg": "bbbbbb"})
-        result = sale.onchange_partner_id_warning()
+        result = sale._onchange_partner_id_warning()
         warning = result.get("warning")
         message = warning.get("message")
         self.assertIn("bbbbbb", message)
