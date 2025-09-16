@@ -25,6 +25,14 @@
             data-hotkey="g"
             context="{'validate_analytic': True}"
           />
+                   <button
+            name="action_quotation_send"
+            string="Send Offer by Email"
+            type="object"
+            states="sent,sale"
+            data-hotkey="g"
+            context="{'validate_analytic': True}"
+          />
                     <button
             name="create_revision"
             states="cancel,sent,draft"

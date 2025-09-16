@@ -18,46 +18,46 @@ msgstr ""
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.report_saleorder_offer_document
 msgid "<strong>Offer Date:</strong>"
-msgstr "<strong>Fecha de la valoración:</strong>"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__acceptance_date
 msgid "Acceptance Date"
-msgstr "Fecha de aceptación"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__accepted
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Accepted"
-msgstr "Aceptado"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Convert offer to quotation"
-msgstr "Convertir valoración en presupuesto"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model_terms:ir.actions.act_window,help:sale_order_offer_version.action_sale_offer
 msgid "Create a new quotation, the first step of a new sale!"
-msgstr "Cree nuevo presupuesto, primer paso para un nuevo pedido!"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__from_offer_id
 msgid "From offer"
-msgstr "Desde valoración"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__introduction
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Introduction"
-msgstr "Introducción"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__is_offer_type
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order_type__is_offer_type
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_sale_order_type_search_view
 msgid "Is it offer type?"
-msgstr "Es valoración?"
+msgstr ""
 
 #. module: sale_order_offer_version
 #. odoo-python
@@ -65,44 +65,44 @@ msgstr "Es valoración?"
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
 #, python-format
 msgid "It is not allowed to confirm an offer type sale order"
-msgstr "No está permitido confirmar un pedido de tipo valoración"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "My Offers"
-msgstr "Mis valoraciones"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "New Revision of Quotation"
-msgstr "Nueva revisión de cotización"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:sale.order.type,name:sale_order_offer_version.offer_type
 msgid "Offer"
-msgstr "Valoración"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.report_saleorder_offer_document
 msgid "Offer #"
-msgstr "Valoración"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__stage
 msgid "Offer Status"
-msgstr "Estado de la valoración"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_sale_order_type_search_view
 msgid "Offer Type"
-msgstr "Tipo de valoraciones"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.actions.act_window,name:sale_order_offer_version.action_sale_offer
 #: model:ir.ui.menu,name:sale_order_offer_version.menu_sale_offer
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Offers"
-msgstr "Valoraciones"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model_terms:ir.actions.act_window,help:sale_order_offer_version.action_sale_offer
@@ -110,49 +110,46 @@ msgid ""
 "Once the quotation is confirmed by the customer, it becomes a sales "
 "order.<br> You will be able to create an invoice and collect the payment."
 msgstr ""
-"Una vez que el presupuesto está confirmado por el cliente, este se "
-"transforma en un pedido de venta.<br> Podrá crear una factura y realizar el "
-"pago."
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__pending
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Pending"
-msgstr "Pendiente"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__rejected
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Rejected"
-msgstr "Rechazado"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__rejection_date
 msgid "Rejection Date"
-msgstr "Fecha de rechazo"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__count_sale_orders
 msgid "Sale Order Count"
-msgstr "Nº de pedidos de venta"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Sale Orders"
-msgstr "Pedido de venta"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model,name:sale_order_offer_version.model_sale_order
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__sale_ids
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr "Pedido de Venda"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Send Offer by Email"
-msgstr "Enviar valoración por correo electrónico"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model,name:sale_order_offer_version.model_sale_order_type
 msgid "Type of sale order"
-msgstr "Tipo de pedido de venta"
+msgstr "Tipo Pedido Venda"
