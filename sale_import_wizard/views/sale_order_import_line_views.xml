@@ -62,14 +62,14 @@
             string="Validate"
             type="object"
             class="oe_read_only"
-            states="2validate,error"
+            modifiers="{'invisible': [('state','not in',['2validate','error'])]}"
           />
                     <button
             name="action_process"
             string="Process"
             type="object"
             class="oe_read_only"
-            states="error,pass"
+            modifiers="{'invisible': [('state','not in',['error','pass'])]}"
           />
                     <field name="state" widget="statusbar" />
                 </header>
@@ -124,7 +124,7 @@
     <record id="sale_order_import_line_view_tree" model="ir.ui.view">
         <field name="model">sale.order.import.line</field>
         <field name="arch" type="xml">
-            <tree
+            <list
         decoration-danger="state == 'error'"
         decoration-muted="state == 'done'"
         decoration-it="log_info"
@@ -156,7 +156,7 @@
                 <field name="state" optional="hide" />
                 <field name="log_info" optional="show" />
                 <field name="sale_order_id" invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -164,7 +164,7 @@
         <field name="name">Import Sale Order Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order.import.line</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="sale_order_import_line_view_tree" />
     </record>
 </odoo>

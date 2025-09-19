@@ -3,12 +3,12 @@
     <record id="sale_order_import_view_tree" model="ir.ui.view">
         <field name="model">sale.order.import</field>
         <field name="arch" type="xml">
-            <tree decoration-muted="state == 'done'" decoration-bf="state == 'pass'">
+            <list decoration-muted="state == 'done'" decoration-bf="state == 'pass'">
                 <field name="name" />
                 <field name="file_date" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="state" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -21,19 +21,19 @@
             name="action_import_file"
             string="Import"
             type="object"
-            attrs="{'invisible': [('state', '=', 'done')]}"
+            modifiers="{'invisible': [('state', '=', 'done')]}"
           />
                     <button
             name="action_validate"
             string="Validate"
             type="object"
-            attrs="{'invisible': [('state', 'not in', ('2validate','error'))]}"
+            modifiers="{'invisible': [('state', 'not in', ('2validate','error'))]}"
           />
                     <button
             name="action_process"
             string="Process"
             type="object"
-            attrs="{'invisible': [('state', 'not in', ('2validate','pass','error'))]}"
+            modifiers="{'invisible': [('state', 'not in', ('2validate','pass','error'))]}"
           />
                     <field name="state" widget="statusbar" />
                 </header>
@@ -43,14 +43,14 @@
               string="Import Lines"
               type="object"
               name="button_open_import_line"
-              attrs="{'invisible':[('import_line_ids', '=', [])]}"
+              modifiers="{'invisible':[('import_line_ids', '=', [])]}"
               class="oe_stat_button"
               icon="fa-bars"
             />
                         <button
               type="object"
               name="button_open_sale_order"
-              attrs="{'invisible':[('sale_order_count', '=', 0)]}"
+              modifiers="{'invisible':[('sale_order_count', '=', 0)]}"
               class="oe_stat_button"
               icon="fa-folder-open"
             >
@@ -78,14 +78,14 @@
                         </page>
                         <page
               string="Error Log"
-              attrs="{'invisible':[('log_info','=','')]}"
+              modifiers="{'invisible':[('log_info','=','')]}"
             >
                             <field name="log_info" />
                         </page>
                         <page
               string="Help"
               name="help_page"
-              attrs="{'invisible': [('state', '=', 'done')]}"
+              modifiers="{'invisible': [('state', '=', 'done')]}"
             >
                             <group>
                                 <div style="margin-top: 4px;">
@@ -143,11 +143,11 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
+                <!--<div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers" />
                     <field name="activity_ids" widget="mail_activity" />
                     <field name="message_ids" widget="mail_thread" />
-                </div>
+                </div> -->
             </form>
         </field>
     </record>
@@ -188,7 +188,7 @@
         <field name="name">Import Sale Orders</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order.import</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="sale_order_import_view_tree" />
     </record>
 

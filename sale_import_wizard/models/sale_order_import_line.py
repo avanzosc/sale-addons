@@ -1,6 +1,7 @@
 # Copyright 2023 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+import unicodedata
 from datetime import datetime
 
 import pytz
@@ -244,38 +245,80 @@ class SaleOrderImportLine(models.Model):
 
     def _check_product(self):
         self.ensure_one()
+        product_obj = self.env["product.product"]
         log_info = ""
         if self.product_id:
             return self.product_id, log_info
-        product_obj = self.env["product.product"]
+
+        search_domain = []
+        products = False
         if self.product_name:
-            search_domain = [("name", "=", self.product_name)]
-        else:
-            search_domain = []
-        if self.product_code:
-            search_domain = expression.AND(
-                [[("default_code", "=", self.product_code)], search_domain]
+            name = self.product_name.replace(" ", "")
+            name = "".join(
+                c
+                for c in unicodedata.normalize("NFD", name)
+                if unicodedata.category(c) != "Mn"
             )
-        if self.product_barcode:
-            search_domain = expression.AND(
-                [[("barcode", "=", self.product_barcode)], search_domain]
-            )
-        search_domain = expression.AND(
-            [
-                [
+        if self.product_code and not self.product_name:
+            if not self.product_barcode:
+                search_domain = [("default_code", "=", self.product_code)]
+            else:
+                search_domain = [
                     "|",
-                    ("company_id", "=", self.import_id.company_id.id),
-                    ("company_id", "=", False),
-                ],
-                search_domain,
-            ]
-        )
+                    ("default_code", "=", self.product_code),
+                    ("barcode", "=", self.product_barcode),
+                ]
+        elif self.product_name and not self.product_code:
+            if not self.product_barcode:
+                search_domain = [("trim_name", "=ilike", name)]
+            else:
+                search_domain = [
+                    "|",
+                    ("trim_name", "=ilike", name),
+                    ("barcode", "=", self.product_barcode),
+                ]
+        elif self.product_code and self.product_name:
+            if not self.product_barcode:
+                search_domain = [
+                    "|",
+                    ("trim_name", "=ilike", name),
+                    ("default_code", "=", self.product_code),
+                ]
+            else:
+                search_domain = [
+                    "|",
+                    ("trim_name", "=ilike", name),
+                    "|",
+                    ("default_code", "=", self.product_code),
+                    ("barcode", "=", self.product_barcode),
+                ]
+        elif not self.product_code and not self.product_name:
+            search_domain = [("barcode", "=", self.product_barcode)]
+        if search_domain:
+            products = product_obj.search(search_domain)
+            if not products and "from_sale_wizard_laser" not in self.env.context:
+                error = _("Product not found.")
+                log_info = error if not log_info else "{} {}".format(log_info, error)
+            elif len(products) > 1:
+                products, log_info = self._more_than_one_product_found(log_info, name)
+        return products, log_info
+
+    def _more_than_one_product_found(self, log_info, name):
+        product_obj = self.env["product.product"]
+        search_domain = []
+        if self.product_name:
+            search_domain.append(("trim_name", "=ilike", name))
+        if self.product_code:
+            search_domain.append(("default_code", "=", self.product_code))
+        if self.product_barcode:
+            search_domain.append(("barcode", "=", self.product_barcode))
         products = product_obj.search(search_domain)
+        if len(products) == 0 and "from_sale_wizard_laser" not in self.env.context:
+            error = _("Product not found.")
+            log_info = error if not log_info else "{} {}".format(log_info, error)
         if len(products) > 1:
-            products = False
-            log_info = _("More than one product already exist.")
-        if not products and "from_sale_wizard_laser" not in self.env.context:
-            log_info = _("Product not found.")
+            error = _("More than one product already exist.")
+            log_info = error if not log_info else "{} {}".format(log_info, error)
         return products, log_info
 
     def _check_partner(self, name, reference, vat):

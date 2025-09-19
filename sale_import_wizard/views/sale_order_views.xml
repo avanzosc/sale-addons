@@ -36,16 +36,16 @@
                 <field name="different_amounts" invisible="1" />
                 <field
           name="sale_import_id"
-          attrs="{'invisible': [('sale_import_id', '=', False)]}"
+          modifiers="{'invisible': [('sale_import_id', '=', False)]}"
         />
                 <field
           name="total_amount_from_import"
           style="color:Red;"
-          attrs="{'invisible': ['|',('total_amount_from_import', '=', 0), ('different_amounts', '=', False)]}"
+          modifiers="{'invisible': ['|',('total_amount_from_import', '=', 0), ('different_amounts', '=', False)]}"
         />
                 <field
           name="total_amount_from_import"
-          attrs="{'invisible': ['|',('total_amount_from_import', '=', 0), ('different_amounts', '=', True)]}"
+          modifiers="{'invisible': ['|',('total_amount_from_import', '=', 0), ('different_amounts', '=', True)]}"
         />
             </field>
         </field>
@@ -72,4 +72,5 @@
             </filter>
         </field>
     </record>
+
 </odoo>
