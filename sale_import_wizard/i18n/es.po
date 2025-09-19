@@ -755,8 +755,3 @@ msgstr "Debe utilizar estos nombres de columna para rellenar la tabla:"
 msgid "sale Order"
 msgstr "Pedido de Venta"
 
-#. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order__sale_import_id
-msgid "From Sale Import"
-msgstr "Desde importador ventas"
-

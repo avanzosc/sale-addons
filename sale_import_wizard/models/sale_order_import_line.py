@@ -298,7 +298,7 @@ class SaleOrderImportLine(models.Model):
             products = product_obj.search(search_domain)
             if not products and "from_sale_wizard_laser" not in self.env.context:
                 error = _("Product not found.")
-                log_info = error if not log_info else "{} {}".format(log_info, error)
+                log_info = error if not log_info else f"{log_info} {error}"
             elif len(products) > 1:
                 products, log_info = self._more_than_one_product_found(log_info, name)
         return products, log_info
@@ -315,10 +315,10 @@ class SaleOrderImportLine(models.Model):
         products = product_obj.search(search_domain)
         if len(products) == 0 and "from_sale_wizard_laser" not in self.env.context:
             error = _("Product not found.")
-            log_info = error if not log_info else "{} {}".format(log_info, error)
+            log_info = error if not log_info else f"{log_info} {error}"
         if len(products) > 1:
             error = _("More than one product already exist.")
-            log_info = error if not log_info else "{} {}".format(log_info, error)
+            log_info = error if not log_info else f"{log_info} {error}"
         return products, log_info
 
     def _check_partner(self, name, reference, vat):
@@ -398,16 +398,14 @@ class SaleOrderImportLine(models.Model):
             "sale_import_id": self.import_id.id,
         }
         if self.date_order:
-            date_order = "{} 08:00:00".format(fields.Date.to_string(self.date_order))
+            date_order = f"{fields.Date.to_string(self.date_order)} 08:00:00"
             date_order = datetime.strptime(date_order, "%Y-%m-%d %H:%M:%S")
             timezone = pytz.timezone(self._context.get("tz") or "UTC")
             date_order = timezone.localize(date_order).astimezone(pytz.UTC)
             date_order = date_order.replace(tzinfo=None)
             values["date_order"] = date_order
         if self.delivery_date:
-            delivery_date = "{} 08:00:00".format(
-                fields.Date.to_string(self.delivery_date)
-            )
+            delivery_date = f"{fields.Date.to_string(self.delivery_date)} 08:00:00"
             delivery_date = datetime.strptime(delivery_date, "%Y-%m-%d %H:%M:%S")
             timezone = pytz.timezone(self._context.get("tz") or "UTC")
             delivery_date = timezone.localize(delivery_date).astimezone(pytz.UTC)

@@ -732,8 +732,3 @@ msgstr ""
 msgid "sale Order"
 msgstr ""
 
-#. module: sale_import_wizard
-#: model:ir.model.fields,field_description:sale_import_wizard.field_sale_order__sale_import_id
-msgid "From Sale Import"
-msgstr ""
-
