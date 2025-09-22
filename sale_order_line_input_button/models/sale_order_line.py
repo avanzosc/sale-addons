@@ -8,7 +8,10 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     commitment_date = fields.Datetime(
-        string="Commitment Date", related="order_id.commitment_date",
+        string="Commitment Date",
+        related="order_id.commitment_date",
         help="This is the delivery date promised to the customer. If set, the "
-             "delivery order will be scheduled based on this date rather than "
-             "product lead times.", store=True)
+        "delivery order will be scheduled based on this date rather than "
+        "product lead times.",
+        store=True,
+    )
