@@ -1,7 +1,7 @@
 # Copyright 2019 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models
+from odoo import models
 from odoo.models import expression
 from odoo.tools.safe_eval import safe_eval
 
@@ -9,7 +9,6 @@ from odoo.tools.safe_eval import safe_eval
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    @api.multi
     def button_open_lines(self):
         self.ensure_one()
         action = self.env.ref(
