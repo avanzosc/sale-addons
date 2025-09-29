@@ -27,6 +27,7 @@ class SaleOrder(models.Model):
             self.allowed_shipping_ids = [(6, 0, partners.ids)]
         return result
 
+    @api.onchange("partner_id")
     def _onchange_partner_id_warning(self):
         if not self.partner_id:
             return
