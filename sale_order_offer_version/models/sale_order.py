@@ -46,7 +46,7 @@ class SaleOrder(models.Model):
 
     @api.depends("sale_ids")
     def _compute_count_sale_orders(self):
-        for sale in self:
+        for sale in self.with_context(active_test=False):
             sale.count_sale_orders = len(sale.sale_ids)
 
     @api.model
@@ -60,10 +60,8 @@ class SaleOrder(models.Model):
 
     @api.onchange("type_id")
     def onchange_type_id(self):
-        result = super().onchange_type_id()
-        for order in self.filtered(lambda x: x.type_id):
-            self.is_offer_type = order.type_id.is_offer_type
-        return result
+        for order in self:
+            order.is_offer_type = order.type_id and order.type_id.is_offer_type
 
     def action_confirm(self):
         if any(self.filtered("is_offer_type")):
@@ -92,15 +90,21 @@ class SaleOrder(models.Model):
                 vals["acceptance_date"] = fields.Date.context_today(self)
             if order.stage == "rejected":
                 vals["rejection_date"] = fields.Date.context_today(self)
-            order.write(vals)
+            order.update(vals)
 
     def action_view_sale_orders(self):
         self.ensure_one()
-        action = self.env.ref("sale_order_offer_version.action_view_all_sale_orders")
+        action = self.env.ref("sale.action_quotations")
         action_dict = action.read()[0] if action else {}
         domain = expression.AND(
             [
-                [("id", "in", self.mapped("sale_ids").ids)],
+                [
+                    (
+                        "id",
+                        "in",
+                        self.with_context(active_test=False).mapped("sale_ids").ids,
+                    )
+                ],
                 safe_eval(action.domain or "[]"),
             ]
         )
