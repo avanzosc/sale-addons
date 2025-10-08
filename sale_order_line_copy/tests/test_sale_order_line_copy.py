@@ -7,7 +7,6 @@ from odoo.tests import common
 @common.at_install(False)
 @common.post_install(True)
 class SaleOrderLineProductConfiguratorTest(common.SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
