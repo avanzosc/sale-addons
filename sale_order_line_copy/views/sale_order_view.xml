@@ -6,13 +6,14 @@
     <field name="inherit_id" ref="sale.view_order_form" />
     <field name="arch" type="xml">
       <xpath
-        expr="//field[@name='order_line']/tree/field[@name='price_total']"
+        expr="//field[@name='order_line']/list/field[@name='price_total']"
         position="after"
       >
         <button
           name="copy_sale_order_line"
           type="object"
           string="copy"
+          class="btn-outline-secondary"
           icon="fa-copy"
         />
       </xpath>

@@ -1,12 +1,11 @@
 # Copyright 2020 Mikel Arregi - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 
-@common.at_install(False)
-@common.post_install(True)
-class SaleOrderLineProductConfiguratorTest(common.SavepointCase):
+@tagged("post_install", "-at_install")
+class SaleOrderLineProductConfiguratorTest(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
