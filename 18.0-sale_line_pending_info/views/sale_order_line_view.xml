@@ -1,109 +1,97 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="sale_order_line_view_order_tree" model="ir.ui.view">
-        <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.view_order_line_tree" />
-        <field name="arch" type="xml">
-            <field name="order_id" position="after">
-                <field name="team_id" />
-            </field>
-            <field name="qty_delivered" position="after">
-                <field name="qty_to_deliver" optional="hide" />
-                <field name="qty_pending_delivery" sum="To Deliver" optional="show" />
-            </field>
-            <field name="qty_invoiced" position="after">
-                <field name="qty_pending_invoicing" sum="To Invoice" optional="show" />
-            </field>
-            <field name="price_subtotal" position="before">
-                <field
-          name="amount_pending_delivery"
-          sum="Total pending delivery"
-          widget="monetary"
-          optional="show"
-        />
-                <field
-          name="amount_pending_invoicing"
-          sum="Total pending invoicing"
-          widget="monetary"
-          optional="show"
-        />
-            </field>
-        </field>
-    </record>
-
-    <record id="sale_order_line_view_tree" model="ir.ui.view">
-        <field name="model">sale.order.line</field>
-        <field
+  <record id="sale_order_line_pending_info_tree_input" model="ir.ui.view">
+    <field name="name">sale.order.line.pending.info.tree.input</field>
+    <field name="model">sale.order.line</field>
+    <field
       name="inherit_id"
       ref="sale_order_line_input.view_sales_order_line_input_tree"
     />
-        <field name="arch" type="xml">
-            <button name="action_sale_order_form" position="after">
-                <field name="team_id" optional="show" />
-            </button>
-            <field name="qty_delivered" position="before">
-                <field name="qty_to_deliver" optional="hide" />
-                <field name="qty_pending_delivery" sum="To Deliver" optional="hide" />
-            </field>
-            <field name="qty_invoiced" position="before">
-                <field name="qty_pending_invoicing" sum="To Invoice" optional="hide" />
-            </field>
-            <field name="price_subtotal" position="before">
-                <field
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='company_price_tax_incl_excl']" position="after">
+        <field name="qty_pending_delivery" optional="show" />
+        <field
           name="amount_pending_delivery"
-          sum="Amount To Deliver"
           widget="monetary"
-          optional="hide"
+          options="{'currency_field': 'currency_id'}"
+          optional="show"
         />
-                <field
+        <field name="qty_pending_invoicing" optional="show" />
+        <field
           name="amount_pending_invoicing"
-          sum="Amount To Invoice"
           widget="monetary"
-          optional="hide"
+          options="{'currency_field': 'currency_id'}"
+          optional="show"
         />
-            </field>
-        </field>
-    </record>
+        <field name="qty_shipped_pending_invoicing" optional="show" />
+        <field
+          name="amount_shipped_pending_invoicing"
+          widget="monetary"
+          options="{'currency_field': 'currency_id'}"
+          optional="show"
+        />
+        <field name="team_id" optional="show" />
+      </xpath>
+    </field>
+  </record>
 
-    <record id="sale_order_line_view_form" model="ir.ui.view">
-        <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
-        <field name="arch" type="xml">
-            <field name="qty_delivered" position="after">
-                <field name="qty_pending_delivery" />
-            </field>
-            <field name="qty_invoiced" position="after">
-                <field name="qty_pending_invoicing" />
-            </field>
-            <field name="price_subtotal" position="before">
-                <field name="amount_pending_delivery" widget="monetary" />
-                <field name="amount_pending_invoicing" widget="monetary" />
-            </field>
-        </field>
-    </record>
+  <record id="sale_order_line_pending_info_search_input" model="ir.ui.view">
+    <field name="name">sale.order.line.pending.info.search.input</field>
+    <field name="model">sale.order.line</field>
+    <field name="inherit_id" ref="sale_order_line_menu.view_sales_order_line_filter" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='product_id']" position="after">
+        <field name="qty_pending_delivery" />
+        <field name="qty_pending_invoicing" />
+        <field name="qty_shipped_pending_invoicing" />
+        <field name="team_id" />
+      </xpath>
+    </field>
+  </record>
 
-    <record id="sale_order_line_view_search" model="ir.ui.view">
-        <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
-        <field name="arch" type="xml">
-            <filter name="to_invoice" position="after">
-                <filter
-          string="To Deliver"
-          name="to_deliver"
-          domain="[('qty_pending_delivery','!=', 0)]"
+  <record id="sale_order_line_pending_info_tree_menu" model="ir.ui.view">
+    <field name="name">sale.order.line.pending.info.tree.menu</field>
+    <field name="model">sale.order.line</field>
+    <field name="inherit_id" ref="sale_order_line_menu.sale_order_line_tree" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='price_total']" position="after">
+        <field name="qty_pending_delivery" optional="show" />
+        <field
+          name="amount_pending_delivery"
+          widget="monetary"
+          options="{'currency_field': 'currency_id'}"
+          optional="show"
         />
-            </filter>
-            <field name="salesman_id" position="before">
-                <field name="team_id" />
-            </field>
-            <filter name="salesperson" position="before">
-                <filter
-          string="Sales Team"
-          name="salesteam"
-          domain="[]"
-          context="{'group_by':'team_id'}"
+        <field name="qty_pending_invoicing" optional="show" />
+        <field
+          name="amount_pending_invoicing"
+          widget="monetary"
+          options="{'currency_field': 'currency_id'}"
+          optional="show"
         />
-            </filter>
-        </field>
-    </record>
+        <field name="qty_shipped_pending_invoicing" optional="show" />
+        <field
+          name="amount_shipped_pending_invoicing"
+          widget="monetary"
+          options="{'currency_field': 'currency_id'}"
+          optional="show"
+        />
+        <field name="team_id" optional="show" />
+      </xpath>
+    </field>
+  </record>
+
+  <record id="sale_order_line_pending_info_search_menu" model="ir.ui.view">
+    <field name="name">sale.order.line.pending.info.search.menu</field>
+    <field name="model">sale.order.line</field>
+    <field name="inherit_id" ref="sale_order_line_menu.view_sales_order_line_filter" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='product_id']" position="after">
+        <field name="qty_pending_delivery" />
+        <field name="qty_pending_invoicing" />
+        <field name="qty_shipped_pending_invoicing" />
+        <field name="team_id" />
+      </xpath>
+    </field>
+  </record>
 </odoo>
