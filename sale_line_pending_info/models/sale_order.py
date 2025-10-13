@@ -168,6 +168,15 @@ class SaleOrderLine(models.Model):
         related="order_id.team_id",
     )
 
+    delivered_amount = fields.Monetary(
+        compute="_compute_delivered_invoiced_amounts",
+        store=True,
+    )
+    invoiced_amount = fields.Monetary(
+        compute="_compute_delivered_invoiced_amounts",
+        store=True,
+    )
+
     @api.depends(
         "product_uom_qty",
         "qty_delivered_method",
@@ -218,3 +227,16 @@ class SaleOrderLine(models.Model):
                 amount -= (amount * line.discount) / 100 if line.discount else 0
             line.qty_shipped_pending_invoicing = qty if qty > 0 else 0
             line.amount_shipped_pending_invoicing = amount
+
+    @api.depends("qty_delivered", "qty_invoiced", "price_unit", "discount")
+    def _compute_delivered_invoiced_amounts(self):
+        for line in self:
+            delivered_amount = line.qty_delivered * line.price_unit
+            invoiced_amount = line.qty_invoiced * line.price_unit
+
+            if line.discount:
+                delivered_amount -= (delivered_amount * line.discount) / 100
+                invoiced_amount -= (invoiced_amount * line.discount) / 100
+
+            line.delivered_amount = delivered_amount
+            line.invoiced_amount = invoiced_amount

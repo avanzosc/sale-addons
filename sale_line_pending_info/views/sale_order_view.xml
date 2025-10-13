@@ -62,6 +62,18 @@
           attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
           optional="hide"
         />
+                <field
+          name="delivered_amount"
+          widget="monetary"
+          sum="Total Delivered"
+          optional="show"
+        />
+                <field
+          name="invoiced_amount"
+          widget="monetary"
+          sum="Total Invoiced"
+          optional="show"
+        />
             </xpath>
             <xpath
         expr="//field[@name='order_line']/form//field[@name='qty_delivered']/.."

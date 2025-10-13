@@ -28,6 +28,12 @@
           optional="show"
         />
             </field>
+
+            <field name="price_subtotal" position="after">
+                <field name="delivered_amount" widget="monetary" optional="show" />
+                <field name="invoiced_amount" widget="monetary" optional="show" />
+            </field>
+
         </field>
     </record>
 
@@ -62,6 +68,12 @@
           optional="hide"
         />
             </field>
+
+            <field name="price_subtotal" position="after">
+                <field name="delivered_amount" widget="monetary" optional="show" />
+                <field name="invoiced_amount" widget="monetary" optional="show" />
+            </field>
+
         </field>
     </record>
 
@@ -79,6 +91,12 @@
                 <field name="amount_pending_delivery" widget="monetary" />
                 <field name="amount_pending_invoicing" widget="monetary" />
             </field>
+
+            <field name="price_subtotal" position="after">
+                <field name="delivered_amount" widget="monetary" optional="show" />
+                <field name="invoiced_amount" widget="monetary" optional="show" />
+            </field>
+
         </field>
     </record>
 
