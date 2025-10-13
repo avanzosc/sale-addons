@@ -62,7 +62,22 @@
           attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
           optional="hide"
         />
+
+                <field
+          name="delivered_amount"
+          widget="monetary"
+          sum="Total Delivered"
+          optional="show"
+        />
+                <field
+          name="invoiced_amount"
+          widget="monetary"
+          sum="Total Invoiced"
+          optional="show"
+        />
+
             </xpath>
+
             <xpath
         expr="//field[@name='order_line']/form//field[@name='qty_delivered']/.."
         position="after"
@@ -100,106 +115,6 @@
                     <field name="qty_shipped_pending_invoicing" />
                 </div>
             </xpath>
-            <xpath
-        expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
-        position="attributes"
-      >
-                <attribute name="sum">Total Units Ordered</attribute>
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/tree/field[@name='qty_delivered']"
-        position="attributes"
-      >
-                <attribute name="sum">Total Qty Delivered</attribute>
-            </xpath>
-        </field>
-    </record>
-
-    <record id="sale_order_view_tree" model="ir.ui.view">
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree" />
-        <field name="arch" type="xml">
-            <field name="amount_untaxed" position="before">
-                <field name="qty_ordered" sum="Qty Ordered" optional="hide" />
-                <field name="qty_delivered" sum="Qty Delivered" optional="hide" />
-                <field
-          name="total_qty_pending_delivery"
-          sum="Total Pending Delivery Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_pending_delivery"
-          widget="monetary"
-          sum="Total Pending Delivery Amount"
-          optional="hide"
-        />
-                <field
-          name="total_qty_pending_invoicing"
-          sum="Total Pending Invoicing Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_pending_invoicing"
-          widget="monetary"
-          sum="Total Pending Invoicing Amount"
-          optional="hide"
-        />
-                <field
-          name="total_qty_shipped_pending_invoicing"
-          sum="Total Pending Invoicing Shipped Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_shipped_pending_invoicing"
-          widget="monetary"
-          sum="Total Pending Invoicing Shipped Amount"
-          optional="hide"
-        />
-            </field>
-        </field>
-    </record>
-
-    <record id="sale_order_quotation_view_tree" model="ir.ui.view">
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_quotation_tree" />
-        <field name="arch" type="xml">
-            <field name="state" position="before">
-                <field name="qty_ordered" sum="Qty Ordered" optional="hide" />
-                <field name="qty_delivered" sum="Qty Delivered" optional="hide" />
-                <field
-          name="total_qty_pending_delivery"
-          sum="Total Pending Delivery Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_pending_delivery"
-          widget="monetary"
-          sum="Total Pending Delivery Amount"
-          optional="hide"
-        />
-                <field
-          name="total_qty_pending_invoicing"
-          sum="Total Pending Invoicing Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_pending_invoicing"
-          widget="monetary"
-          sum="Total Pending Invoicing Amount"
-          optional="hide"
-        />
-                <field
-          name="total_qty_shipped_pending_invoicing"
-          sum="Total Pending Invoicing Shipped Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_shipped_pending_invoicing"
-          widget="monetary"
-          sum="Total Pending Invoicing Shipped Amount"
-          optional="hide"
-        />
-            </field>
         </field>
     </record>
 </odoo>
