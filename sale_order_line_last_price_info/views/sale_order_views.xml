@@ -11,6 +11,13 @@
                 <field name="sale_last_price_unit" optional="show" />
                 <field name="invoice_last_price_unit" optional="show" />
             </xpath>
+            <xpath expr="//field[@name='order_line']/tree">
+                <button
+          name="button_recompute_last_price_unit"
+          type="object"
+          icon="fa-refresh"
+        />
+            </xpath>
         </field>
     </record>
 </odoo>

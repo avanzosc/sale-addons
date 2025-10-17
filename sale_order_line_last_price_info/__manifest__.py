@@ -10,6 +10,7 @@
     "depends": ["sale", "account", "sale_order_usability"],
     "data": [
         "views/sale_order_views.xml",
+        "data/server_actions.xml",
     ],
     "installable": True,
 }
