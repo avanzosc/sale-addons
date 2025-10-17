@@ -1,6 +1,6 @@
 # Copyright 2022 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -9,15 +9,12 @@ class SaleOrderLine(models.Model):
     sale_last_price_unit = fields.Float(
         string="LPS",
         digits="Product Price",
-        compute="_compute_last_price_unit",
     )
     invoice_last_price_unit = fields.Float(
         string="LPI",
         digits="Product Price",
-        compute="_compute_last_price_unit",
     )
 
-    @api.depends("product_id", "order_partner_id")
     def _compute_last_price_unit(self):
         for line in self:
             sale_last_price_unit = 0
@@ -28,7 +25,9 @@ class SaleOrderLine(models.Model):
                     ("product_id", "=", line.product_id.id),
                     ("order_id.state", "not in", ("draft", "cancel")),
                 ]
-                sl = self.env["sale.order.line"].search(cond, order="date_order desc")
+                sl = self.env["sale.order.line"].search(
+                    cond, order="date_order desc", limit=1
+                )
                 if sl:
                     sale_last_price_unit = sl[0].price_unit
                 cond = [
@@ -40,9 +39,13 @@ class SaleOrderLine(models.Model):
                     ("move_id.move_type", "=", "out_invoice"),
                 ]
                 il = self.env["account.move.line"].search(
-                    cond, order="invoice_date desc"
+                    cond, order="invoice_date desc", limit=1
                 )
                 if il:
                     invoice_last_price_unit = il[0].price_unit
             line.sale_last_price_unit = sale_last_price_unit
             line.invoice_last_price_unit = invoice_last_price_unit
+
+    def button_recompute_last_price_unit(self):
+        for record in self:
+            record._compute_last_price_unit()

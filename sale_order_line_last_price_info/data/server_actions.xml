@@ -1,0 +1,12 @@
+<odoo noupdate="1">
+    <record id="action_recompute_last_price_unit" model="ir.actions.server">
+        <field name="name">Recalculate LPS and LPI</field>
+        <field name="model_id" ref="sale.model_sale_order" />
+        <field name="state">code</field>
+        <field name="code">
+            for record in records:
+                for line in record.order_line:
+                    line._compute_last_price_unit()
+        </field>
+    </record>
+</odoo>
