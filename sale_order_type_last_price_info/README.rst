@@ -3,11 +3,37 @@
     :alt: License: AGPL-3
 
 ===============================
-Sale order line last price info
+Sale order type last price info
 ===============================
 
-* In sale order line new fields: "Sale Last Unit Price", and
-  "Invoice Last Unit Price".
+Sale order type defines how unit price of products should be determined. 
+
+Key Features
+============
+
+- Adds new field **Sale Price Type** on `sale.order.type` with the following options:
+  - **Last Sale Price** → Uses the last sale price of the product for the customer.
+  - **Last Invoice Price** → Uses the last invoiced price of the product for the customer.
+  - **Sale Pricelist** → Uses the standard pricelist logic (default behavior).
+
+- Extends `sale.order.line` to:
+  - Automatically update the `price_unit` when the product, quantity, or UoM changes, based on the selected sale price type.
+  - React to changes in the fields `sale_last_price_unit` and `invoice_last_price_unit`.
+  - Ensure that when these last price fields are updated, the `price_unit` is synchronized accordingly.
+
+- Provides a view extension to display the **Sale Price Type** field in the Sale Order Type form.
+
+Usage
+=====
+
+1. Go to **Sales → Configuration → Sale Order Types**.
+2. Select or create a Sale Order Type.
+3. Choose the **Sale Price Type**:
+   - *Last Sale Price*
+   - *Last Invoice Price*
+   - *Sale Pricelist*
+4. When creating a Sale Order with this type:
+   - The unit price of order lines will be automatically set according to the chosen type.
 
 Bug Tracker
 ===========
