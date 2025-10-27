@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="view_product_public_category_tree_inherit_count" model="ir.ui.view">
+    <field name="name">product.public.category.tree.inherit.count</field>
+    <field name="model">product.public.category</field>
+    <field name="inherit_id" ref="website_sale.product_public_category_tree_view" />
+    <field name="arch" type="xml">
+      <xpath expr="//list/field[@name='display_name']" position="after">
+        <field name="product_count" readonly="1" />
+      </xpath>
+    </field>
+  </record>
+
+  <record id="view_product_public_category_form_inherit_count" model="ir.ui.view">
+    <field name="name">product.public.category.form.inherit.count</field>
+    <field name="model">product.public.category</field>
+    <field name="inherit_id" ref="website_sale.product_public_category_form_view" />
+    <field name="arch" type="xml">
+      <xpath expr="//group/field[@name='name']" position="after">
+        <field name="product_count" readonly="1" />
+      </xpath>
+    </field>
+  </record>
+
+  <record id="view_product_public_category_form_inherit_smartbutton" model="ir.ui.view">
+    <field name="name">product.public.category.form.smartbutton</field>
+    <field name="model">product.public.category</field>
+    <field name="inherit_id" ref="website_sale.product_public_category_form_view" />
+    <field name="arch" type="xml">
+      <xpath expr="//form/sheet" position="before">
+        <header>
+          <button
+            name="action_open_category_products"
+            type="object"
+            class="oe_stat_button"
+            icon="fa-cubes"
+          >
+            <field
+              string=" Products"
+              name="product_count"
+              widget="statinfo"
+              style="margin-left:4px;"
+            />
+          </button>
+        </header>
+      </xpath>
+    </field>
+  </record>
+</odoo>
