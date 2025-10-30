@@ -6,24 +6,28 @@
 Sale Order Return
 =================
 
-Return quantities management directly from the sale order lines.  
-Allows users to register and control product returns while preventing inconsistencies between pending deliveries and returns.
+This module extends the Sale Order functionality to allow specifying return quantities directly on sale order lines, and automatically creates return pickings based on those quantities.
 
 Key Features
 ============
 
-- Add new field **“Return Qty”** (`return_qty`) in the Sale Order Lines.
-- Prevents returns if:
-  - The order is not confirmed or done.
-  - There are pending delivery pickings.
-  - The order type or return type is not configured.
-- Prevents deliveries if:
-  - There are pending return pickings.
-- Automatically creates or updates a **return picking** when a valid return quantity is entered.
-- Blocks decreasing the return quantity once some quantities have already been returned.
-- Adds computed flags at order level:
-  - `pending_returns`: Indicates if there are pending return pickings.
-  - `pending_deliveries`: Indicates if there are pending delivery pickings.
+- **Return Quantity Field (`return_qty`)**: Dedicated field to register quantities to be returned on sale order lines
+- **Smart Picking Management**: Automatic creation and updating of delivery and return pickings based on quantity changes
+- **Respects Done States**: Never modifies pickings that are already in DONE state, always creates new ones for remaining quantities
+- **"Validate Everything" Button**: Single button to confirm and validate all pending pickings for an order
+
+1. **Delivery Quantities Handling**
+When values are entered in the **Quantity** column:
+
+- **If a pending delivery picking exists:** The picking will be updated, either by adding a new line or updating the existing one.
+- **If a delivery picking exists but is already DONE:** It will not be modified at all. A new picking will always be created for any remaining quantities to be delivered.
+
+2. **Return Quantities Handling**
+When values are entered in the **To Return (return_qty)** column:
+
+- **If a pending return picking exists:** The picking will be updated, either by adding a new line or updating the existing one.
+- **If a return picking exists but is already DONE:** It will not be modified at all. A new picking will always be created for any remaining quantities to be returned.
+
 
 Bug Tracker
 ===========
