@@ -6,8 +6,24 @@
 Sale Order Return
 =================
 
-* New field in sale order lines to put the quantity you are going to return.
-* Action to generate a return to a picking with new fields quantities.
+Return quantities management directly from the sale order lines.  
+Allows users to register and control product returns while preventing inconsistencies between pending deliveries and returns.
+
+Key Features
+============
+
+- Add new field **“Return Qty”** (`return_qty`) in the Sale Order Lines.
+- Prevents returns if:
+  - The order is not confirmed or done.
+  - There are pending delivery pickings.
+  - The order type or return type is not configured.
+- Prevents deliveries if:
+  - There are pending return pickings.
+- Automatically creates or updates a **return picking** when a valid return quantity is entered.
+- Blocks decreasing the return quantity once some quantities have already been returned.
+- Adds computed flags at order level:
+  - `pending_returns`: Indicates if there are pending return pickings.
+  - `pending_deliveries`: Indicates if there are pending delivery pickings.
 
 Bug Tracker
 ===========
@@ -26,4 +42,5 @@ Contributors
 ------------
 
 * Berezi Amubieta <bereziamubieta@avanzosc.es>
+* Lucía Echeverría <luciaecheverria@avanzosc.es>
 * Ana Juaristi <anajuaristi@avanzosc.es>
