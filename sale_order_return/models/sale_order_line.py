@@ -8,13 +8,8 @@ from odoo.exceptions import ValidationError
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    product_uom_qty = fields.Float(required=False, default=0)
-    return_qty = fields.Float(
-        string="Return Qty",
-    )
-
-    order_has_pending_returns = fields.Boolean(related="order_id.pending_returns")
-    order_has_pending_deliveries = fields.Boolean(related="order_id.pending_deliveries")
+    product_uom_qty = fields.Float(required=False)
+    return_qty = fields.Float(string="Return Qty")
 
     @api.onchange("product_id")
     def product_id_change(self):
@@ -25,54 +20,16 @@ class SaleOrderLine(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        for vals in vals_list:
-            return_qty = vals.get("return_qty", 0)
-            if return_qty and return_qty > 0:
-                order = self.env["sale.order"].browse(vals.get("order_id"))
-                if not order or not order.id or order.state in ("draft", "sent"):
-                    raise ValidationError(
-                        _("Return cannot be created: no delivery has been validated.")
-                    )
-                picking_type = order.type_id.picking_type_id
-                return_picking_type = (
-                    picking_type.return_picking_type_id if picking_type else False
-                )
-                if order.pending_deliveries:
-                    raise ValidationError(
-                        _(
-                            "Cannot create a return: there is a pending delivery picking."
-                        )
-                    )
-                if not picking_type or not return_picking_type:
-                    raise ValidationError(
-                        _("The order has no type or return type configured.")
-                    )
-
-        return super().create(vals_list)
+        lines = super().create(vals_list)
+        for line in lines:
+            if line.return_qty and line.return_qty > 0:
+                line._create_and_update_return()
+        return lines
 
     def write(self, values):
         for line in self:
             if "return_qty" in values:
                 new_return_qty = values["return_qty"]
-                order = line.order_id
-                picking_type = order.type_id.picking_type_id
-                return_picking_type = (
-                    picking_type.return_picking_type_id if picking_type else False
-                )
-                if order.state not in ("sale", "done") and new_return_qty > 0:
-                    raise ValidationError(
-                        _("Return cannot be created: no delivery has been validated.")
-                    )
-                if order.pending_deliveries and new_return_qty > 0:
-                    raise ValidationError(
-                        _(
-                            "Cannot create a return: there is a pending delivery picking."
-                        )
-                    )
-                if (not picking_type or not return_picking_type) and new_return_qty > 0:
-                    raise ValidationError(
-                        _("The order has no type or return type configured.")
-                    )
                 if new_return_qty < line.return_qty:
                     done_return_moves = line.move_ids.filtered(
                         lambda m: m.state == "done"
@@ -82,9 +39,7 @@ class SaleOrderLine(models.Model):
                     )
                     if done_return_moves:
                         raise ValidationError(
-                            _(
-                                "Some products were already returned, quantity can't be reduced."
-                            )
+                            _("Some qtys were already returned, qty can't be reduced.")
                         )
         res = super(SaleOrderLine, self).write(values)
         if "return_qty" in values:
@@ -92,45 +47,41 @@ class SaleOrderLine(models.Model):
         return res
 
     def _create_and_update_return(self):
-        if not self:
-            return
         sale_order = self.order_id
+
+        # Validate that picking types are configured
         picking_type = sale_order.type_id.picking_type_id
         return_picking_type = picking_type.return_picking_type_id
-
-        if sale_order.state != "sale":
-            raise ValidationError(
-                _("Return cannot be created: no delivery has been validated.")
-            )
-        if sale_order.pending_deliveries:
-            raise ValidationError(
-                _("Cannot create a return: there is a pending delivery picking.")
-            )
         if not picking_type or not return_picking_type:
             raise ValidationError(_("The order has no type or return type configured."))
 
+        # Find existing pending return picking
         pending_return_picking = sale_order.picking_ids.filtered(
             lambda p: p.picking_type_id == return_picking_type
             and p.state not in ("done", "cancel")
         )
 
+        # No pending return found
         if not pending_return_picking:
+            # Create return picking
             pending_return_picking = self.env["stock.picking"].create(
                 {
                     "partner_id": sale_order.partner_id.id,
                     "picking_type_id": return_picking_type.id,
-                    "location_id": return_picking_type.default_location_src_id.id,
+                    "location_id": sale_order.partner_id.property_stock_customer.id,
                     "location_dest_id": return_picking_type.default_location_dest_id.id,
                     "company_id": sale_order.company_id.id,
                     "origin": sale_order.name,
                     "group_id": sale_order.procurement_group_id.id,
+                    "sale_id": sale_order.id,
                 }
             )
-            pending_return_picking.group_id.sale_id = sale_order.id
 
+        # Pending return found
         for line in self.filtered(
             lambda l: l.order_id == sale_order and l.return_qty > 0
         ):
+            # Calculate already returned quantities
             done_return_moves = line.move_ids.filtered(
                 lambda m: m.state == "done"
                 and m.location_dest_id.usage == "internal"
@@ -138,8 +89,11 @@ class SaleOrderLine(models.Model):
                 and not m.scrapped
             )
             done_qty = sum(done_return_moves.mapped("quantity_done"))
+
+            # Calculate remaining quantity to return
             qty_remaining = line.return_qty - done_qty
 
+            # Skip if no quantity remaining to return
             if qty_remaining <= 0:
                 continue
 
@@ -147,8 +101,13 @@ class SaleOrderLine(models.Model):
                 lambda m: m.sale_line_id == line
             )
 
+            # Existing move found: update with new remaining quantity
             if existing_move:
                 existing_move.product_uom_qty = qty_remaining
+                if line.lot_id and existing_move.state == "draft":
+                    existing_move.restrict_lot_id = line.lot_id.id
+
+            # No existing move found: create new move
             else:
                 move_vals = {
                     "sale_line_id": line.id,
@@ -159,26 +118,45 @@ class SaleOrderLine(models.Model):
                     "product_uom_qty": qty_remaining,
                     "location_id": pending_return_picking.location_id.id,
                     "location_dest_id": pending_return_picking.location_dest_id.id,
+                    "company_id": sale_order.company_id.id,
+                    "group_id": sale_order.procurement_group_id.id,
+                    "restrict_lot_id": line.lot_id.id if line.lot_id else False,
                     "to_refund": True,
                 }
                 self.env["stock.move"].create(move_vals)
                 pending_return_picking.group_id = sale_order.procurement_group_id.id
 
+        # Ensure the picking is linked to the sale order
+        if pending_return_picking and not pending_return_picking.sale_id:
+            pending_return_picking.sale_id = sale_order.id
+        # Confirm the picking
         pending_return_picking.action_confirm()
 
     def _action_launch_stock_rule(self, previous_product_uom_qty=False):
         delivery_lines = self.filtered(lambda l: not l.return_qty or l.return_qty == 0)
         return_lines = self.filtered(lambda l: l.return_qty and l.return_qty > 0)
         result = True
+        # Process delivery lines using standard stock rules
         if delivery_lines:
-            if self.order_id.pending_returns:
-                raise ValidationError(
-                    _("Cannot create a delivery: there is a pending return picking.")
-                )
             result = super(SaleOrderLine, delivery_lines)._action_launch_stock_rule(
                 previous_product_uom_qty
             )
+
+        # Process return lines by creating return pickings
         for return_line in return_lines:
-            if return_line.order_id.state == "sale":
-                return_line._create_and_update_return()
+            return_line._create_and_update_return()
         return result
+
+    @api.depends(
+        "move_ids.state",
+        "move_ids.scrapped",
+        "move_ids.product_uom_qty",
+        "move_ids.product_uom",
+        "return_qty",
+        "move_ids.quantity_done",
+    )
+    def _compute_qty_delivered(self):
+        super(SaleOrderLine, self)._compute_qty_delivered()
+        for line in self:
+            if line.return_qty and line.return_qty > 0:
+                line.product_uom_qty = line.qty_delivered
