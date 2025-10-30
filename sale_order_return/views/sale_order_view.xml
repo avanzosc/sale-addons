@@ -1,42 +1,55 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="view_order_form" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath
-        expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
-        position="after"
-      >
-                <field name="return_qty" />
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="attributes">
+                <attribute name="attrs">{'readonly':['|', ('return_qty', '>', 0), ('order_has_pending_returns', '=', True)]}</attribute>
             </xpath>
             <xpath
-        expr="//field[@name='order_line']/form//div[@name='ordered_qty']"
-        position="after"
-      >
-                <field name="return_qty" />
+                expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+                position="after"
+            >
+                <field name="order_has_pending_returns" invisible="1" />
+                <field name="order_has_pending_deliveries" invisible="1" />
+                <field name="return_qty" attrs="{'readonly': ['|', ('product_uom_qty', '>', 0), ('order_has_pending_deliveries', '=', True)]}" />
             </xpath>
             <xpath
-        expr="//field[@name='order_line']/kanban/field[@name='product_uom_qty']"
-        position="after"
-      >
-                <field name="return_qty" />
+                expr="//field[@name='order_line']/form//div[@name='ordered_qty']"
+                position="after"
+            >
+                <field name="return_qty"/>
             </xpath>
             <xpath
-        expr="//field[@name='order_line']/kanban//t[@t-esc='record.product_uom_qty.value']/.."
-        position="after"
-      >
-                <span>
-                    Return Qty:
-                    <t t-esc="record.return_qty.value" />
-                    <t t-esc="record.product_uom.value" />
+                expr="//field[@name='order_line']/kanban/field[@name='product_uom_qty']"
+                position="after"
+            >
+                <field name="return_qty"/>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/kanban//t[@t-esc='record.product_uom_qty.value']/.."
+                position="after"
+            >
+                <span> Return Qty: <t t-esc="record.return_qty.value" />
+                    <t
+                        t-esc="record.product_uom.value" />
                 </span>
+            </xpath>
+            <xpath expr="//form/sheet" position="inside">
+                <field name="pending_returns" invisible="1" />
+                <field name="pending_deliveries" invisible="1" />
             </xpath>
             <button name="button_return_picking" position="attributes">
                 <attribute
-          name="attrs"
-        >{'invisible': [('picking_count', '>', 1)]}</attribute>
+                    name="attrs"
+                >{'invisible': ['|', ('picking_done', '=', True), ('pending_returns', '=', False)]}</attribute>
             </button>
+            <xpath expr="//header/button[@name='button_confirm_pickings']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|', ('picking_done', '=', True), ('pending_deliveries', '=', False)]}
+                </attribute>
+            </xpath>
         </field>
     </record>
 </odoo>
