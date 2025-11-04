@@ -34,7 +34,7 @@ class SaleOrder(models.Model):
         warning = super()._onchange_partner_id_warning()
         if warning is None:
             warning = {}
-        my_warning = {} if warning == bool else warning
+        my_warning = {} if isinstance(warning, bool) else warning
         if len(self.allowed_shipping_ids) > 1:
             message = _("More than one delivery address found ")
             if not my_warning:
@@ -47,7 +47,7 @@ class SaleOrder(models.Model):
             else:
                 origin_warning = my_warning.get("warning")
                 origin_message = origin_warning.get("message")
-                my_message = ("{}\n{}").format(origin_message, message)
+                my_message = f"{origin_message}\n{message}"
                 my_warning["warning"]["message"] = my_message
         if my_warning:
             return my_warning
