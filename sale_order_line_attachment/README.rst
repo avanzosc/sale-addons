@@ -2,12 +2,16 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=====================================
-Sale order client order ref in header
-=====================================
+==========================
+Sale order line attachment
+==========================
 
-* Display the "Customer reference" field in the sales order header.
-* Display the "Delivery Date" (`commitment_date`) field in the sales order header.
+* In "attachment" model new fields "Attach in sales orders".
+* In the sales order line, the attachments of the product template that are
+  marked with "Attach in sales orders" will be brought.
+* When an email is sent from the sales order, all the attachments of all the
+  lines of the sale order will be attached 
+
 
 Bug Tracker
 ===========
@@ -22,7 +26,7 @@ Credits
 
 Contributors
 ------------
-* Ana Juaristi <ajuaristio@gmail.com>
+* Ana Juaristi <anajuaristi@avanzosc.es>
 * Alfredo de la Fuente <alfredodelafuente@avanzosc.es>
 
 Do not contact contributors directly about support or help with technical issues.

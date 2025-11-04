@@ -6,7 +6,7 @@
     "website": "https://github.com/avanzosc/sale-addons",
     "license": "LGPL-3",
     "depends": ["sale_management"],
-    "data": ["views/sale_order_line_view.xml"],
+    "data": ["views/sale_order_line_view.xml", "views/sale_order_view.xml"],
     "installable": True,
     "application": False,
 }

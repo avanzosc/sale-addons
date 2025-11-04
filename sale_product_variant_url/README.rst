@@ -2,12 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=====================================
-Sale order client order ref in header
-=====================================
+========================
+Sale product variant url
+========================
 
-* Display the "Customer reference" field in the sales order header.
-* Display the "Delivery Date" (`commitment_date`) field in the sales order header.
+* Show Product URL in Sale Order Reports if both modules are installed
 
 Bug Tracker
 ===========
@@ -22,7 +21,7 @@ Credits
 
 Contributors
 ------------
-* Ana Juaristi <ajuaristio@gmail.com>
+* Ana Juaristi <anajuaristi@avanzosc.es>
 * Alfredo de la Fuente <alfredodelafuente@avanzosc.es>
 
 Do not contact contributors directly about support or help with technical issues.

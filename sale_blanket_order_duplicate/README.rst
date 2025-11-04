@@ -2,12 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=====================================
-Sale order client order ref in header
-=====================================
+============================
+Sale blanket order duplicate
+============================
 
-* Display the "Customer reference" field in the sales order header.
-* Display the "Delivery Date" (`commitment_date`) field in the sales order header.
+* Copy "Blanket Order" field when duplicate "Sale Order" object. 
 
 Bug Tracker
 ===========
