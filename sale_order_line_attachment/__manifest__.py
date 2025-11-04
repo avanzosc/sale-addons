@@ -2,14 +2,11 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 {
     "name": "Sale Order Line Attachment",
-    "version": "16.0.1.1.0",
+    "version": "16.0.1.0.0",
     "author": "AvanzOSC",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/sale-addons",
     "license": "AGPL-3",
-    "depends": [
-        "sale",
-        "mail"
-    ],
+    "depends": ["sale", "mail"],
     "category": "Sales",
     "data": [
         "wizard/wiz_catch_attachment_from_product_view.xml",

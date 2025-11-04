@@ -5,9 +5,17 @@
         <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//form//div[@name='button_box']" position="inside">
-                <button name="button_show_attachments" type="object"
-                        class="oe_stat_button" icon="fa-archive">
-                    <field name="count_attachments" widget="statinfo" string="Attachments"/>
+                <button
+          name="button_show_attachments"
+          type="object"
+          class="oe_stat_button"
+          icon="fa-archive"
+        >
+                    <field
+            name="count_attachments"
+            widget="statinfo"
+            string="Attachments"
+          />
                 </button>
             </xpath>
         </field>

@@ -14,9 +14,11 @@
         <field name="inherit_id" ref="base.view_attachment_form" />
         <field name="arch" type="xml">
             <field name="mimetype" position="after">
-                <field name="show_attach_in_sale" invisible="1"/>
-                <field name="attach_in_sales_orders"
-                    attrs="{'invisible': [('show_attach_in_sale','=',False)]}"/>
+                <field name="show_attach_in_sale" invisible="1" />
+                <field
+          name="attach_in_sales_orders"
+          attrs="{'invisible': [('show_attach_in_sale','=',False)]}"
+        />
             </field>
         </field>
     </record>
@@ -28,11 +30,11 @@
                 <field name="attach_in_sales_orders" />
             </field>
             <xpath expr="//samp[@class='text-muted']" position="after">
-                <br/>
+                <br />
                 <t t-if="record.attach_in_sales_orders.raw_value">
                     <strong>Attachmets in sales orders</strong>
                 </t>
-                <t t-else="" >
+                <t t-else="">
                     <strong>No attachmets in sales orders</strong>
                 </t>
             </xpath>
