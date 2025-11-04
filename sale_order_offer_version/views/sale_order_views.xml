@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_offer_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_order_type.sot_view_order_form" />
+        <field name="arch" type="xml">
+            <header position="attributes">
+                <attribute
+          name="attrs"
+        >{'invisible': [('is_offer_type', '=', True)]}</attribute>
+            </header>
+            <header position="after">
+                <header attrs="{'invisible': [('is_offer_type', '=', False)]}">
+                    <button
+            name="action_offer_to_quotation"
+            string="Convert offer to quotation"
+            type="object"
+          />
+                <button
+            name="action_quotation_send"
+            string="Send Offer by Email"
+            type="object"
+            states="draft"
+            class="btn-primary"
+            data-hotkey="g"
+            context="{'validate_analytic': True}"
+          />
+                   <button
+            name="action_quotation_send"
+            string="Send Offer by Email"
+            type="object"
+            states="sent,sale"
+            data-hotkey="g"
+            context="{'validate_analytic': True}"
+          />
+                    <button
+            name="create_revision"
+            states="cancel,sent,draft"
+            string="New Revision of Quotation"
+            type="object"
+          />
+                    <field
+            name="stage"
+            widget="statusbar"
+            options="{'clickable': 1}"
+            statusbar_visible="pending,accepted,rejected"
+          />
+                </header>
+            </header>
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button
+          type="object"
+          name="action_view_sale_orders"
+          class="oe_stat_button"
+          icon="fa-pencil-square-o"
+          attrs="{'invisible': [('count_sale_orders', '=', 0)]}"
+        >
+                    <field
+            name="count_sale_orders"
+            widget="statinfo"
+            string="Sale Orders"
+          />
+                </button>
+            </xpath>
+            <field name="type_id" position="after">
+                <field name="is_offer_type" invisible="1" />
+            </field>
+            <notebook position="before">
+                <group
+          colspan="4"
+          col="6"
+          attrs="{'invisible': [('is_offer_type', '=', False)]}"
+        >
+                    <field name="acceptance_date" />
+                    <field name="rejection_date" />
+                </group>
+            </notebook>
+            <group name="note_group" position="after">
+                <separator string="Introduction" colspan="4" />
+                <field name="introduction" colspan="4" nolabel="1" />
+            </group>
+            <xpath
+        expr="//page[@name='other_information']/group[last()]"
+        position="after"
+      >
+                <group string="Offers" name="offers">
+                    <field
+            name="from_offer_id"
+            readonly="1"
+            attrs="{'invisible': [('is_offer_type', '=', True)]}"
+          />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="from_offer_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_offer_tree_view" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="mode">primary</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+           <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-success">stage == 'accepted'</attribute>
+                <attribute name="decoration-danger">stage == 'rejected'</attribute>
+            </xpath>
+            <field name="state" position="after">
+                <field
+          name="stage"
+          decoration-success="stage == 'accepted'"
+          decoration-danger="stage == 'rejected'"
+          widget="badge"
+          optional="show"
+        />
+            </field>
+            <field name="state" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_quotation_tree_view" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="from_offer_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_tree_view" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="from_offer_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_offer_search_view" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="mode">primary</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="replace">
+                <filter
+          string="My Offers"
+          name="my_quotation"
+          domain="[('user_id', '=', uid)]"
+        />
+                <separator />
+                <filter
+          string="Pending"
+          name="pending_stage"
+          domain="[('stage','=','pending')]"
+        />
+                <filter
+          string="Accepted"
+          name="accepted_stage"
+          domain="[('stage','=','accepted')]"
+        />
+                <filter
+          string="Rejected"
+          name="rejected_stage"
+          domain="[('stage','=','rejected')]"
+        />
+            </filter>
+        </field>
+    </record>
+
+    <record id="action_sale_offer" model="ir.actions.act_window">
+        <field name="name">Offers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="search_view_id" ref="sale_order_offer_search_view" />
+        <field name="view_id" ref="sale_order_offer_tree_view" />
+        <field name="context">{'default_is_offer_type': True}</field>
+        <field name="domain">[('is_offer_type', '=', True)]</field>
+        <field
+      name="view_ids"
+      eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sale_order_offer_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sale_order_offer_form')})]"
+    />
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new quotation, the first step of a new sale!
+          </p><p>
+            Once the quotation is confirmed by the customer, it becomes a sales order.<br
+        /> You will be able to create an invoice and collect the payment.
+          </p>
+        </field>
+    </record>
+
+    <menuitem
+    id="menu_sale_offer"
+    action="action_sale_offer"
+    parent="sale.sale_order_menu"
+    sequence="0"
+    groups="sales_team.group_sale_salesman"
+  />
+
+        <record
+    id="sale.action_quotations_with_onboarding"
+    model="ir.actions.act_window"
+  >
+            <field name="context">{
+                    'search_default_my_quotation': 1,
+                    'default_is_offer_type': False,
+                }
+            </field>
+            <field name="domain">[('is_offer_type', '=', False)]</field>
+        </record>
+
+        <record id="sale.action_quotations" model="ir.actions.act_window">
+            <field name="context">{
+                    'search_default_my_quotation': 1,
+                    'default_is_offer_type': False,
+                }
+            </field>
+            <field name="domain">[('is_offer_type', '=', False)]</field>
+        </record>
+
+        <record id="sale.action_quotations_salesteams" model="ir.actions.act_window">
+            <field name="context">{
+                    'search_default_team_id': [active_id],
+                    'default_team_id': active_id,
+                    'show_address': 1,
+                    'default_is_offer_type': False,
+                }
+            </field>
+            <field name="domain">[('is_offer_type', '=', False)]</field>
+        </record>
+
+        <record id="sale.action_orders" model="ir.actions.act_window">
+            <field name="context">{
+                    'default_is_offer_type': False,
+                }
+            </field>
+            <field
+      name="domain"
+    >[('state', 'not in', ('draft', 'sent', 'cancel')), ('is_offer_type', '=', False)]</field>
+        </record>
+</odoo>

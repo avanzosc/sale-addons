@@ -1,0 +1,156 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_offer_version
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-28 11:29+0000\n"
+"PO-Revision-Date: 2025-08-28 11:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.report_saleorder_offer_document
+msgid "<strong>Offer Date:</strong>"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__acceptance_date
+msgid "Acceptance Date"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__accepted
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
+msgid "Accepted"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
+msgid "Convert offer to quotation"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model_terms:ir.actions.act_window,help:sale_order_offer_version.action_sale_offer
+msgid "Create a new quotation, the first step of a new sale!"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__from_offer_id
+msgid "From offer"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__introduction
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
+msgid "Introduction"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__is_offer_type
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order_type__is_offer_type
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_sale_order_type_search_view
+msgid "Is it offer type?"
+msgstr ""
+
+#. module: sale_order_offer_version
+#. odoo-python
+#: code:addons/sale_order_offer_version/models/sale_order.py:0
+#: code:addons/sale_order_offer_version/models/sale_order.py:0
+#, python-format
+msgid "It is not allowed to confirm an offer type sale order"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
+msgid "My Offers"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
+msgid "New Revision of Quotation"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:sale.order.type,name:sale_order_offer_version.offer_type
+msgid "Offer"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.report_saleorder_offer_document
+msgid "Offer #"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__stage
+msgid "Offer Status"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sot_sale_order_type_search_view
+msgid "Offer Type"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.actions.act_window,name:sale_order_offer_version.action_sale_offer
+#: model:ir.ui.menu,name:sale_order_offer_version.menu_sale_offer
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
+msgid "Offers"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model_terms:ir.actions.act_window,help:sale_order_offer_version.action_sale_offer
+msgid ""
+"Once the quotation is confirmed by the customer, it becomes a\n"
+"                sales order.<br> You will be able to create an invoice and\n"
+"                collect the payment."
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__pending
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
+msgid "Pending"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__rejected
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
+msgid "Rejected"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__rejection_date
+msgid "Rejection Date"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__count_sale_orders
+msgid "Sale Order Count"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
+msgid "Sale Orders"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model,name:sale_order_offer_version.model_sale_order
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__sale_ids
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
+msgid "Send Offer by Email"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model,name:sale_order_offer_version.model_sale_order_type
+msgid "Type of sale order"
+msgstr ""
