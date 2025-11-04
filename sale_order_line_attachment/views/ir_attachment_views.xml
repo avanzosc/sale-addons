@@ -14,8 +14,9 @@
         <field name="inherit_id" ref="base.view_attachment_form" />
         <field name="arch" type="xml">
             <field name="mimetype" position="after">
+                <field name="show_attach_in_sale" invisible="1"/>
                 <field name="attach_in_sales_orders"
-                    attrs="{'invisible': [('res_model','!=','product.template')]}"/>
+                    attrs="{'invisible': [('show_attach_in_sale','=',False)]}"/>
             </field>
         </field>
     </record>
