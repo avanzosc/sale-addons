@@ -8,9 +8,13 @@
             <field name="client_order_ref" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
-            <field name="partner_shipping_id" position="after">
-                <field name="client_order_ref" />
+            <field name="commitment_date" position="attributes">
+                <attribute name="invisible">1</attribute>
             </field>
+            <xpath expr="//group[@name='order_details']" position="inside">
+                <field name="client_order_ref" />
+                <field name="commitment_date" />
+            </xpath>
         </field>
     </record>
 </odoo>
