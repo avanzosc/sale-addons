@@ -1,205 +1,48 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="sale_order_view_form" model="ir.ui.view">
+    <record id="sale_order_pending_info_form_view" model="ir.ui.view">
+        <field name="name">sale.order.pending.info.form</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath
-        expr="//field[@name='order_line']/tree//field[@name='qty_delivered']"
-        position="after"
-      >
-                <field
-          name="qty_to_deliver"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
-        />
-                <field
-          name="qty_pending_delivery"
-          sum="To Deliver"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
-        />
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']//tree//field[@name='qty_invoiced']"
-        position="after"
-      >
-                <field
-          name="qty_pending_invoicing"
-          sum="To Invoice"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
-        />
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']//tree//field[@name='discount']"
-        position="after"
-      >
-                <field
-          name="amount_pending_delivery"
-          widget="monetary"
-          sum="To Delivery Amount"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
-        />
-                <field
-          name="amount_pending_invoicing"
-          widget="monetary"
-          sum="To Invoice Amount"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
-        />
-                <field
-          name="qty_shipped_pending_invoicing"
-          sum="Total Pending Invoicing Shipped Qty"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
-        />
-                <field
-          name="amount_shipped_pending_invoicing"
-          widget="monetary"
-          sum="Total Pending Invoicing Shipped Amount"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
-        />
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/form//field[@name='qty_delivered']/.."
-        position="after"
-      >
-                <label
-          for="qty_pending_delivery"
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-        />
-                <div
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-        >
-                    <field name="qty_pending_delivery" />
-                </div>
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/form//field[@name='qty_invoiced']/.."
-        position="after"
-      >
-                <label
-          for="qty_pending_invoicing"
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-        />
-                <div
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-        >
-                    <field name="qty_pending_invoicing" />
-                </div>
-                <label
-          for="qty_shipped_pending_invoicing"
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-        />
-                <div
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-        >
-                    <field name="qty_shipped_pending_invoicing" />
-                </div>
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
-        position="attributes"
-      >
-                <attribute name="sum">Total Units Ordered</attribute>
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/tree/field[@name='qty_delivered']"
-        position="attributes"
-      >
-                <attribute name="sum">Total Qty Delivered</attribute>
+            <xpath expr="//page[@name='order_lines']" position="after">
+                <page string="Pending Info">
+                    <group>
+                        <group string="Delivery">
+                            <field name="total_qty_pending_delivery" readonly="1"/>
+                            <field name="total_amount_pending_delivery" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1"/>
+                        </group>
+                        <group string="Invoicing">
+                            <field name="total_qty_pending_invoicing" readonly="1"/>
+                            <field name="total_amount_pending_invoicing" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1"/>
+                            <field name="total_qty_shipped_pending_invoicing" readonly="1"/>
+                            <field name="total_amount_shipped_pending_invoicing" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1"/>
+                        </group>
+                        <group string="Totals">
+                            <field name="qty_ordered" readonly="1" string="Total Units Ordered"/>
+                            <field name="qty_delivered" readonly="1" string="Total Qty Delivered"/>
+                        </group>
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>
 
-    <record id="sale_order_view_tree" model="ir.ui.view">
+    <record id="sale_order_pending_info_tree_view" model="ir.ui.view">
+        <field name="name">sale.order.pending.info.tree</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="inherit_id" ref="sale.view_order_tree"/>
         <field name="arch" type="xml">
-            <field name="amount_untaxed" position="before">
-                <field name="qty_ordered" sum="Qty Ordered" optional="hide" />
-                <field name="qty_delivered" sum="Qty Delivered" optional="hide" />
-                <field
-          name="total_qty_pending_delivery"
-          sum="Total Pending Delivery Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_pending_delivery"
-          widget="monetary"
-          sum="Total Pending Delivery Amount"
-          optional="hide"
-        />
-                <field
-          name="total_qty_pending_invoicing"
-          sum="Total Pending Invoicing Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_pending_invoicing"
-          widget="monetary"
-          sum="Total Pending Invoicing Amount"
-          optional="hide"
-        />
-                <field
-          name="total_qty_shipped_pending_invoicing"
-          sum="Total Pending Invoicing Shipped Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_shipped_pending_invoicing"
-          widget="monetary"
-          sum="Total Pending Invoicing Shipped Amount"
-          optional="hide"
-        />
-            </field>
-        </field>
-    </record>
-
-    <record id="sale_order_quotation_view_tree" model="ir.ui.view">
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_quotation_tree" />
-        <field name="arch" type="xml">
-            <field name="state" position="before">
-                <field name="qty_ordered" sum="Qty Ordered" optional="hide" />
-                <field name="qty_delivered" sum="Qty Delivered" optional="hide" />
-                <field
-          name="total_qty_pending_delivery"
-          sum="Total Pending Delivery Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_pending_delivery"
-          widget="monetary"
-          sum="Total Pending Delivery Amount"
-          optional="hide"
-        />
-                <field
-          name="total_qty_pending_invoicing"
-          sum="Total Pending Invoicing Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_pending_invoicing"
-          widget="monetary"
-          sum="Total Pending Invoicing Amount"
-          optional="hide"
-        />
-                <field
-          name="total_qty_shipped_pending_invoicing"
-          sum="Total Pending Invoicing Shipped Qty"
-          optional="hide"
-        />
-                <field
-          name="total_amount_shipped_pending_invoicing"
-          widget="monetary"
-          sum="Total Pending Invoicing Shipped Amount"
-          optional="hide"
-        />
-            </field>
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field name="total_qty_pending_delivery" optional="show"/>
+                <field name="total_amount_pending_delivery" widget="monetary" options="{'currency_field': 'currency_id'}" optional="show"/>
+                <field name="total_qty_pending_invoicing" optional="show"/>
+                <field name="total_amount_pending_invoicing" widget="monetary" options="{'currency_field': 'currency_id'}" optional="show"/>
+                <field name="total_qty_shipped_pending_invoicing" optional="show"/>
+                <field name="total_amount_shipped_pending_invoicing" widget="monetary" options="{'currency_field': 'currency_id'}" optional="show"/>
+                <field name="qty_ordered" optional="show" string="Total Units Ordered"/>
+                <field name="qty_delivered" optional="show" string="Total Qty Delivered"/>
+            </xpath>
         </field>
     </record>
 </odoo>
