@@ -18,8 +18,8 @@ class ProductTemplate(models.Model):
 
     def button_show_attachments(self):
         self.ensure_one()
-        res = self.env['ir.actions.act_window'].for_xml_id(
-            'base', 'action_attachment')
+        res = self.env['ir.actions.actions']._for_xml_id(
+            'base.action_attachment')
         res['domain'] = [('res_model', '=', 'product.template'),
                          ('res_id', 'in', self.ids)]
         res['context'] = {'default_res_model': 'product.template',

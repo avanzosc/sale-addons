@@ -10,7 +10,7 @@
                         <field name="sale_order_line_id" invisible="1" colspan="4"/>
                         <separator string="Select attachments" colspan="4" />
                         <field name="line_ids" nolabel="1" colspan="4">
-                            <tree string='Product attachments' editable="bottom" create="false" edit="true" delete="false">
+                            <tree editable="bottom" create="false" edit="true" delete="false">
                                 <field name="wiz_id" invisible="1"/>
                                 <field name="catch_attachment" />
                                 <field name="attachment_id" readonly="1" />
@@ -31,7 +31,6 @@
     <record id="action_wiz_catch_attachment_from_product" model="ir.actions.act_window">
         <field name="name">Catch attachments from product</field>
         <field name="res_model">wiz.catch.attachment.from.product</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
