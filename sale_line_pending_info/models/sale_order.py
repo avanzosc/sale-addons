@@ -209,7 +209,7 @@ class SaleOrderLine(models.Model):
                     line.product_uom_qty - line.qty_delivered, 0.0
                 )
                 amount = qty_pending_delivery * line.price_unit
-                amount *= (1 - (line.discount or 0.0) / 100.0)
+                amount *= 1 - (line.discount or 0.0) / 100.0
                 amount_pending_delivery = amount
             line.qty_pending_delivery = qty_pending_delivery
             line.amount_pending_delivery = amount_pending_delivery
@@ -224,7 +224,7 @@ class SaleOrderLine(models.Model):
         for line in self:
             qty_pending_invoicing = line.product_uom_qty - line.qty_invoiced
             amount = qty_pending_invoicing * line.price_unit
-            amount *= (1 - (line.discount or 0.0) / 100.0)
+            amount *= 1 - (line.discount or 0.0) / 100.0
             line.qty_pending_invoicing = qty_pending_invoicing
             line.amount_pending_invoicing = amount
 
@@ -238,7 +238,6 @@ class SaleOrderLine(models.Model):
         for line in self:
             qty = max(line.qty_delivered - line.qty_invoiced, 0.0)
             amount = qty * line.price_unit
-            amount *= (1 - (line.discount or 0.0) / 100.0)
+            amount *= 1 - (line.discount or 0.0) / 100.0
             line.qty_shipped_pending_invoicing = qty
             line.amount_shipped_pending_invoicing = amount
-            

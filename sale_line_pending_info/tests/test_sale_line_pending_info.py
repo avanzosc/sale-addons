@@ -198,4 +198,3 @@ class TestSaleLinePendingInfo(common.TransactionCase):
             ),
             msg="Cancelled lines should be excluded from ordered total",
         )
-
