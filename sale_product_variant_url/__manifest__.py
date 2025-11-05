@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Product Variant URL - Sale Glue",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sales",
     "summary": "Show Product URL in Sale Order Reports if both modules are installed",
     "license": "AGPL-3",
