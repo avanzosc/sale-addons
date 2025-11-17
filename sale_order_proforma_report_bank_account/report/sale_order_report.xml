@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+    id="report_sale_payment_mode"
+    inherit_id="account_payment_sale.report_sale_payment_mode"
+  >
+        <span t-field="doc.payment_mode_id.note" position="after">
+            <t
+        t-if="is_pro_forma == True and doc.payment_mode_id and doc.payment_mode_id.show_bank_account != 'no'"
+      >
+                <p t-foreach="doc.partner_banks_to_show()" t-as="partner_bank">
+                    <strong>Bank Account:</strong>
+                    <t t-if="partner_bank.bank_id">
+                        <t
+              t-esc="partner_bank.bank_id.name + ('' if not partner_bank.bank_id.bic else ' (' + partner_bank.bank_id.bic + ')')"
+            />
+                    </t>
+                    <t t-if="doc.payment_mode_id.show_bank_account == 'full'">
+                        <span t-field="partner_bank.acc_number" />
+                    </t>
+                    <t t-elif="doc.payment_mode_id.show_bank_account == 'first'">
+                        <span
+              t-esc="partner_bank.acc_number[:doc.payment_mode_id.show_bank_account_chars] + '*' * (len(partner_bank.acc_number) - doc.payment_mode_id.show_bank_account_chars)"
+            />
+                    </t>
+                    <t t-elif="doc.payment_mode_id.show_bank_account == 'last'">
+                        <span
+              t-esc="'*' * (len(partner_bank.acc_number) - doc.payment_mode_id.show_bank_account_chars) + partner_bank.acc_number[-doc.payment_mode_id.show_bank_account_chars:]"
+            />
+                    </t>
+                </p>
+            </t>
+        </span>
+    </template>
+</odoo>
