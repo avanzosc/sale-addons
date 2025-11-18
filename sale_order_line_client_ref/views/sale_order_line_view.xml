@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_line_tree" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.client.ref</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale_order_line_menu.sale_order_line_tree" />
+        <field name="arch" type="xml">
+
+            <field name="order_id" position="after">
+                <field name="client_order_ref" string="Customer reference" />
+            </field>
+
+            <xpath expr="//tree/field[@name='team_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="optional">hide</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

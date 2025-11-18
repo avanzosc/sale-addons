@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_client_ref
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-19 13:05+0000\n"
+"PO-Revision-Date: 2025-11-19 13:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_client_ref
+#: model:ir.model.fields,field_description:sale_order_line_client_ref.field_sale_order_line__client_order_ref
+msgid "Client Reference"
+msgstr ""
+
+#. module: sale_order_line_client_ref
+#: model_terms:ir.ui.view,arch_db:sale_order_line_client_ref.sale_order_line_tree
+msgid "Customer reference"
+msgstr ""
+
+#. module: sale_order_line_client_ref
+#: model:ir.model,name:sale_order_line_client_ref.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_line_client_ref
+#: model:ir.model.fields,field_description:sale_order_line_client_ref.field_sale_order_line__team_id
+msgid "Sales Team"
+msgstr ""
