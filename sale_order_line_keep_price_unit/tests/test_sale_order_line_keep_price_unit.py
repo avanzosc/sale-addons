@@ -38,6 +38,8 @@ class TestSaleOrderLineKeepPriceUnit(common.SavepointCase):
         cls.sale = cls.sale_obj.create(sale_vals)
 
     def test_sale_order_line_keep_price_unit(self):
-        self.sale.order_line[0].product_uom_qty = 2
-        self.sale.order_line[0].product_uom_change()
-        self.assertEquals(self.sale.order_line[0].price_unit, 100)
+        line = self.sale.order_line[0]
+        self.assertEqual(line.price_unit, 100)
+        line.product_uom_qty = 2
+        line._onchange_keep_price_unit()
+        self.assertEqual(line.price_unit, 100)
