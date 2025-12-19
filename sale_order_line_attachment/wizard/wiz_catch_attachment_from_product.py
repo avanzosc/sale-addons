@@ -23,19 +23,31 @@ class WizCatchAttachmentFromProduct(models.TransientModel):
             self.env.context.get("active_id")
         )
         line_ids = []
-        cond = [
+
+        product = sale_line.product_id
+
+        cond_template = [
             ("attach_in_sales_orders", "=", True),
             ("res_model", "=", "product.template"),
-            ("res_id", "in", sale_line.product_id.product_tmpl_id.ids),
+            ("res_id", "in", product.product_tmpl_id.ids),
         ]
-        attachments = self.env["ir.attachment"].search(cond)
+        attachments_template = self.env["ir.attachment"].search(cond_template)
+
+        cond_product = [
+            ("attach_in_sales_orders", "=", True),
+            ("res_model", "=", "product.product"),
+            ("res_id", "in", [product.id]),
+        ]
+        attachments_product = self.env["ir.attachment"].search(cond_product)
+        attachments = attachments_template + attachments_product
+
         for attachment in attachments:
-            cond = [
+            cond_line = [
                 ("res_model", "=", "sale.order.line"),
                 ("res_id", "=", sale_line.id),
                 ("name", "=", attachment.name),
             ]
-            attachment2 = self.env["ir.attachment"].search(cond, limit=1)
+            attachment2 = self.env["ir.attachment"].search(cond_line, limit=1)
             if not attachment2:
                 line_ids += [
                     (
@@ -53,13 +65,20 @@ class WizCatchAttachmentFromProduct(models.TransientModel):
     def button_catch_attachment_from_product(self):
         for line in self.line_ids.filtered(lambda x: x.catch_attachment):
             product = self.sale_order_line_id.product_id
-            cond = [
+            attachments_to_copy = self.env["ir.attachment"]
+            cond_template = [
                 ("res_model", "=", "product.template"),
                 ("res_id", "in", product.product_tmpl_id.ids),
                 ("name", "=", line.attachment_name),
             ]
-            attachment = self.env["ir.attachment"].search(cond, limit=1)
-            if attachment:
+            attachments_to_copy += self.env["ir.attachment"].search(cond_template)
+            cond_product = [
+                ("res_model", "=", "product.product"),
+                ("res_id", "in", [product.id]),
+                ("name", "=", line.attachment_name),
+            ]
+            attachments_to_copy += self.env["ir.attachment"].search(cond_product)
+            for attachment in attachments_to_copy:
                 attachment.copy(
                     {
                         "res_model": "sale.order.line",
