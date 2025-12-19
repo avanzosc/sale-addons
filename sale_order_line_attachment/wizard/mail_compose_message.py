@@ -8,7 +8,6 @@ class MailComposeMessage(models.TransientModel):
 
     def _compute_attachment_ids(self):
         res = super()._compute_attachment_ids()
-
         for composer in self:
             model = (
                 composer.model
@@ -17,7 +16,6 @@ class MailComposeMessage(models.TransientModel):
             )
             if model != "sale.order":
                 continue
-
             res_ids = composer._evaluate_res_ids()
             if len(res_ids) != 1:
                 continue
