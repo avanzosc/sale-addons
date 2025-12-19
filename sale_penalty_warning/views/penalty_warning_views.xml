@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <odoo>
-    <menuitem
+  <menuitem
     id="penalty_warning_config"
     name="Penalty warnings"
     parent="sale.menu_sale_config"
