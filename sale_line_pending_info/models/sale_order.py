@@ -50,6 +50,8 @@ class SaleOrder(models.Model):
         "order_line",
         "order_line.amount_pending_delivery",
         "order_line.qty_pending_delivery",
+        "order_line.product_uom_qty",
+        "order_line.qty_delivered",
     )
     def _compute_total_qty_amount_pending_delivery(self):
         for sale in self:
@@ -64,6 +66,8 @@ class SaleOrder(models.Model):
         "order_line",
         "order_line.amount_pending_invoicing",
         "order_line.qty_pending_invoicing",
+        "order_line.product_uom_qty",
+        "order_line.qty_invoiced",
     )
     def _compute_total_qty_amount_pending_invoicing(self):
         for sale in self:
@@ -78,6 +82,9 @@ class SaleOrder(models.Model):
         "order_line",
         "order_line.qty_shipped_pending_invoicing",
         "order_line.amount_pending_invoicing",
+        "order_line.product_uom_qty",
+        "order_line.qty_delivered",
+        "order_line.qty_invoiced",
     )
     def _compute_total_qty_shipped_pending_invoicing(self):
         for sale in self:
