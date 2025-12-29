@@ -10,7 +10,7 @@
           type="object"
           class="oe_stat_button"
           icon="fa-list"
-          attrs="{'invisible': [('count_products', '=', 0)]}"
+          modifiers="{'invisible': [('count_products', '=', 0)]}"
         >
                     <field name="count_products" widget="statinfo" string="Products" />
                 </button>
