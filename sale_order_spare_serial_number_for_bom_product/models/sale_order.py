@@ -21,15 +21,18 @@ class SaleOrder(models.Model):
                 bom = sale.search_boms_for_allowed_product_ids()
                 if bom and bom.bom_line_ids:
                     allowed_product = bom.bom_line_ids.mapped("product_id")
+                else:
+                    allowed_product = self.env["product.product"].search([])
+            else:
+                allowed_product = self.env["product.product"].search([])
+
             sale.allowed_product_ids = (
                 [(6, 0, allowed_product.ids)] if allowed_product else [(6, 0, [])]
             )
-            if sale.spare_serial_number_id:
-                sale.order_line.write(
-                    {"spare_serial_number_id": sale.spare_serial_number_id}
-                )
-            else:
-                sale.order_line.write({"spare_serial_number_id": False})
+
+            for line in sale.order_line:
+                line.spare_serial_number_id = sale.spare_serial_number_id or False
+                line.onchange_spare_serial_number_id()
 
     def search_boms_for_allowed_product_ids(self):
         mrp_bom_obj = self.env["mrp.bom"]
