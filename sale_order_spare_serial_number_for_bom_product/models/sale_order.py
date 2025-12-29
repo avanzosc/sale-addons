@@ -7,7 +7,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     spare_serial_number_id = fields.Many2one(
-        string="Spare serial number", comodel_name="stock.production.lot", copy=False
+        string="Spare serial number", comodel_name="stock.lot", copy=False
     )
     allowed_product_ids = fields.Many2many(
         string="Allowed products", comodel_name="product.product"
