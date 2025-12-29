@@ -7,7 +7,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     spare_serial_number_id = fields.Many2one(
-        string="Spare serial number", comodel_name="stock.production.lot", copy=False
+        string="Spare serial number", comodel_name="stock.lot", copy=False
     )
 
     @api.onchange("spare_serial_number_id")

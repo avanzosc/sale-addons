@@ -4,7 +4,7 @@ from odoo import _, fields, models
 
 
 class StockProductionLot(models.Model):
-    _inherit = "stock.production.lot"
+    _inherit = "stock.lot"
 
     sale_line_ids = fields.One2many(
         string="Sale lines",
