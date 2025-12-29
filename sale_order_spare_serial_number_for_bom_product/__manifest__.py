@@ -13,7 +13,7 @@
     "website": "https://github.com/avanzosc/sale-addons",
     "data": [
         "views/sale_order_views.xml",
-        "views/stock_production_lot_views.xml",
+        "views/stock_lot_views.xml",
         "views/sale_order_line_views.xml",
     ],
     "installable": True,
