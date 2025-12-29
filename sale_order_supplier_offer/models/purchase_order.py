@@ -25,7 +25,7 @@ class PurchaseOrder(models.Model):
 
     @api.model
     def create(self, values):
-        purchase = super(PurchaseOrder, self).create(values)
+        purchase = super().create(values)
         if "origin" in values and values.get("origin", False):
             cond = [("name", "=", values.get("origin"))]
             sale = self.env["sale.order"].search(cond, limit=1)
