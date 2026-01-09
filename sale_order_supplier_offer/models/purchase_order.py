@@ -23,12 +23,15 @@ class PurchaseOrder(models.Model):
         related="sale_order_id.supplier_offer_file",
     )
 
-    @api.model
-    def create(self, values):
-        purchase = super().create(values)
-        if "origin" in values and values.get("origin", False):
-            cond = [("name", "=", values.get("origin"))]
-            sale = self.env["sale.order"].search(cond, limit=1)
-            if sale:
-                purchase.sale_order_id = sale.id
-        return purchase
+    @api.model_create_multi
+    def create(self, vals_list):
+        sale_obj = self.env["sale.order"]
+        for vals in vals_list:
+            if vals.get("origin", False):
+                sale_order = sale_obj.search(
+                    [("name", "=", vals["origin"])], limit=1
+                ).id
+                if sale_order:
+                    vals["sale_order_id"] = sale_order.id
+        purchases = super().create(vals_list)
+        return purchases
