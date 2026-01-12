@@ -18,6 +18,27 @@
           icon="fa-refresh"
         />
             </xpath>
+            <xpath
+        expr="//field[@name='order_line']/kanban/field[@name='price_unit']"
+        position="before"
+      >
+                <field name="sale_last_price_unit" />
+                <field name="invoice_last_price_unit" />
+            </xpath>
+            <xpath
+        expr="//field[@name='order_line']/kanban//t[@t-esc='record.price_unit.value']/.."
+        position="before"
+      >
+                <span>LPS: <t t-esc="record.sale_last_price_unit.value" /></span>
+                <span>LPI: <t t-esc="record.invoice_last_price_unit.value" /></span>
+            </xpath>
+            <xpath
+        expr="//field[@name='order_line']/form//field[@name='price_unit']"
+        position="before"
+      >
+                <field name="sale_last_price_unit" />
+                <field name="invoice_last_price_unit" />
+            </xpath>
         </field>
     </record>
 </odoo>
