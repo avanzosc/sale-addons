@@ -6,7 +6,8 @@
 Sale order type picking account
 ===============================
 
-* In picking new field "Sale type".
+* In picking and stock move new field "Sale type". Also display the "Sale Type"
+  field on invoices.
 
 
 Bug Tracker
