@@ -1,5 +1,7 @@
 # Copyright 2020 Alfredo de la Fuente - AvanzOSC
+# Copyright 2025 Eñaut Alberdi - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
 from odoo import api, fields, models
 
 
@@ -12,12 +14,15 @@ class SaleOrder(models.Model):
         digits="Product Unit of Measure",
         compute="_compute_total_qty_amount_pending_delivery",
         store=True,
+        readonly=True,
     )
     total_amount_pending_delivery = fields.Monetary(
         string="Pending Delivery Amount",
         copy=False,
         compute="_compute_total_qty_amount_pending_delivery",
         store=True,
+        readonly=True,
+        currency_field="currency_id",
     )
     total_qty_pending_invoicing = fields.Float(
         string="Pending Invoicing Qty",
@@ -25,12 +30,15 @@ class SaleOrder(models.Model):
         digits="Product Unit of Measure",
         compute="_compute_total_qty_amount_pending_invoicing",
         store=True,
+        readonly=True,
     )
     total_amount_pending_invoicing = fields.Monetary(
         string="Pending Invoicing Amount",
         copy=False,
         compute="_compute_total_qty_amount_pending_invoicing",
         store=True,
+        readonly=True,
+        currency_field="currency_id",
     )
     total_qty_shipped_pending_invoicing = fields.Float(
         string="Pending Invoicing Shipped Qty",
@@ -38,24 +46,31 @@ class SaleOrder(models.Model):
         digits="Product Unit of Measure",
         compute="_compute_total_qty_shipped_pending_invoicing",
         store=True,
+        readonly=True,
     )
     total_amount_shipped_pending_invoicing = fields.Monetary(
         string="Pending Invoicing Shipped Amount",
         copy=False,
         compute="_compute_total_qty_shipped_pending_invoicing",
         store=True,
+        readonly=True,
+        currency_field="currency_id",
     )
     qty_ordered = fields.Float(
+        string="Total Units Ordered",
         copy=False,
         digits="Product Unit of Measure",
         compute="_compute_qty_ordered",
         store=True,
+        readonly=True,
     )
     qty_delivered = fields.Float(
+        string="Total Qty Delivered",
         copy=False,
         digits="Product Unit of Measure",
         compute="_compute_qty_delivered",
         store=True,
+        readonly=True,
     )
 
     @api.depends(
@@ -89,7 +104,7 @@ class SaleOrder(models.Model):
     @api.depends(
         "order_line",
         "order_line.qty_shipped_pending_invoicing",
-        "order_line.amount_pending_invoicing",
+        "order_line.amount_shipped_pending_invoicing",
     )
     def _compute_total_qty_shipped_pending_invoicing(self):
         for sale in self:
@@ -128,12 +143,15 @@ class SaleOrderLine(models.Model):
         digits="Product Unit of Measure",
         compute="_compute_qty_amount_pending_delivery",
         store=True,
+        readonly=True,
     )
     amount_pending_delivery = fields.Monetary(
         string="Pending Delivery Amount",
         copy=False,
         compute="_compute_qty_amount_pending_delivery",
         store=True,
+        readonly=True,
+        currency_field="currency_id",
     )
     qty_pending_invoicing = fields.Float(
         string="Pending Invoicing Qty",
@@ -141,12 +159,15 @@ class SaleOrderLine(models.Model):
         digits="Product Unit of Measure",
         compute="_compute_qty_amount_pending_invoicing",
         store=True,
+        readonly=True,
     )
     amount_pending_invoicing = fields.Monetary(
         string="Pending Invoicing Amount",
         copy=False,
         compute="_compute_qty_amount_pending_invoicing",
         store=True,
+        readonly=True,
+        currency_field="currency_id",
     )
     qty_shipped_pending_invoicing = fields.Float(
         string="Pending Invoicing Shipped Qty",
@@ -154,18 +175,22 @@ class SaleOrderLine(models.Model):
         digits="Product Unit of Measure",
         compute="_compute_qty_shipped_pending_invoicing",
         store=True,
+        readonly=True,
     )
     amount_shipped_pending_invoicing = fields.Monetary(
         string="Pending Invoicing Shipped Amount",
         copy=False,
         compute="_compute_qty_shipped_pending_invoicing",
         store=True,
+        readonly=True,
+        currency_field="currency_id",
     )
     team_id = fields.Many2one(
         string="Sales Team",
         comodel_name="crm.team",
         store=True,
         related="order_id.team_id",
+        readonly=True,
     )
 
     @api.depends(
@@ -177,14 +202,14 @@ class SaleOrderLine(models.Model):
     )
     def _compute_qty_amount_pending_delivery(self):
         for line in self:
-            qty_pending_delivery = amount_pending_delivery = 0
+            qty_pending_delivery = 0.0
+            amount_pending_delivery = 0.0
             if line.qty_delivered_method == "stock_move":
-                qty_pending_delivery = line.product_uom_qty - line.qty_delivered
-                if qty_pending_delivery < 0:
-                    qty_pending_delivery = 0
+                qty_pending_delivery = max(
+                    line.product_uom_qty - line.qty_delivered, 0.0
+                )
                 amount = qty_pending_delivery * line.price_unit
-                if line.discount:
-                    amount -= (amount * line.discount) / 100
+                amount *= (1 - (line.discount or 0.0) / 100.0)
                 amount_pending_delivery = amount
             line.qty_pending_delivery = qty_pending_delivery
             line.amount_pending_delivery = amount_pending_delivery
@@ -197,10 +222,10 @@ class SaleOrderLine(models.Model):
     )
     def _compute_qty_amount_pending_invoicing(self):
         for line in self:
-            line.qty_pending_invoicing = line.product_uom_qty - line.qty_invoiced
-            amount = line.qty_pending_invoicing * line.price_unit
-            if line.discount:
-                amount -= (amount * line.discount) / 100
+            qty_pending_invoicing = line.product_uom_qty - line.qty_invoiced
+            amount = qty_pending_invoicing * line.price_unit
+            amount *= (1 - (line.discount or 0.0) / 100.0)
+            line.qty_pending_invoicing = qty_pending_invoicing
             line.amount_pending_invoicing = amount
 
     @api.depends(
@@ -211,10 +236,9 @@ class SaleOrderLine(models.Model):
     )
     def _compute_qty_shipped_pending_invoicing(self):
         for line in self:
-            amount = 0
-            qty = line.qty_delivered - line.qty_invoiced
-            if qty > 0:
-                amount = qty * line.price_unit
-                amount -= (amount * line.discount) / 100 if line.discount else 0
-            line.qty_shipped_pending_invoicing = qty if qty > 0 else 0
+            qty = max(line.qty_delivered - line.qty_invoiced, 0.0)
+            amount = qty * line.price_unit
+            amount *= (1 - (line.discount or 0.0) / 100.0)
+            line.qty_shipped_pending_invoicing = qty
             line.amount_shipped_pending_invoicing = amount
+            
