@@ -1,5 +1,6 @@
-from odoo import fields, models
 import logging
+
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -26,15 +27,16 @@ class SaleReport(models.Model):
 
     def _select_additional_fields(self):
         res = super()._select_additional_fields()
-        res.update({
-    "qty_pending_delivery": "COALESCE(SUM(l.qty_pending_delivery), 0)",
-    "qty_pending_invoicing": "COALESCE(SUM(l.qty_pending_invoicing), 0)",
-    "amount_pending_delivery": (
-        "COALESCE(SUM(l.amount_pending_delivery), 0)"
-    ),
-    "amount_pending_invoicing": (
-        "COALESCE(SUM(l.amount_pending_invoicing), 0)"
-    ),
-})
+        res.update(
+            {
+                "qty_pending_delivery": "COALESCE(SUM(l.qty_pending_delivery), 0)",
+                "qty_pending_invoicing": "COALESCE(SUM(l.qty_pending_invoicing), 0)",
+                "amount_pending_delivery": (
+                    "COALESCE(SUM(l.amount_pending_delivery), 0)"
+                ),
+                "amount_pending_invoicing": (
+                    "COALESCE(SUM(l.amount_pending_invoicing), 0)"
+                ),
+            }
+        )
         return res
-        
