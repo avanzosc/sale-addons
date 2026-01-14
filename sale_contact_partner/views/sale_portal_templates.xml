@@ -4,13 +4,11 @@
     id="sale_order_portal_content"
     inherit_id="sale.sale_order_portal_content"
   >
-        <xpath expr="//div[@id='shipping_address']/.." position="after">
-            <t
-        t-if="sale_order.partner_contact_id
-                     and sale_order.partner_contact_id != sale_order.partner_id"
-      >
-                <div id="contact" class="col-lg-6">
-                    <strong class="d-block mb-1">Contact:</strong>
+        <xpath expr="//span[@id='shipping_address']" position="after">
+            <t t-if="sale_order.partner_contact_id and sale_order.partner_contact_id != sale_order.partner_id">
+                <div id="contact" class="mt-3">
+                    <h5 class="mb-1">Contact</h5>
+                    <hr class="mt-1 mb-2" />
                     <div t-field="sale_order.partner_contact_id.name" />
                 </div>
             </t>
