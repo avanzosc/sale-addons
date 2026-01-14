@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Order Contact Partner",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
