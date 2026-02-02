@@ -7,6 +7,7 @@ Sale order usability
 ====================
 
 Order date in sale order tree view.
+In tree views, order quotations and sale orders by create date.
 
 Bug Tracker
 ===========
