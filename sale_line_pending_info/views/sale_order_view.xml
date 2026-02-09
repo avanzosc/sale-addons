@@ -5,61 +5,61 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-        expr="//field[@name='order_line']/tree//field[@name='qty_delivered']"
+        expr="//field[@name='order_line']/list//field[@name='qty_delivered']"
         position="after"
       >
                 <field
           name="qty_to_deliver"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
           optional="hide"
         />
                 <field
           name="qty_pending_delivery"
           sum="To Deliver"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
           optional="hide"
         />
             </xpath>
             <xpath
-        expr="//field[@name='order_line']//tree//field[@name='qty_invoiced']"
+        expr="//field[@name='order_line']//list//field[@name='qty_invoiced']"
         position="after"
       >
                 <field
           name="qty_pending_invoicing"
           sum="To Invoice"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
           optional="hide"
         />
             </xpath>
             <xpath
-        expr="//field[@name='order_line']//tree//field[@name='discount']"
+        expr="//field[@name='order_line']//list//field[@name='discount']"
         position="after"
       >
                 <field
           name="amount_pending_delivery"
           widget="monetary"
           sum="To Delivery Amount"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
           optional="hide"
         />
                 <field
           name="amount_pending_invoicing"
           widget="monetary"
           sum="To Invoice Amount"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
           optional="hide"
         />
                 <field
           name="qty_shipped_pending_invoicing"
           sum="Total Pending Invoicing Shipped Qty"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
           optional="hide"
         />
                 <field
           name="amount_shipped_pending_invoicing"
           widget="monetary"
           sum="Total Pending Invoicing Shipped Amount"
-          attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
           optional="hide"
         />
             </xpath>
@@ -69,10 +69,10 @@
       >
                 <label
           for="qty_pending_delivery"
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
         />
                 <div
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
         >
                     <field name="qty_pending_delivery" />
                 </div>
@@ -83,31 +83,31 @@
       >
                 <label
           for="qty_pending_invoicing"
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
         />
                 <div
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
         >
                     <field name="qty_pending_invoicing" />
                 </div>
                 <label
           for="qty_shipped_pending_invoicing"
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
         />
                 <div
-          attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          modifiers="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
         >
                     <field name="qty_shipped_pending_invoicing" />
                 </div>
             </xpath>
             <xpath
-        expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+        expr="//field[@name='order_line']/list/field[@name='product_uom_qty']"
         position="attributes"
       >
                 <attribute name="sum">Total Units Ordered</attribute>
             </xpath>
             <xpath
-        expr="//field[@name='order_line']/tree/field[@name='qty_delivered']"
+        expr="//field[@name='order_line']/list/field[@name='qty_delivered']"
         position="attributes"
       >
                 <attribute name="sum">Total Qty Delivered</attribute>
