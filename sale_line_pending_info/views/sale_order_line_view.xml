@@ -38,9 +38,9 @@
       ref="sale_order_line_input.view_sales_order_line_input_tree"
     />
         <field name="arch" type="xml">
-            <button name="action_sale_order_form" position="after">
-                <field name="team_id" optional="show" />
-            </button>
+            <field name="order_id" position="after">
+              <field name="team_id" optional="show"/>
+            </field>
             <field name="qty_delivered" position="before">
                 <field name="qty_to_deliver" optional="hide" />
                 <field name="qty_pending_delivery" sum="To Deliver" optional="hide" />
@@ -48,7 +48,7 @@
             <field name="qty_invoiced" position="before">
                 <field name="qty_pending_invoicing" sum="To Invoice" optional="hide" />
             </field>
-            <field name="price_subtotal" position="before">
+            <field name="company_price_amount" position="before">
                 <field
           name="amount_pending_delivery"
           sum="Amount To Deliver"
