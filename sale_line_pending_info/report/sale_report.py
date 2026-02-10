@@ -40,13 +40,13 @@ class SaleReport(models.Model):
                 "amount_pending_delivery": f"""
             CASE WHEN l.product_id IS NOT NULL THEN SUM(l.amount_pending_delivery
             / {self._case_value_or_one('s.currency_rate')}
-            * {self._case_value_or_one('currency_table.rate')}) ELSE 0
+            * {self._case_value_or_one('account_currency_table.rate')}) ELSE 0
             END
         """,
                 "amount_pending_invoicing": f"""
             CASE WHEN l.product_id IS NOT NULL THEN SUM(l.amount_pending_invoicing
             / {self._case_value_or_one('s.currency_rate')}
-            * {self._case_value_or_one('currency_table.rate')}) ELSE 0
+            * {self._case_value_or_one('account_currency_table.rate')}) ELSE 0
             END
         """,
             }
