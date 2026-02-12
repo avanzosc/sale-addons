@@ -18,9 +18,6 @@
       >
                 <attribute name="attrs">{'invisible': True}</attribute>
             </xpath>
-            <xpath expr="//button[@name='button_return_picking']" position="attributes">
-                <attribute name="attrs">{'invisible': True}</attribute>
-            </xpath>
             <xpath
         expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
         position="after"
