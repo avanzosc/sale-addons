@@ -8,7 +8,6 @@
     "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
         "sale_order_confirm_usability",
-        "sale_picking_generate_zero_lines",
         "sale_order_type_picking",
     ],
     "data": [
