@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_order_line_attachment
+#   * sale_order_line_attachment
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-25 08:04+0000\n"
-"PO-Revision-Date: 2025-08-25 08:04+0000\n"
+"POT-Creation-Date: 2026-02-16 10:31+0000\n"
+"PO-Revision-Date: 2026-02-16 10:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,84 +18,85 @@ msgstr ""
 #. module: sale_order_line_attachment
 #: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.view_document_file_kanba
 msgid "<strong>Attachmets in sales orders</strong>"
-msgstr ""
+msgstr "<strong>Allegati negli ordini di vendita</strong>"
 
 #. module: sale_order_line_attachment
 #: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.view_document_file_kanba
 msgid "<strong>No attachmets in sales orders</strong>"
-msgstr ""
+msgstr "<strong>Nessun allegato negli ordini di vendita</strong>"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_ir_attachment__attach_in_sales_orders
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_mrp_document__attach_in_sales_orders
 msgid "Attach in sales orders"
-msgstr ""
+msgstr "Allega negli ordini di vendita"
 
 #. module: sale_order_line_attachment
 #: model:ir.model,name:sale_order_line_attachment.model_ir_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product_line__attachment_id
 msgid "Attachment"
-msgstr "Documento"
+msgstr "Allegato"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product_line__attachment_name
 msgid "Attachment name"
-msgstr ""
+msgstr "Nome allegato"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_product_product__count_attachments
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_product_template__count_attachments
+#: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.product_product_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.product_template_form_view
 msgid "Attachments"
-msgstr ""
+msgstr "Allegati"
 
 #. module: sale_order_line_attachment
 #: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.wiz_catch_attachment_from_product_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: sale_order_line_attachment
 #: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.view_order_form
 msgid "Catch Attachments"
-msgstr ""
+msgstr "Acquisisci allegati"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product_line__catch_attachment
 msgid "Catch attachment"
-msgstr ""
+msgstr "Acquisisci allegato"
 
 #. module: sale_order_line_attachment
 #: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.wiz_catch_attachment_from_product_form
 msgid "Catch attachment from product"
-msgstr ""
+msgstr "Acquisisci allegato dal prodotto"
 
 #. module: sale_order_line_attachment
 #: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.wiz_catch_attachment_from_product_form
 msgid "Catch attachments"
-msgstr ""
+msgstr "Acquisisci allegati"
 
 #. module: sale_order_line_attachment
 #: model:ir.actions.act_window,name:sale_order_line_attachment.action_wiz_catch_attachment_from_product
 msgid "Catch attachments from product"
-msgstr ""
+msgstr "Acquisisci allegati dal prodotto"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product__create_uid
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product__create_date
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product__display_name
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_order_line_attachment
 #: model:ir.model,name:sale_order_line_attachment.model_mail_compose_message
@@ -106,51 +107,56 @@ msgstr "Procedura composizione e-mail"
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product__id
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_ir_attachment__show_attach_in_sale
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_mrp_document__show_attach_in_sale
 msgid "Is product attachment"
-msgstr ""
+msgstr "È allegato del prodotto"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product____last_update
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product__write_uid
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product__write_date
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product__line_ids
 msgid "Lines"
-msgstr ""
+msgstr "Righe"
 
 #. module: sale_order_line_attachment
 #: model:ir.model,name:sale_order_line_attachment.model_wiz_catch_attachment_from_product_line
 msgid "Lines of wizard for catch attachments from product"
-msgstr ""
+msgstr "Righe della procedura guidata per acquisire gli allegati dal prodotto"
 
 #. module: sale_order_line_attachment
 #: model:ir.model,name:sale_order_line_attachment.model_product_template
 msgid "Product"
-msgstr "Modello prodotto"
+msgstr "Prodotto"
+
+#. module: sale_order_line_attachment
+#: model:ir.model,name:sale_order_line_attachment.model_product_product
+msgid "Product Variant"
+msgstr "Variante prodotto"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product__sale_order_line_id
 msgid "Sale order line"
-msgstr ""
+msgstr "Riga ordine di vendita"
 
 #. module: sale_order_line_attachment
 #: model:ir.model,name:sale_order_line_attachment.model_sale_order_line
@@ -160,24 +166,25 @@ msgstr "Riga ordine di vendita"
 #. module: sale_order_line_attachment
 #: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.wiz_catch_attachment_from_product_form
 msgid "Select attachments"
-msgstr ""
+msgstr "Seleziona allegati"
 
 #. module: sale_order_line_attachment
 #: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.view_order_form
 msgid "View Attachments"
-msgstr ""
+msgstr "Visualizza allegati"
 
 #. module: sale_order_line_attachment
 #: model:ir.model.fields,field_description:sale_order_line_attachment.field_wiz_catch_attachment_from_product_line__wiz_id
 msgid "Wizard"
-msgstr ""
+msgstr "Procedura guidata"
 
 #. module: sale_order_line_attachment
 #: model:ir.model,name:sale_order_line_attachment.model_wiz_catch_attachment_from_product
 msgid "Wizard for catch attachments from product"
-msgstr ""
+msgstr "Procedura guidata per acquisire allegati dal prodotto"
 
 #. module: sale_order_line_attachment
 #: model_terms:ir.ui.view,arch_db:sale_order_line_attachment.wiz_catch_attachment_from_product_form
 msgid "or"
-msgstr ""
+msgstr "o"
+
