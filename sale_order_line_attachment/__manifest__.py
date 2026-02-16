@@ -13,6 +13,7 @@
         "views/sale_order_views.xml",
         "views/ir_attachment_views.xml",
         "views/product_template_views.xml",
+        "views/product_product_views.xml",
         "security/ir.model.access.csv",
     ],
     "installable": True,
