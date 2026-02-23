@@ -32,11 +32,11 @@ class SaleOrder(models.Model):
             sale_order_cost = 0
             sale_order_margin = 0
             for line in sale.order_line:
-                sale_line_cost = 0
-                moves = line.move_ids.filtered(lambda x: x.state != "cancel")
-                for move in moves:
-                    sale_line_cost += sum(move.move_line_ids.mapped("cost"))
-                    sale_order_cost += sale_line_cost
+                sale_line_cost = sum(
+                    sum(move.move_line_ids.mapped("cost"))
+                    for move in line.move_ids.filtered(lambda x: x.state != "cancel")
+                )
+                sale_order_cost += sale_line_cost
                 if sale_line_cost > 0:
                     sale_order_margin += line.price_subtotal - sale_line_cost
             sale.sale_order_cost = sale_order_cost
