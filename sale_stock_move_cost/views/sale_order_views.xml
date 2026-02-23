@@ -8,10 +8,10 @@
                 <field name="sale_order_cost" />
                 <field name="sale_order_margin" />
             </field>
-            <xpath
-        expr="//field[@name='order_line']/tree/field[@name='company_id']"
-        position="after"
-      >
+                        <xpath
+                expr="//field[@name='order_line']/list/field[@name='company_id']"
+                position="after"
+            >
                 <field name="sale_line_cost" optional="show" sum="Total lines costs" />
                 <field
           name="sale_line_margin"
