@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/avanzosc/sale-addons.svg?branch=16.0)](https://travis-ci.org/avanzosc/sale-addons)
-[![Coverage Status](https://coveralls.io/repos/avanzosc/sale-addons/badge.svg?branch=16.0)](https://coveralls.io/github/avanzosc/sale-addons?branch=16.0)
+[![pre-commit](https://github.com/avanzosc/sale-addons/actions/workflows/pre-commit.yml/badge.svg?branch=16.0)](https://github.com/avanzosc/sale-addons/actions/workflows/pre-commit.yml)
 
 Sale Odoo addons
 ================
