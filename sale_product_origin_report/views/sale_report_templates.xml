@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+    id="report_saleorder_document"
+    inherit_id="sale.report_saleorder_document"
+    priority="99"
+  >
+        <xpath expr="//td[@name='td_name']" position="replace">
+            <td name="td_name">
+                <t
+          t-set="product_url"
+          t-value="line._get_product_external_url_for_report()"
+        />
+                <t t-set="line_title" t-value="(line.name or '').split('\n')[0]" />
+                <t t-if="product_url">
+                    <a
+            t-att-href="product_url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+                        <span t-out="line_title" />
+                    </a>
+                </t>
+                <t t-else="">
+                    <span t-out="line_title" />
+                </t>
+                <t
+          t-set="product_origin"
+          t-value="line._get_product_origin_for_report()"
+        />
+                <t t-if="product_origin">
+                    <br />
+                    <small>
+                        <strong>Origin:</strong>
+                        <span t-out="product_origin" />
+                    </small>
+                </t>
+            </td>
+        </xpath>
+    </template>
+</odoo>
