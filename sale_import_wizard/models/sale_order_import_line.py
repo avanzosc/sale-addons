@@ -23,109 +23,89 @@ class SaleOrderImportLine(models.Model):
         store=True,
     )
     action = fields.Selection(
-        string="Action",
-        selection=[
+        selection_add=[
             ("create", "Create"),
-            ("nothing", "Nothing"),
         ],
-        default="nothing",
-        states={"done": [("readonly", True)]},
-        copy=False,
-        required=True,
+        ondelete={"create": "set default"},
     )
-    sale_order_id = fields.Many2one(string="sale Order", comodel_name="sale.order")
+    sale_order_id = fields.Many2one(
+        string="Sale Order",
+        comodel_name="sale.order",
+    )
     client_order_ref = fields.Char(
         string="Customer Order Reference",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     product_name = fields.Char(
-        string="Product Name",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     product_code = fields.Char(
-        string="Product Code",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     product_barcode = fields.Char(
-        string="Product Barcode",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     customer_name = fields.Char(
-        string="Customer Name",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     customer_code = fields.Char(
-        string="Customer Code",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     customer_reference = fields.Char(
-        string="Customer Reference",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     product_customer_code = fields.Char(
-        string="Product Customer Code",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     invoice_address_name = fields.Char(
-        string="Invoice Address Name",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     invoice_address_code = fields.Char(
-        string="Invoice Address Code",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     invoice_address_reference = fields.Char(
-        string="Invoice Address Reference",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     delivery_address_name = fields.Char(
-        string="Delivery Address Name",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     delivery_address_code = fields.Char(
-        string="Delivery Address Code",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     delivery_address_reference = fields.Char(
-        string="Delivery Address Reference",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     date_order = fields.Date(
-        string="Date Order",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     delivery_date = fields.Date(
-        string="Delivery Date",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     quantity = fields.Float(
-        string="Quantity",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     price_unit = fields.Float(
-        string="Price Unit",
         states={"done": [("readonly", True)]},
         copy=False,
     )
     total_order_amount = fields.Float(
-        string="Total order amount",
         states={"done": [("readonly", True)]},
         copy=False,
     )
@@ -419,50 +399,29 @@ class SaleOrderImportLine(models.Model):
     def _check_product(self, data):
         log_info = data.get("log_info")
         product_obj = self.env["product.product"]
-        search_domain = []
         products = False
+        domain_parts = []
+        normalized_name = False
         if self.product_name:
             name = self.product_name.replace(" ", "")
-            name = "".join(
+            normalized_name = "".join(
                 c
                 for c in unicodedata.normalize("NFD", name)
                 if unicodedata.category(c) != "Mn"
             )
-        if self.product_code and not self.product_name:
-            if not self.product_barcode:
-                search_domain = [("default_code", "=", self.product_code)]
-            else:
-                search_domain = [
-                    "|",
-                    ("default_code", "=", self.product_code),
-                    ("barcode", "=", self.product_barcode),
-                ]
-        elif self.product_name and not self.product_code:
-            if not self.product_barcode:
-                search_domain = [("trim_name", "=ilike", name)]
-            else:
-                search_domain = [
-                    "|",
-                    ("trim_name", "=ilike", name),
-                    ("barcode", "=", self.product_barcode),
-                ]
-        elif self.product_code and self.product_name:
-            if not self.product_barcode:
-                search_domain = [
-                    "|",
-                    ("trim_name", "=ilike", name),
-                    ("default_code", "=", self.product_code),
-                ]
-            else:
-                search_domain = [
-                    "|",
-                    ("trim_name", "=ilike", name),
-                    "|",
-                    ("default_code", "=", self.product_code),
-                    ("barcode", "=", self.product_barcode),
-                ]
-        elif not self.product_code and not self.product_name:
-            search_domain = [("barcode", "=", self.product_barcode)]
+            domain_parts.append(("trim_name", "=ilike", normalized_name))
+
+        if self.product_code:
+            domain_parts.append(("default_code", "=", self.product_code))
+
+        if self.product_barcode:
+            domain_parts.append(("barcode", "=", self.product_barcode))
+        if not domain_parts:
+            search_domain = []
+        elif len(domain_parts) == 1:
+            search_domain = domain_parts
+        else:
+            search_domain = ["|"] * (len(domain_parts) - 1) + domain_parts
         if search_domain:
             products = product_obj.search(search_domain)
             if not products:
