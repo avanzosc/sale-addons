@@ -628,9 +628,6 @@ class SaleOrderImportLine(models.Model):
     def _create_sale_order_line(self, sale):
         values = self._sale_order_line_values()
         sale.order_line = [(0, 0, values)]
-        for line in sale.order_line:
-            line.product_id_change()
-            line.product_uom_change()
 
     def _sale_order_line_values(self):
         values = {
