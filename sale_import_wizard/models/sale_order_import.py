@@ -72,9 +72,9 @@ class SaleOrderImport(models.Model):
                         delivery_address_reference
                     ),
                     "date_order": convert2date(date_order) if date_order else False,
-                    "delivery_date": convert2date(delivery_date)
-                    if delivery_date
-                    else False,
+                    "delivery_date": (
+                        convert2date(delivery_date) if delivery_date else False
+                    ),
                     "quantity": row_values.get("Cantidad", ""),
                     "price_unit": row_values.get("PrecioUnitario", ""),
                     "total_order_amount": row_values.get("TotalImportePedido", ""),
