@@ -4,10 +4,10 @@
     <field name="model">sale.order.import.line</field>
     <field name="arch" type="xml">
       <search>
-        <field name="product_id" />
-        <field name="customer_id" />
-        <field name="invoice_address_id" />
-        <field name="delivery_address_id" />
+        <field name="sale_product_id" />
+        <field name="sale_customer_id" />
+        <field name="sale_invoice_address_id" />
+        <field name="sale_delivery_address_id" />
         <separator />
         <filter string="Errored" name="error" domain="[('state', '=', 'error')]" />
         <separator />
@@ -20,22 +20,22 @@
           <filter
             name="group_product"
             string="Product"
-            context="{'group_by': 'product_id'}"
+            context="{'group_by': 'sale_product_id'}"
           />
           <filter
             name="group_sale_customer_id"
             string="Customer"
-            context="{'group_by': 'customer_id'}"
+            context="{'group_by': 'sale_customer_id'}"
           />
           <filter
             name="group_invoice_address"
             string="Invoice Address"
-            context="{'group_by': 'invoice_address_id'}"
+            context="{'group_by': 'sale_invoice_address_id'}"
           />
           <filter
             name="group_delivery_address"
             string="Delivery Address"
-            context="{'group_by': 'delivery_address_id'}"
+            context="{'group_by': 'sale_delivery_address_id'}"
           />
           <separator />
           <filter name="group_status" string="Status" context="{'group_by': 'state'}" />
@@ -73,14 +73,15 @@
               <field name="product_code" readonly="state == 'done'" />
               <field name="product_barcode" readonly="state == 'done'" />
               <field name="customer_name" readonly="state == 'done'" />
+              <field name="customer_code" readonly="state == 'done'" />
               <field name="customer_reference" readonly="state == 'done'" />
-              <field name="customer_vat" readonly="state == 'done'" />
+              <field name="product_customer_code" readonly="state == 'done'" />
               <field name="invoice_address_name" readonly="state == 'done'" />
+              <field name="invoice_address_code" readonly="state == 'done'" />
               <field name="invoice_address_reference" readonly="state == 'done'" />
-              <field name="invoice_address_vat" readonly="state == 'done'" />
               <field name="delivery_address_name" readonly="state == 'done'" />
+              <field name="delivery_address_code" readonly="state == 'done'" />
               <field name="delivery_address_reference" readonly="state == 'done'" />
-              <field name="delivery_address_vat" readonly="state == 'done'" />
               <field name="date_order" readonly="state == 'done'" />
               <field name="delivery_date" readonly="state == 'done'" />
               <field name="quantity" readonly="state == 'done'" />
@@ -89,17 +90,24 @@
               <field name="state" />
             </group>
             <group>
-              <field name="product_id" options="{'no_create': True, 'no_open': True}" />
               <field
-                name="customer_id"
+                name="sale_product_id"
+                readonly="state == 'done'"
                 options="{'no_create': True, 'no_open': True}"
               />
               <field
-                name="invoice_address_id"
+                name="sale_customer_id"
+                readonly="state == 'done'"
                 options="{'no_create': True, 'no_open': True}"
               />
               <field
-                name="delivery_address_id"
+                name="sale_invoice_address_id"
+                readonly="state == 'done'"
+                options="{'no_create': True, 'no_open': True}"
+              />
+              <field
+                name="sale_delivery_address_id"
+                readonly="state == 'done'"
                 options="{'no_create': True, 'no_open': True}"
               />
             </group>
@@ -119,41 +127,58 @@
         decoration-it="log_info"
         editable="top"
       >
-        <field name="action" readonly="state == 'done'" />
-        <field name="client_order_ref" readonly="state == 'done'" optional="show" />
-        <field name="product_name" readonly="state == 'done'" optional="show" />
-        <field name="product_code" readonly="state == 'done'" optional="hide" />
-        <field name="product_barcode" readonly="state == 'done'" optional="hide" />
-        <field name="product_id" readonly="state == 'done'" optional="show" />
-        <field name="customer_name" readonly="state == 'done'" optional="show" />
-        <field name="customer_reference" readonly="state == 'done'" optional="show" />
-        <field name="customer_vat" readonly="state == 'done'" optional="hide" />
-        <field name="customer_id" readonly="state == 'done'" optional="show" />
-        <field name="invoice_address_name" readonly="state == 'done'" optional="show" />
+        <field name="action" />
+        <field name="client_order_ref" optional="show" readonly="state == 'done'" />
+        <field name="product_name" optional="show" readonly="state == 'done'" />
+        <field name="product_code" optional="hide" readonly="state == 'done'" />
+        <field name="product_barcode" optional="hide" readonly="state == 'done'" />
+        <field
+          name="product_customer_code"
+          optional="hide"
+          readonly="state == 'done'"
+        />
+        <field name="sale_product_id" optional="hide" readonly="state == 'done'" />
+        <field name="customer_name" optional="show" readonly="state == 'done'" />
+        <field name="customer_code" optional="hide" readonly="state == 'done'" />
+        <field name="customer_reference" optional="show" readonly="state == 'done'" />
+        <field name="sale_customer_id" optional="hide" readonly="state == 'done'" />
+        <field name="invoice_address_name" optional="show" readonly="state == 'done'" />
+        <field name="invoice_address_code" optional="hide" readonly="state == 'done'" />
         <field
           name="invoice_address_reference"
-          readonly="state == 'done'"
           optional="hide"
+          readonly="state == 'done'"
         />
-        <field name="invoice_address_vat" readonly="state == 'done'" optional="hide" />
-        <field name="invoice_address_id" readonly="state == 'done'" optional="show" />
+        <field
+          name="sale_invoice_address_id"
+          optional="hide"
+          readonly="state == 'done'"
+        />
         <field
           name="delivery_address_name"
-          readonly="state == 'done'"
           optional="show"
+          readonly="state == 'done'"
+        />
+        <field
+          name="delivery_address_code"
+          optional="hide"
+          readonly="state == 'done'"
         />
         <field
           name="delivery_address_reference"
-          readonly="state == 'done'"
           optional="hide"
+          readonly="state == 'done'"
         />
-        <field name="delivery_address_vat" readonly="state == 'done'" optional="hide" />
-        <field name="delivery_address_id" readonly="state == 'done'" optional="show" />
-        <field name="date_order" readonly="state == 'done'" optional="show" />
-        <field name="delivery_date" readonly="state == 'done'" optional="show" />
-        <field name="quantity" readonly="state == 'done'" optional="show" />
-        <field name="price_unit" readonly="state == 'done'" optional="show" />
-        <field name="total_order_amount" readonly="state == 'done'" optional="show" />
+        <field
+          name="sale_delivery_address_id"
+          optional="hide"
+          readonly="state == 'done'"
+        />
+        <field name="date_order" optional="show" readonly="state == 'done'" />
+        <field name="delivery_date" optional="show" readonly="state == 'done'" />
+        <field name="quantity" optional="show" readonly="state == 'done'" />
+        <field name="price_unit" optional="show" readonly="state == 'done'" />
+        <field name="total_order_amount" optional="show" readonly="state == 'done'" />
         <field name="state" optional="hide" />
         <field name="log_info" optional="show" />
         <field name="sale_order_id" invisible="1" />
