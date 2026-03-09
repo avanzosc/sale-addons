@@ -1,0 +1,168 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_account_line_ipnr_split
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-09 13:54+0000\n"
+"PO-Revision-Date: 2026-03-09 13:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,help:sale_account_line_ipnr_split.field_account_move_line__x_ipnr_parent_line_id
+msgid "Bill line to which this IPNR line belongs."
+msgstr "Línia de factura a la qual pertany aquesta línia d'IPNR."
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model,name:sale_account_line_ipnr_split.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustos de configuració"
+
+#. module: sale_account_line_ipnr_split
+#: model_terms:ir.ui.view,arch_db:sale_account_line_ipnr_split.res_config_settings_view_form
+msgid "Decimal places used when rounding IPNR prices."
+msgstr "Nombre de decimals utilitzats en arrodonir els preus de l'IPNR."
+
+#. module: sale_account_line_ipnr_split
+#: model_terms:ir.ui.view,arch_db:sale_account_line_ipnr_split.res_config_settings_view_form
+msgid "IPNR"
+msgstr ""
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,field_description:sale_account_line_ipnr_split.field_res_config_settings__x_ipnr_product_id
+#: model_terms:ir.ui.view,arch_db:sale_account_line_ipnr_split.res_config_settings_view_form
+msgid "IPNR Product"
+msgstr "Producte IPNR"
+
+#. module: sale_account_line_ipnr_split
+#. odoo-python
+#: code:addons/sale_account_line_ipnr_split/models/account_move.py:0
+#: code:addons/sale_account_line_ipnr_split/models/sale_order.py:0
+#, python-format
+msgid "IPNR product not configured. Please set it in Sales Settings → IPNR."
+msgstr "Producte IPNR no configurat. Si us plau, configureu-lo a Configuració de Vendes → IPNR."
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.actions.server,name:sale_account_line_ipnr_split.action_account_move_ipnr_split
+#: model:ir.actions.server,name:sale_account_line_ipnr_split.action_sale_order_ipnr_split
+msgid "IPNR – Line Breakdown"
+msgstr "IPNR – Desglossament de línies"
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.actions.server,name:sale_account_line_ipnr_split.action_account_move_ipnr_reverse
+#: model:ir.actions.server,name:sale_account_line_ipnr_split.action_sale_order_ipnr_reverse
+msgid "IPNR – Line Breakdown REVERT"
+msgstr "IPNR – Desglossament de línies REVERTIR"
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model,name:sale_account_line_ipnr_split.model_account_move
+msgid "Journal Entry"
+msgstr "Apunt comptable"
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model,name:sale_account_line_ipnr_split.model_account_move_line
+msgid "Journal Item"
+msgstr "Apunt comptable"
+
+#. module: sale_account_line_ipnr_split
+#. odoo-python
+#: code:addons/sale_account_line_ipnr_split/models/account_move.py:0
+#: code:addons/sale_account_line_ipnr_split/models/sale_order.py:0
+#, python-format
+msgid "No record found in l10n.es.aeat.mod592.report. Cannot read amount_plastic_tax."
+msgstr "No s'ha trobat cap registre a l10n.es.aeat.mod592.report. No es pot llegir amount_plastic_tax."
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,help:sale_account_line_ipnr_split.field_res_config_settings__x_ipnr_rounding_digits
+msgid ""
+"Number of decimal places used when rounding IPNR unit prices (default: 6)."
+msgstr ""
+"Nombre de decimals utilitzats en arrodonir els preus unitaris de l'IPNR (per"
+" defecte: 6)."
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,field_description:sale_account_line_ipnr_split.field_sale_order_line__x_ipnr_gross_price_unit
+msgid "Original unit price (with IPNR)"
+msgstr "Preu unitari original (amb IPNR)"
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,help:sale_account_line_ipnr_split.field_sale_order_line__x_ipnr_gross_price_unit
+msgid ""
+"Original unit price before IPNR breakdown (IPNR included). It is used to "
+"reverse the breakdown and to transfer the gross price to the invoice."
+msgstr ""
+"Preu unitari original abans del desglossament de l'IPNR (IPNR inclòs). "
+"S'utilitza per revertir el desglossament i transferir el preu brut a la "
+"factura."
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,help:sale_account_line_ipnr_split.field_account_move_line__x_ipnr_gross_price_unit
+msgid ""
+"Original unit price before IPNR breakdown (IPNR included). It is used to "
+"reverse the breakdown."
+msgstr ""
+"Preu unitari original abans del desglossament de l'IPNR (IPNR inclòs). "
+"S'utilitza per revertir el desglossament."
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,field_description:sale_account_line_ipnr_split.field_account_move_line__x_ipnr_parent_line_id
+msgid "Parent invoice line ID"
+msgstr "ID de línia de factura mare"
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,field_description:sale_account_line_ipnr_split.field_sale_order_line__x_ipnr_parent_line_id
+msgid "Parent order line ID"
+msgstr "ID de línia de comanda mare"
+
+#. module: sale_account_line_ipnr_split
+#: model_terms:ir.ui.view,arch_db:sale_account_line_ipnr_split.res_config_settings_view_form
+msgid "Product used for IPNR breakdown lines."
+msgstr "Producte utilitzat per a les línies de desglossament de l'IPNR."
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,help:sale_account_line_ipnr_split.field_res_config_settings__x_ipnr_product_id
+msgid "Product used to represent the IPNR line in sales orders and invoices."
+msgstr ""
+"Producte utilitzat per representar la línia d'IPNR en comandes de venda i "
+"factures."
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,field_description:sale_account_line_ipnr_split.field_res_config_settings__x_ipnr_rounding_digits
+#: model_terms:ir.ui.view,arch_db:sale_account_line_ipnr_split.res_config_settings_view_form
+msgid "Rounding decimals"
+msgstr "Decimals d'arrodoniment"
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model,name:sale_account_line_ipnr_split.model_sale_order
+msgid "Sales Order"
+msgstr "Comanda de venda"
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model,name:sale_account_line_ipnr_split.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línia comanda de venda"
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,help:sale_account_line_ipnr_split.field_sale_order_line__x_ipnr_parent_line_id
+msgid "Sales order line to which this IPNR line belongs."
+msgstr "Línia de comanda de venda a la qual pertany aquesta línia d'IPNR."
+
+#. module: sale_account_line_ipnr_split
+#. odoo-python
+#: code:addons/sale_account_line_ipnr_split/models/account_move.py:0
+#: code:addons/sale_account_line_ipnr_split/models/sale_order.py:0
+#, python-format
+msgid "The configured IPNR product no longer exists. Please update it in Sales Settings → IPNR."
+msgstr "El producte IPNR configurat ja no existeix. Si us plau, actualitzeu-lo a Configuració de Vendes → IPNR."
+
+#. module: sale_account_line_ipnr_split
+#: model:ir.model.fields,field_description:sale_account_line_ipnr_split.field_account_move_line__x_ipnr_gross_price_unit
+msgid "Unit price including IPNR"
+msgstr "Preu unitari amb IPNR inclòs"
