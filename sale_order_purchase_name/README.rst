@@ -37,4 +37,4 @@ Contributors
 * `AvanzOsc <http://www.avanzosc.es>`_:
 
   * Ana Juaristi <anajuaristi@avanzosc.es>
-  * Alfredo de la Fuente <alfredodelafuente@avanzosc.es>
+  * Alfredo de la fuente <alfredodelafuente@avanzosc.es>
