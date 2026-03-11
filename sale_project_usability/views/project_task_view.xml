@@ -4,18 +4,18 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="sale_project.view_sale_project_inherit_form" />
         <field name="arch" type="xml">
-            <field name="sale_line_id" position="after">
+                        <xpath expr="//div[@name='sale_line_div']" position="after">
                 <field
           name="sale_line_product_id"
-          attrs="{'invisible': [('partner_id', '=', False)]}"
+                    invisible="not partner_id"
           readonly="1"
         />
                 <field
           name="sale_line_product_uom_qty"
-          attrs="{'invisible': [('partner_id', '=', False)]}"
+                    invisible="not partner_id"
           readonly="1"
         />
-            </field>
+                        </xpath>
         </field>
     </record>
 </odoo>
