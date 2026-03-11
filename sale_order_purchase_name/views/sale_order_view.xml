@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="view_order_form" model="ir.ui.view">
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="arch" type="xml">
-            <field name="payment_term_id" position="after">
-                <field
-          name="purchase_name"
-          attrs="{'invisible': [('purchase_name', 'in', ['', False])]}"
-        />
-            </field>
-        </field>
-    </record>
+  <record id="view_order_form" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+      <field name="payment_term_id" position="after">
+        <field name="purchase_name" invisible="not purchase_name" />
+      </field>
+    </field>
+  </record>
 
-    <record id="view_order_tree" model="ir.ui.view">
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree" />
-        <field name="arch" type="xml">
-            <field name="team_id" position="after">
-                <field name="purchase_name" optional="show" />
-            </field>
-        </field>
-    </record>
+  <record id="view_order_tree" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_tree" />
+    <field name="arch" type="xml">
+      <field name="team_id" position="after">
+        <field name="purchase_name" optional="show" />
+      </field>
+    </field>
+  </record>
 
-    <record id="view_quotation_tree" model="ir.ui.view">
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_quotation_tree" />
-        <field name="arch" type="xml">
-            <field name="team_id" position="after">
-                <field name="purchase_name" optional="show" />
-            </field>
-        </field>
-    </record>
+  <record id="view_quotation_tree" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_quotation_tree" />
+    <field name="arch" type="xml">
+      <field name="team_id" position="after">
+        <field name="purchase_name" optional="show" />
+      </field>
+    </field>
+  </record>
 </odoo>
