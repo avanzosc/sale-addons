@@ -1,8 +1,20 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    @api.model
+    def _default_delivery_timetable(self):
+        partner_id = self.env.context.get("default_partner_id")
+        if not partner_id:
+            return False
+        return self.env["res.partner"].browse(partner_id).delivery_timetable
+
+    @api.onchange("partner_id")
+    def _onchange_partner_delivery_timetable(self):
+        for order in self:
+            order.delivery_timetable = order.partner_id.delivery_timetable
 
     integrator_id = fields.Many2one(
         "res.partner",
@@ -29,9 +41,7 @@ class SaleOrder(models.Model):
         "res.partner",
         string="Technical Contact",
     )
-    training = fields.Text(
-        string="Training",
-    )
+    training = fields.Text()
     installation_done_by_id = fields.Many2one(
         "res.partner",
         string="Installation Done By",
@@ -46,7 +56,6 @@ class SaleOrder(models.Model):
         domain="[('partner_id', '=', partner_id)]",
     )
     delivery_timetable = fields.Char(
-        string="Delivery Timetable",
-        default=lambda self: self.partner_id.delivery_timetable,
+        default=_default_delivery_timetable,
         store=True,
     )

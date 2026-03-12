@@ -5,7 +5,4 @@ class InstallType(models.Model):
     _name = "install.type"
     _description = "Installation Type"
 
-    name = fields.Char(
-        string="Name",
-        required=True,
-    )
+    name = fields.Char(required=True)

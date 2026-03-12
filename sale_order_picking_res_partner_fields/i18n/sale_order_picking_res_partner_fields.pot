@@ -18,37 +18,37 @@ msgstr ""
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model,name:sale_order_picking_res_partner_fields.model_res_partner
 msgid "Contact"
-msgstr "Contacto"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__sale_phone
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_stock_picking__sale_phone
 msgid "Contact Phone for Delivery"
-msgstr "Teléfono de contacto para la entrega"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_install_type__create_uid
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_structure_type__create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_install_type__create_date
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_structure_type__create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model_terms:ir.ui.view,arch_db:sale_order_picking_res_partner_fields.view_sale_order_form
 #: model_terms:ir.ui.view,arch_db:sale_order_picking_res_partner_fields.view_stock_picking_form
 msgid "Delivery Information"
-msgstr "Información de entrega"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__delivery_note
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_stock_picking__delivery_note
 msgid "Delivery Notes"
-msgstr "Notas de entrega"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_res_partner__delivery_timetable
@@ -56,99 +56,99 @@ msgstr "Notas de entrega"
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__delivery_timetable
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_stock_picking__delivery_timetable
 msgid "Delivery Timetable"
-msgstr "Horario de entrega"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_install_type__display_name
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_structure_type__display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__install_date
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_stock_picking__install_date
 msgid "Estimated Installation Date"
-msgstr "Fecha estimada de instalación"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_install_type__id
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_structure_type__id
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__initial_order_id
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_stock_picking__initial_order_id
 msgid "Initial Order"
-msgstr "Pedido inicial"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__install_address_id
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_stock_picking__install_address_id
 msgid "Installation Address"
-msgstr "Dirección de instalación"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__installation_done_by_id
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_stock_picking__installation_done_by_id
 msgid "Installation Done By"
-msgstr "Instalación realizada por"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model,name:sale_order_picking_res_partner_fields.model_install_type
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__install_type_id
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_stock_picking__install_type_id
 msgid "Installation Type"
-msgstr "Tipo de instalación"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__integrator_id
 msgid "Integrator"
-msgstr "Integrador"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_install_type__write_uid
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_structure_type__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_install_type__write_date
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_structure_type__write_date
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_install_type__name
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_structure_type__name
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model,name:sale_order_picking_res_partner_fields.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model,name:sale_order_picking_res_partner_fields.model_structure_type
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__structure_type_id
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_stock_picking__structure_type_id
 msgid "Structure Type"
-msgstr "Tipo de estructura"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__technical_contact_id
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_stock_picking__technical_contact_id
 msgid "Technical Contact"
-msgstr "Contacto técnico"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_sale_order__training
 #: model:ir.model.fields,field_description:sale_order_picking_res_partner_fields.field_stock_picking__training
 msgid "Training"
-msgstr "Formación"
+msgstr ""
 
 #. module: sale_order_picking_res_partner_fields
 #: model:ir.model,name:sale_order_picking_res_partner_fields.model_stock_picking
 msgid "Transfer"
-msgstr "Traslado"
+msgstr ""
