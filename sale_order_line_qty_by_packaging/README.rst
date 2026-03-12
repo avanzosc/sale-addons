@@ -6,8 +6,11 @@
 Sale order line qty by packaging
 ================================
 
-* On sales order lines, if "Packaging Quantity" is entered, calculate the
- "Quantity".
+This module improves sale order line behavior when product packaging is used.
+
+* If "Packaging Quantity" is entered, "Quantity" is calculated automatically.
+* If "Quantity" is modified, "Packaging Quantity" is recalculated.
+* If a product has a single packaging defined, it is selected automatically.
 
 Bug Tracker
 ===========
