@@ -6,10 +6,8 @@ from odoo import models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    def _prepare_purchase_order_data(self, company, company_partner):
-        values = super(SaleOrder, self)._prepare_purchase_order_data(
-            company, company_partner
-        )
+    def _prepare_purchase_order_data(self, *args, **kwargs):
+        values = super()._prepare_purchase_order_data(*args, **kwargs)
         if self.origin:
             values["origin"] = self.origin
         return values
