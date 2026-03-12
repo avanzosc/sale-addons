@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_import_wizard_lot
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-12 12:53+0000\n"
+"PO-Revision-Date: 2026-03-12 12:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_import_wizard_lot
+#: model:ir.model.fields,field_description:sale_import_wizard_lot.field_sale_order_import__display_name
+#: model:ir.model.fields,field_description:sale_import_wizard_lot.field_sale_order_import_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_import_wizard_lot
+#: code:addons/sale_import_wizard_lot/models/sale_order_import_line.py:0
+#, python-format
+msgid "Error: More than one lot found with name '%s'."
+msgstr ""
+
+#. module: sale_import_wizard_lot
+#: code:addons/sale_import_wizard_lot/models/sale_order_import_line.py:0
+#, python-format
+msgid "Error: No lot found with name '%s'."
+msgstr ""
+
+#. module: sale_import_wizard_lot
+#: model:ir.model.fields,field_description:sale_import_wizard_lot.field_sale_order_import__id
+#: model:ir.model.fields,field_description:sale_import_wizard_lot.field_sale_order_import_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_import_wizard_lot
+#: model:ir.model.fields,field_description:sale_import_wizard_lot.field_sale_order_import____last_update
+#: model:ir.model.fields,field_description:sale_import_wizard_lot.field_sale_order_import_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_import_wizard_lot
+#: model:ir.model.fields,field_description:sale_import_wizard_lot.field_sale_order_import_line__lot_id
+msgid "Lot"
+msgstr ""
+
+#. module: sale_import_wizard_lot
+#: model:ir.model.fields,field_description:sale_import_wizard_lot.field_sale_order_import_line__lot_name
+msgid "Lot Name"
+msgstr ""
+
+#. module: sale_import_wizard_lot
+#: model:ir.model,name:sale_import_wizard_lot.model_sale_order_import_line
+msgid "Wizard lines to import sale orders"
+msgstr ""
+
+#. module: sale_import_wizard_lot
+#: model:ir.model,name:sale_import_wizard_lot.model_sale_order_import
+msgid "Wizard to import sale orders"
+msgstr ""
