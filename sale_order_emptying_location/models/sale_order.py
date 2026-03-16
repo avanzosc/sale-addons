@@ -28,7 +28,7 @@ class SaleOrder(models.Model):
                 and sale.type_id.picking_type_id.default_location_src_id
                 and sale.state == "draft"
             ):
-                show_empty_location = True
+                show_empty_location = sale.type_id.picking_type_id.show_empty_location
             sale.show_empty_location = show_empty_location
 
     def button_empty_location(self):
