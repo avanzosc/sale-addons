@@ -11,6 +11,7 @@
     "depends": [
         "sale_order_type_picking",
         "sale_order_lot_selection",
+        "stock_picking_emptying_location",
     ],
     "data": [
         "views/sale_order_view.xml",
