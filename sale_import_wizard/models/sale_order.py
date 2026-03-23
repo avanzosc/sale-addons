@@ -10,11 +10,11 @@ class SaleOrder(models.Model):
         string="From Sale Import",
         comodel_name="sale.order.import",
         copy=False,
-        readonly="1",
+        readonly=True,
     )
     total_amount_from_import = fields.Float(
         string="Total amount from import",
-        readonly="1",
+        readonly=True,
         copy=False,
     )
     different_amounts = fields.Boolean(
