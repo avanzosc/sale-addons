@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="sale_order_import_view_form_help_drc_columns" model="ir.ui.view">
+    <field name="model">sale.order.import</field>
+    <field name="inherit_id" ref="sale_import_wizard.sale_order_import_view_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//page[@name='help_page']//ul[@name='tutorial']" position="inside">
+        <li><code>Pedido de Venta</code>: this will fill <b>Sales Order</b></li>
+        <li><code>Fecha pedido</code>: this will fill <b>Order Date</b></li>
+        <li>
+          <code>Fecha de confirmación</code>: this will fill
+          <b>Confirmation Date</b>
+        </li>
+        <li><code>Estado</code>: this will fill <b>Status</b></li>
+        <li><code>Nombre cliente</code>: this will fill <b>Customer Name</b></li>
+        <li><code>Equipo de ventas</code>: this will fill <b>Sales Team</b></li>
+        <li>
+          <code>Referencia cliente</code>: this will fill
+          <b>Customer Reference</b>
+        </li>
+        <li><code>Código de Moneda</code>: this will fill <b>Currency Code</b></li>
+        <li><code>Tipo de cambio</code>: this will fill <b>Exchange Rate</b></li>
+        <li><code>Nombre producto</code>: this will fill <b>Product Name</b></li>
+        <li><code>SKU</code>: this will fill <b>SKU</b></li>
+        <li><code>Cantidad</code>: this will fill <b>Quantity</b></li>
+        <li><code>Precio unitario</code>: this will fill <b>Unit Price</b></li>
+        <li>
+          <code>Impuesto incluido</code>: this will fill
+          <b>Included Tax Amount</b>
+        </li>
+        <li><code>Total de artículo</code>: this will fill <b>Item Total</b></li>
+        <li><code>Subtotal de línea</code>: this will fill <b>Line Subtotal</b></li>
+        <li><code>Total de línea</code>: this will fill <b>Line Total</b></li>
+      </xpath>
+    </field>
+  </record>
+</odoo>

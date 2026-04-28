@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="sale_order_import_line_view_form_drc_columns" model="ir.ui.view">
+    <field name="model">sale.order.import.line</field>
+    <field name="priority">99</field>
+    <field
+      name="inherit_id"
+      ref="sale_import_wizard.sale_order_import_line_view_form"
+    />
+    <field name="arch" type="xml">
+      <sheet position="replace">
+        <sheet>
+          <group>
+            <group>
+              <field
+                name="order_name"
+                string="Pedido de Venta"
+                readonly="state == 'done'"
+              />
+              <field
+                name="date_order"
+                string="Fecha pedido"
+                readonly="state == 'done'"
+              />
+              <field
+                name="confirmation_date"
+                string="Fecha de confirmación"
+                readonly="state == 'done'"
+              />
+              <field name="line_type" string="Estado" readonly="state == 'done'" />
+              <field
+                name="customer_name"
+                string="Nombre cliente"
+                readonly="state == 'done'"
+              />
+              <field
+                name="customer_id"
+                string="Cliente"
+                options="{'no_create': True, 'no_open': True}"
+                readonly="state == 'done'"
+              />
+              <field
+                name="sales_team_import"
+                string="Equipo de ventas"
+                readonly="state == 'done'"
+              />
+              <field
+                name="customer_reference"
+                string="Referencia cliente"
+                readonly="state == 'done'"
+              />
+              <field
+                name="currency_code_import"
+                string="Código de Moneda"
+                readonly="state == 'done'"
+              />
+              <field
+                name="exchange_rate_import"
+                string="Tipo de cambio"
+                readonly="state == 'done'"
+              />
+            </group>
+            <group>
+              <field
+                name="product_name"
+                string="Nombre producto"
+                readonly="state == 'done'"
+              />
+              <field name="product_code" string="SKU" readonly="state == 'done'" />
+              <field
+                name="product_id"
+                string="Producto"
+                options="{'no_create': True, 'no_open': True}"
+                readonly="state == 'done'"
+              />
+              <field name="quantity" string="Cantidad" readonly="state == 'done'" />
+              <field
+                name="price_unit"
+                string="Precio unitario"
+                readonly="state == 'done'"
+              />
+              <field
+                name="included_tax_amount_import"
+                string="Impuesto incluido"
+                readonly="state == 'done'"
+              />
+              <field
+                name="item_total_amount"
+                string="Total de artículo"
+                readonly="state == 'done'"
+              />
+              <field
+                name="line_subtotal_amount"
+                string="Subtotal de línea"
+                readonly="state == 'done'"
+              />
+              <field
+                name="line_total_amount"
+                string="Total de línea"
+                readonly="state == 'done'"
+              />
+            </group>
+          </group>
+          <field name="log_info" />
+        </sheet>
+      </sheet>
+    </field>
+  </record>
+
+  <record id="sale_order_import_line_view_tree_drc_columns" model="ir.ui.view">
+    <field name="model">sale.order.import.line</field>
+    <field name="priority">99</field>
+    <field
+      name="inherit_id"
+      ref="sale_import_wizard.sale_order_import_line_view_tree"
+    />
+    <field name="arch" type="xml">
+      <list position="replace">
+        <list
+          decoration-danger="state == 'error'"
+          decoration-muted="state == 'done'"
+          decoration-it="log_info"
+          editable="top"
+        >
+          <field
+            name="order_name"
+            string="Pedido de Venta"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="date_order"
+            string="Fecha pedido"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="confirmation_date"
+            string="Fecha de confirmación"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="line_type"
+            string="Estado"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="customer_name"
+            string="Nombre cliente"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="customer_id"
+            string="Cliente"
+            options="{'no_create': True, 'no_open': True}"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="sales_team_import"
+            string="Equipo de ventas"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="customer_reference"
+            string="Referencia cliente"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="currency_code_import"
+            string="Código de Moneda"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="exchange_rate_import"
+            string="Tipo de cambio"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="product_name"
+            string="Nombre producto"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="product_code"
+            string="SKU"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="product_id"
+            string="Producto"
+            options="{'no_create': True, 'no_open': True}"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="quantity"
+            string="Cantidad"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="price_unit"
+            string="Precio unitario"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="included_tax_amount_import"
+            string="Impuesto incluido"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="item_total_amount"
+            string="Total de artículo"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="line_subtotal_amount"
+            string="Subtotal de línea"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field
+            name="line_total_amount"
+            string="Total de línea"
+            readonly="state == 'done'"
+            optional="show"
+          />
+          <field name="state" invisible="1" />
+          <field name="log_info" invisible="1" />
+        </list>
+      </list>
+    </field>
+  </record>
+</odoo>
