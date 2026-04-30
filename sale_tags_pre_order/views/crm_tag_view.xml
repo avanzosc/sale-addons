@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="sales_team_crm_tag_view_tree" model="ir.ui.view">
+    <field name="model">crm.tag</field>
+    <field name="inherit_id" ref="sales_team.sales_team_crm_tag_view_tree" />
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="is_pre_order" />
+      </field>
+    </field>
+  </record>
+</odoo>
