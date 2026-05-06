@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-30 12:08+0000\n"
-"PO-Revision-Date: 2026-04-30 12:08+0000\n"
+"POT-Creation-Date: 2026-05-06 12:47+0000\n"
+"PO-Revision-Date: 2026-05-06 12:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,41 @@ msgid "CRM Tag"
 msgstr "Etiqueta CRM"
 
 #. module: sale_tags_pre_order
+#: model:ir.model.fields,field_description:sale_tags_pre_order.field_crm_tag__invoice_mode
+msgid "Invoice Mode"
+msgstr "Modo de facturación"
+
+#. module: sale_tags_pre_order
 #: model:ir.model.fields,field_description:sale_tags_pre_order.field_crm_tag__is_pre_order
 msgid "Is Pre Order"
 msgstr "Pre-order"
 
 #. module: sale_tags_pre_order
+#: model:ir.model.fields,field_description:sale_tags_pre_order.field_shopify_payment_gateway_ept__journal_id
+msgid "Journal"
+msgstr "Diario"
+
+#. module: sale_tags_pre_order
+#: model:ir.model.fields.selection,name:sale_tags_pre_order.selection__crm_tag__invoice_mode__none
+msgid "None"
+msgstr "Ninguna"
+
+#. module: sale_tags_pre_order
+#: model:ir.model.fields.selection,name:sale_tags_pre_order.selection__crm_tag__invoice_mode__open
+msgid "Open"
+msgstr "Abierta"
+
+#. module: sale_tags_pre_order
+#: model:ir.model.fields.selection,name:sale_tags_pre_order.selection__crm_tag__invoice_mode__paid
+msgid "Paid"
+msgstr "Pagada"
+
+#. module: sale_tags_pre_order
 #: model:ir.model,name:sale_tags_pre_order.model_sale_order
 msgid "Sales Order"
 msgstr "Pedidos de Venta"
+
+#. module: sale_tags_pre_order
+#: model:ir.model,name:sale_tags_pre_order.model_shopify_payment_gateway_ept
+msgid "Shopify Payment Gateway"
+msgstr "Payment Gateway"

@@ -6,6 +6,7 @@
     <field name="arch" type="xml">
       <field name="name" position="after">
         <field name="is_pre_order" />
+        <field name="invoice_mode" />
       </field>
     </field>
   </record>
