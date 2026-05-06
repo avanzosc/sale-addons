@@ -38,7 +38,7 @@ msgstr "Diario"
 #. module: sale_tags_pre_order
 #: model:ir.model.fields.selection,name:sale_tags_pre_order.selection__crm_tag__invoice_mode__none
 msgid "None"
-msgstr "Ninguna"
+msgstr "Borrador"
 
 #. module: sale_tags_pre_order
 #: model:ir.model.fields.selection,name:sale_tags_pre_order.selection__crm_tag__invoice_mode__open
