@@ -15,6 +15,7 @@
     "excludes": [],
     "data": [
         "views/crm_tag_view.xml",
+        "views/shopify_payment_gateway_ept_view.xml",
     ],
     "installable": True,
 }
