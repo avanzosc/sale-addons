@@ -254,6 +254,7 @@
     name="Deliverymen"
     id="deliverymen_menu"
     sequence="130"
+    groups="custom_sale_order_type_route.group_show_deliverymen_menu"
     web_icon="custom_sale_order_type_route,static/description/deliveremen.png"
   />
 
