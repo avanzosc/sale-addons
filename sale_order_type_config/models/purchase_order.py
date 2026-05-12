@@ -10,6 +10,7 @@ class PurchaseOrder(models.Model):
 
     @api.onchange("company_id")
     def _onchange_company_id(self):
-        super(PurchaseOrder, self)._onchange_company_id()
+        result = super()._onchange_company_id()
         if self.picking_type_id:
             self.picking_type_id = False
+        return result
