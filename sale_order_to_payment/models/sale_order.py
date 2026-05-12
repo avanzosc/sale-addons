@@ -36,7 +36,7 @@ class SaleOrder(models.Model):
             context.update({"default_partner_id": self.partner_id.id})
         return {
             "name": _("Payments"),
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "res_model": "account.payment",
             "domain": [("id", "in", self.payment_ids.ids)],
             "type": "ir.actions.act_window",
