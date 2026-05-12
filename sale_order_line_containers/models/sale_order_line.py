@@ -7,4 +7,4 @@ from odoo import fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    container = fields.Integer(string="Container")
+    container = fields.Integer()
