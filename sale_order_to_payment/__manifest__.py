@@ -10,7 +10,6 @@
     "depends": [
         "account",
         "sale",
-        "account_move_to_payment",
     ],
     "data": [
         "views/sale_order_view.xml",
