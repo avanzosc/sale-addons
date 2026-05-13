@@ -25,8 +25,6 @@ class SaleOrder(models.Model):
             )
         ):
             return
-        if self.invoice_ids:
-            return
         self.create_advance_invoice()
 
     def create_advance_invoice(self):
@@ -71,4 +69,5 @@ class SaleOrder(models.Model):
                 wizard._compute_payment_method_line_id()
                 vals = wizard._convert_to_write(wizard._cache)
                 wizard = wizard_model.create(vals)
+                wizard.journal_id = order.shopify_payment_gateway_id.journal_id.id
                 wizard.action_create_payments()
