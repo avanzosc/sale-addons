@@ -8,9 +8,6 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     special_burden = fields.Boolean(
-        string="Special Burden",
         default=False,
     )
-    distribution_sequence = fields.Integer(
-        string="Distribution Sequence",
-    )
+    distribution_sequence = fields.Integer()

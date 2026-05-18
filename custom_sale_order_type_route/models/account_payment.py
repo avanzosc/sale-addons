@@ -9,7 +9,6 @@ class AccountPayment(models.Model):
 
     amount_signed = fields.Monetary(
         compute="_compute_amount_signed",
-        string="Amount",
         store=True,
     )
 

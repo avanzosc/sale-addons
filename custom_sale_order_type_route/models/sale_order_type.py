@@ -8,11 +8,10 @@ class SaleOrderType(models.Model):
     _inherit = "sale.order.type"
 
     not_route_type = fields.Boolean(
-        string="Not Route Type",
         default=False,
     )
     burden_picking_type = fields.Many2one(
-        string="Burden Picking Type", comodel_name="stock.picking.type"
+        comodel_name="stock.picking.type",
     )
 
     def action_view_contact(self):
@@ -24,7 +23,7 @@ class SaleOrderType(models.Model):
         )
         return {
             "name": _("Contacts"),
-            "view_mode": "tree",
+            "view_mode": "list",
             "view_id": self.env.ref(
                 "custom_sale_order_type_route.view_partner_tree_editable"
             ).id,

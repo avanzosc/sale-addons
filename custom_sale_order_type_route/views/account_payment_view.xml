@@ -19,14 +19,8 @@
         <field name="model">account.payment</field>
         <field name="inherit_id" ref="account.view_account_payment_tree" />
         <field name="arch" type="xml">
-            <field name="amount" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </field>
-            <field name="amount" position="after">
-                <field name="amount_signed" sum="Amount Signed" />
-            </field>
             <field name="date" position="after">
-                <field name="date_due" />
+                <field name="date_due" optional="show" />
             </field>
         </field>
     </record>
@@ -35,7 +29,7 @@
         <field name="name">My Payments</field>
         <field name="res_model">account.payment</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('invoice_user_id', '=', uid)]</field>
         <field name="context">{"search_default_today": 1}</field>
     </record>
