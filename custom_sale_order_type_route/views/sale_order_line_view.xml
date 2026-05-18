@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+  <record id="view_order_line_tree" model="ir.ui.view">
+    <field name="model">sale.order.line</field>
+    <field name="inherit_id" ref="sale.view_order_line_tree" />
+    <field name="arch" type="xml">
+      <field name="salesman_id" position="after">
+        <field name="special_partner_id" optional="show" />
+      </field>
+    </field>
+  </record>
 
-    <record id="view_order_line_tree" model="ir.ui.view">
-        <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.view_order_line_tree" />
-        <field name="arch" type="xml">
-            <field name="salesman_id" position="after">
-                <field name="special_partner_id" optional="show" />
-            </field>
-        </field>
-    </record>
-
-    <record id="action_create_burden_wizard" model="ir.actions.act_window">
-        <field name="name">Create Burden</field>
-        <field name="res_model">burden.picking.wizard</field>
-        <field name="binding_model_id" ref="sale.model_sale_order_line" />
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-    </record>
-
+  <record id="action_create_burden_wizard" model="ir.actions.act_window">
+    <field name="name">Create Burden</field>
+    <field name="res_model">burden.picking.wizard</field>
+    <field name="binding_model_id" ref="sale.model_sale_order_line" />
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
 </odoo>
