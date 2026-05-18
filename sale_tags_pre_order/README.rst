@@ -10,7 +10,7 @@ Sale Tags Pre-Order
 |badge1|
 
 This module adds new field in sale tags that indicates a pre-order tag.
-When confirming the sale order, if it has any pre-order tag, it creates a advance invoice with 100% automatically.
+When confirming the sale order, if it has any pre-order tag, it creates and confirmes a advance invoice with 100% automatically.
 
 Bug Tracker
 ===========
