@@ -13,10 +13,9 @@ class SaleOrder(models.Model):
         store=True,
     )
     deliverement_menu = fields.Boolean(
-        string="Deliverement Menu", compute="_compute_deliverement_menu"
+        compute="_compute_deliverement_menu",
     )
     special_burden = fields.Boolean(
-        string="Special Burden",
         default=False,
     )
     partner_distribution_sequence = fields.Integer(
@@ -28,8 +27,9 @@ class SaleOrder(models.Model):
     def _compute_deliverement_menu(self):
         for sale in self:
             deliverement = False
-            if "default_deliverement_menu" in self.env.context and (
-                self.env.context["default_deliverement_menu"]
+            if (
+                "default_deliverement_menu" in self.env.context
+                and (self.env.context["default_deliverement_menu"])
             ):
                 deliverement = True
             sale.deliverement_menu = deliverement
@@ -53,7 +53,5 @@ class SaleOrder(models.Model):
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
-        result = super(SaleOrder, self).onchange_partner_id()
         if self.partner_id:
             self.special_burden = self.partner_id.special_burden
-        return result

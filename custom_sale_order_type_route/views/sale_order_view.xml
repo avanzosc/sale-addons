@@ -4,11 +4,11 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
         <field name="arch" type="xml">
-            <tree position="attributes">
+            <list position="attributes">
                 <attribute
           name="default_order"
         >partner_distribution_sequence, name</attribute>
-            </tree>
+            </list>
             <field name="name" position="before">
                 <field name="partner_distribution_sequence" optional="hide" />
             </field>
@@ -25,187 +25,90 @@
             <field name="partner_invoice_id" position="after">
                 <field name="deliverement_menu" invisible="1" />
             </field>
-            <field name="partner_id" position="attributes">
-                <attribute
-          name="options"
-        >{'no_create': [('deliverement_menu', '=', True)]}</attribute>
-            </field>
-            <field name="type_id" position="attributes">
-                <attribute
-          name="options"
-        >{'no_create': [('deliverement_menu', '=', True)]}</attribute>
-            </field>
             <group name="partner_details" position="inside">
                 <field
           name="type_id"
-          attrs="{'invisible': [('deliverement_menu', '=', False)]}"
+          invisible="not deliverement_menu"
           required="1"
         />
             </group>
             <group name="partner_details" position="inside">
                 <field
           name="date_order"
-          attrs="{'invisible': [('deliverement_menu', '=', False)]}"
+          invisible="not deliverement_menu"
         />
             </group>
             <group name="partner_details" position="inside">
                 <field
           name="commitment_date"
-          attrs="{'invisible': [('deliverement_menu', '=', False)]}"
+          invisible="not deliverement_menu"
         />
             </group>
             <field name="partner_invoice_id" position="attributes">
-                <attribute
-          name="attrs"
-        >{'invisible': [('deliverement_menu', '=', True)]}</attribute>
+                <attribute name="invisible">deliverement_menu</attribute>
             </field>
             <field name="partner_shipping_id" position="attributes">
-                <attribute
-          name="attrs"
-        >{'invisible': [('deliverement_menu', '=', True)]}</attribute>
-            </field>
-            <field name="warehouse_id" position="attributes">
-                <attribute
-          name="attrs"
-        >{'invisible': [('deliverement_menu', '=', True)]}</attribute>
+                <attribute name="invisible">deliverement_menu</attribute>
             </field>
             <field name="user_id" position="attributes">
-                <attribute
-          name="attrs"
-        >{'invisible': [('deliverement_menu', '=', True)]}</attribute>
+                <attribute name="invisible">deliverement_menu</attribute>
             </field>
             <group name="order_details" position="attributes">
-                <attribute
-          name="attrs"
-        >{'invisible': [('deliverement_menu', '=', True)]}</attribute>
+                <attribute name="invisible">deliverement_menu</attribute>
             </group>
             <xpath
         expr="//field[@name='order_line']/form//field[@name='product_uom']"
         position="attributes"
       >
-                <attribute
-          name="attrs"
-        >{'readonly': [('parent.deliverement_menu', '=', True)]}</attribute>
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/form//label[@for='qty_pending_delivery']"
-        position="attributes"
-      >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/form//field[@name='qty_pending_delivery']"
-        position="attributes"
-      >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
+                <attribute name="readonly">parent.deliverement_menu</attribute>
             </xpath>
             <xpath
         expr="//field[@name='order_line']/form//label[@for='qty_invoiced']"
         position="attributes"
       >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
+                <attribute name="invisible">parent.deliverement_menu</attribute>
             </xpath>
             <xpath
         expr="//field[@name='order_line']/form//div[@name='invoiced_qty']"
         position="attributes"
       >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/form//label[@for='qty_pending_invoicing']"
-        position="attributes"
-      >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/form//field[@name='qty_pending_invoicing']"
-        position="attributes"
-      >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/form//label[@for='qty_shipped_pending_invoicing']"
-        position="attributes"
-      >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/form//field[@name='qty_shipped_pending_invoicing']"
-        position="attributes"
-      >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
+                <attribute name="invisible">parent.deliverement_menu</attribute>
             </xpath>
             <xpath
         expr="//field[@name='order_line']/form//field[@name='container']"
         position="attributes"
       >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
+                <attribute name="invisible">parent.deliverement_menu</attribute>
             </xpath>
             <xpath
         expr="//field[@name='order_line']/form//field[@name='tax_id']"
         position="attributes"
       >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
+                <attribute name="invisible">parent.deliverement_menu</attribute>
             </xpath>
             <xpath
         expr="//field[@name='order_line']/form//div[@name='invoice_lines']"
         position="attributes"
       >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
+                <attribute name="invisible">parent.deliverement_menu</attribute>
             </xpath>
             <xpath
         expr="//field[@name='order_line']/form//label[@for='customer_lead']"
         position="attributes"
       >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
+                <attribute name="invisible">parent.deliverement_menu</attribute>
             </xpath>
             <xpath
         expr="//field[@name='order_line']/form//div[@name='lead']"
         position="attributes"
       >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
+                <attribute name="invisible">parent.deliverement_menu</attribute>
             </xpath>
             <xpath
-        expr="//field[@name='order_line']/form//field[@name='route_id']"
+        expr="//field[@name='order_line']/form//field[@name='product_packaging_id']"
         position="attributes"
       >
-                <attribute
-          name="attrs"
-        >{'invisible': [('parent.deliverement_menu', '=', True)]}</attribute>
-            </xpath>
-            <xpath
-        expr="//field[@name='order_line']/form//field[@name='product_packaging']"
-        position="attributes"
-      >
-                <attribute
-          name="attrs"
-        >{'readonly': [('parent.deliverement_menu', '=', True)]}</attribute>
+                <attribute name="readonly">parent.deliverement_menu</attribute>
             </xpath>
             <xpath
         expr="//field[@name='order_line']/form//field[@name='price_unit']"
@@ -226,11 +129,76 @@
         </field>
     </record>
 
+    <record id="view_order_form_sale_stock" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field
+      name="inherit_id"
+      ref="sale_stock.view_order_form_inherit_sale_stock"
+    />
+        <field name="arch" type="xml">
+            <field name="warehouse_id" position="attributes">
+                <attribute name="invisible">deliverement_menu</attribute>
+            </field>
+            <xpath
+        expr="//field[@name='order_line']/form//field[@name='route_id']"
+        position="attributes"
+      >
+                <attribute name="invisible">parent.deliverement_menu</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_sale_line_pending_info" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field
+      name="inherit_id"
+      ref="sale_line_pending_info.sale_order_view_form"
+    />
+        <field name="arch" type="xml">
+            <xpath
+        expr="//field[@name='order_line']/form//label[@for='qty_pending_delivery']"
+        position="attributes"
+      >
+                <attribute name="invisible">parent.deliverement_menu</attribute>
+            </xpath>
+            <xpath
+        expr="//field[@name='order_line']/form//field[@name='qty_pending_delivery']"
+        position="attributes"
+      >
+                <attribute name="invisible">parent.deliverement_menu</attribute>
+            </xpath>
+            <xpath
+        expr="//field[@name='order_line']/form//label[@for='qty_pending_invoicing']"
+        position="attributes"
+      >
+                <attribute name="invisible">parent.deliverement_menu</attribute>
+            </xpath>
+            <xpath
+        expr="//field[@name='order_line']/form//field[@name='qty_pending_invoicing']"
+        position="attributes"
+      >
+                <attribute name="invisible">parent.deliverement_menu</attribute>
+            </xpath>
+            <xpath
+        expr="//field[@name='order_line']/form//label[@for='qty_shipped_pending_invoicing']"
+        position="attributes"
+      >
+                <attribute name="invisible">parent.deliverement_menu</attribute>
+            </xpath>
+            <xpath
+        expr="//field[@name='order_line']/form//field[@name='qty_shipped_pending_invoicing']"
+        position="attributes"
+      >
+                <attribute name="invisible">parent.deliverement_menu</attribute>
+            </xpath>
+        </field>
+    </record>
+
     <record id="action_route_type_sales" model="ir.actions.act_window">
         <field name="name">Sales</field>
         <field name="res_model">sale.order</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="domain">[('not_route_type', '=', False)]</field>
         <field
       name="context"
@@ -241,7 +209,7 @@
         <field name="name">My Sales</field>
         <field name="res_model">sale.order</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field
       name="domain"
     >[('not_route_type', '=', False), ('user_id', '=', uid)]</field>

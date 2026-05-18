@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Custom Sale Order Type Route",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "Avanzosc",
     "category": "Sales",
     "website": "https://github.com/avanzosc/sale-addons",

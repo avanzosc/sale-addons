@@ -11,12 +11,12 @@
             <field name="owner_id" position="after">
                 <field
           name="burden_partner_id"
-          attrs="{'column_invisible':[('parent.is_carry_type', '=', False)]}"
+          column_invisible="not parent.is_carry_type"
           optional="show"
         />
                  <field
           name="surplus"
-          attrs="{'column_invisible':[('parent.is_carry_type', '=', False)]}"
+          column_invisible="not parent.is_carry_type"
           optional="show"
         />
             </field>
