@@ -7,10 +7,8 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    payment_done = fields.Float(string="Payment Done", compute="_compute_payment_done")
-    pending_payment = fields.Float(
-        string="Pending Payment", compute="_compute_pending_payment", store=True
-    )
+    payment_done = fields.Float(compute="_compute_payment_done")
+    pending_payment = fields.Float(compute="_compute_pending_payment", store=True)
     picking_done = fields.Boolean(
         string="Pickings are done", compute="_compute_picking_done", store=True
     )
