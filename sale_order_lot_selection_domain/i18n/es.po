@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-10 12:09+0000\n"
-"PO-Revision-Date: 2024-06-10 12:09+0000\n"
+"POT-Creation-Date: 2026-05-21 13:37+0000\n"
+"PO-Revision-Date: 2026-05-21 13:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,42 +16,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_lot_selection_domain
-#: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_line__display_name
-#: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_type__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: sale_order_lot_selection_domain
-#: model:ir.model.fields,help:sale_order_lot_selection_domain.field_sale_order_line__tracking
-msgid "Ensure the traceability of a storable product in your warehouse."
-msgstr "Garantice la trazabilidad de un producto almacenable en su almacén."
-
-#. module: sale_order_lot_selection_domain
 #: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_type__filter_lot_by_location
 msgid "Filter Lot By Location"
 msgstr "Filtrar lotes por ubicación"
-
-#. module: sale_order_lot_selection_domain
-#: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_line__id
-#: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_type__id
-msgid "ID"
-msgstr "Identificador"
-
-#. module: sale_order_lot_selection_domain
-#: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_line____last_update
-#: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_type____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: sale_order_lot_selection_domain
-#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection_domain.view_order_form
-msgid "Lot:"
-msgstr "Lote:"
-
-#. module: sale_order_lot_selection_domain
-#: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_line__possible_lot_ids
-msgid "Possible Lot"
-msgstr "Lotes posibles"
 
 #. module: sale_order_lot_selection_domain
 #: model:ir.model,name:sale_order_lot_selection_domain.model_sale_order_line
@@ -59,23 +26,16 @@ msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
 
 #. module: sale_order_lot_selection_domain
+#. odoo-python
 #: code:addons/sale_order_lot_selection_domain/models/sale_order_line.py:0
-#: code:addons/sale_order_lot_selection_domain/models/sale_order_line.py:0
-#, python-format
 msgid "The order type does not have the picking type."
 msgstr "El tipo de pedido no tiene tipo de operación."
 
 #. module: sale_order_lot_selection_domain
+#. odoo-python
 #: code:addons/sale_order_lot_selection_domain/models/sale_order_line.py:0
-#: code:addons/sale_order_lot_selection_domain/models/sale_order_line.py:0
-#, python-format
 msgid "The picking type does not have the source location."
-msgstr "El tipo de operación no tiene la ubicación de origen."
-
-#. module: sale_order_lot_selection_domain
-#: model:ir.model.fields,field_description:sale_order_lot_selection_domain.field_sale_order_line__tracking
-msgid "Tracking"
-msgstr "Seguimiento"
+msgstr "El tipo de operación no tiene ubicación origen."
 
 #. module: sale_order_lot_selection_domain
 #: model:ir.model,name:sale_order_lot_selection_domain.model_sale_order_type

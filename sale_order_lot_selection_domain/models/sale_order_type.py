@@ -6,6 +6,4 @@ from odoo import fields, models
 class SaleOrderType(models.Model):
     _inherit = "sale.order.type"
 
-    filter_lot_by_location = fields.Boolean(
-        string="Filter Lot By Location", default=True
-    )
+    filter_lot_by_location = fields.Boolean(default=True)
