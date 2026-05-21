@@ -3,7 +3,8 @@
 
 {
     "name": "Sale Order Line Commitment Date",
-    "version": "14.0.1.0.0",
+    "summary": "Adds commitment date and sale type per order line",
+    "version": "18.0.1.0.0",
     "category": "Sales/Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
