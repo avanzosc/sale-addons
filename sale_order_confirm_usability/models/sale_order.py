@@ -18,18 +18,9 @@ class SaleOrder(models.Model):
     @api.depends("picking_ids", "picking_ids.state")
     def _compute_picking_done(self):
         for sale in self:
-            sale.picking_done = True
-            if (
-                (sale.picking_ids)
-                and any(
-                    [
-                        picking.state not in ("done", "cancel")
-                        for picking in sale.picking_ids
-                    ]
-                )
-                or not sale.picking_ids
-            ):
-                sale.picking_done = False
+            sale.picking_done = bool(sale.picking_ids) and all(
+                picking.state in ("done", "cancel") for picking in sale.picking_ids
+            )
 
     @api.depends(
         "invoice_ids", "invoice_ids.amount_total", "invoice_ids.amount_residual"
@@ -39,8 +30,8 @@ class SaleOrder(models.Model):
             sale.payment_done = 0
             if sale.invoice_ids:
                 total = sum(sale.invoice_ids.mapped("amount_total"))
-                pendig = sum(sale.invoice_ids.mapped("amount_residual"))
-                sale.payment_done = total - pendig
+                pending = sum(sale.invoice_ids.mapped("amount_residual"))
+                sale.payment_done = total - pending
 
     @api.depends("invoice_ids", "invoice_ids.amount_residual")
     def _compute_pending_payment(self):
@@ -73,21 +64,21 @@ class SaleOrder(models.Model):
                 if (
                     line.product_id
                     and line.move_id
-                    and (line.move_id.sale_line_id)
+                    and line.move_id.sale_line_id
                     and line.move_id.sale_line_id not in sale_lines
                 ):
                     sale_lines.append(line.move_id.sale_line_id)
                     line.write(
                         {
                             "lot_id": line.move_id.sale_line_id.lot_id.id,
-                            "qty_done": (
+                            "quantity": (
                                 line.move_id.sale_line_id.product_uom_qty
-                                - (line.move_id.sale_line_id.qty_delivered)
+                                - line.move_id.sale_line_id.qty_delivered
                             ),
                         }
                     )
                 else:
-                    line.qty_done = 0
+                    line.quantity = 0
             try:
                 if not picking.custom_date_done:
                     picking.custom_date_done = fields.Datetime.now()
@@ -99,8 +90,12 @@ class SaleOrder(models.Model):
     def button_create_invoice_and_paid(self):
         self.ensure_one()
         vals = {"advance_payment_method": "delivered"}
-        sale_payment = self.env["sale.advance.payment.inv"].create(vals)
-        sale_payment.with_context(active_ids=self.ids).create_invoices()
+        sale_payment = (
+            self.env["sale.advance.payment.inv"]
+            .with_context(active_ids=self.ids)
+            .create(vals)
+        )
+        sale_payment.create_invoices()
         for invoice in self.invoice_ids:
             if invoice.state == "draft":
                 invoice.action_post()
