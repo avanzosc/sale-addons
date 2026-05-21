@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+    <xpath expr="//t[@t-set='layout_document_title']/span[2]" position="attributes">
+      <attribute name="t-elif">
+                doc.state in ['draft','sent'] or doc.print_as_quotation
+            </attribute>
+    </xpath>
+    <xpath expr="//div[@name='informations_date']/strong[2]" position="attributes">
+      <attribute name="t-elif">
+                doc.state in ['draft','sent'] or doc.print_as_quotation
+            </attribute>
+    </xpath>
+    <xpath expr="//div[@name='informations_date']/strong[2]" position="attributes">
+      <attribute name="t-elif">
+                doc.state in ['draft','sent'] or doc.print_as_quotation
+            </attribute>
+    </xpath>
+    <div name="expiration_date" position="attributes">
+      <attribute name="t-if">
+                doc.state in ['draft','sent'] or doc.print_as_quotation
+            </attribute>
+    </div>
+  </template>
+</odoo>

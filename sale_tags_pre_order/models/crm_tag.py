@@ -8,3 +8,11 @@ class CRMTag(models.Model):
     _inherit = "crm.tag"
 
     is_pre_order = fields.Boolean()
+    invoice_mode = fields.Selection(
+        selection=[
+            ("none", "None"),
+            ("open", "Open"),
+            ("paid", "Paid"),
+        ],
+        default="none",
+    )
