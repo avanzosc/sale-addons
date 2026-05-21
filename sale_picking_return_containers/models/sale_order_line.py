@@ -7,8 +7,8 @@ from odoo.exceptions import ValidationError
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    returned_amount = fields.Float(string="Returned Amount")
-    pending_qty = fields.Float(string="Pending Qty")
+    returned_amount = fields.Float()
+    pending_qty = fields.Float()
 
     @api.onchange("returned_amount", "qty_delivered")
     def onchange_pending_qty(self):

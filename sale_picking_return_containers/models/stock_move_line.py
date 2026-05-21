@@ -22,13 +22,13 @@ class StockMoveLine(models.Model):
         string="Returnable", default=False, related="product_id.returnable", store=True
     )
 
-    @api.constrains("max_return", "qty_done")
+    @api.constrains("max_return", "quantity")
     def _check_max_return(self):
         for line in self:
             if (
                 line.product_id.returnable
                 and line.max_return != 0
-                and (line.qty_done > line.max_return)
+                and (line.quantity > line.max_return)
                 and (line.standard_price != 0)
             ):
                 raise ValidationError(
