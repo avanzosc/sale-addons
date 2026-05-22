@@ -9,8 +9,6 @@ class PurchaseOrderLine(models.Model):
     no_create_picking = fields.Boolean(default=False)
 
     def _create_or_update_picking(self):
-        for line in self:
-            if not line.no_create_picking:
-                return super()._create_or_update_picking()
-            else:
-                line.no_create_picking = False
+        skip = self.filtered("no_create_picking")
+        skip.no_create_picking = False
+        return super(PurchaseOrderLine, self - skip)._create_or_update_picking()
