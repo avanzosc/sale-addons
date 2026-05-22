@@ -2,7 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 {
     "name": "Sale Order Confirm Multicompany",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sales/Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -10,7 +10,7 @@
     "depends": [
         "sale_order_confirm_usability",
         "purchase_sale_inter_company",
-        "purchase_order_line_packaging_qty",
+        "purchase_stock_packaging",
         "sale_order_line_qty_by_packaging",
     ],
     "data": [],
