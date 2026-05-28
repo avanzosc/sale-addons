@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-04 06:54+0000\n"
-"PO-Revision-Date: 2023-05-04 06:54+0000\n"
+"POT-Creation-Date: 2026-05-28 11:54+0000\n"
+"PO-Revision-Date: 2026-05-28 11:54+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,31 +16,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_line_gross_weight
-#: model:ir.model.fields,field_description:sale_order_line_gross_weight.field_sale_order_line__display_name
-#: model:ir.model.fields,field_description:sale_order_line_gross_weight.field_stock_picking__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: sale_order_line_gross_weight
 #: model:ir.model.fields,field_description:sale_order_line_gross_weight.field_sale_order_line__gross_weight
+#: model:ir.model.fields,field_description:sale_order_line_gross_weight.field_stock_move_line__gross_weight
 msgid "Gross Field"
 msgstr ""
 
 #. module: sale_order_line_gross_weight
-#: model:ir.model.fields,field_description:sale_order_line_gross_weight.field_sale_order_line__id
-#: model:ir.model.fields,field_description:sale_order_line_gross_weight.field_stock_picking__id
-msgid "ID"
+#: model:ir.model,name:sale_order_line_gross_weight.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
 msgstr ""
 
 #. module: sale_order_line_gross_weight
-#: model:ir.model.fields,field_description:sale_order_line_gross_weight.field_sale_order_line____last_update
-#: model:ir.model.fields,field_description:sale_order_line_gross_weight.field_stock_picking____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: sale_order_line_gross_weight
-#: model:ir.model.fields,field_description:sale_order_line_gross_weight.field_sale_order_line__no_update_gross_weight
-msgid "No update gross_weight"
+#: model:ir.model,name:sale_order_line_gross_weight.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_order_line_gross_weight
