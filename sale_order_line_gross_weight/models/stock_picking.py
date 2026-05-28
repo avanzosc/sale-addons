@@ -7,7 +7,7 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     def button_force_done_detailed_operations(self):
-        result = super(StockPicking, self).button_force_done_detailed_operations()
+        result = super().button_force_done_detailed_operations()
         for picking in self:
             for line in picking.move_line_ids_without_package:
                 if line.move_id and line.move_id.sale_line_id:
