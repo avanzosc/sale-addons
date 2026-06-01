@@ -18,10 +18,22 @@ class SaleOrderLine(models.Model):
 
             if bom:
                 description_lines = [self.product_id.name]
-                description_lines += [
-                    f"- {line.product_id.name} {line.product_qty} {line.product_uom_id.name}"
-                    for line in bom.bom_line_ids
-                ]
+                for line in bom.bom_line_ids:
+                    text = (
+                        f"- {line.product_id.name} {line.product_qty}"
+                        f" {line.product_uom_id.name}"
+                    )
+                    extras = [
+                        v
+                        for v in (
+                            line.producer.name if line.producer else False,
+                            line.product_link,
+                        )
+                        if v
+                    ]
+                    if extras:
+                        text += ", " + ", ".join(extras)
+                    description_lines.append(text)
                 self.name = "\n".join(description_lines)
 
     @api.onchange("product_id")
