@@ -18,14 +18,6 @@ class SaleOrderLine(models.Model):
             self.product_uom_qty = 0
         return result
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        lines = super().create(vals_list)
-        for line in lines:
-            if line.return_qty and line.return_qty > 0:
-                line._create_and_update_return()
-        return lines
-
     def write(self, values):
         for line in self:
             if "return_qty" in values:
@@ -43,7 +35,11 @@ class SaleOrderLine(models.Model):
                         )
         res = super(SaleOrderLine, self).write(values)
         if "return_qty" in values:
-            self._create_and_update_return()
+            confirmed_lines = self.filtered(
+                lambda l: l.order_id.state not in ("draft", "sent")
+            )
+            if confirmed_lines:
+                confirmed_lines._create_and_update_return()
         return res
 
     def _create_and_update_return(self):
