@@ -14,7 +14,7 @@ class SaleOrderImport(models.Model):
     )
 
     def action_process(self):
-        result = super(SaleOrderImport, self).action_process()
+        result = super().action_process()
         orders = self.mapped("import_line_ids.sale_order_id")
         if self.carrier_id:
             for sale in orders:
