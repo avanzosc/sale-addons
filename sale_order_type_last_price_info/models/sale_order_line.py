@@ -7,16 +7,14 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     @api.onchange("product_id")
-    def product_id_change(self):
-        result = super().product_id_change()
+    def _onchange_product_id(self):
+        result = super()._onchange_product_id()
         self._compute_last_price_unit()
         return result
 
     @api.onchange("product_uom", "product_uom_qty")
     def product_uom_change(self):
-        result = super().product_uom_change()
         self._update_price_unit_from_last_price()
-        return result
 
     @api.onchange("sale_last_price_unit", "invoice_last_price_unit")
     def last_price_change(self):

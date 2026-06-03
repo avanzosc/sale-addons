@@ -12,7 +12,6 @@ class SaleOrderType(models.Model):
             ("invoice", "Last Invoice Price"),
             ("pricelist", "Sale Pricelist"),
         ],
-        string="Sale Price Type",
         default="pricelist",
         copy=False,
         required=True,
