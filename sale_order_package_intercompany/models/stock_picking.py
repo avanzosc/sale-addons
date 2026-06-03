@@ -7,7 +7,7 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     def button_validate(self):
-        result = super(StockPicking, self).button_validate()
+        result = super().button_validate()
         for picking in self:
             if (
                 picking.sale_id
@@ -29,12 +29,14 @@ class StockPicking(models.Model):
                                 purchase_picking.move_line_ids_without_package
                             )
                             purchase_line = purchase_mlines.filtered(
-                                lambda c: c.product_id == moveline.product_id
+                                lambda c, moveline=moveline: c.product_id
+                                == moveline.product_id
                                 and c.lot_id.name == moveline.lot_id.name
                             )
                             if not purchase_line:
                                 purchase_line = purchase_mlines.filtered(
-                                    lambda c: c.product_id == moveline.product_id
+                                    lambda c, moveline=moveline: c.product_id
+                                    == moveline.product_id
                                     and not c.lot_id
                                 )
                             if purchase_line:

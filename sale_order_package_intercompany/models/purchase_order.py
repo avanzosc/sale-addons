@@ -7,13 +7,13 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     def _prepare_sale_order_line_data(self, purchase_line, dest_company, sale_order):
-        result = super(PurchaseOrder, self)._prepare_sale_order_line_data(
+        result = super()._prepare_sale_order_line_data(
             purchase_line, dest_company, sale_order
         )
-        if purchase_line.product_packaging:
+        if purchase_line.product_packaging_id:
             result.update(
                 {
-                    "product_packaging": purchase_line.product_packaging.id,
+                    "product_packaging_id": purchase_line.product_packaging_id.id,
                     "product_packaging_qty": purchase_line.product_packaging_qty,
                 }
             )
