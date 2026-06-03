@@ -13,7 +13,7 @@ class SaleOrderImportLine(models.Model):
     def _sale_order_values(self):
         values = super(SaleOrderImportLine, self)._sale_order_values()
         if self.date_order:
-            date_order = "{} 08:00:00".format(fields.Date.to_string(self.date_order))
+            date_order = f"{fields.Date.to_string(self.date_order)} 08:00:00"
             date_order = datetime.strptime(date_order, "%Y-%m-%d %H:%M:%S")
             timezone = pytz.timezone(self._context.get("tz") or "UTC")
             date_order = timezone.localize(date_order).astimezone(pytz.UTC)
