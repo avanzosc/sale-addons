@@ -11,7 +11,7 @@ class SaleOrderImportLine(models.Model):
     _inherit = "sale.order.import.line"
 
     def _sale_order_values(self):
-        values = super(SaleOrderImportLine, self)._sale_order_values()
+        values = super()._sale_order_values()
         if self.date_order:
             date_order = f"{fields.Date.to_string(self.date_order)} 08:00:00"
             date_order = datetime.strptime(date_order, "%Y-%m-%d %H:%M:%S")
