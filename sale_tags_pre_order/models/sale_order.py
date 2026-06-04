@@ -45,6 +45,9 @@ class SaleOrder(models.Model):
             )
             invoice_action = wizard.create_invoices()
             invoice = self.env["account.move"].browse(invoice_action.get("res_id"))
+            tag = next((tag for tag in self.tag_ids if tag.is_pre_order), False)
+            if tag and tag.journal_id:
+                invoice.journal_id = tag.journal_id.id
             if any(tag.invoice_mode in ("open", "paid") for tag in order.tag_ids):
                 invoice.action_post()
             if (

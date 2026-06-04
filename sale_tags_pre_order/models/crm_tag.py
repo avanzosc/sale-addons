@@ -16,3 +16,7 @@ class CRMTag(models.Model):
         ],
         default="none",
     )
+    journal_id = fields.Many2one(
+        string="Advance Journal",
+        comodel_name="account.journal",
+    )
