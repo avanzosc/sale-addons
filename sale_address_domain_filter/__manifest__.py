@@ -2,7 +2,8 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 {
     "name": "Sale Address Domain Filter",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "summary": "Filter sale order invoice and shipping addresses by customer",
     "license": "AGPL-3",
     "depends": [
         "sale",
