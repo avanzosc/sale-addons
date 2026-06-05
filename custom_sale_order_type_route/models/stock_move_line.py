@@ -12,3 +12,4 @@ class StockMoveLine(models.Model):
         comodel_name="res.partner",
     )
     surplus = fields.Boolean(default=False)
+    is_carry_type = fields.Boolean(related="picking_id.is_carry_type", store=False)
