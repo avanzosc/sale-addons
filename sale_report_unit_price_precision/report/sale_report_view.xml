@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <template
+    id="sale_report_unit_price_precision"
+    inherit_id="sale.report_saleorder_document"
+    priority="99"
+  >
+    <xpath expr="//td[@name='td_priceunit']" position="replace">
+      <td name="td_priceunit" class="text-end text-nowrap">
+        <span
+          t-if="line.discount &lt; 0"
+          t-out="(1 - line.discount / 100.0) * line.price_unit"
+          t-options='{"widget": "float", "precision": 2}'
+        />
+
+        <span
+          t-else=""
+          t-field="line.price_unit"
+          t-options='{"widget": "float", "precision": 2}'
+        />
+      </td>
+    </xpath>
+  </template>
+</odoo>
