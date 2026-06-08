@@ -37,101 +37,79 @@ class SaleOrderImportLine(models.Model):
     )
     client_order_ref = fields.Char(
         string="Customer Order Reference",
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     product_name = fields.Char(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     product_code = fields.Char(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     product_barcode = fields.Char(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     product_id = fields.Many2one(
         string="Product",
         comodel_name="product.product",
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     customer_name = fields.Char(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     customer_vat = fields.Char(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     customer_reference = fields.Char(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     customer_id = fields.Many2one(
         string="Customer",
         comodel_name="res.partner",
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     invoice_address_name = fields.Char(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     invoice_address_vat = fields.Char(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     invoice_address_reference = fields.Char(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     invoice_address_id = fields.Many2one(
         string="Invoice Address",
         comodel_name="res.partner",
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     delivery_address_name = fields.Char(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     delivery_address_vat = fields.Char(
         string="Delivery Address vat",
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     delivery_address_reference = fields.Char(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     delivery_address_id = fields.Many2one(
         string="Delivery Address",
         comodel_name="res.partner",
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     date_order = fields.Date(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     delivery_date = fields.Date(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     quantity = fields.Float(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     price_unit = fields.Float(
-        states={"done": [("readonly", True)]},
         copy=False,
     )
     total_order_amount = fields.Float(
         string="Total order amount",
-        states={"done": [("readonly", True)]},
         copy=False,
     )
 

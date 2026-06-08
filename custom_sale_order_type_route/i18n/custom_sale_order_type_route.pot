@@ -1,0 +1,259 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* custom_sale_order_type_route
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-20 10:58+0000\n"
+"PO-Revision-Date: 2026-05-20 10:58+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: custom_sale_order_type_route
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.burden_picking_wizard_view_form
+msgid "Accept"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_move_line__burden_partner_id
+msgid "Burden Partner"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_type__burden_picking_type
+msgid "Burden Picking Type"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.burden_picking_wizard_view_form
+msgid "Cancel"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.actions.act_window,name:custom_sale_order_type_route.action_carry_stock_picking
+#: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_carry_pickings
+#: model:ir.ui.menu,name:custom_sale_order_type_route.menu_carry_pickings
+msgid "Carry Pickings"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking__is_carry_type
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_picking_type__is_carry_type
+msgid "Carry Type"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#. odoo-python
+#: code:addons/custom_sale_order_type_route/models/sale_order_type.py:0
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.sot_sale_order_type_form_view
+msgid "Contacts"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.actions.act_window,name:custom_sale_order_type_route.action_create_burden_wizard
+msgid "Create Burden"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__deliverement_menu
+msgid "Deliverement Menu"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu
+msgid "Deliverymen"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner__distribution_sequence
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_users__distribution_sequence
+msgid "Distribution Sequence"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.actions.act_window,name:custom_sale_order_type_route.action_supplier_account_move
+#: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_invoices
+#: model:ir.ui.menu,name:custom_sale_order_type_route.menu_all_invoices
+msgid "Invoices"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#. odoo-python
+#: code:addons/custom_sale_order_type_route/wizards/burden_picking_wizard.py:0
+msgid "It is going to create a burden picking for all these lines."
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.actions.act_window,name:custom_sale_order_type_route.action_my_account_move
+#: model:ir.ui.menu,name:custom_sale_order_type_route.menu_my_invoices
+msgid "My Invoices"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.actions.act_window,name:custom_sale_order_type_route.action_my_account_payment
+#: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_my_payments
+#: model:ir.ui.menu,name:custom_sale_order_type_route.menu_my_payments
+msgid "My Payments"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.actions.act_window,name:custom_sale_order_type_route.action_my_route_type_sales
+#: model:ir.ui.menu,name:custom_sale_order_type_route.menu_my_route_type_sales
+msgid "My Sales"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__not_route_type
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_type__not_route_type
+msgid "Not Route Type"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__partner_distribution_sequence
+msgid "Partner Distribution Sequence"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_stock_picking_type
+msgid "Picking Type"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.actions.act_window,name:custom_sale_order_type_route.action_route_type_sales
+#: model:ir.ui.menu,name:custom_sale_order_type_route.deliverymen_menu_sales
+#: model:ir.ui.menu,name:custom_sale_order_type_route.menu_route_type_sales
+msgid "Sales"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:res.groups,name:custom_sale_order_type_route.group_show_deliverymen_menu
+msgid "Show Deliverymen Menu"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_partner__special_burden
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_res_users__special_burden
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order__special_burden
+msgid "Special Burden"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_sale_order_line__special_partner_id
+msgid "Special Partner"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_stock_move_line__surplus
+msgid "Surplus"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model.fields,field_description:custom_sale_order_type_route.field_burden_picking_wizard__text
+msgid "Text"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#. odoo-python
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
+msgid "The burden picking type has not destination location."
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#. odoo-python
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
+msgid "The burden picking type has not source location."
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#. odoo-python
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
+msgid "The sale order has not type."
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#. odoo-python
+#: code:addons/custom_sale_order_type_route/models/sale_order_line.py:0
+msgid "The sale order type has not burden picking type."
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.view_account_payment_search
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.view_picking_internal_search
+msgid "Today"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_sale_order_type
+msgid "Type of sale order"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model:ir.model,name:custom_sale_order_type_route.model_burden_picking_wizard
+msgid "Wizard when burden picking is created"
+msgstr ""
+
+#. module: custom_sale_order_type_route
+#: model_terms:ir.ui.view,arch_db:custom_sale_order_type_route.burden_picking_wizard_view_form
+msgid "or"
+msgstr ""
