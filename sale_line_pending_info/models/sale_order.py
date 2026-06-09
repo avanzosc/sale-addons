@@ -57,6 +57,19 @@ class SaleOrder(models.Model):
         compute="_compute_qty_delivered",
         store=True,
     )
+    shipped_rate = fields.Float(compute="_compute_shipped_rate", store=True)
+
+    @api.depends("order_line.qty_delivered", "order_line.product_uom_qty")
+    def _get_shipped_rate(self):
+        for sale in self:
+            total_qty = 0
+            total_shipped = 0
+            for line in sale.order_line:
+                if line.product_id and line.product_id.type != "service":
+                    total_qty += line.product_uom_qty
+                    total_shipped += line.qty_delivered
+            if total_qty != 0:
+                sale.shipped_rate = (total_shipped / total_qty) * 100
 
     @api.depends(
         "order_line",
@@ -118,6 +131,14 @@ class SaleOrder(models.Model):
                 )
             )
 
+    @api.depends("qty_ordered", "qty_delivered")
+    def _compute_shipped_rate(self):
+        for sale in self:
+            if not sale.qty_ordered or not sale.qty_delivered:
+                sale.shipped_rate = 0.0
+                continue
+            sale.shipped_rate = (sale.qty_delivered / sale.qty_ordered) * 100
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
@@ -167,14 +188,8 @@ class SaleOrderLine(models.Model):
         store=True,
         related="order_id.team_id",
     )
+    shipped_rate = fields.Float(compute="_compute_shipped_rate", store=True)
 
-    @api.depends(
-        "product_uom_qty",
-        "qty_delivered_method",
-        "qty_delivered",
-        "price_unit",
-        "discount",
-    )
     def _compute_qty_amount_pending_delivery(self):
         for line in self:
             qty_pending_delivery = amount_pending_delivery = 0
@@ -218,3 +233,11 @@ class SaleOrderLine(models.Model):
                 amount -= (amount * line.discount) / 100 if line.discount else 0
             line.qty_shipped_pending_invoicing = qty if qty > 0 else 0
             line.amount_shipped_pending_invoicing = amount
+
+    @api.depends("product_uom_qty", "qty_delivered")
+    def _compute_shipped_rate(self):
+        for line in self:
+            if not line.product_uom_qty or not line.qty_delivered:
+                line.shipped_rate = 0.0
+                continue
+            line.shipped_rate = (line.qty_delivered / line.product_uom_qty) * 100

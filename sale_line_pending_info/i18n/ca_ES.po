@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-20 06:55+0000\n"
-"PO-Revision-Date: 2025-05-20 06:55+0000\n"
+"POT-Creation-Date: 2026-06-25 07:20+0000\n"
+"PO-Revision-Date: 2026-06-25 07:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -82,12 +82,14 @@ msgid "Pending invoicing qty"
 msgstr ""
 
 #. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__qty_delivered
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_quotation_view_tree
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_tree
 msgid "Qty Delivered"
 msgstr ""
 
 #. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__qty_ordered
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_quotation_view_tree
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_view_tree
 msgid "Qty Ordered"
@@ -101,7 +103,7 @@ msgstr "Informe d'anàlisi de vendes"
 #. module: sale_line_pending_info
 #: model:ir.model,name:sale_line_pending_info.model_sale_order
 msgid "Sales Order"
-msgstr "Comanda de venda"
+msgstr "Comanda"
 
 #. module: sale_line_pending_info
 #: model:ir.model,name:sale_line_pending_info.model_sale_order_line
@@ -112,6 +114,12 @@ msgstr "Línia comanda de venda"
 #: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__team_id
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_search
 msgid "Sales Team"
+msgstr ""
+
+#. module: sale_line_pending_info
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__shipped_rate
+#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order_line__shipped_rate
+msgid "Shipped Rate"
 msgstr ""
 
 #. module: sale_line_pending_info
@@ -195,14 +203,4 @@ msgstr ""
 #. module: sale_line_pending_info
 #: model_terms:ir.ui.view,arch_db:sale_line_pending_info.sale_order_line_view_order_tree
 msgid "Total pending invoicing"
-msgstr ""
-
-#. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__qty_delivered
-msgid "Units Delivered"
-msgstr ""
-
-#. module: sale_line_pending_info
-#: model:ir.model.fields,field_description:sale_line_pending_info.field_sale_order__qty_ordered
-msgid "Units Ordered"
 msgstr ""

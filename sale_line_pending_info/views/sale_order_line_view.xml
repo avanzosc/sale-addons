@@ -8,7 +8,8 @@
         <field name="team_id" />
       </field>
       <field name="qty_delivered" position="after">
-        <field name="qty_to_deliver" optional="hide" />
+        <field name="shipped_rate" optional="show" widget="progressbar" />
+        <field name="qty_to_deliver" optional="show" />
         <field name="qty_pending_delivery" sum="To Deliver" optional="show" />
       </field>
       <field name="qty_invoiced" position="after">
@@ -41,25 +42,26 @@
       <field name="order_id" position="after">
         <field name="team_id" optional="show" />
       </field>
-      <field name="qty_delivered" position="before">
-        <field name="qty_to_deliver" optional="hide" />
-        <field name="qty_pending_delivery" sum="To Deliver" optional="hide" />
+      <field name="qty_delivered" position="after">
+        <field name="shipped_rate" optional="show" widget="progressbar" />
+        <field name="qty_to_deliver" optional="show" />
+        <field name="qty_pending_delivery" sum="To Deliver" optional="show" />
       </field>
       <field name="qty_invoiced" position="before">
-        <field name="qty_pending_invoicing" sum="To Invoice" optional="hide" />
+        <field name="qty_pending_invoicing" sum="To Invoice" optional="show" />
       </field>
       <field name="company_price_amount" position="before">
         <field
           name="amount_pending_delivery"
           sum="Amount To Deliver"
           widget="monetary"
-          optional="hide"
+          optional="show"
         />
         <field
           name="amount_pending_invoicing"
           sum="Amount To Invoice"
           widget="monetary"
-          optional="hide"
+          optional="show"
         />
       </field>
     </field>
