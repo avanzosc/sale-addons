@@ -9,15 +9,22 @@
         position="after"
       >
         <field
+          name="shipped_rate"
+          modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+          optional="show"
+          widget="progressbar"
+        />
+
+        <field
           name="qty_to_deliver"
           modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
+          optional="show"
         />
         <field
           name="qty_pending_delivery"
           sum="To Deliver"
           modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
+          optional="show"
         />
       </xpath>
       <xpath
@@ -28,7 +35,7 @@
           name="qty_pending_invoicing"
           sum="To Invoice"
           modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
+          optional="show"
         />
       </xpath>
       <xpath
@@ -40,27 +47,27 @@
           widget="monetary"
           sum="To Delivery Amount"
           modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
+          optional="show"
         />
         <field
           name="amount_pending_invoicing"
           widget="monetary"
           sum="To Invoice Amount"
           modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
+          optional="show"
         />
         <field
           name="qty_shipped_pending_invoicing"
           sum="Total Pending Invoicing Shipped Qty"
           modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
+          optional="show"
         />
         <field
           name="amount_shipped_pending_invoicing"
           widget="monetary"
           sum="Total Pending Invoicing Shipped Amount"
           modifiers="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
-          optional="hide"
+          optional="show"
         />
       </xpath>
       <xpath
@@ -114,40 +121,41 @@
     <field name="inherit_id" ref="sale.view_order_tree" />
     <field name="arch" type="xml">
       <field name="amount_untaxed" position="before">
-        <field name="qty_ordered" sum="Qty Ordered" optional="hide" />
-        <field name="qty_delivered" sum="Qty Delivered" optional="hide" />
+        <field name="qty_ordered" sum="Qty Ordered" optional="show" />
+        <field name="qty_delivered" sum="Qty Delivered" optional="show" />
+        <field name="shipped_rate" optional="show" widget="progressbar" />
         <field
           name="total_qty_pending_delivery"
           sum="Total Pending Delivery Qty"
-          optional="hide"
+          optional="show"
         />
         <field
           name="total_amount_pending_delivery"
           widget="monetary"
           sum="Total Pending Delivery Amount"
-          optional="hide"
+          optional="show"
         />
         <field
           name="total_qty_pending_invoicing"
           sum="Total Pending Invoicing Qty"
-          optional="hide"
+          optional="show"
         />
         <field
           name="total_amount_pending_invoicing"
           widget="monetary"
           sum="Total Pending Invoicing Amount"
-          optional="hide"
+          optional="show"
         />
         <field
           name="total_qty_shipped_pending_invoicing"
           sum="Total Pending Invoicing Shipped Qty"
-          optional="hide"
+          optional="show"
         />
         <field
           name="total_amount_shipped_pending_invoicing"
           widget="monetary"
           sum="Total Pending Invoicing Shipped Amount"
-          optional="hide"
+          optional="show"
         />
       </field>
     </field>
@@ -158,40 +166,41 @@
     <field name="inherit_id" ref="sale.view_quotation_tree" />
     <field name="arch" type="xml">
       <field name="state" position="before">
-        <field name="qty_ordered" sum="Qty Ordered" optional="hide" />
-        <field name="qty_delivered" sum="Qty Delivered" optional="hide" />
+        <field name="qty_ordered" sum="Qty Ordered" optional="show" />
+        <field name="qty_delivered" sum="Qty Delivered" optional="show" />
+        <field name="shipped_rate" optional="show" widget="progressbar" />
         <field
           name="total_qty_pending_delivery"
           sum="Total Pending Delivery Qty"
-          optional="hide"
+          optional="show"
         />
         <field
           name="total_amount_pending_delivery"
           widget="monetary"
           sum="Total Pending Delivery Amount"
-          optional="hide"
+          optional="show"
         />
         <field
           name="total_qty_pending_invoicing"
           sum="Total Pending Invoicing Qty"
-          optional="hide"
+          optional="show"
         />
         <field
           name="total_amount_pending_invoicing"
           widget="monetary"
           sum="Total Pending Invoicing Amount"
-          optional="hide"
+          optional="show"
         />
         <field
           name="total_qty_shipped_pending_invoicing"
           sum="Total Pending Invoicing Shipped Qty"
-          optional="hide"
+          optional="show"
         />
         <field
           name="total_amount_shipped_pending_invoicing"
           widget="monetary"
           sum="Total Pending Invoicing Shipped Amount"
-          optional="hide"
+          optional="show"
         />
       </field>
     </field>
