@@ -54,14 +54,14 @@
             string="Validate"
             type="object"
             class="oe_read_only"
-            modifiers="{'invisible': [('state','not in',['2validate','error'])]}"
+            invisible="state not in ['2validate','error']"
           />
           <button
             name="action_process"
             string="Process"
             type="object"
             class="oe_read_only"
-            modifiers="{'invisible': [('state','not in',['error','pass'])]}"
+            invisible="state not in ['error','pass']"
           />
           <field name="state" widget="statusbar" />
         </header>

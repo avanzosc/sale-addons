@@ -21,19 +21,19 @@
             name="action_import_file"
             string="Import"
             type="object"
-            modifiers="{'invisible': [('state', '=', 'done')]}"
+            invisible="state == 'done'"
           />
           <button
             name="action_validate"
             string="Validate"
             type="object"
-            modifiers="{'invisible': [('state', 'not in', ('2validate','error'))]}"
+            invisible="state not in ('2validate','error')"
           />
           <button
             name="action_process"
             string="Process"
             type="object"
-            modifiers="{'invisible': [('state', 'not in', ('2validate','pass','error'))]}"
+            invisible="state not in ('2validate','pass','error')"
           />
           <field name="state" widget="statusbar" />
         </header>
@@ -43,14 +43,14 @@
               string="Import Lines"
               type="object"
               name="button_open_import_line"
-              modifiers="{'invisible':[('import_line_ids', '=', [])]}"
+              invisible="not import_line_ids"
               class="oe_stat_button"
               icon="fa-bars"
             />
             <button
               type="object"
               name="button_open_sale_order"
-              modifiers="{'invisible':[('sale_order_count', '=', 0)]}"
+              invisible="sale_order_count == 0"
               class="oe_stat_button"
               icon="fa-folder-open"
             >
@@ -76,14 +76,10 @@
             <page string="Imported Lines">
               <field name="import_line_ids" />
             </page>
-            <page string="Error Log" modifiers="{'invisible':[('log_info','=','')]}">
+            <page string="Error Log" invisible="not log_info">
               <field name="log_info" />
             </page>
-            <page
-              string="Help"
-              name="help_page"
-              modifiers="{'invisible': [('state', '=', 'done')]}"
-            >
+            <page string="Help" name="help_page" invisible="state == 'done'">
               <group>
                 <div style="margin-top: 4px;">
                   <h3>Help with Excel column names</h3>
