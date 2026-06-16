@@ -1,0 +1,213 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_product_catalog
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-25 12:29+0000\n"
+"PO-Revision-Date: 2026-06-25 12:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__active
+msgid "Active"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields.selection,name:sale_product_catalog.selection__product_catalog__inventory_availability__always
+msgid "Always"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order__catalog_id
+#: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order_line__catalog_id
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+msgid "Catalog"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.actions.act_window,name:sale_product_catalog.product_catalog_action
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_pricelist_item__catalog_ids
+#: model:ir.ui.menu,name:sale_product_catalog.product_catalog_menu
+msgid "Catalogs"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__company_id
+msgid "Company"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields.selection,name:sale_product_catalog.selection__product_catalog__inventory_availability__custom
+msgid "Custom"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__description
+msgid "Description"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+msgid "Fixed Price"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+msgid "Formula"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+msgid "Group By"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__inventory_availability
+msgid "Inventory Availability"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__logo
+msgid "Logo"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__name
+msgid "Name"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields.selection,name:sale_product_catalog.selection__product_catalog__inventory_availability__never
+msgid "Never"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields.selection,name:sale_product_catalog.selection__product_catalog__inventory_availability__threshold
+msgid "On Threshold"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+msgid "Percentage"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
+msgid "Price"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_pivot_view
+msgid "Price Rules"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+msgid "Price Type"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__pricelist_item_count
+msgid "Pricelist Item Count"
+msgstr ""
+
+#. module: sale_product_catalog
+#. odoo-python
+#: code:addons/sale_product_catalog/models/product_catalog.py:0
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__pricelist_item_ids
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
+msgid "Pricelist Items"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model,name:sale_product_catalog.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
+msgid "Product"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model,name:sale_product_catalog.model_product_catalog
+msgid "Product Catalog"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+msgid "Product Category"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model,name:sale_product_catalog.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model,name:sale_product_catalog.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+msgid "Valid Today"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__warehouse_id
+msgid "Warehouse"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+msgid "With Catalog"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+msgid "Without Catalog"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
+msgid "e.g. SPRING SUMMER 2025"
+msgstr ""
