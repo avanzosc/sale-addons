@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="product_pricelist_item_tree_view_inherit_catalog" model="ir.ui.view">
+    <field name="name">product.pricelist.item.list.inherit.catalog</field>
+    <field name="model">product.pricelist.item</field>
+    <field name="inherit_id" ref="product.product_pricelist_item_tree_view" />
+    <field name="arch" type="xml">
+      <field name="pricelist_id" position="after">
+        <field name="catalog_ids" widget="many2many_tags" optional="show" />
+      </field>
+    </field>
+  </record>
+
+  <record id="product_pricelist_item_form_view_inherit_catalog" model="ir.ui.view">
+    <field name="name">product.pricelist.item.form.inherit.catalog</field>
+    <field name="model">product.pricelist.item</field>
+    <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+    <field name="arch" type="xml">
+      <group name="pricelist_rule_limits" position="after">
+        <group>
+          <field name="catalog_ids" widget="many2many_tags" />
+        </group>
+      </group>
+    </field>
+  </record>
+
+  <record id="product_pricelist_item_search_view_inherit_catalog" model="ir.ui.view">
+    <field name="name">product.pricelist.item.search.inherit.catalog</field>
+    <field name="model">product.pricelist.item</field>
+    <field name="inherit_id" ref="product.product_pricelist_item_view_search" />
+    <field name="arch" type="xml">
+      <search position="inside">
+        <field name="catalog_ids" />
+        <separator />
+        <filter
+          name="fixed_price"
+          string="Fixed Price"
+          domain="[('compute_price', '=', 'fixed')]"
+        />
+        <filter
+          name="percentage"
+          string="Percentage"
+          domain="[('compute_price', '=', 'percentage')]"
+        />
+        <filter
+          name="formula"
+          string="Formula"
+          domain="[('compute_price', '=', 'formula')]"
+        />
+        <separator />
+        <filter
+          name="with_catalog"
+          string="With Catalog"
+          domain="[('catalog_ids', '!=', False)]"
+        />
+        <filter
+          name="without_catalog"
+          string="Without Catalog"
+          domain="[('catalog_ids', '=', False)]"
+        />
+        <separator />
+        <filter
+          name="valid_today"
+          string="Valid Today"
+          domain="[
+                        '&amp;',
+                        '|', ('date_start', '=', False), ('date_start', '&lt;=', context_today().strftime('%Y-%m-%d')),
+                        '|', ('date_end', '=', False), ('date_end', '&gt;=', context_today().strftime('%Y-%m-%d'))
+                    ]"
+        />
+        <group expand="0" string="Group By">
+          <filter
+            name="groupby_catalog"
+            string="Catalog"
+            domain="[]"
+            context="{'group_by': 'catalog_ids'}"
+          />
+          <filter
+            name="groupby_compute_price"
+            string="Price Type"
+            domain="[]"
+            context="{'group_by': 'compute_price'}"
+          />
+          <filter
+            name="groupby_categ"
+            string="Product Category"
+            domain="[]"
+            context="{'group_by': 'categ_id'}"
+          />
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record id="product_pricelist_item_pivot_view" model="ir.ui.view">
+    <field name="name">product.pricelist.item.pivot</field>
+    <field name="model">product.pricelist.item</field>
+    <field name="arch" type="xml">
+      <pivot string="Price Rules">
+        <field name="catalog_ids" type="col" />
+        <field name="pricelist_id" type="col" />
+        <field name="product_id" type="row" />
+        <field name="fixed_price" type="measure" />
+      </pivot>
+    </field>
+  </record>
+
+  <record
+    id="product_pricelist_item_menu.product_pricelist_item_menu_action"
+    model="ir.actions.act_window"
+  >
+    <field name="view_mode">list,pivot,form</field>
+    <field
+      name="view_ids"
+      eval="[
+        (5, 0, 0),
+        (0, 0, {'view_mode': 'list'}),
+        (0, 0, {'view_mode': 'pivot', 'view_id': ref('sale_product_catalog.product_pricelist_item_pivot_view')}),
+        (0, 0, {'view_mode': 'form'}),
+      ]"
+    />
+  </record>
+</odoo>

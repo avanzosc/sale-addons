@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="product_catalog_view_form" model="ir.ui.view">
+    <field name="name">product.catalog.view.form</field>
+    <field name="model">product.catalog</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <div class="oe_button_box" name="button_box">
+            <button
+              class="oe_stat_button"
+              type="object"
+              name="action_pricelist_items"
+              icon="fa-list"
+            >
+              <field
+                name="pricelist_item_count"
+                widget="statinfo"
+                string="Pricelist Items"
+              />
+            </button>
+          </div>
+          <field name="logo" widget="image" class="oe_avatar" />
+          <div class="oe_title">
+            <h1>
+              <field name="name" placeholder="e.g. SPRING SUMMER 2025" />
+            </h1>
+          </div>
+          <group>
+            <group>
+              <field name="inventory_availability" />
+              <field name="active" />
+            </group>
+            <group>
+              <field name="company_id" groups="base.group_multi_company" />
+              <field name="warehouse_id" />
+            </group>
+          </group>
+          <field name="description" />
+          <notebook>
+            <page string="Pricelist Items" name="pricelist_items">
+              <field name="pricelist_item_ids">
+                <list>
+                  <field name="pricelist_id" />
+                  <field name="product_tmpl_id" string="Product" optional="show" />
+                  <field name="product_id" />
+                  <field
+                    name="fixed_price"
+                    widget="monetary"
+                    string="Price"
+                    options="{'currency_field': 'currency_id'}"
+                  />
+                  <field name="currency_id" column_invisible="True" />
+                  <field name="min_quantity" optional="hide" />
+                  <field name="date_start" optional="hide" />
+                  <field name="date_end" optional="hide" />
+                </list>
+              </field>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="product_catalog_view_list" model="ir.ui.view">
+    <field name="name">product.catalog.view.list</field>
+    <field name="model">product.catalog</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name" />
+        <field name="inventory_availability" />
+        <field name="warehouse_id" />
+        <field name="company_id" groups="base.group_multi_company" />
+        <field name="active" column_invisible="True" />
+      </list>
+    </field>
+  </record>
+
+  <record id="product_catalog_action" model="ir.actions.act_window">
+    <field name="name">Catalogs</field>
+    <field name="res_model">product.catalog</field>
+    <field name="view_mode">list,form</field>
+    <field name="context">{"search_default_active": 1}</field>
+  </record>
+</odoo>
