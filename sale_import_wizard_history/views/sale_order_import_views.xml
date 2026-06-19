@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="sale_order_import_view_form_historical" model="ir.ui.view">
+    <field name="model">sale.order.import</field>
+    <field name="inherit_id" ref="sale_import_wizard.sale_order_import_view_form" />
+    <field name="arch" type="xml">
+      <field name="warehouse_id" position="before">
+        <field name="historical" />
+      </field>
+    </field>
+  </record>
+
+  <record id="sale_order_import_view_form_process_historical" model="ir.ui.view">
+    <field name="model">sale.order.import</field>
+    <field name="inherit_id" ref="sale_import_wizard.sale_order_import_view_form" />
+    <field name="arch" type="xml">
+      <button name="action_process" position="attributes">
+        <attribute name="invisible">historical</attribute>
+      </button>
+      <button name="button_open_sale_order" position="attributes">
+        <attribute name="invisible">historical or sale_order_count == 0</attribute>
+      </button>
+    </field>
+  </record>
+
+  <record id="sale_order_import_view_form_help_drc_columns" model="ir.ui.view">
+    <field name="model">sale.order.import</field>
+    <field name="inherit_id" ref="sale_import_wizard.sale_order_import_view_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//page[@name='help_page']//ul[@name='tutorial']" position="inside">
+        <li><code>Origin</code>: this will fill <b>Sales Order</b></li>
+        <li><code>FechaPedido</code>: this will fill <b>Order Date</b></li>
+        <li><code>NombreCliente</code>: this will fill <b>Customer Name</b></li>
+        <li><code>Warehouse Name</code>: this will fill <b>Warehouse Name</b></li>
+        <li>
+          <code>Equipo de ventas (team_id)</code>: this will fill
+          <b>Sales Team</b>
+        </li>
+        <li>
+          <code>NumeroPedidoCliente</code>: this will fill
+          <b>Customer Reference</b>
+        </li>
+        <li><code>Currency Code</code>: this will fill <b>Currency Code</b></li>
+        <li><code>NombreProducto</code>: this will fill <b>Product Name</b></li>
+        <li><code>CodigoProducto</code>: this will fill <b>Product Code</b></li>
+        <li><code>Cantidad</code>: this will fill <b>Quantity</b></li>
+        <li><code>PrecioUnitario</code>: this will fill <b>Unit Price</b></li>
+        <li>
+          <code>Impuesto incluido</code>: this will fill
+          <b>Included Tax Amount</b>
+        </li>
+        <li><code>Total de artículo</code>: this will fill <b>Item Total</b></li>
+        <li><code>Subtotal de línea</code>: this will fill <b>Line Subtotal</b></li>
+        <li>
+          <code>TotalImportePedido</code>: this will fill
+          <b>Total amount from import</b>
+        </li>
+      </xpath>
+    </field>
+  </record>
+
+  <record
+    id="sale_import_wizard.sale_order_import_action"
+    model="ir.actions.act_window"
+  >
+    <field name="domain">[("historical", "=", False)]</field>
+    <field name="context">{'default_historical': False}</field>
+  </record>
+
+  <record id="sale_order_import_historical_action" model="ir.actions.act_window">
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">sale.order.import</field>
+    <field name="view_mode">list,form</field>
+    <field name="view_id" ref="sale_import_wizard.sale_order_import_view_tree" />
+    <field name="domain">[("historical", "=", True)]</field>
+    <field name="context">{'default_historical': True}</field>
+  </record>
+
+  <menuitem
+    id="sale_order_import_historical_menu"
+    name="Import Historical Sale Orders"
+    action="sale_order_import_historical_action"
+    parent="base_import_wizard.base_import_menu"
+    sequence="21"
+  />
+
+  <menuitem
+    id="sale_order_import_historical_menu2"
+    name="Import Historical Sale Orders"
+    action="sale_order_import_historical_action"
+    parent="sale.menu_sale_config"
+    sequence="11"
+  />
+</odoo>
