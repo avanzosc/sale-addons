@@ -1,23 +1,19 @@
+from psycopg2.extensions import AsIs
 
 from odoo import fields, models, tools
-from psycopg2.extensions import AsIs
 
 
 class ProductAttributeCatalogReport(models.Model):
-    _name = 'product.attribute.catalog.report'
-    _description = 'Product Attribute Catalog Report'
+    _name = "product.attribute.catalog.report"
+    _description = "Product Attribute Catalog Report"
     _auto = False
     _rec_name = "catalog_id"
     _order = "catalog_id,product_id,attribute_id,attribute_value_id"
 
-    catalog_id = fields.Many2one(
-        'product.catalog.web', 'Catalogue')
-    product_id = fields.Many2one(
-        comodel_name="product.product", string="Product")
-    attribute_id = fields.Many2one(
-        'product.attribute', 'Product Attribute')
-    attribute_value_id = fields.Many2one(
-        'product.attribute.value', 'Attribute Value')
+    catalog_id = fields.Many2one("product.catalog.web", "Catalogue")
+    product_id = fields.Many2one(comodel_name="product.product", string="Product")
+    attribute_id = fields.Many2one("product.attribute", "Product Attribute")
+    attribute_value_id = fields.Many2one("product.attribute.value", "Attribute Value")
 
     def _select(self):
         select_str = """
@@ -44,7 +40,7 @@ class ProductAttributeCatalogReport(models.Model):
                     JOIN product_attribute att ON ptav.attribute_id = att.id
                     JOIN product_attribute_value attv
                         ON ptav.product_attribute_value_id = attv.id
-             
+
             """
         return from_str
 
@@ -60,12 +56,13 @@ class ProductAttributeCatalogReport(models.Model):
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
-        catalog_id = self._context.get('catalog_id')
+        catalog_id = self._context.get("catalog_id")
         self.env.cr.execute(
             """CREATE or REPLACE VIEW %s as
                 (
                 %s %s %s %s
-            )""", (
+            )""",
+            (
                 AsIs(self._table),
                 AsIs(self._select()),
                 AsIs(self._from()),

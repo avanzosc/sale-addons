@@ -1,25 +1,21 @@
+from psycopg2.extensions import AsIs
 
 from odoo import fields, models, tools
-from psycopg2.extensions import AsIs
 
 
 class ProductAttributeSaleReport(models.Model):
-    _name = 'product.attribute.sale.report'
-    _description = 'Product Attribute Sale Report'
+    _name = "product.attribute.sale.report"
+    _description = "Product Attribute Sale Report"
     _auto = False
     _rec_name = "order_line_id"
-    _order = "order_line_id,product_id,attribute_id" #,attribute_value_id"
+    _order = "order_line_id,product_id,attribute_id"  # ,attribute_value_id"
 
-    order_line_id = fields.Many2one(
-        'sale.order.line', 'Order Line')
+    order_line_id = fields.Many2one("sale.order.line", "Order Line")
     date_order = fields.Datetime(string="Date")
-    product_id = fields.Many2one(
-        comodel_name="product.product", string="Product")
-    attribute_id = fields.Many2one(
-        'product.attribute', 'Product Attribute')
-    attribute_value_id = fields.Many2one(
-        'product.attribute.value', 'Attribute Value')
-    product_uom_qty = fields.Float('Ordered Qty')
+    product_id = fields.Many2one(comodel_name="product.product", string="Product")
+    attribute_id = fields.Many2one("product.attribute", "Product Attribute")
+    attribute_value_id = fields.Many2one("product.attribute.value", "Attribute Value")
+    product_uom_qty = fields.Float("Ordered Qty")
 
     def _select(self):
         select_str = """
@@ -46,7 +42,7 @@ class ProductAttributeSaleReport(models.Model):
                     JOIN product_attribute att ON ptav.attribute_id = att.id
                     JOIN product_attribute_value attv
                         ON ptav.product_attribute_value_id = attv.id
-             
+
             """
         return from_str
 
@@ -88,12 +84,13 @@ class ProductAttributeSaleReport(models.Model):
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
-        condition = self._context.get('data')
+        condition = self._context.get("data")
         self.env.cr.execute(
             """CREATE or REPLACE VIEW %s as
                 (
                 %s %s %s %s
-            )""", (
+            )""",
+            (
                 AsIs(self._table),
                 AsIs(self._select()),
                 AsIs(self._from()),

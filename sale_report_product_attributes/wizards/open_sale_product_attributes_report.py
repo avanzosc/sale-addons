@@ -9,10 +9,10 @@ class SaleProductAttributeReport(models.TransientModel):
     _description = "Wizard to show Sale Line Product Attributes"
 
     year_select = fields.Selection(
-        selection=[('previous', 'Previous'),
-                   ('current', 'Current'),
-                   ('next', 'Next')], string='Year',
-        required=True, default='current'
+        selection=[("previous", "Previous"), ("current", "Current"), ("next", "Next")],
+        string="Year",
+        required=True,
+        default="current",
     )
     catalog_id = fields.Many2one(
         string="Catalogue",
@@ -28,14 +28,15 @@ class SaleProductAttributeReport(models.TransientModel):
     )
 
     def open_report(self):
-        action = self.env.ref('sale_report_product_attributes.'
-                              'action_product_attribute_sale_report')
+        action = self.env.ref(
+            "sale_report_product_attributes." "action_product_attribute_sale_report"
+        )
         vals = action.read()[0]
         context1 = {
-            'year_select': self.year_select,
-            'catalog_id': self.catalog_id,
-            'internal_product_category_id': self.internal_product_category_id,
-            'product_category_id': self.product_category_id,
+            "year_select": self.year_select,
+            "catalog_id": self.catalog_id,
+            "internal_product_category_id": self.internal_product_category_id,
+            "product_category_id": self.product_category_id,
         }
-        vals['context'] = context1
+        vals["context"] = context1
         return vals

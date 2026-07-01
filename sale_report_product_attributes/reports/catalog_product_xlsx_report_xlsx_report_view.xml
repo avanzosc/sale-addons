@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="catalog_product_record_xlsx" model="ir.actions.report">
-        <field name="name">Catalog COPIA XLSX report</field>
-        <field name="model">product.catalog.web</field>
-        <field name="report_type">xlsx</field>
-        <field name="report_name">catalog.product_xlsx</field>
-        <field name="report_file">catalog.product_attr_xlsx</field>
-        <field name="binding_model_id" ref="acysos_hlc.model_product_catalog_web"/>
-        <field name="binding_type">report</field>
-    </record>
-
+  <record id="catalog_product_record_xlsx" model="ir.actions.report">
+    <field name="name">Catalog COPIA XLSX report</field>
+    <field name="model">product.catalog.web</field>
+    <field name="report_type">xlsx</field>
+    <field name="report_name">catalog.product_xlsx</field>
+    <field name="report_file">catalog.product_attr_xlsx</field>
+    <field name="binding_model_id" ref="acysos_hlc.model_product_catalog_web" />
+    <field name="binding_type">report</field>
+  </record>
 </odoo>

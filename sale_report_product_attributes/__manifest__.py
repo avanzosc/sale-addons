@@ -4,7 +4,7 @@
     "name": "Sale Report Product Attributes",
     "version": "18.0.1.0.0",
     "author": "AvanzOSC",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/avanzosc/sale-addons",
     "category": "Sale",
     "depends": [
         "acysos_hlc",
@@ -23,5 +23,5 @@
         "security/ir.model.access.csv",
     ],
     "license": "AGPL-3",
-    'installable': True,
+    "installable": True,
 }

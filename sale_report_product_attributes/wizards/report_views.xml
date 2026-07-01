@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-   <!--
+  <!--
     <record id="action_report_catalog_attributes_xmlx" model="ir.actions.report">
         <field name="name">Partner attributes xlsx</field>
         <field name="type">ir.actions.report</field>
