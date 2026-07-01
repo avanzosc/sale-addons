@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="open_sale_product_attribute_list_report_view_form" model="ir.ui.view">
+        <field name="model">open.sale.product.attribute.list.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="main">
+                        <field name="year_select" />
+                        <field name="catalog_id" />
+                        <field name="internal_product_category_id" />
+                        <field name="product_category_id" />
+                    </group>
+                    <footer>
+                        <button name="open_report" string="Open Report"
+                                type="object" class="oe_highlight" />
+                        <button special="cancel" string="Close" class="oe_link" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_open_sale_product_attribute_list_wizard" model="ir.actions.act_window">
+        <field name="name">Sale Line Product Attributes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">open.sale.product.attribute.list.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

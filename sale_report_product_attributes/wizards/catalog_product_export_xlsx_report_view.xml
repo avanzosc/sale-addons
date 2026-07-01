@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="export_catalog_records_xlsx_report_view_form" model="ir.ui.view">
+        <field name="model">report.catalog.product_xlsx.export</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="main">
+                        <field name="partner_id" />
+                        <field name="catalog_id" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button name="export_xls" string="Export Catalog Products"
+                                type="object" class="oe_highlight" />
+                        <button special="cancel" string="Close" class="oe_link" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_export_catalog_records_xlsx_report" model="ir.actions.act_window">
+        <field name="name">Export XLSX Catalog Product Records</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">report.catalog.product_xlsx.export</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="acysos_hlc.model_product_catalog_web" />
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>
