@@ -24,7 +24,7 @@
         <attribute name="editable">bottom</attribute>
         <attribute name="default_order">distribution_sequence, name</attribute>
       </list>
-      <field name="display_name" position="before">
+      <field name="complete_name" position="after">
         <field name="distribution_sequence" />
       </field>
     </field>
