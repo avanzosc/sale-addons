@@ -21,9 +21,11 @@ class SaleOrderLine(models.Model):
             invoice_last_price_unit = 0
             if line.order_partner_id and line.product_id:
                 cond = [
+                    ("id", "!=", line.id or 0),
                     ("order_partner_id", "=", line.order_partner_id.id),
                     ("product_id", "=", line.product_id.id),
                     ("order_id.state", "not in", ("draft", "cancel")),
+                    ("price_unit", "!=", 0),
                 ]
                 sl = self.env["sale.order.line"].search(
                     cond, order="date_order desc", limit=1
@@ -37,6 +39,7 @@ class SaleOrderLine(models.Model):
                     ("product_id", "=", line.product_id.id),
                     ("move_id.state", "not in", ("draft", "cancel")),
                     ("move_id.move_type", "=", "out_invoice"),
+                    ("price_unit", "!=", 0),
                 ]
                 il = self.env["account.move.line"].search(
                     cond, order="invoice_date desc", limit=1
