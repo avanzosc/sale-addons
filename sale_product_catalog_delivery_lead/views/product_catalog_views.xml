@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="product_catalog_view_form_delivery_lead" model="ir.ui.view">
+    <field name="name">product.catalog.view.form.delivery.lead</field>
+    <field name="model">product.catalog</field>
+    <field name="inherit_id" ref="sale_product_catalog.product_catalog_view_form" />
+    <field name="arch" type="xml">
+      <field name="warehouse_id" position="after">
+        <field name="delivery_lead_days" />
+      </field>
+    </field>
+  </record>
+</odoo>
