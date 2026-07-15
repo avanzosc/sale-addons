@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_stock_move_cost
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-07 10:28+0000\n"
+"PO-Revision-Date: 2024-05-07 10:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_stock_move_cost
+#: model:ir.model.fields,field_description:sale_stock_move_cost.field_sale_order_line__sale_line_cost
+msgid "Line Cost"
+msgstr ""
+
+#. module: sale_stock_move_cost
+#: model:ir.model.fields,field_description:sale_stock_move_cost.field_sale_order_line__sale_line_margin
+msgid "Line margin "
+msgstr ""
+
+#. module: sale_stock_move_cost
+#: model:ir.model.fields,field_description:sale_stock_move_cost.field_sale_order__sale_order_cost
+msgid "Sale Order Cost"
+msgstr ""
+
+#. module: sale_stock_move_cost
+#: model:ir.model.fields,field_description:sale_stock_move_cost.field_sale_order__sale_order_margin
+msgid "Sale Order margin"
+msgstr ""
+
+#. module: sale_stock_move_cost
+#: model:ir.model,name:sale_stock_move_cost.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_stock_move_cost
+#: model:ir.model,name:sale_stock_move_cost.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_stock_move_cost
+#: model_terms:ir.ui.view,arch_db:sale_stock_move_cost.view_order_form
+msgid "Total lines costs"
+msgstr ""
+
+#. module: sale_stock_move_cost
+#: model_terms:ir.ui.view,arch_db:sale_stock_move_cost.view_order_form
+msgid "Total lines margin"
+msgstr ""
+
+#. module: sale_stock_move_cost
+#: model_terms:ir.ui.view,arch_db:sale_stock_move_cost.view_order_tree
+#: model_terms:ir.ui.view,arch_db:sale_stock_move_cost.view_quotation_tree
+msgid "Total orders costs"
+msgstr ""
+
+#. module: sale_stock_move_cost
+#: model_terms:ir.ui.view,arch_db:sale_stock_move_cost.view_order_tree
+#: model_terms:ir.ui.view,arch_db:sale_stock_move_cost.view_quotation_tree
+msgid "Total orders margin"
+msgstr ""

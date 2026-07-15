@@ -34,18 +34,15 @@
     <field name="arch" type="xml">
       <field name="partner_shipping_id" position="after">
         <field name="different_amounts" invisible="1" />
-        <field
-          name="sale_import_id"
-          modifiers="{'invisible': [('sale_import_id', '=', False)]}"
-        />
+        <field name="sale_import_id" invisible="sale_import_id == False" />
         <field
           name="total_amount_from_import"
           style="color:Red;"
-          modifiers="{'invisible': ['|',('total_amount_from_import', '=', 0), ('different_amounts', '=', False)]}"
+          invisible="total_amount_from_import == 0 or different_amounts == False"
         />
         <field
           name="total_amount_from_import"
-          modifiers="{'invisible': ['|',('total_amount_from_import', '=', 0), ('different_amounts', '=', True)]}"
+          invisible="total_amount_from_import == 0 or different_amounts == True"
         />
       </field>
     </field>

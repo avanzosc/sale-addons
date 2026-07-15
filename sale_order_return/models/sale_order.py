@@ -1,0 +1,27 @@
+# Copyright 2024 Berezi Amubieta - AvanzOSC
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
+from odoo import _, models
+from odoo.exceptions import ValidationError
+
+
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    def button_validate_everything(self):
+        for order in self:
+            if order.state in ["draft", "sent"]:
+                order.action_confirm()
+            pickings = order.picking_ids.filtered(
+                lambda p: p.state not in ("done", "cancel")
+            )
+            if not pickings:
+                raise ValidationError(
+                    _("There are no pending pickings to process for this order.")
+                )
+            for picking in pickings:
+                picking.action_confirm()
+                action = picking.button_validate()
+                if isinstance(action, dict):
+                    return action
+        return True
