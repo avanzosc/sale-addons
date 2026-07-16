@@ -143,7 +143,7 @@ class SaleOrderImportLine(models.Model):
             partner = self._check_partner(
                 self.invoice_address_name,
                 self.invoice_address_reference,
-                self.invoice_address_vat,
+                False,
             )
             if not partner:
                 log_infos.append(_("Invoice Address not found."))
@@ -159,7 +159,7 @@ class SaleOrderImportLine(models.Model):
             partner = self._check_partner(
                 self.delivery_address_name,
                 self.delivery_address_reference,
-                self.delivery_address_vat,
+                False,
             )
             if not partner:
                 log_infos.append(_("Delivery Address not found."))
@@ -170,10 +170,16 @@ class SaleOrderImportLine(models.Model):
         action = "create"
         update_values.update(
             {
-                "product_id": product and product.id,
-                "customer_id": customer and customer.id,
-                "invoice_address_id": invoice_address and invoice_address.id,
-                "delivery_address_id": delivery_address and delivery_address.id,
+                "product_id": product.id if product and len(product) == 1 else False,
+                "customer_id": customer.id
+                if customer and len(customer) == 1
+                else False,
+                "invoice_address_id": invoice_address.id
+                if invoice_address and len(invoice_address) == 1
+                else False,
+                "delivery_address_id": delivery_address.id
+                if delivery_address and len(delivery_address) == 1
+                else False,
                 "log_info": "\n".join(log_infos),
                 "state": state,
                 "action": action,
@@ -308,7 +314,9 @@ class SaleOrderImportLine(models.Model):
         if reference:
             search_domain = expression.OR([[("ref", "=", reference)], search_domain])
         if vat:
-            search_domain = expression.OR([[("vat", "=", vat)], search_domain])
+            search_domain = expression.OR(
+                [["&", ("vat", "=", vat), ("parent_id", "=", False)], search_domain]
+            )
         if self.import_id.company_id:
             search_domain = expression.AND(
                 [
@@ -393,6 +401,8 @@ class SaleOrderImportLine(models.Model):
             values["client_order_ref"] = self.client_order_ref
         if self.total_order_amount:
             values["total_amount_from_import"] = self.total_order_amount
+        if self.import_id.warehouse_id:
+            values["warehouse_id"] = self.import_id.warehouse_id.id
         return values
 
     def _sale_order_line_values(self, sale):
