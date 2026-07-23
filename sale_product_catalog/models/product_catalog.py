@@ -11,6 +11,11 @@ class ProductCatalog(models.Model):
     active = fields.Boolean(default=True)
     logo = fields.Binary()
     description = fields.Text(translate=True)
+    catalog_type_id = fields.Many2one(
+        comodel_name="product.catalog.type",
+        string="Catalog Type",
+        ondelete="restrict",
+    )
     inventory_availability = fields.Selection(
         selection=[
             ("never", "Never"),

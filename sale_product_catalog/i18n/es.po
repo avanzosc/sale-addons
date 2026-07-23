@@ -111,6 +111,7 @@ msgstr "Logo"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__name
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__name
 msgid "Name"
 msgstr "Nombre"
 
@@ -212,3 +213,39 @@ msgstr "Sin catálogo"
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
 msgid "e.g. SPRING SUMMER 2025"
 msgstr "p. ej. PRIMAVERA VERANO 2025"
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__catalog_type_id
+msgid "Catalog Type"
+msgstr "Tipo de catálogo"
+
+#. module: sale_product_catalog
+#: model:ir.actions.act_window,name:sale_product_catalog.product_catalog_type_action
+#: model:ir.ui.menu,name:sale_product_catalog.product_catalog_type_menu
+msgid "Catalog Types"
+msgstr "Tipos de catálogo"
+
+#. module: sale_product_catalog
+#: model:product.catalog.type,name:sale_product_catalog.product_catalog_type_carry_over
+msgid "Carry Over"
+msgstr "Carry Over"
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__incompatible_type_ids
+msgid "Incompatible Catalog Types"
+msgstr "Tipos de catálogo incompatibles"
+
+#. module: sale_product_catalog
+#: model:product.catalog.type,name:sale_product_catalog.product_catalog_type_prebook
+msgid "Prebook"
+msgstr "Prebook"
+
+#. module: sale_product_catalog
+#: model:ir.model,name:sale_product_catalog.model_product_catalog_type
+msgid "Product Catalog Type"
+msgstr "Tipo de catálogo de productos"
+
+#. module: sale_product_catalog
+#: model:product.catalog.type,name:sale_product_catalog.product_catalog_type_sale
+msgid "Sale / Outlet"
+msgstr "Oferta / Outlet"

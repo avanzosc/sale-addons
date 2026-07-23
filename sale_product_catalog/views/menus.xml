@@ -7,4 +7,11 @@
     action="product_catalog_action"
     sequence="7"
   />
+  <menuitem
+    id="product_catalog_type_menu"
+    name="Catalog Types"
+    parent="sale.prod_config_main"
+    action="product_catalog_type_action"
+    sequence="40"
+  />
 </odoo>
