@@ -9,6 +9,7 @@ class ProductCatalogType(models.Model):
     _order = "name"
 
     name = fields.Char(required=True, translate=True)
+    is_prebook = fields.Boolean(string="Prebook")
     incompatible_type_ids = fields.Many2many(
         comodel_name="product.catalog.type",
         relation="product_catalog_type_incompatibility_rel",
