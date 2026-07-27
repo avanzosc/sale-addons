@@ -16,6 +16,12 @@ class ProductCatalog(models.Model):
         string="Catalog Type",
         ondelete="restrict",
     )
+    is_prebook = fields.Boolean(
+        related="catalog_type_id.is_prebook",
+    )
+    date_start = fields.Date(string="Sale Start Date")
+    date_end = fields.Date(string="Sale End Date")
+    commitment_date = fields.Date()
     inventory_availability = fields.Selection(
         selection=[
             ("never", "Never"),
