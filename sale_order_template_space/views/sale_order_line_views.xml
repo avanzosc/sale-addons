@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_sales_order_line_input_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field
+      name="inherit_id"
+      ref="sale_order_line_input.view_sales_order_line_input_tree"
+    />
+        <field name="arch" type="xml">
+            <field name="display_type" position="before">
+                <field name="sequence" widget="handle" />
+                <field name="space_sequence" optional="show" />
+                <field name="sale_order_template_line_sequence" optional="show" />
+                <field name="sequence_to_view" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="model_sale_order_line_action_duplicate" model="ir.actions.server">
+        <field name="name">Duplicate Line</field>
+        <field name="model_id" ref="sale.model_sale_order_line" />
+        <field name="binding_model_id" ref="sale.model_sale_order_line" />
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_duplicate_line()</field>
+    </record>
+</odoo>

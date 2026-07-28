@@ -10,13 +10,17 @@
     "depends": [
         "sale_management",
         "sales_team",
+        "sale_order_line_input",
+        "sale_order_shorcut_line",
     ],
     "data": [
         "security/ir.model.access.csv",
+        "wizard/wiz_duplicate_sale_line_views.xml",
         "views/sale_order_template_space_views.xml",
         "views/sale_order_template_views.xml",
         "views/sale_order_template_line_views.xml",
         "views/sale_order_views.xml",
+        "views/sale_order_line_views.xml",
     ],
     "installable": True,
 }
