@@ -15,7 +15,8 @@ class SaleOrder(models.Model):
 
     @api.depends("force_no_invoice")
     def _compute_invoice_status(self):
-        super()._compute_invoice_status()
+        res = super()._compute_invoice_status()
         for order in self:
             if order.force_no_invoice:
                 order.invoice_status = "no"
+        return res
