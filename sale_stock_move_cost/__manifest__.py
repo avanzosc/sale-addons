@@ -18,4 +18,6 @@
     ],
     "installable": True,
     "auto_install": True,
+    "pre_init_hook": "_pre_init_sale_stock_move_cost",
+    "post_init_hook": "_post_init_sale_stock_move_cost",
 }
