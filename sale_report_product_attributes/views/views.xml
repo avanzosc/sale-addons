@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record model="ir.ui.view" id="product_catalog_web_view_form">
+    <field name="inherit_id" ref="acysos_hlc.product_catalog_web_view_form" />
+    <field name="model">product.catalog.web</field>
+    <field name="arch" type="xml">
+      <div class="oe_button_box" position="inside">
+        <button
+          class="oe_stat_button"
+          name="button_open_product_catalog_product_attrs"
+          type="object"
+          icon="fa-list"
+        >
+          <div class="o_field_widget o_stat_info">
+            <span class="o_stat_text">Product Attributes</span>
+          </div>
+        </button>
+      </div>
+    </field>
+  </record>
+</odoo>
