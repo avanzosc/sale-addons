@@ -15,8 +15,13 @@ class SaleOrder(models.Model):
 
     def create_pre_order_invoice(self):
         self.ensure_one()
+
         if not any(tag.is_pre_order for tag in self.tag_ids):
             return
+
+        if self._has_active_downpayment_invoice():
+            return
+
         if not (
             self.invoice_status == "no"
             or (
@@ -25,6 +30,7 @@ class SaleOrder(models.Model):
             )
         ):
             return
+
         self.create_advance_invoice()
 
     def create_advance_invoice(self):
@@ -74,3 +80,26 @@ class SaleOrder(models.Model):
                 wizard = wizard_model.create(vals)
                 wizard.journal_id = order.shopify_payment_gateway_id.journal_id.id
                 wizard.action_create_payments()
+
+    def _has_active_downpayment_invoice(self):
+        self.ensure_one()
+        downpayment_lines = self.order_line.filtered("is_downpayment")
+        invoices = downpayment_lines.invoice_lines.move_id.filtered(
+            lambda move: move.state != "cancel"
+        )
+        return bool(invoices)
+
+    def update_tag_in_shopify_order(self, order, shopify_tags):
+        result = super().update_tag_in_shopify_order(
+            order,
+            shopify_tags,
+        )
+
+        if (
+            order.state in ("sale", "done")
+            and any(tag.is_pre_order for tag in order.tag_ids)
+            and not order._has_active_downpayment_invoice()
+        ):
+            order.create_pre_order_invoice()
+
+        return result
