@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="res_config_settings_view_form" model="ir.ui.view">
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+    <field name="arch" type="xml">
+      <block name="catalog_setting_container" position="after">
+        <block title="Transfer information to invoice" name="information-to-invoice">
+          <setting
+            id="sale-order-terms-conditions-invoice"
+            string="Sale order terms and conditions to invoice"
+            help="Transferring sales order terms and conditions to invoices"
+          >
+            <field name="transfering_sale_terms_conditions" />
+          </setting>
+        </block>
+      </block>
+    </field>
+  </record>
+</odoo>
