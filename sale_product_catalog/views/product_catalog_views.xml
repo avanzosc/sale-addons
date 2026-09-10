@@ -28,6 +28,11 @@
           </div>
           <group>
             <group>
+              <field name="catalog_type_id" />
+              <field name="is_prebook" invisible="True" />
+              <field name="date_start" />
+              <field name="date_end" />
+              <field name="commitment_date" invisible="not is_prebook" />
               <field name="inventory_availability" />
               <field name="active" />
             </group>
@@ -69,6 +74,10 @@
     <field name="arch" type="xml">
       <list>
         <field name="name" />
+        <field name="catalog_type_id" />
+        <field name="date_start" optional="show" />
+        <field name="date_end" optional="show" />
+        <field name="commitment_date" optional="hide" />
         <field name="inventory_availability" />
         <field name="warehouse_id" />
         <field name="company_id" groups="base.group_multi_company" />
@@ -77,10 +86,49 @@
     </field>
   </record>
 
+  <record id="product_catalog_view_search" model="ir.ui.view">
+    <field name="name">product.catalog.view.search</field>
+    <field name="model">product.catalog</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name" />
+        <field name="company_id" groups="base.group_multi_company" />
+        <field name="catalog_type_id" />
+        <field name="date_start" />
+        <field name="date_end" />
+        <separator />
+        <filter name="active" string="Active" domain="[('active', '=', True)]" />
+        <group expand="0" string="Group By">
+          <filter
+            name="group_by_company"
+            string="Company"
+            context="{'group_by': 'company_id'}"
+          />
+          <filter
+            name="group_by_catalog_type"
+            string="Catalog Type"
+            context="{'group_by': 'catalog_type_id'}"
+          />
+          <filter
+            name="group_by_date_start"
+            string="Sale Start Date"
+            context="{'group_by': 'date_start'}"
+          />
+          <filter
+            name="group_by_date_end"
+            string="Sale End Date"
+            context="{'group_by': 'date_end'}"
+          />
+        </group>
+      </search>
+    </field>
+  </record>
+
   <record id="product_catalog_action" model="ir.actions.act_window">
     <field name="name">Catalogs</field>
     <field name="res_model">product.catalog</field>
     <field name="view_mode">list,form</field>
+    <field name="search_view_id" ref="product_catalog_view_search" />
     <field name="context">{"search_default_active": 1}</field>
   </record>
 </odoo>

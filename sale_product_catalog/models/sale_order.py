@@ -6,13 +6,20 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    catalog_id = fields.Many2one(
+    catalog_ids = fields.Many2many(
         comodel_name="product.catalog",
-        string="Catalog",
+        compute="_compute_catalog_ids",
+        string="Catalogs",
+        store=True,
+    )
+    is_prebook = fields.Boolean(
+        compute="_compute_catalog_ids",
+        string="Prebook",
+        store=True,
     )
 
-    @api.onchange("catalog_id")
-    def _onchange_catalog_id(self):
+    @api.depends("order_line.catalog_id")
+    def _compute_catalog_ids(self):
         for order in self:
-            if order.catalog_id.warehouse_id:
-                order.warehouse_id = order.catalog_id.warehouse_id
+            order.catalog_ids = order.order_line.catalog_id
+            order.is_prebook = any(order.catalog_ids.mapped("is_prebook"))

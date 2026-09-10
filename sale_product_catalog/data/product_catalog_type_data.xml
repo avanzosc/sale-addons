@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data noupdate="1">
+    <record id="product_catalog_type_carry_over" model="product.catalog.type">
+      <field name="name">Carry Over</field>
+    </record>
+
+    <record id="product_catalog_type_sale" model="product.catalog.type">
+      <field name="name">Sale / Outlet</field>
+    </record>
+
+    <record id="product_catalog_type_prebook" model="product.catalog.type">
+      <field name="name">Prebook</field>
+    </record>
+  </data>
+
+  <function model="product.catalog.type" name="write">
+    <value eval="[ref('product_catalog_type_prebook')]" />
+    <value
+      eval="{'is_prebook': True, 'incompatible_type_ids': [(6, 0, [ref('product_catalog_type_prebook'), ref('product_catalog_type_carry_over'), ref('product_catalog_type_sale')])]}"
+    />
+  </function>
+</odoo>
