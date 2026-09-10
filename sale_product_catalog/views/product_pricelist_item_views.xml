@@ -16,11 +16,9 @@
     <field name="model">product.pricelist.item</field>
     <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
     <field name="arch" type="xml">
-      <group name="pricelist_rule_limits" position="after">
-        <group>
-          <field name="catalog_ids" widget="many2many_tags" />
-        </group>
-      </group>
+      <field name="product_tmpl_id" position="after">
+        <field name="pricelist_id" />
+      </field>
     </field>
   </record>
 
