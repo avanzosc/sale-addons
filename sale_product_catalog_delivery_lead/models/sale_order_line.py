@@ -6,20 +6,20 @@ from odoo import api, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.depends("product_id", "order_id.catalog_id")
+    @api.depends("product_id", "catalog_id")
     def _compute_customer_lead(self):
-        """Take the delivery lead time from the order catalog when set.
+        """Take the delivery lead time from the line catalog when set.
 
         ``super()`` keeps the standard behaviour (the product's customer lead
-        time). When the order catalog defines a delivery lead time greater
+        time). When the line catalog defines a delivery lead time greater
         than 0, it overrides the product value. The dependency is on
-        ``order_id.catalog_id`` (a plain stored field) so ``customer_lead``
-        stays precomputable at line creation, and assigning or changing the
-        catalog on the order header recomputes every line.
+        ``catalog_id`` (a plain stored field) so ``customer_lead`` stays
+        precomputable at line creation, and changing the catalog on the line
+        recomputes its lead time.
         """
         res = super()._compute_customer_lead()
         for line in self:
-            catalog = line.order_id.catalog_id
+            catalog = line.catalog_id
             if catalog and catalog.delivery_lead_days > 0:
                 line.customer_lead = catalog.delivery_lead_days
         return res
