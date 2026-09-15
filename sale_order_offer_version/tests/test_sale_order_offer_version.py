@@ -66,5 +66,5 @@ class TestSaleOrderOfferVersion(common.SavepointCase):
         self.assertEqual(self.sale1.count_sale_orders, 1)
         result = self.sale1.action_view_sale_orders()
         domain = result.get("domain")
-        my_domain = "[('id', 'in', {})]".format(self.sale1.sale_ids.ids)
+        my_domain = f"[('id', 'in', {self.sale1.sale_ids.ids})]"
         self.assertEqual(str(domain), my_domain)
