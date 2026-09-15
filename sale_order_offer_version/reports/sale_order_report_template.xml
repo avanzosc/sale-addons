@@ -16,13 +16,8 @@
     <span t-else="" position="before">
       <span t-elif="offer">Offer # </span>
     </span>
-    <span
-      t-if="env.context.get('proforma', False) or is_pro_forma"
-      position="attributes"
-    >
-      <attribute
-        name="t-if"
-      >not offer and (env.context.get('proforma', False) or is_pro_forma)</attribute>
+    <span t-if="is_proforma" position="attributes">
+      <attribute name="t-if">(not offer and is_proforma) or is_pro_forma</attribute>
     </span>
     <span t-elif="doc.state in ['draft','sent']" position="attributes">
       <attribute name="t-elif">
