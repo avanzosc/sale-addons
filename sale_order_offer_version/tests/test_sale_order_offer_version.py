@@ -2,10 +2,11 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from datetime import datetime
 
-from odoo.tests import common
+from odoo.tests import TransactionCase, tagged
 
 
-class TestSaleOrderOfferVersion(common.SavepointCase):
+@tagged("post_install", "-at_install")
+class TestSaleOrderOfferVersion(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -49,22 +50,32 @@ class TestSaleOrderOfferVersion(common.SavepointCase):
         my_type = self.sale1.with_context(default_is_offer_type=True)._default_type_id()
         self.assertEqual(my_type, self.offer_type)
         self.sale1.onchange_type_id()
-        self.assertEqual(self.sale1.is_offer_type, True)
+        self.assertTrue(self.sale1.is_offer_type)
         self.sale1.stage = "pending"
         self.sale1.onchange_stage()
-        self.assertEqual(self.sale1.acceptance_date, False)
-        self.assertEqual(self.sale1.rejection_date, False)
+        self.assertFalse(self.sale1.acceptance_date)
+        self.assertFalse(self.sale1.rejection_date)
         self.sale1.stage = "accepted"
         self.sale1.onchange_stage()
-        self.assertEqual(self.sale1.acceptance_date, datetime.now().date())
-        self.assertEqual(self.sale1.rejection_date, False)
+        self.assertEqual(
+            self.sale1.acceptance_date,
+            datetime.now().date(),
+        )
+        self.assertFalse(self.sale1.rejection_date)
         self.sale1.stage = "rejected"
         self.sale1.onchange_stage()
-        self.assertEqual(self.sale1.acceptance_date, False)
-        self.assertEqual(self.sale1.rejection_date, datetime.now().date())
+        self.assertFalse(self.sale1.acceptance_date)
+        self.assertEqual(
+            self.sale1.rejection_date,
+            datetime.now().date(),
+        )
         self.sale1.action_offer_to_quotation()
         self.assertEqual(self.sale1.count_sale_orders, 1)
         result = self.sale1.action_view_sale_orders()
         domain = result.get("domain")
-        my_domain = f"[('id', 'in', {self.sale1.sale_ids.ids})]"
-        self.assertEqual(str(domain), my_domain)
+        expected_domain = [
+            "&",
+            ("id", "in", self.sale1.sale_ids.ids),
+            ("is_offer_type", "=", False),
+        ]
+        self.assertEqual(domain, expected_domain)
