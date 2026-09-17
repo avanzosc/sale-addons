@@ -8,41 +8,29 @@ class SaleOrderLine(models.Model):
 
     sales_goal_yearly_percentage = fields.Float(
         string="Yearly Goal Percentage",
-        compute="_compute_sales_goal_yearly_percentage",
-        default=0.0,
+        compute="_compute_sales_goal_percentage",
         store=True,
     )
     sales_goal_monthly_percentage = fields.Float(
         string="Monthly Goal Percentage",
-        compute="_compute_sales_goal_monthly_percentage",
-        default=0.0,
+        compute="_compute_sales_goal_percentage",
         store=True,
     )
 
     @api.depends(
-        "order_partner_id", "order_partner_id.sales_goal_monthly", "price_subtotal"
+        "order_partner_id.sales_goal_monthly",
+        "order_partner_id.sales_goal_yearly",
+        "price_subtotal",
     )
-    def _compute_sales_goal_monthly_percentage(self):
-        for record in self:
-            if record.order_partner_id.sales_goal_monthly:
-                record.sales_goal_monthly_percentage = (
-                    record.price_subtotal
-                    * 100
-                    / record.order_partner_id.sales_goal_monthly
-                )
-            else:
-                record.sales_goal_monthly_percentage = 0.0
+    def _compute_sales_goal_percentage(self):
+        for line in self:
+            monthly_goal = line.order_partner_id.sales_goal_monthly
+            yearly_goal = line.order_partner_id.sales_goal_yearly
 
-    @api.depends(
-        "order_partner_id", "order_partner_id.sales_goal_yearly", "price_subtotal"
-    )
-    def _compute_sales_goal_yearly_percentage(self):
-        for record in self:
-            if record.order_partner_id.sales_goal_yearly:
-                record.sales_goal_yearly_percentage = (
-                    record.price_subtotal
-                    * 100
-                    / record.order_partner_id.sales_goal_yearly
-                )
-            else:
-                record.sales_goal_yearly_percentage = 0.0
+            line.sales_goal_monthly_percentage = (
+                line.price_subtotal * 100.0 / monthly_goal if monthly_goal else 0.0
+            )
+
+            line.sales_goal_yearly_percentage = (
+                line.price_subtotal * 100.0 / yearly_goal if yearly_goal else 0.0
+            )

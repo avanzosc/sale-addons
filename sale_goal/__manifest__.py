@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Goals",
-    "version": "12.0.2.1.0",
+    "version": "18.0.1.0.0",
     "category": "Sales",
     "license": "AGPL-3",
     "author": "AvanzOSC",
@@ -11,7 +11,6 @@
     "depends": [
         "sale",
     ],
-    "excludes": [],
     "data": [
         "data/ir_cron_data.xml",
         "views/res_partner_views.xml",
