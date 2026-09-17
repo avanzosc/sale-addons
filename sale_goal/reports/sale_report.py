@@ -7,25 +7,34 @@ class SaleReport(models.Model):
     _inherit = "sale.report"
 
     sales_goal_yearly_percentage = fields.Float(
-        string="Yearly Goal Percentage", readonly=True
-    )
-    sales_goal_monthly_percentage = fields.Float(
-        string="Monthly Goal Percentage", readonly=True
+        string="Yearly Goal Percentage",
+        readonly=True,
     )
 
-    def _query(self, with_clause="", fields=None, groupby="", from_clause=""):
-        if not fields:
-            fields = {}
-        fields[
-            "sales_goal_monthly_percentage"
-        ] = ", l.sales_goal_monthly_percentage as sales_goal_monthly_percentage"
-        fields[
-            "sales_goal_yearly_percentage"
-        ] = ", l.sales_goal_yearly_percentage as sales_goal_yearly_percentage"
-        groupby += ", l.sales_goal_monthly_percentage, l.sales_goal_yearly_percentage"
-        return super(SaleReport, self)._query(
-            with_clause=with_clause,
-            fields=fields,
-            groupby=groupby,
-            from_clause=from_clause,
+    sales_goal_monthly_percentage = fields.Float(
+        string="Monthly Goal Percentage",
+        readonly=True,
+    )
+
+    def _select_additional_fields(self):
+        res = super()._select_additional_fields()
+
+        res.update(
+            {
+                "sales_goal_monthly_percentage": "l.sales_goal_monthly_percentage",
+                "sales_goal_yearly_percentage": "l.sales_goal_yearly_percentage",
+            }
         )
+
+        return res
+
+    def _group_by_sale(self):
+        res = super()._group_by_sale()
+
+        res += """
+            ,
+            l.sales_goal_monthly_percentage,
+            l.sales_goal_yearly_percentage
+        """
+
+        return res

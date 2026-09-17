@@ -1,6 +1,8 @@
 # Copyright 2023 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from dateutil.relativedelta import relativedelta
+
 from odoo import api, fields, models
 
 
@@ -16,88 +18,63 @@ class ResPartner(models.Model):
         default=0.0,
     )
     current_month_sale_amount = fields.Float(
-        string="Current Month Sale Amount",
         default=0.0,
     )
     current_year_sale_amount = fields.Float(
-        string="Current Year Sale Amount",
         default=0.0,
     )
 
     @api.onchange("sales_goal_monthly")
-    def onchange_sales_goal_monthly(self):
-        for record in self:
-            record.sales_goal_yearly = record.sales_goal_monthly * 12
+    def _onchange_sales_goal_monthly(self):
+        self.sales_goal_yearly = self.sales_goal_monthly * 12
 
     @api.onchange("sales_goal_yearly")
-    def onchange_sales_goal_yearly(self):
-        for record in self:
-            record.sales_goal_monthly = record.sales_goal_yearly / 12
+    def _onchange_sales_goal_yearly(self):
+        self.sales_goal_monthly = self.sales_goal_yearly / 12
+
+    def _get_sale_amount(self, date_from, date_to):
+        """Return sale amount by partner for the given date range."""
+        sale_orders = self.env["sale.order"].search(
+            [
+                ("partner_id", "in", self.ids),
+                ("state", "not in", ("draft", "sent", "cancel")),
+                ("date_order", ">=", date_from),
+                ("date_order", "<", date_to),
+            ]
+        )
+
+        amounts = dict.fromkeys(self.ids, 0.0)
+
+        for order in sale_orders:
+            if order.partner_id.id in amounts:
+                amounts[order.partner_id.id] += sum(
+                    order.order_line.mapped("price_subtotal")
+                )
+
+        return amounts
 
     def calculate_current_month_sale_amount(self):
         today = fields.Date.context_today(self)
-        for record in self:
-            month_orders = record.sale_order_ids.filtered(
-                lambda o: today.year == o.date_order.year
-                and today.month == o.date_order.month
-                and o.state not in ("draft", "sent", "cancel")
-            )
-            record.write(
-                {
-                    "current_month_sale_amount": sum(
-                        month_orders.mapped("order_line.price_subtotal")
-                    ),
-                }
-            )
+        date_from = today.replace(day=1)
+        date_to = date_from + relativedelta(months=1)
+
+        amounts = self._get_sale_amount(date_from, date_to)
+
+        for partner in self:
+            partner.current_month_sale_amount = amounts[partner.id]
 
     def calculate_current_year_sale_amount(self):
         today = fields.Date.context_today(self)
-        for record in self:
-            year_orders = record.sale_order_ids.filtered(
-                lambda o: today.year == o.date_order.year
-                and o.state not in ("draft", "sent", "cancel")
-            )
-            if year_orders:
-                record.write(
-                    {
-                        "current_year_sale_amount": sum(
-                            year_orders.mapped("order_line.price_subtotal")
-                        ),
-                    }
-                )
+        date_from = today.replace(month=1, day=1)
+        date_to = date_from + relativedelta(years=1)
+
+        amounts = self._get_sale_amount(date_from, date_to)
+
+        for partner in self:
+            partner.current_year_sale_amount = amounts[partner.id]
 
     def process_current_sale_amount(self):
-        today = fields.Date.context_today(self)
-        year_orders = self.env["sale.order"].search(
-            [
-                ("state", "not in", ["draft", "sent", "cancel"]),
-                ("date_order", ">=", today.replace(month=1, day=1)),
-                ("date_order", "<", today.replace(year=today.year + 1, month=1, day=1)),
-            ]
-        )
-        partners = self.search(
-            [
-                ("id", "not in", year_orders.mapped("partner_id").ids),
-                ("current_year_sale_amount", "!=", 0.0),
-            ]
-        )
-        partners.write(
-            {
-                "current_year_sale_amount": 0.0,
-                "current_month_sale_amount": 0.0,
-            }
-        )
-        year_orders.mapped("partner_id").calculate_current_year_sale_amount()
-        month_orders = year_orders.filtered(lambda o: today.month == o.date_order.month)
-        partners = self.search(
-            [
-                ("id", "not in", month_orders.mapped("partner_id").ids),
-                ("current_month_sale_amount", "!=", 0.0),
-            ]
-        )
-        partners.write(
-            {
-                "current_month_sale_amount": 0.0,
-            }
-        )
-        month_orders.mapped("partner_id").calculate_current_month_sale_amount()
+        partners = self.search([])
+
+        partners.calculate_current_month_sale_amount()
+        partners.calculate_current_year_sale_amount()
