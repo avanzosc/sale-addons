@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <template
+    id="report_saleorder_offer_document"
+    inherit_id="sale.report_saleorder_document"
+    priority="99"
+  >
+    <xpath expr="//td[@name='td_name']" position="before">
+      <tr t-if="not line.display_type and line.product_type != 'combo'">
+        <td name="td_name_full" colspan="99">
+          <span t-field="line.name" />
+        </td>
+      </tr>
+    </xpath>
+    <xpath expr="//td[@name='td_name']/span[@t-field='line.name']" position="replace" />
+  </template>
+</odoo>
