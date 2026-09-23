@@ -8,6 +8,7 @@ class SaleOrder(models.Model):
 
     total_qty_pending_delivery = fields.Float(
         string="Pending Delivery Qty",
+        default=0.0,
         copy=False,
         digits="Product Unit of Measure",
         compute="_compute_total_qty_amount_pending_delivery",
@@ -15,12 +16,14 @@ class SaleOrder(models.Model):
     )
     total_amount_pending_delivery = fields.Monetary(
         string="Pending Delivery Amount",
+        default=0.0,
         copy=False,
         compute="_compute_total_qty_amount_pending_delivery",
         store=True,
     )
     total_qty_pending_invoicing = fields.Float(
         string="Pending Invoicing Qty",
+        default=0.0,
         copy=False,
         digits="Product Unit of Measure",
         compute="_compute_total_qty_amount_pending_invoicing",
@@ -28,12 +31,14 @@ class SaleOrder(models.Model):
     )
     total_amount_pending_invoicing = fields.Monetary(
         string="Pending Invoicing Amount",
+        default=0.0,
         copy=False,
         compute="_compute_total_qty_amount_pending_invoicing",
         store=True,
     )
     total_qty_shipped_pending_invoicing = fields.Float(
         string="Pending Invoicing Shipped Qty",
+        default=0.0,
         copy=False,
         digits="Product Unit of Measure",
         compute="_compute_total_qty_shipped_pending_invoicing",
@@ -41,35 +46,30 @@ class SaleOrder(models.Model):
     )
     total_amount_shipped_pending_invoicing = fields.Monetary(
         string="Pending Invoicing Shipped Amount",
+        default=0.0,
         copy=False,
         compute="_compute_total_qty_shipped_pending_invoicing",
         store=True,
     )
     qty_ordered = fields.Float(
+        default=0.0,
         copy=False,
         digits="Product Unit of Measure",
         compute="_compute_qty_ordered",
         store=True,
     )
     qty_delivered = fields.Float(
+        default=0.0,
         copy=False,
         digits="Product Unit of Measure",
         compute="_compute_qty_delivered",
         store=True,
     )
-    shipped_rate = fields.Float(compute="_compute_shipped_rate", store=True)
-
-    @api.depends("order_line.qty_delivered", "order_line.product_uom_qty")
-    def _get_shipped_rate(self):
-        for sale in self:
-            total_qty = 0
-            total_shipped = 0
-            for line in sale.order_line:
-                if line.product_id and line.product_id.type != "service":
-                    total_qty += line.product_uom_qty
-                    total_shipped += line.qty_delivered
-            if total_qty != 0:
-                sale.shipped_rate = (total_shipped / total_qty) * 100
+    shipped_rate = fields.Float(
+        default=0.0,
+        compute="_compute_shipped_rate",
+        store=True,
+    )
 
     @api.depends(
         "order_line",
@@ -79,10 +79,10 @@ class SaleOrder(models.Model):
     def _compute_total_qty_amount_pending_delivery(self):
         for sale in self:
             sale.total_amount_pending_delivery = sum(
-                sale.order_line.mapped("amount_pending_delivery")
+                sale.mapped("order_line.amount_pending_delivery")
             )
             sale.total_qty_pending_delivery = sum(
-                sale.order_line.mapped("qty_pending_delivery")
+                sale.mapped("order_line.qty_pending_delivery")
             )
 
     @api.depends(
@@ -93,10 +93,10 @@ class SaleOrder(models.Model):
     def _compute_total_qty_amount_pending_invoicing(self):
         for sale in self:
             sale.total_amount_pending_invoicing = sum(
-                sale.order_line.mapped("amount_pending_invoicing")
+                sale.mapped("order_line.amount_pending_invoicing")
             )
             sale.total_qty_pending_invoicing = sum(
-                sale.order_line.mapped("qty_pending_invoicing")
+                sale.mapped("order_line.qty_pending_invoicing")
             )
 
     @api.depends(
@@ -107,10 +107,10 @@ class SaleOrder(models.Model):
     def _compute_total_qty_shipped_pending_invoicing(self):
         for sale in self:
             sale.total_qty_shipped_pending_invoicing = sum(
-                sale.order_line.mapped("qty_shipped_pending_invoicing")
+                sale.mapped("order_line.qty_shipped_pending_invoicing")
             )
             sale.total_amount_shipped_pending_invoicing = sum(
-                sale.order_line.mapped("amount_shipped_pending_invoicing")
+                sale.mapped("order_line.amount_shipped_pending_invoicing")
             )
 
     @api.depends("order_line", "order_line.state", "order_line.product_uom_qty")
@@ -145,6 +145,7 @@ class SaleOrderLine(models.Model):
 
     qty_pending_delivery = fields.Float(
         string="Pending Delivery Qty",
+        default=0.0,
         copy=False,
         digits="Product Unit of Measure",
         compute="_compute_qty_amount_pending_delivery",
@@ -152,12 +153,14 @@ class SaleOrderLine(models.Model):
     )
     amount_pending_delivery = fields.Monetary(
         string="Pending Delivery Amount",
+        default=0.0,
         copy=False,
         compute="_compute_qty_amount_pending_delivery",
         store=True,
     )
     qty_pending_invoicing = fields.Float(
         string="Pending Invoicing Qty",
+        default=0.0,
         copy=False,
         digits="Product Unit of Measure",
         compute="_compute_qty_amount_pending_invoicing",
@@ -165,12 +168,14 @@ class SaleOrderLine(models.Model):
     )
     amount_pending_invoicing = fields.Monetary(
         string="Pending Invoicing Amount",
+        default=0.0,
         copy=False,
         compute="_compute_qty_amount_pending_invoicing",
         store=True,
     )
     qty_shipped_pending_invoicing = fields.Float(
         string="Pending Invoicing Shipped Qty",
+        default=0.0,
         copy=False,
         digits="Product Unit of Measure",
         compute="_compute_qty_shipped_pending_invoicing",
@@ -178,6 +183,7 @@ class SaleOrderLine(models.Model):
     )
     amount_shipped_pending_invoicing = fields.Monetary(
         string="Pending Invoicing Shipped Amount",
+        default=0.0,
         copy=False,
         compute="_compute_qty_shipped_pending_invoicing",
         store=True,
