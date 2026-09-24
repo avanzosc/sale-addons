@@ -11,6 +11,8 @@ Sale Order Offer Version
 
 This module adds new menu for offers, those offers are defined by checking "Is it
 offer type?" in the sale order types.
+In Sales - Configuration - Settings, new field "Allow Modification Of Old Offers".
+
 
 Bug Tracker
 ===========
