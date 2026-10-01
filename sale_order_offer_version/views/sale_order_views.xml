@@ -4,6 +4,21 @@
     <field name="model">sale.order</field>
     <field name="inherit_id" ref="sale.view_order_form" />
     <field name="arch" type="xml">
+      <button name="action_view_invoice" position="after">
+        <button
+          name="action_view_previous_offers"
+          type="object"
+          class="oe_stat_button"
+          icon="fa-pencil-square-o"
+          invisible="previous_offers_count == 0"
+        >
+          <field
+            name="previous_offers_count"
+            widget="statinfo"
+            string="Previous Offers"
+          />
+        </button>
+      </button>
       <header position="attributes">
         <attribute name="invisible">is_offer_type</attribute>
       </header>
@@ -12,13 +27,14 @@
           <button
             name="action_offer_to_quotation"
             string="Convert offer to quotation"
+            invisible="not is_offer_type"
             type="object"
           />
           <button
             name="action_quotation_send"
             string="Send Offer by Email"
             type="object"
-            invisible="state != 'draft'"
+            invisible="not is_offer_type or state != 'draft'"
             class="btn-primary"
             data-hotkey="g"
             context="{'validate_analytic': True}"
@@ -27,13 +43,13 @@
             name="action_quotation_send"
             string="Send Offer by Email"
             type="object"
-            invisible="state not in ['sent', 'sale']"
+            invisible="not is_offer_type or state not in ['sent', 'sale']"
             data-hotkey="g"
             context="{'validate_analytic': True}"
           />
           <button
             name="create_revision"
-            invisible="state not in ['cancel', 'sent', 'draft']"
+            invisible="not is_offer_type or state not in ['cancel', 'sent', 'draft']"
             string="New Revision of Quotation"
             type="object"
           />
@@ -42,6 +58,7 @@
             widget="statusbar"
             options="{'clickable': 1}"
             statusbar_visible="pending,accepted,rejected"
+            invisible="not is_offer_type"
           />
         </header>
       </header>
@@ -84,6 +101,14 @@
       <field name="name" position="after">
         <field name="from_offer_id" />
       </field>
+      <filter name="customer">
+        <filter
+          name="offer"
+          string="Offer"
+          domain="[]"
+          context="{'group_by': 'unrevisioned_name'}"
+        />
+      </filter>
     </field>
   </record>
 
@@ -160,6 +185,11 @@
           name="rejected_stage"
           domain="[('stage','=','rejected')]"
         />
+        <filter
+          string="Latest offers"
+          domain="[('is_offer_type', '=', True), ('current_revision_id', '=', False)]"
+          name="latest-offers"
+        />
       </filter>
     </field>
   </record>
@@ -171,7 +201,9 @@
     <field name="view_mode">list,kanban,form,calendar,pivot,graph,activity</field>
     <field name="search_view_id" ref="sale_order_offer_search_view" />
     <field name="view_id" ref="sale_order_offer_tree_view" />
-    <field name="context">{'default_is_offer_type': True}</field>
+    <field
+      name="context"
+    >{'default_is_offer_type': True, 'search_default_latest-offers': 1}</field>
     <field name="domain">[('is_offer_type', '=', True)]</field>
     <field
       name="view_ids"
