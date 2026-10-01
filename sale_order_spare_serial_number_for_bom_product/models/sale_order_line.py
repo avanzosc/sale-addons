@@ -13,7 +13,6 @@ class SaleOrderLine(models.Model):
     @api.onchange(
         "spare_serial_number_id",
         "order_id",
-        "order_id.spare_serial_number_id",
     )
     def onchange_spare_serial_number_id(self):
         dom = [
