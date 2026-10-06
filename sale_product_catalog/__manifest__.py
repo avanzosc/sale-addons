@@ -20,6 +20,7 @@
         "data/product_catalog_type_data.xml",
         "views/product_catalog_type_views.xml",
         "views/product_catalog_views.xml",
+        "views/product_product_views.xml",
         "views/product_pricelist_item_views.xml",
         "views/sale_order_views.xml",
         "views/menus.xml",

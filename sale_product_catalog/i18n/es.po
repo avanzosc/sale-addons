@@ -33,6 +33,7 @@ msgstr "Catálogo"
 
 #. module: sale_product_catalog
 #: model:ir.actions.act_window,name:sale_product_catalog.product_catalog_action
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_product__catalog_ids
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_pricelist_item__catalog_ids
 #: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order__catalog_ids
 #: model:ir.ui.menu,name:sale_product_catalog.product_catalog_menu
