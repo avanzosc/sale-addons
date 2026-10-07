@@ -24,71 +24,69 @@ class TestCatalogDeliveryLead(TransactionCase):
         cls.catalog_zero = Catalog.create(
             {"name": "No-lead catalog", "delivery_lead_days": 0.0}
         )
+        cls.order = cls.env["sale.order"].create({"partner_id": cls.partner.id})
 
-    def _create_order(self, catalog=None):
-        vals = {"partner_id": self.partner.id}
+    def _add_line(self, catalog=None):
+        vals = {
+            "order_id": self.order.id,
+            "product_id": self.product.id,
+            "product_uom_qty": 1.0,
+        }
         if catalog is not None:
             vals["catalog_id"] = catalog.id
-        return self.env["sale.order"].create(vals)
-
-    def _add_line(self, order):
-        return self.env["sale.order.line"].create(
-            {
-                "order_id": order.id,
-                "product_id": self.product.id,
-                "product_uom_qty": 1.0,
-            }
-        )
+        return self.env["sale.order.line"].create(vals)
 
     def test_no_catalog_keeps_product_lead(self):
-        """No catalog on the order -> line keeps the product's lead time."""
-        order = self._create_order()
-        line = self._add_line(order)
+        """No catalog on the line -> line keeps the product's lead time."""
+        line = self._add_line()
         self.assertFalse(line.catalog_id)
         self.assertEqual(line.customer_lead, 5.0)
 
     def test_catalog_zero_keeps_product_lead(self):
         """Catalog with 0 delivery days -> line keeps the product's lead time."""
-        order = self._create_order(self.catalog_zero)
-        line = self._add_line(order)
+        line = self._add_line(self.catalog_zero)
         self.assertEqual(line.catalog_id, self.catalog_zero)
         self.assertEqual(line.customer_lead, 5.0)
 
     def test_catalog_positive_overrides_product(self):
         """Catalog with delivery days > 0 -> overrides the product's lead time."""
-        order = self._create_order(self.catalog_slow)
-        line = self._add_line(order)
+        line = self._add_line(self.catalog_slow)
         self.assertEqual(line.customer_lead, 90.0)
 
-    def test_change_catalog_updates_existing_lines(self):
-        """Changing the order catalog recomputes every line's lead time."""
-        order = self._create_order(self.catalog_fast)
-        line = self._add_line(order)
+    def test_change_catalog_updates_line(self):
+        """Changing the line catalog recomputes its lead time."""
+        line = self._add_line(self.catalog_fast)
         self.assertEqual(line.customer_lead, 2.0)
-        order.catalog_id = self.catalog_slow
+        line.catalog_id = self.catalog_slow
         self.assertEqual(line.customer_lead, 90.0)
 
     def test_remove_catalog_reverts_to_product(self):
-        """Clearing the catalog reverts lines to the product's lead time."""
-        order = self._create_order(self.catalog_slow)
-        line = self._add_line(order)
+        """Clearing the catalog reverts the line to the product's lead time."""
+        line = self._add_line(self.catalog_slow)
         self.assertEqual(line.customer_lead, 90.0)
-        order.catalog_id = False
+        line.catalog_id = False
         self.assertEqual(line.customer_lead, 5.0)
 
     def test_switch_to_zero_catalog_reverts_to_product(self):
-        """Switching to a 0-days catalog reverts lines to the product lead."""
-        order = self._create_order(self.catalog_slow)
-        line = self._add_line(order)
+        """Switching to a 0-days catalog reverts the line to the product lead."""
+        line = self._add_line(self.catalog_slow)
         self.assertEqual(line.customer_lead, 90.0)
-        order.catalog_id = self.catalog_zero
+        line.catalog_id = self.catalog_zero
         self.assertEqual(line.customer_lead, 5.0)
 
     def test_manual_edit_overridden_on_catalog_change(self):
         """A manual lead value is refreshed when the catalog is (re)assigned."""
-        order = self._create_order()
-        line = self._add_line(order)
+        line = self._add_line()
         line.customer_lead = 12.0
         self.assertEqual(line.customer_lead, 12.0)
-        order.catalog_id = self.catalog_fast
+        line.catalog_id = self.catalog_fast
         self.assertEqual(line.customer_lead, 2.0)
+
+    def test_lines_are_independent(self):
+        """Each line takes the lead time of its own catalog."""
+        fast_line = self._add_line(self.catalog_fast)
+        slow_line = self._add_line(self.catalog_slow)
+        no_catalog_line = self._add_line()
+        self.assertEqual(fast_line.customer_lead, 2.0)
+        self.assertEqual(slow_line.customer_lead, 90.0)
+        self.assertEqual(no_catalog_line.customer_lead, 5.0)
