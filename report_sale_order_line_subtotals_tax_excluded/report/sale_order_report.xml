@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+    id="report_saleorder_document"
+    inherit_id="sale.report_saleorder_document"
+    priority="100"
+  >
+        <th name="th_subtotal" position="replace">
+            <th name="th_subtotal" class="text-end">
+                <span>Amount</span>
+            </th>
+        </th>
+        <span t-field="line.price_total" position="replace" />
+        <span t-field="line.price_subtotal" position="attributes">
+            <attribute name="groups" />
+        </span>
+    </template>
+</odoo>
