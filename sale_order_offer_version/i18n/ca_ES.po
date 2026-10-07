@@ -4,16 +4,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-16 10:35+0000\n"
-"PO-Revision-Date: 2025-09-16 10:35+0000\n"
+"POT-Creation-Date: 2026-09-24 07:42+0000\n"
+"PO-Revision-Date: 2026-09-24 07:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__previous_offers_count
+msgid "# Previous Offers"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.report_saleorder_offer_document
@@ -30,6 +35,17 @@ msgstr "Data d'acceptació"
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Accepted"
 msgstr "Acceptada"
+
+#. module: sale_order_offer_version
+#: model:ir.model.fields,field_description:sale_order_offer_version.field_res_config_settings__allow_modification_old_offers
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.res_config_settings_view_form
+msgid "Allow Modification Of Old Offers"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model:ir.model,name:sale_order_offer_version.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paràmetres de configuració"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
@@ -62,15 +78,24 @@ msgstr "És un tipus de valoració?"
 #. module: sale_order_offer_version
 #. odoo-python
 #: code:addons/sale_order_offer_version/models/sale_order.py:0
-#: code:addons/sale_order_offer_version/models/sale_order.py:0
-#, python-format
 msgid "It is not allowed to confirm an offer type sale order"
 msgstr "No està permès confirmar una comanda de venda de tipus valoració"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
+msgid "Latest offers"
+msgstr ""
+
+#. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "My Offers"
 msgstr "Les meves valoracions"
+
+#. module: sale_order_offer_version
+#. odoo-python
+#: code:addons/sale_order_offer_version/models/sale_order.py:0
+msgid "New"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
@@ -79,6 +104,7 @@ msgstr "Nova revisió del pressupost"
 
 #. module: sale_order_offer_version
 #: model:sale.order.type,name:sale_order_offer_version.offer_type
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.view_sales_order_filter
 msgid "Offer"
 msgstr "Valoració"
 
@@ -100,6 +126,7 @@ msgstr "Tipus de valoració"
 #. module: sale_order_offer_version
 #: model:ir.actions.act_window,name:sale_order_offer_version.action_sale_offer
 #: model:ir.ui.menu,name:sale_order_offer_version.menu_sale_offer
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
 msgid "Offers"
 msgstr "Valoracions"
@@ -118,6 +145,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_search_view
 msgid "Pending"
 msgstr "Pendent"
+
+#. module: sale_order_offer_version
+#: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
+msgid "Previous Offers"
+msgstr ""
 
 #. module: sale_order_offer_version
 #: model:ir.model.fields.selection,name:sale_order_offer_version.selection__sale_order__stage__rejected
@@ -144,7 +176,7 @@ msgstr "Comandes de venda"
 #: model:ir.model,name:sale_order_offer_version.model_sale_order
 #: model:ir.model.fields,field_description:sale_order_offer_version.field_sale_order__sale_ids
 msgid "Sales Order"
-msgstr "Comanda de venda"
+msgstr "Comanda"
 
 #. module: sale_order_offer_version
 #: model_terms:ir.ui.view,arch_db:sale_order_offer_version.sale_order_offer_form
