@@ -43,11 +43,26 @@ class SaleOrder(models.Model):
         string="Sale Order Count",
         compute="_compute_count_sale_orders",
     )
+    previous_offers_count = fields.Integer(
+        string="# Previous Offers", compute="_compute_previous_offers_count"
+    )
 
     @api.depends("sale_ids")
     def _compute_count_sale_orders(self):
         for sale in self.with_context(active_test=False):
             sale.count_sale_orders = len(sale.sale_ids)
+
+    def _compute_previous_offers_count(self):
+        for sale in self:
+            if not sale.from_offer_id:
+                sale.previous_offers_count = 0
+                continue
+            cond = [
+                ("unrevisioned_name", "=", sale.from_offer_id.unrevisioned_name),
+                ("id", "<", sale.from_offer_id.id),
+            ]
+            offers = self.env["sale.order"].search(cond)
+            sale.previous_offers_count = len(offers)
 
     @api.model
     def _default_type_id(self):
@@ -114,3 +129,55 @@ class SaleOrder(models.Model):
             }
         )
         return action_dict
+
+    def action_view_previous_offers(self):
+        self.ensure_one()
+        cond = [
+            ("unrevisioned_name", "=", self.from_offer_id.unrevisioned_name),
+            ("id", "<", self.from_offer_id.id),
+        ]
+        offers = self.env["sale.order"].search(cond)
+        action = self.env.ref("sale_order_offer_version.action_sale_offer")
+        action_dict = action and action.read()[0]
+        action_dict["context"] = safe_eval(action_dict.get("context", "{}"))
+        domain = expression.AND(
+            [
+                [("id", "in", offers.ids)],
+                safe_eval(action.domain or "[]"),
+            ]
+        )
+        action_dict.update({"domain": domain})
+        return action_dict
+
+    def _prepare_revision_data(self, new_revision):
+        vals = super()._prepare_revision_data(new_revision)
+        vals["active"] = True
+        allow_modification_old_offers = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_order_offer_version.allow_modification_old_offers")
+        )
+        if allow_modification_old_offers:
+            del vals["state"]
+        return vals
+
+    def _get_new_rev_data(self, new_rev_number):
+        self.ensure_one()
+        vals = super()._get_new_rev_data(new_rev_number)
+        if "name" in vals and "-00-" in vals["name"]:
+            vals["name"] = vals["name"].replace("-00-", "-")
+        return vals
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("name", _("New")) == _("New") and vals.get("type_id"):
+                sale_type = self.env["sale.order.type"].browse(vals["type_id"])
+                if sale_type.sequence_id:
+                    name = sale_type.sequence_id.next_by_id(
+                        sequence_date=vals.get("date_order")
+                    )
+                    vals["name"] = name
+                    if "is_offer_type" in vals and vals.get("is_offer_type", False):
+                        vals["name"] = f"{name}-00"
+        return super().create(vals_list)
