@@ -53,10 +53,18 @@ class ProductCatalog(models.Model):
         compute="_compute_pricelist_item_count",
         compute_sudo=True,
     )
+    product_ids = fields.Many2many(
+        comodel_name="product.product",
+        compute="_compute_product_ids",
+    )
 
     def _compute_pricelist_item_count(self):
         for rec in self:
             rec.pricelist_item_count = len(rec.pricelist_item_ids)
+
+    def _compute_product_ids(self):
+        for rec in self:
+            rec.product_ids = [(6, 0, rec.mapped("pricelist_item_ids.product_id").ids)]
 
     def action_pricelist_items(self):
         self.ensure_one()
