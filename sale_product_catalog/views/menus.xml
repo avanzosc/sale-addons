@@ -5,7 +5,7 @@
     name="Catalogs"
     parent="sale.product_menu_catalog"
     action="product_catalog_action"
-    sequence="7"
+    sequence="25"
   />
   <menuitem
     id="product_catalog_type_menu"

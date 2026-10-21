@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 12:29+0000\n"
-"PO-Revision-Date: 2026-06-25 12:29+0000\n"
+"POT-Creation-Date: 2026-10-21 12:29+0000\n"
+"PO-Revision-Date: 2026-10-21 12:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,7 @@ msgstr ""
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__active
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
 msgid "Active"
 msgstr "Activo"
 
@@ -26,32 +27,67 @@ msgid "Always"
 msgstr "Mostrar inventario en website y evitar ventas si no hay stock"
 
 #. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: sale_product_catalog
+#: model:product.catalog.type,name:sale_product_catalog.product_catalog_type_carry_over
+msgid "Carry Over"
+msgstr "Arrastre"
+
+#. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order_line__catalog_id
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
 msgid "Catalog"
 msgstr "Catálogo"
 
 #. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_product__catalog_pricelist_item_ids
+msgid "Catalog Pricelist Item"
+msgstr "Elemento de tarifa de catálogo"
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__catalog_type_id
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
+msgid "Catalog Type"
+msgstr "Tipo de catálogo"
+
+#. module: sale_product_catalog
+#: model:ir.actions.act_window,name:sale_product_catalog.product_catalog_type_action
+#: model:ir.ui.menu,name:sale_product_catalog.product_catalog_type_menu
+msgid "Catalog Types"
+msgstr "Tipos de catálogo"
+
+#. module: sale_product_catalog
 #: model:ir.actions.act_window,name:sale_product_catalog.product_catalog_action
-#: model:ir.model.fields,field_description:sale_product_catalog.field_product_product__catalog_ids
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_pricelist_item__catalog_ids
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_product__catalog_ids
 #: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order__catalog_ids
 #: model:ir.ui.menu,name:sale_product_catalog.product_catalog_menu
 msgid "Catalogs"
 msgstr "Catálogos"
 
 #. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__commitment_date
+msgid "Commitment Date"
+msgstr "Fecha de compromiso"
+
+#. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__company_id
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
 msgid "Company"
 msgstr "Compañía"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__create_uid
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__create_date
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__create_date
 msgid "Created on"
 msgstr "Creado el"
 
@@ -67,6 +103,7 @@ msgstr "Descripción"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__display_name
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__display_name
 msgid "Display Name"
 msgstr "Mostrar nombre"
 
@@ -81,14 +118,21 @@ msgid "Formula"
 msgstr "Fórmula"
 
 #. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
 msgid "Group By"
 msgstr "Agrupar por"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__id
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__incompatible_type_ids
+msgid "Incompatible Catalog Types"
+msgstr "Tipos de catálogo incompatibles"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__inventory_availability
@@ -97,18 +141,20 @@ msgstr "Disponibilidad del inventario"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__write_uid
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__write_date
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__logo
 msgid "Logo"
-msgstr "Logo"
+msgstr "Logotipo"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__name
@@ -131,6 +177,14 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
 msgid "Percentage"
 msgstr "Porcentaje"
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__is_prebook
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__is_prebook
+#: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order__is_prebook
+#: model:product.catalog.type,name:sale_product_catalog.product_catalog_type_prebook
+msgid "Prebook"
+msgstr "Preventa"
 
 #. module: sale_product_catalog
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
@@ -163,9 +217,10 @@ msgstr "Elementos de tarifa"
 #. module: sale_product_catalog
 #: model:ir.model,name:sale_product_catalog.model_product_pricelist_item
 msgid "Pricelist Rule"
-msgstr "Regla de la lista de precios"
+msgstr "Item de Lista de precios"
 
 #. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__product_ids
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
 msgid "Product"
 msgstr "Producto"
@@ -176,9 +231,41 @@ msgid "Product Catalog"
 msgstr "Catálogo de productos"
 
 #. module: sale_product_catalog
+#: model:ir.model,name:sale_product_catalog.model_product_catalog_type
+msgid "Product Catalog Type"
+msgstr "Tipo de catálogo de productos"
+
+#. module: sale_product_catalog
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
 msgid "Product Category"
 msgstr "Categoría de producto"
+
+#. module: sale_product_catalog
+#: model:ir.model,name:sale_product_catalog.model_product_product
+msgid "Product Variant"
+msgstr "Producto"
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
+msgid "Products"
+msgstr "Productos"
+
+#. module: sale_product_catalog
+#: model:product.catalog.type,name:sale_product_catalog.product_catalog_type_sale
+msgid "Sale / Outlet"
+msgstr "Venta / Outlet"
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__date_end
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
+msgid "Sale End Date"
+msgstr "Fecha de fin de venta"
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__date_start
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
+msgid "Sale Start Date"
+msgstr "Fecha de inicio de venta"
 
 #. module: sale_product_catalog
 #: model:ir.model,name:sale_product_catalog.model_sale_order
@@ -214,57 +301,3 @@ msgstr "Sin catálogo"
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
 msgid "e.g. SPRING SUMMER 2025"
 msgstr "p. ej. PRIMAVERA VERANO 2025"
-
-#. module: sale_product_catalog
-#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__catalog_type_id
-msgid "Catalog Type"
-msgstr "Tipo de catálogo"
-
-#. module: sale_product_catalog
-#: model:ir.actions.act_window,name:sale_product_catalog.product_catalog_type_action
-#: model:ir.ui.menu,name:sale_product_catalog.product_catalog_type_menu
-msgid "Catalog Types"
-msgstr "Tipos de catálogo"
-
-#. module: sale_product_catalog
-#: model:product.catalog.type,name:sale_product_catalog.product_catalog_type_carry_over
-msgid "Carry Over"
-msgstr "Carry Over"
-
-#. module: sale_product_catalog
-#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__incompatible_type_ids
-msgid "Incompatible Catalog Types"
-msgstr "Tipos de catálogo incompatibles"
-
-#. module: sale_product_catalog
-#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__is_prebook
-#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__is_prebook
-#: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order__is_prebook
-#: model:product.catalog.type,name:sale_product_catalog.product_catalog_type_prebook
-msgid "Prebook"
-msgstr "Prebook"
-
-#. module: sale_product_catalog
-#: model:ir.model,name:sale_product_catalog.model_product_catalog_type
-msgid "Product Catalog Type"
-msgstr "Tipo de catálogo de productos"
-
-#. module: sale_product_catalog
-#: model:product.catalog.type,name:sale_product_catalog.product_catalog_type_sale
-msgid "Sale / Outlet"
-msgstr "Oferta / Outlet"
-
-#. module: sale_product_catalog
-#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__commitment_date
-msgid "Commitment Date"
-msgstr "Fecha de compromiso"
-
-#. module: sale_product_catalog
-#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__date_end
-msgid "Sale End Date"
-msgstr "Fecha fin de venta"
-
-#. module: sale_product_catalog
-#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__date_start
-msgid "Sale Start Date"
-msgstr "Fecha inicio de venta"
