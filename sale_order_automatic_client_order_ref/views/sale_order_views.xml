@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="sale_order_tree" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.sale_order_tree" />
+    <field name="arch" type="xml">
+      <field name="client_order_ref" position="attributes">
+        <attribute name="optional">show</attribute>
+      </field>
+    </field>
+  </record>
+
+  <record id="view_order_form" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+      <notebook position="before">
+        <div class="o_row">
+          <label for="assigned_technician_id" class="o_form_label" />
+          <field name="assigned_technician_id" />
+        </div>
+        <div class="o_row">
+          <label for="internal_order_reference" class="o_form_label" />
+          <field name="internal_order_reference" />
+          <label for="customer_order_code" class="o_form_label" />
+          <field name="customer_order_code" />
+          <label for="client_project_name" class="o_form_label" />
+          <field name="client_project_name" />
+        </div>
+      </notebook>
+    </field>
+  </record>
+
+  <record id="view_sales_order_filter" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_sales_order_filter" />
+    <field name="arch" type="xml">
+      <field name="user_id" position="after">
+        <field name="assigned_technician_id" />
+      </field>
+      <filter name="my_sale_orders_filter" position="before">
+        <separator />
+        <field name="internal_order_reference" />
+        <field name="customer_order_code" />
+        <field name="client_project_name" />
+        <separator />
+      </filter>
+      <filter name="customer" position="after">
+        <filter
+          name="assigned-technician"
+          string="Assigned technician"
+          domain="[]"
+          context="{'group_by': 'assigned_technician_id'}"
+        />
+      </filter>
+    </field>
+  </record>
+</odoo>
