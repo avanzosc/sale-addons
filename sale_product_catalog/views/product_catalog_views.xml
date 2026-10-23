@@ -44,13 +44,18 @@
             <group>
               <field name="company_id" groups="base.group_multi_company" />
               <field name="warehouse_id" />
+              <field
+                name="pricelist_ids"
+                widget="many2many_tags"
+                invisible="not pricelist_ids"
+              />
             </group>
           </group>
           <field name="description" />
           <notebook>
             <page string="Pricelist Items" name="pricelist_items">
-              <field name="pricelist_item_ids">
-                <list>
+              <field name="pricelist_item_ids" context="{'show_item_pricelist_id': 1}">
+                <!--<list>
                   <field name="pricelist_id" />
                   <field name="product_tmpl_id" string="Product" optional="show" />
                   <field name="product_id" />
@@ -64,11 +69,11 @@
                   <field name="min_quantity" optional="hide" />
                   <field name="date_start" optional="hide" />
                   <field name="date_end" optional="hide" />
-                </list>
+                </list>-->
               </field>
             </page>
             <page string="Products" name="product_catalog">
-              <field name="product_ids" mode="kanban" />
+              <field name="product_tmpl_ids" mode="kanban" />
             </page>
           </notebook>
         </sheet>
@@ -105,7 +110,9 @@
         <field name="date_start" />
         <field name="date_end" />
         <separator />
-        <filter name="active" string="Active" domain="[('active', '=', True)]" />
+        <filter string="Archived" name="inactive" domain="[('active','=',False)]" />
+        <separator />
+        <filter string="Prebook" name="is_prebook" domain="[('is_prebook','=',True)]" />
         <group expand="0" string="Group By">
           <filter
             name="group_by_company"
@@ -135,8 +142,8 @@
   <record id="product_catalog_action" model="ir.actions.act_window">
     <field name="name">Catalogs</field>
     <field name="res_model">product.catalog</field>
+    <field name="path">catalogs</field>
     <field name="view_mode">list,form</field>
     <field name="search_view_id" ref="product_catalog_view_search" />
-    <field name="context">{"search_default_active": 1}</field>
   </record>
 </odoo>
