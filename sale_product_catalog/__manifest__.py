@@ -13,6 +13,7 @@
         "product_pricelist_item_menu",
         "sale",
         "stock",
+        "report_xlsx",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -24,6 +25,8 @@
         "views/product_pricelist_item_views.xml",
         "views/sale_order_views.xml",
         "views/menus.xml",
+        "reports/catalog_product_xlsx_report.xml",
+        "wizards/catalog_product_export_xlsx_report_view.xml",
     ],
     "pre_init_hook": "pre_init_hook",
     "post_init_hook": "post_init_hook",

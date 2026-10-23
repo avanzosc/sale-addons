@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
   <record id="product_catalog_view_form" model="ir.ui.view">
-    <field name="name">product.catalog.view.form</field>
     <field name="model">product.catalog</field>
     <field name="arch" type="xml">
       <form>
@@ -10,14 +9,44 @@
             <button
               class="oe_stat_button"
               type="object"
-              name="action_pricelist_items"
+              name="action_open_pricelist_items"
+              groups="product.group_product_pricelist"
               icon="fa-list"
             >
-              <field
-                name="pricelist_item_count"
-                widget="statinfo"
-                string="Pricelist Items"
-              />
+              <div class="o_field_widget o_stat_info">
+                <span class="o_stat_value o_row">
+                  <field name="pricelist_item_count" />
+                  <span class="o_stat_text" invisible="pricelist_item_count == 1">
+                        Rules
+                    </span>
+                  <span class="o_stat_text" invisible="pricelist_item_count != 1">
+                        Rule
+                    </span>
+                </span>
+                <span class="o_stat_text" invisible="pricelist_item_count == 1">
+                    Pricelists
+                </span>
+                <span class="o_stat_text" invisible="pricelist_item_count != 1">
+                    Pricelist
+                </span>
+              </div>
+            </button>
+            <button
+              class="oe_stat_button"
+              type="object"
+              name="action_open_product_templates"
+              icon="fa-sitemap"
+            >
+              <field name="product_tmpl_count" widget="statinfo" string="Products" />
+            </button>
+            <button
+              class="oe_stat_button"
+              type="object"
+              name="action_open_product_variants"
+              icon="fa-sitemap"
+              groups="product.group_product_variant"
+            >
+              <field name="product_count" widget="statinfo" string="Product Variants" />
             </button>
           </div>
           <widget
@@ -44,13 +73,18 @@
             <group>
               <field name="company_id" groups="base.group_multi_company" />
               <field name="warehouse_id" />
+              <field
+                name="pricelist_ids"
+                widget="many2many_tags"
+                invisible="not pricelist_ids"
+              />
             </group>
           </group>
           <field name="description" />
           <notebook>
             <page string="Pricelist Items" name="pricelist_items">
-              <field name="pricelist_item_ids">
-                <list>
+              <field name="pricelist_item_ids" context="{'show_item_pricelist_id': 1}">
+                <!--<list>
                   <field name="pricelist_id" />
                   <field name="product_tmpl_id" string="Product" optional="show" />
                   <field name="product_id" />
@@ -64,10 +98,17 @@
                   <field name="min_quantity" optional="hide" />
                   <field name="date_start" optional="hide" />
                   <field name="date_end" optional="hide" />
-                </list>
+                </list>-->
               </field>
             </page>
             <page string="Products" name="product_catalog">
+              <field name="product_tmpl_ids" mode="kanban" />
+            </page>
+            <page
+              string="Product Variants"
+              name="variant_catalog"
+              groups="product.group_product_variant"
+            >
               <field name="product_ids" mode="kanban" />
             </page>
           </notebook>
@@ -77,25 +118,33 @@
   </record>
 
   <record id="product_catalog_view_list" model="ir.ui.view">
-    <field name="name">product.catalog.view.list</field>
     <field name="model">product.catalog</field>
     <field name="arch" type="xml">
-      <list>
+      <list decoration-muted="(not active)" decoration-it="pricelist_item_count == 0">
+        <field name="sequence" widget="handle" />
         <field name="name" />
         <field name="catalog_type_id" />
-        <field name="date_start" optional="show" />
-        <field name="date_end" optional="show" />
+        <field
+          name="date_start"
+          optional="show"
+          decoration-danger="date_start &gt; current_date"
+        />
+        <field
+          name="date_end"
+          optional="show"
+          decoration-danger="date_end &lt; current_date"
+        />
         <field name="commitment_date" optional="hide" />
         <field name="inventory_availability" />
         <field name="warehouse_id" />
         <field name="company_id" groups="base.group_multi_company" />
         <field name="active" column_invisible="True" />
+        <field name="pricelist_item_count" column_invisible="True" />
       </list>
     </field>
   </record>
 
   <record id="product_catalog_view_search" model="ir.ui.view">
-    <field name="name">product.catalog.view.search</field>
     <field name="model">product.catalog</field>
     <field name="arch" type="xml">
       <search>
@@ -105,7 +154,9 @@
         <field name="date_start" />
         <field name="date_end" />
         <separator />
-        <filter name="active" string="Active" domain="[('active', '=', True)]" />
+        <filter string="Archived" name="inactive" domain="[('active','=',False)]" />
+        <separator />
+        <filter string="Prebook" name="is_prebook" domain="[('is_prebook','=',True)]" />
         <group expand="0" string="Group By">
           <filter
             name="group_by_company"
@@ -135,8 +186,8 @@
   <record id="product_catalog_action" model="ir.actions.act_window">
     <field name="name">Catalogs</field>
     <field name="res_model">product.catalog</field>
+    <field name="path">catalogs</field>
     <field name="view_mode">list,form</field>
     <field name="search_view_id" ref="product_catalog_view_search" />
-    <field name="context">{"search_default_active": 1}</field>
   </record>
 </odoo>

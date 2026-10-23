@@ -3,3 +3,4 @@ access_product_catalog_user,product.catalog.web user,model_product_catalog,base.
 access_product_catalog_manager,product.catalog.web manager,model_product_catalog,base.group_system,1,1,1,1
 access_product_catalog_type_user,product.catalog.type user,model_product_catalog_type,base.group_user,1,0,0,0
 access_product_catalog_type_manager,product.catalog.type manager,model_product_catalog_type,sales_team.group_sale_manager,1,1,1,1
+access_report_catalog_product_xlsx_export,report.catalog.product_xlsx.export,model_report_catalog_product_xlsx_export,sales_team.group_sale_manager,1,1,1,1
