@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="catalog_product_record_xlsx" model="ir.actions.report">
+    <field name="name">Catalog XLSX report</field>
+    <field name="model">product.catalog</field>
+    <field name="report_type">xlsx</field>
+    <field name="report_name">catalog.product_xlsx</field>
+    <field name="report_file">catalog.product_attr_xlsx</field>
+  </record>
+</odoo>

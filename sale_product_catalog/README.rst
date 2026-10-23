@@ -27,6 +27,11 @@ Key features
   be archived without being deleted.
 * Assign **pricelist items** to one or more catalogs via a many-to-many
   relation (``pricelist_item_catalog_rel``).
+* Products of a catalog and catalogs of a product are computed from the
+  pricelist items honoring their **Apply On** option: product variant
+  (``0_product_variant``), product (``1_product``, all its variants), product
+  category (``2_product_category``, including child categories) and all
+  products (``3_global``).
 * Stat button on each catalog form showing the number of linked pricelist
   items, with a click-through to the filtered list.
 * **Catalog** field on sale orders with automatic warehouse propagation: when

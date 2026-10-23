@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Sale Product Catalog",
-    "version": "18.0.1.1.0",
+    "version": "18.0.2.0.0",
     "summary": "Product catalog management for sales",
     "category": "Sales/Sales",
     "website": "https://github.com/avanzosc/sale-addons",
@@ -13,10 +13,12 @@
         "product_pricelist_item_menu",
         "sale",
         "stock",
+        "report_xlsx",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        "security/sale_product_catalog_groups.xml",
         "security/product_catalog_rules.xml",
+        "security/ir.model.access.csv",
         "data/product_catalog_type_data.xml",
         "views/product_catalog_type_views.xml",
         "views/product_catalog_views.xml",
@@ -24,6 +26,8 @@
         "views/product_pricelist_item_views.xml",
         "views/sale_order_views.xml",
         "views/menus.xml",
+        "reports/catalog_product_xlsx_report.xml",
+        "wizards/catalog_product_export_xlsx_report_view.xml",
     ],
     "pre_init_hook": "pre_init_hook",
     "post_init_hook": "post_init_hook",
