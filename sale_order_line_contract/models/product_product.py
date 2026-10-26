@@ -36,7 +36,7 @@ class ProductProduct(models.Model):
                         "apply_recurrence_in": template.apply_recurrence_in,
                     }
                 )
-        product = super(ProductProduct, self).create(vals)
+        product = super().create(vals)
         if "product_tmpl_id" not in vals:
             if product.product_tmpl_id.product_variant_count == 1:
                 product.product_tmpl_id.write(
@@ -49,7 +49,7 @@ class ProductProduct(models.Model):
         return product
 
     def write(self, vals):
-        result = super(ProductProduct, self).write(vals)
+        result = super().write(vals)
         if "no_update_template" not in self.env.context and (
             "recurring_interval" in vals
             or "recurring_rule_type" in vals

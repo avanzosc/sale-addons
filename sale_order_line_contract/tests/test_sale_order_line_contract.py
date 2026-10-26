@@ -3,17 +3,16 @@
 from odoo.tests import common
 
 
-class TestSaleOrderLineContract(common.SavepointCase):
+class TestSaleOrderLineContract(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestSaleOrderLineContract, cls).setUpClass()
+        super().setUpClass()
         cls.sale_obj = cls.env["sale.order"]
         cls.uom_unit = cls.env.ref("uom.product_uom_unit")
-        cls.company = cls.env["res.company"]._company_default_get("sale.order")
+        cls.company = cls.env.company
         cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Partner sale order line contract",
-                "user_id": cls.env.ref("base.user_admin").id,
             }
         )
         cls.product = cls.env["product.product"].create(
@@ -35,8 +34,6 @@ class TestSaleOrderLineContract(common.SavepointCase):
         }
         sale_vals = {
             "partner_id": cls.partner.id,
-            "partner_invoice_id": cls.partner.id,
-            "partner_shipping_id": cls.partner.id,
             "company_id": cls.company.id,
             "order_line": [(0, 0, sale_line_vals)],
         }
@@ -45,7 +42,10 @@ class TestSaleOrderLineContract(common.SavepointCase):
     def test_sale_order_line_contract(self):
         self.sale1._action_confirm()
         self.assertEqual(self.sale1.count_contracts, 1)
-        self.assertEqual(len(self.sale1.contract_ids[0].contract_line_ids), 1)
+        self.assertEqual(
+            len(self.sale1.contract_ids[0].contract_line_ids),
+            1,
+        )
         sale_line_vals = {
             "product_id": self.product.id,
             "name": self.product.name,
@@ -55,15 +55,16 @@ class TestSaleOrderLineContract(common.SavepointCase):
         }
         sale_vals = {
             "partner_id": self.partner.id,
-            "partner_invoice_id": self.partner.id,
-            "partner_shipping_id": self.partner.id,
             "company_id": self.company.id,
             "order_line": [(0, 0, sale_line_vals)],
         }
         sale2 = self.sale_obj.create(sale_vals)
         sale2._action_confirm()
         self.assertEqual(sale2.count_contracts, 1)
-        self.assertEqual(len(sale2.contract_ids[0].contract_line_ids), 2)
+        self.assertEqual(
+            len(sale2.contract_ids[0].contract_line_ids),
+            2,
+        )
         result = sale2.action_view_contracts()
         domain = [
             "&",

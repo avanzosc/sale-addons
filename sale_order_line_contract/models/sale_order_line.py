@@ -40,7 +40,7 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def create(self, vals):
-        line = super(SaleOrderLine, self).create(vals)
+        line = super().create(vals)
         if (
             "no_update_contract_line" not in self.env.context
             and line.contract_line_id
@@ -55,7 +55,7 @@ class SaleOrderLine(models.Model):
         return line
 
     def write(self, vals):
-        result = super(SaleOrderLine, self).write(vals)
+        result = super().write(vals)
         if (
             "no_update_contract_line" not in self.env.context
             and "contract_line_id" in vals

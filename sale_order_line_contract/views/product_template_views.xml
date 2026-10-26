@@ -60,11 +60,13 @@
         <field name="recurring_rule_type" />
         <field
           name="recurring_interval"
-          attrs="{'invisible': [('recurring_rule_type', '=', False)], 'required': [('recurring_rule_type', '!=', False)]}"
+          invisible="not recurring_rule_type"
+          required="bool(recurring_rule_type)"
         />
         <field
           name="apply_recurrence_in"
-          attrs="{'invisible': [('recurring_rule_type', '=', False)], 'required': [('recurring_rule_type', '!=', False)]}"
+          invisible="not recurring_rule_type"
+          required="bool(recurring_rule_type)"
         />
       </field>
     </field>

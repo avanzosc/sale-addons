@@ -4,12 +4,12 @@
     <field name="model">contract.line</field>
     <field name="inherit_id" ref="contract.contract_line_form_view" />
     <field name="arch" type="xml">
-      <group name="analytic" position="after">
+      <field name="analytic_distribution" position="after">
         <group name="sale-info">
           <field name="sale_order_line_id" />
           <field name="sale_order_id" />
         </group>
-      </group>
+      </field>
     </field>
   </record>
   <record id="contract_line_tree_view" model="ir.ui.view">

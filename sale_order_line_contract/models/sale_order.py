@@ -36,7 +36,7 @@ class SaleOrder(models.Model):
     def _action_confirm(self):
         message1 = _("CONTRACT(s) CREATED")
         message2 = _("CONTRACT(s) HAVE BEEN MODIFIED {} TIMES.")
-        res = super(SaleOrder, self)._action_confirm()
+        res = super()._action_confirm()
         for sale in self:
             lines = sale.catch_lines_to_try()
             if lines:
@@ -85,7 +85,10 @@ class SaleOrder(models.Model):
         return self.env["contract.contract"].create(vals)
 
     def _catch_values_for_create_contract(self, line):
-        name = _("{}: {}").format(self.name, self.partner_id.name)
+        name = _("%(order)s: %(partner)s") % {
+            "order": self.name,
+            "partner": self.partner_id.name,
+        }
         vals = {"name": name, "partner_id": self.partner_id.id, "line_recurrence": True}
         if line.product_id.apply_recurrence_in == "contract":
             vals.update(

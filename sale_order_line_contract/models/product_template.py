@@ -1,6 +1,6 @@
 # Copyright 2021 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -24,13 +24,8 @@ class ProductTemplate(models.Model):
         string="Apply recurrence in",
     )
 
-    @api.model
-    def create(self, vals):
-        product = super(ProductTemplate, self).create(vals)
-        return product
-
     def write(self, vals):
-        result = super(ProductTemplate, self).write(vals)
+        result = super().write(vals)
         if "no_update_product" not in self.env.context and (
             "recurring_interval" in vals
             or "recurring_rule_type" in vals

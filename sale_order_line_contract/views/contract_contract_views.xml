@@ -5,7 +5,7 @@
     <field name="inherit_id" ref="contract.contract_contract_form_view" />
     <field name="arch" type="xml">
       <xpath
-        expr="//field[@name='contract_line_ids']/tree/field[@name='name']"
+        expr="//field[@name='contract_line_ids']/list/field[@name='name']"
         position="after"
       >
         <field name="sale_order_line_id" />
@@ -16,7 +16,7 @@
           type="object"
           class="oe_stat_button"
           icon="fa-pencil-square-o"
-          attrs="{'invisible': [('count_sale_orders', '=', 0)]}"
+          invisible="count_sale_orders == 0"
         >
           <field name="count_sale_orders" widget="statinfo" string="Sale orders" />
         </button>
