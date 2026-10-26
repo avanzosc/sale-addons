@@ -11,9 +11,4 @@ class SaleOrder(models.Model):
         comodel_name="res.partner",
         string="Contact",
         readonly=True,
-        states={
-            "draft": [("readonly", False)],
-            "sent": [("readonly", False)],
-            "sale": [("readonly", False)],
-        },
     )
