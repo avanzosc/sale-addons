@@ -43,13 +43,11 @@ class SaleOrder(models.Model):
                 sale.create_contract_lines(lines)
                 lit = ""
                 if sale.contract_created:
-                    lit = "{}: {}".format(message1, sale.contract_created)
+                    lit = f"{message1}: {sale.contract_created}"
                 if sale.contract_modified:
                     lit_message2 = message2.format(sale.contract_modified)
                     _("CONTRACT(s) HAVE BEEN MODIFIED {} TIMES.")
-                    lit = (
-                        lit_message2 if not lit else "{}\n{}".format(lit, lit_message2)
-                    )
+                    lit = lit_message2 if not lit else f"{lit}\n{lit_message2}"
                 if lit:
                     sale.contract_created_literal = lit
         return res

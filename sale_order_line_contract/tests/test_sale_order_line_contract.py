@@ -44,8 +44,8 @@ class TestSaleOrderLineContract(common.SavepointCase):
 
     def test_sale_order_line_contract(self):
         self.sale1._action_confirm()
-        self.assertEquals(self.sale1.count_contracts, 1)
-        self.assertEquals(len(self.sale1.contract_ids[0].contract_line_ids), 1)
+        self.assertEqual(self.sale1.count_contracts, 1)
+        self.assertEqual(len(self.sale1.contract_ids[0].contract_line_ids), 1)
         sale_line_vals = {
             "product_id": self.product.id,
             "name": self.product.name,
@@ -62,12 +62,12 @@ class TestSaleOrderLineContract(common.SavepointCase):
         }
         sale2 = self.sale_obj.create(sale_vals)
         sale2._action_confirm()
-        self.assertEquals(sale2.count_contracts, 1)
-        self.assertEquals(len(sale2.contract_ids[0].contract_line_ids), 2)
+        self.assertEqual(sale2.count_contracts, 1)
+        self.assertEqual(len(sale2.contract_ids[0].contract_line_ids), 2)
         result = sale2.action_view_contracts()
         domain = [
             "&",
             ("id", "in", sale2.contract_ids[0].ids),
             ("contract_type", "=", "sale"),
         ]
-        self.assertEquals(result.get("domain"), domain)
+        self.assertEqual(result.get("domain"), domain)
