@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="view_order_form" model="ir.ui.view">
+    <field name="name">sale.order.form.endesa</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+      <field name="partner_id" position="after">
+        <field name="is_endesa" invisible="1" />
+      </field>
+      <xpath
+        expr="//field[@name='order_line']/list/field[@name='price_unit']"
+        position="before"
+      >
+        <field name="endesa_can_edit" column_invisible="1" />
+        <field
+          name="endesa_code"
+          column_invisible="not parent.is_endesa"
+          readonly="not endesa_can_edit"
+          optional="show"
+        />
+        <field
+          name="endesa_need_date"
+          widget="date"
+          column_invisible="not parent.is_endesa"
+          readonly="not endesa_can_edit"
+          optional="show"
+        />
+        <field
+          name="endesa_review"
+          column_invisible="not parent.is_endesa"
+          readonly="not endesa_can_edit"
+          groups="sale_order_line_endesa.group_endesa_manager"
+          optional="show"
+        />
+        <field
+          name="endesa_serial"
+          column_invisible="not parent.is_endesa"
+          readonly="not endesa_can_edit"
+          optional="show"
+        />
+        <field
+          name="endesa_state"
+          column_invisible="not parent.is_endesa"
+          readonly="not endesa_can_edit"
+          optional="show"
+        />
+        <field
+          name="endesa_id"
+          column_invisible="not parent.is_endesa"
+          readonly="not endesa_can_edit"
+          optional="show"
+        />
+      </xpath>
+      <notebook position="inside">
+        <page name="endesa" string="Endesa" invisible="not is_endesa">
+          <group>
+            <group>
+              <field name="origin" string="Contract" />
+              <field name="client_order_ref" string="Endesa Order" />
+            </group>
+          </group>
+        </page>
+      </notebook>
+    </field>
+  </record>
+</odoo>
