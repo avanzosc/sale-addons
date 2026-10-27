@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="sale_order_line_endesa.EndesaCharLinkField">
+    <a
+      t-if="linkId"
+      class="o_form_uri"
+      t-att-href="`/odoo/${relation}/${linkId}`"
+      t-on-click="onClick"
+    >
+      <span t-esc="value" />
+    </a>
+    <span t-else="" t-esc="value" />
+  </t>
+</templates>
