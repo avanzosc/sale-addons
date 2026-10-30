@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 12:29+0000\n"
-"PO-Revision-Date: 2026-10-21 12:29+0000\n"
+"POT-Creation-Date: 2026-10-28 10:41+0000\n"
+"PO-Revision-Date: 2026-10-28 10:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,6 @@ msgstr ""
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__active
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
 msgid "Active"
 msgstr ""
 
@@ -28,6 +27,7 @@ msgstr ""
 
 #. module: sale_product_catalog
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
 msgid "Archived"
 msgstr ""
 
@@ -37,14 +37,20 @@ msgid "Carry Over"
 msgstr ""
 
 #. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_report_catalog_product_xlsx_export__catalog_id
 #: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order_line__catalog_id
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "Catalog"
 msgstr ""
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_product__catalog_pricelist_item_ids
 msgid "Catalog Pricelist Item"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model,name:sale_product_catalog.model_report_catalog_product_xlsx
+msgid "Catalog Products Price Report"
 msgstr ""
 
 #. module: sale_product_catalog
@@ -60,12 +66,22 @@ msgid "Catalog Types"
 msgstr ""
 
 #. module: sale_product_catalog
+#: model:ir.actions.report,name:sale_product_catalog.catalog_product_record_xlsx
+msgid "Catalog XLSX report"
+msgstr ""
+
+#. module: sale_product_catalog
 #: model:ir.actions.act_window,name:sale_product_catalog.product_catalog_action
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_pricelist_item__catalog_ids
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_product__catalog_ids
 #: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order__catalog_ids
 #: model:ir.ui.menu,name:sale_product_catalog.product_catalog_menu
 msgid "Catalogs"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.export_catalog_records_xlsx_report_view_form
+msgid "Close"
 msgstr ""
 
 #. module: sale_product_catalog
@@ -82,12 +98,14 @@ msgstr ""
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__create_uid
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__create_uid
+#: model:ir.model.fields,field_description:sale_product_catalog.field_report_catalog_product_xlsx_export__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__create_date
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__create_date
+#: model:ir.model.fields,field_description:sale_product_catalog.field_report_catalog_product_xlsx_export__create_date
 msgid "Created on"
 msgstr ""
 
@@ -104,28 +122,40 @@ msgstr ""
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__display_name
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__display_name
+#: model:ir.model.fields,field_description:sale_product_catalog.field_report_catalog_product_xlsx_export__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.export_catalog_records_xlsx_report_view_form
+msgid "Export Catalog Products"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.actions.act_window,name:sale_product_catalog.action_export_catalog_records_xlsx_report
+msgid "Export XLSX Catalog Product Records"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "Fixed Price"
 msgstr ""
 
 #. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "Formula"
 msgstr ""
 
 #. module: sale_product_catalog
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "Group By"
 msgstr ""
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__id
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__id
+#: model:ir.model.fields,field_description:sale_product_catalog.field_report_catalog_product_xlsx_export__id
 msgid "ID"
 msgstr ""
 
@@ -140,14 +170,21 @@ msgid "Inventory Availability"
 msgstr ""
 
 #. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order__is_prebook
+msgid "Is Prebook"
+msgstr ""
+
+#. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__write_uid
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__write_uid
+#: model:ir.model.fields,field_description:sale_product_catalog.field_report_catalog_product_xlsx_export__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__write_date
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__write_date
+#: model:ir.model.fields,field_description:sale_product_catalog.field_report_catalog_product_xlsx_export__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -173,31 +210,31 @@ msgid "On Threshold"
 msgstr ""
 
 #. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_report_catalog_product_xlsx_export__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "Percentage"
 msgstr ""
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__is_prebook
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__is_prebook
-#: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order__is_prebook
 #: model:product.catalog.type,name:sale_product_catalog.product_catalog_type_prebook
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
 msgid "Prebook"
 msgstr ""
 
 #. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
-msgid "Price"
-msgstr ""
-
-#. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_pivot_view
-msgid "Price Rules"
-msgstr ""
-
-#. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "Price Type"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__pricelist_ids
+msgid "Pricelist"
 msgstr ""
 
 #. module: sale_product_catalog
@@ -220,7 +257,6 @@ msgstr ""
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__product_ids
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
 msgid "Product"
 msgstr ""
 
@@ -235,8 +271,18 @@ msgid "Product Catalog Type"
 msgstr ""
 
 #. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "Product Category"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__product_tmpl_ids
+msgid "Product Tmpl"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__product_tmpl_count
+msgid "Product Tmpl Count"
 msgstr ""
 
 #. module: sale_product_catalog
@@ -277,7 +323,12 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+#: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "Valid Today"
 msgstr ""
 
@@ -287,13 +338,18 @@ msgid "Warehouse"
 msgstr ""
 
 #. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "With Catalog"
 msgstr ""
 
 #. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_search_view_inherit_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "Without Catalog"
+msgstr ""
+
+#. module: sale_product_catalog
+#: model:ir.model,name:sale_product_catalog.model_report_catalog_product_xlsx_export
+msgid "Wizard to export catalog records in xlsx"
 msgstr ""
 
 #. module: sale_product_catalog
