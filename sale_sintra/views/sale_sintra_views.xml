@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="view_sale_sintra_form" model="ir.ui.view">
+    <field name="name">sale.sintra.form</field>
+    <field name="model">sale.sintra</field>
+    <field name="arch" type="xml">
+      <form string="Sintra">
+        <header>
+          <button
+            name="action_send_sales_notice"
+            type="object"
+            string="Send Email to Sales"
+            class="btn-primary"
+            icon="fa-envelope-o"
+            invisible="sales_notified"
+            groups="sale_sintra.group_sintra_manager"
+          />
+          <field
+            name="state"
+            widget="statusbar"
+            options="{'clickable': '1'}"
+            statusbar_visible="draft,pending,unplanned,planned,tested,sent,received,cancel"
+          />
+        </header>
+        <sheet>
+          <div class="oe_title">
+            <h1>
+              <field name="name" placeholder="Objective" />
+            </h1>
+          </div>
+          <group name="main">
+            <group name="general" string="General Data">
+              <field name="partner_id" />
+              <field name="project" />
+              <field name="registration" required="1" />
+              <field name="work" />
+              <field name="installation_code" />
+              <field name="installation" />
+              <field name="features" />
+              <field name="purchase_id" />
+            </group>
+            <group name="other" string="Other">
+              <field name="delivery_date" />
+              <field name="planned_date" />
+              <field name="note" />
+              <field name="create_date" string="Created on" />
+              <field name="create_uid" string="Created by" />
+            </group>
+            <group name="zone" string="Zone">
+              <field name="region" />
+              <field name="zone" />
+              <field name="utd" />
+              <field name="sales_notified" />
+            </group>
+            <group name="ib" string="IB">
+              <field name="ib_delivery_date" />
+              <field name="installer" />
+              <field name="ib_manager" />
+              <field name="sim" />
+            </group>
+          </group>
+          <notebook>
+            <page string="Sales Orders" name="sale_orders">
+              <field name="sale_order_ids" readonly="1">
+                <list>
+                  <field name="name" />
+                  <field name="partner_id" />
+                  <field name="client_order_ref" />
+                  <field name="date_order" />
+                  <field name="commitment_date" />
+                  <field name="amount_total" />
+                  <field name="currency_id" column_invisible="1" />
+                  <field name="state" />
+                </list>
+              </field>
+            </page>
+            <page string="Documentation" name="documentation">
+              <field name="document_ids">
+                <list editable="bottom">
+                  <field name="name" />
+                  <field name="folder" readonly="1" />
+                  <field name="note" />
+                </list>
+              </field>
+            </page>
+          </notebook>
+        </sheet>
+        <chatter />
+      </form>
+    </field>
+  </record>
+
+  <record id="view_sale_sintra_list" model="ir.ui.view">
+    <field name="name">sale.sintra.list</field>
+    <field name="model">sale.sintra</field>
+    <field name="arch" type="xml">
+      <list string="Sintras" decoration-muted="state == 'cancel'">
+        <field name="name" />
+        <field name="project" />
+        <field name="registration" />
+        <field name="work" />
+        <field name="installation_code" />
+        <field name="installation" />
+        <field name="region" />
+        <field name="features" />
+        <field name="delivery_date" />
+        <field name="planned_date" />
+        <field name="note" />
+        <field name="state" />
+      </list>
+    </field>
+  </record>
+
+  <record id="view_sale_sintra_search" model="ir.ui.view">
+    <field name="name">sale.sintra.search</field>
+    <field name="model">sale.sintra</field>
+    <field name="arch" type="xml">
+      <search string="Sintras">
+        <field name="name" />
+        <field name="work" />
+        <field name="region" />
+        <field name="installation" />
+        <field name="state" />
+        <field name="project" />
+        <separator />
+        <group expand="0" string="Group By">
+          <filter
+            name="group_by_region"
+            string="Region"
+            context="{'group_by': 'region'}"
+          />
+          <filter
+            name="group_by_state"
+            string="Status"
+            context="{'group_by': 'state'}"
+          />
+          <filter
+            name="group_by_installation_code"
+            string="Installation Code"
+            context="{'group_by': 'installation_code'}"
+          />
+          <filter
+            name="group_by_delivery_date"
+            string="Delivery Date"
+            context="{'group_by': 'delivery_date'}"
+          />
+          <filter
+            name="group_by_create_uid"
+            string="Created by"
+            context="{'group_by': 'create_uid'}"
+          />
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record id="action_sale_sintra" model="ir.actions.act_window">
+    <field name="name">Sintra</field>
+    <field name="res_model">sale.sintra</field>
+    <field name="view_mode">list,form</field>
+    <field name="search_view_id" ref="view_sale_sintra_search" />
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">Create a new Sintra.</p>
+    </field>
+  </record>
+</odoo>

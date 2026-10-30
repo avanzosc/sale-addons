@@ -1,0 +1,668 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_sintra
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-30 11:44+0000\n"
+"PO-Revision-Date: 2026-10-30 11:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__region__1-n
+msgid "1-North"
+msgstr "1-Norte"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__region__2-o
+msgid "2-West"
+msgstr "2-Oeste"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__region__4-e
+msgid "4-East"
+msgstr "4-Este"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__region__5-c
+msgid "5-Center"
+msgstr "5-Centro"
+
+#. module: sale_sintra
+#: model:mail.template,body_html:sale_sintra.mail_template_sales_notice
+msgid ""
+"<div>\n"
+"        <p>A Sintra is pending for Sales.</p>\n"
+"        <p>Objective: <strong t-out=\"object.name\"/></p>\n"
+"        <p>Installation: <t t-out=\"object.installation or ''\"/></p>\n"
+"      </div>\n"
+"    "
+msgstr ""
+"<div>\n"
+"        <p>Hay un Sintra pendiente para Ventas.</p>\n"
+"        <p>Objetivo: <strong t-out=\"object.name\"/></p>\n"
+"        <p>Instalación: <t t-out=\"object.installation or ''\"/></p>\n"
+"      </div>\n"
+"    "
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__message_needaction
+msgid "Action Needed"
+msgstr "Acción requerida"
+
+#. module: sale_sintra
+#: model:res.groups,comment:sale_sintra.group_sintra_manager
+msgid "Also creates and edits Sintras and assigns sale orders to them."
+msgstr "También crea y edita Sintras y les asigna pedidos de venta."
+
+#. module: sale_sintra
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_assign_form
+msgid "Assign"
+msgstr "Asignar"
+
+#. module: sale_sintra
+#: model:ir.model,name:sale_sintra.model_sale_sintra_assign
+msgid "Assign Sales Orders to a Sintra"
+msgstr "Asignar pedidos de venta a un Sintra"
+
+#. module: sale_sintra
+#: model:ir.actions.act_window,name:sale_sintra.action_sale_sintra_assign
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_assign_form
+msgid "Assign to Sintra"
+msgstr "Asignar a Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nº de archivos adjuntos"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__purchase_id
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "Cabinet Purchase Order"
+msgstr "OC Armario"
+
+#. module: sale_sintra
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_assign_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__state__cancel
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: sale_sintra
+#: model_terms:ir.actions.act_window,help:sale_sintra.action_sale_sintra
+msgid "Create a new Sintra."
+msgstr "Cree un nuevo Sintra."
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__create_uid
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_assign__create_uid
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_document__create_uid
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_form
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_search
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__create_date
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_assign__create_date
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_document__create_date
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_form
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__partner_id
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__delivery_date
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_search
+msgid "Delivery Date"
+msgstr "Fecha entrega"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__display_name
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_assign__display_name
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_document__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_document__name
+msgid "Document"
+msgstr "Documento"
+
+#. module: sale_sintra
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_form
+msgid "Documentation"
+msgstr "Documentación"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__document_ids
+msgid "Documents"
+msgstr "Documentos"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__sales_notified
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "Email Sent to Sales"
+msgstr "Email enviado a Ventas"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__features
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "Features"
+msgstr "Características"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_document__folder
+msgid "Folder"
+msgstr "Carpeta"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Contactos)"
+
+#. module: sale_sintra
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_form
+msgid "General Data"
+msgstr "Datos generales"
+
+#. module: sale_sintra
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__has_message
+msgid "Has Message"
+msgstr "Tiene un mensaje"
+
+#. module: sale_sintra
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_form
+msgid "IB"
+msgstr "IB"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__ib_code
+msgid "IB Code"
+msgstr "Cod. IB"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__ib_delivery_date
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "IB Delivery Date"
+msgstr "Fecha entrega IB"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__ib_manager
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "IB Manager"
+msgstr "Responsable IB"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__id
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_assign__id
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_document__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_sintra
+#: model:ir.model.fields,help:sale_sintra.field_sale_sintra__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: sale_sintra
+#: model:ir.model.fields,help:sale_sintra.field_sale_sintra__message_has_error
+#: model:ir.model.fields,help:sale_sintra.field_sale_sintra__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen error de envío."
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__installation
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "Installation"
+msgstr "Instalación"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__installation_code
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_search
+msgid "Installation Code"
+msgstr "Código instalación"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__installer
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "Installer"
+msgstr "Instalador"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__write_uid
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_assign__write_uid
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_document__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__write_date
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_assign__write_date
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_document__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: sale_sintra
+#: model:res.groups,name:sale_sintra.group_sintra_manager
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de entrega del mensaje"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: sale_sintra
+#. odoo-python
+#: code:addons/sale_sintra/models/sale_sintra.py:0
+msgid ""
+"No user receives the Sintra notice to Sales. Add them to the group 'Receive "
+"Sintra Notice to Sales'."
+msgstr ""
+"Ningún usuario recibe el aviso Sintra a Ventas. Añádalos al grupo 'Recibir "
+"aviso Sintra a Ventas'."
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__note
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_document__note
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "Note"
+msgstr "Nota"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: sale_sintra
+#: model:ir.model.fields,help:sale_sintra.field_sale_sintra__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: sale_sintra
+#: model:ir.model.fields,help:sale_sintra.field_sale_sintra__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__name
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_form
+msgid "Objective"
+msgstr "Objetivo"
+
+#. module: sale_sintra
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_form
+msgid "Other"
+msgstr "Varios"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__state__pending
+msgid "Pending Sales"
+msgstr "Pte. Comercial"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__state__planned
+msgid "Planned"
+msgstr "Planificado"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__planned_date
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "Planned Date"
+msgstr "Fecha planificada"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__project
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "Project"
+msgstr "Proyecto"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__rating_ids
+msgid "Ratings"
+msgstr "Calificaciones"
+
+#. module: sale_sintra
+#: model:res.groups,name:sale_sintra.group_sintra_sales_notice
+msgid "Receive Sintra Notice to Sales"
+msgstr "Recibir aviso Sintra a Ventas"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__state__received
+msgid "Received"
+msgstr "Recepcionado"
+
+#. module: sale_sintra
+#: model:res.groups,comment:sale_sintra.group_sintra_sales_notice
+msgid "Receives the email sent to Sales from a Sintra."
+msgstr "Recibe el email enviado a Ventas desde un Sintra."
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__region
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_search
+msgid "Region"
+msgstr "Región"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__registration
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "Registration"
+msgstr "Matrícula"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__sim
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "SIM"
+msgstr "SIM"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega del SMS"
+
+#. module: sale_sintra
+#: model:ir.model,name:sale_sintra.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_sintra
+#: model:ir.model,name:sale_sintra.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__sale_order_ids
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_assign__sale_order_ids
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_form
+msgid "Sales Orders"
+msgstr "Pedidos de venta"
+
+#. module: sale_sintra
+#: model:res.groups,comment:sale_sintra.group_sintra_user
+msgid "Sees the Sintras and the Sintra fields of sale orders."
+msgstr "Ve los Sintras y los campos Sintra de los pedidos de venta."
+
+#. module: sale_sintra
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_form
+msgid "Send Email to Sales"
+msgstr "Enviar email a Ventas"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__state__sent
+msgid "Sent"
+msgstr "Enviado"
+
+#. module: sale_sintra
+#: model:ir.actions.act_window,name:sale_sintra.action_sale_sintra
+#: model:ir.model,name:sale_sintra.model_sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_id
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_id
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_assign__sintra_id
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra_document__sintra_id
+#: model:ir.module.category,name:sale_sintra.module_category_sintra
+#: model:ir.ui.menu,name:sale_sintra.menu_sale_sintra
+#: model:ir.ui.menu,name:sale_sintra.menu_sale_sintra_root
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_form
+msgid "Sintra"
+msgstr "Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_purchase_id
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_purchase_id
+msgid "Sintra Cabinet Purchase Order"
+msgstr "OC Armario Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_partner_id
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_partner_id
+msgid "Sintra Customer"
+msgstr "Cliente Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_delivery_date
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_delivery_date
+msgid "Sintra Delivery Date"
+msgstr "Fecha entrega Sintra"
+
+#. module: sale_sintra
+#: model:ir.model,name:sale_sintra.model_sale_sintra_document
+msgid "Sintra Document"
+msgstr "Documento Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_document_ids
+msgid "Sintra Documents"
+msgstr "Documentos Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_sales_notified
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_sales_notified
+msgid "Sintra Email Sent to Sales"
+msgstr "Email enviado a Ventas Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_features
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_features
+msgid "Sintra Features"
+msgstr "Características Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_ib_delivery_date
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_ib_delivery_date
+msgid "Sintra IB Delivery Date"
+msgstr "Fecha entrega IB Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_ib_manager
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_ib_manager
+msgid "Sintra IB Manager"
+msgstr "Responsable IB Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_installation
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_installation
+msgid "Sintra Installation"
+msgstr "Instalación Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_installation_code
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_installation_code
+msgid "Sintra Installation Code"
+msgstr "Código instalación Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_installer
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_installer
+msgid "Sintra Installer"
+msgstr "Instalador Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_note
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_note
+msgid "Sintra Note"
+msgstr "Nota Sintra"
+
+#. module: sale_sintra
+#: model:ir.module.category,name:sale_sintra.module_category_sintra_sales_notice
+msgid "Sintra Notice to Sales"
+msgstr "Aviso Sintra a Ventas"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_planned_date
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_planned_date
+msgid "Sintra Planned Date"
+msgstr "Fecha planificada Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_project
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_project
+msgid "Sintra Project"
+msgstr "Proyecto Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_region
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_region
+msgid "Sintra Region"
+msgstr "Región Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_registration
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_registration
+msgid "Sintra Registration"
+msgstr "Matrícula Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_sim
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_sim
+msgid "Sintra SIM"
+msgstr "SIM Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_state
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_state
+msgid "Sintra Status"
+msgstr "Estado Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_utd
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_utd
+msgid "Sintra UTD"
+msgstr "UTD Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_work
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_work
+msgid "Sintra Work"
+msgstr "Obra Sintra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order__sintra_zone
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_order_line__sintra_zone
+msgid "Sintra Zone"
+msgstr "Zona Sintra"
+
+#. module: sale_sintra
+#: model:mail.template,subject:sale_sintra.mail_template_sales_notice
+msgid "Sintra {{ object.name }}"
+msgstr "Sintra {{ object.name }}"
+
+#. module: sale_sintra
+#: model:mail.template,name:sale_sintra.mail_template_sales_notice
+msgid "Sintra: Notice to Sales"
+msgstr "Sintra: aviso a Ventas"
+
+#. module: sale_sintra
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_list
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_search
+msgid "Sintras"
+msgstr "Sintras"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__state
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_search
+msgid "Status"
+msgstr "Estado"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__state__tested
+msgid "Tested"
+msgstr "Ensayado"
+
+#. module: sale_sintra
+#: model:ir.model.constraint,message:sale_sintra.constraint_sale_sintra_name_unique
+msgid "The objective must be unique."
+msgstr "El objetivo debe ser único."
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__utd
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "UTD"
+msgstr "UTD"
+
+#. module: sale_sintra
+#: model:ir.model.fields.selection,name:sale_sintra.selection__sale_sintra__state__unplanned
+msgid "Unplanned"
+msgstr "Sin planificar"
+
+#. module: sale_sintra
+#: model:res.groups,name:sale_sintra.group_sintra_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: sale_sintra
+#: model:ir.model.fields,help:sale_sintra.field_sale_sintra__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__work
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+msgid "Work"
+msgstr "Obra"
+
+#. module: sale_sintra
+#: model:ir.model.fields,field_description:sale_sintra.field_sale_sintra__zone
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_sintra.view_sale_sintra_form
+msgid "Zone"
+msgstr "Zona"
