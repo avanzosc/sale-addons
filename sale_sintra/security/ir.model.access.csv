@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_sintra_user,sale.sintra user,model_sale_sintra,group_sintra_user,1,0,0,0
+access_sale_sintra_manager,sale.sintra manager,model_sale_sintra,group_sintra_manager,1,1,1,1
+access_sale_sintra_document_user,sale.sintra.document user,model_sale_sintra_document,group_sintra_user,1,0,0,0
+access_sale_sintra_document_manager,sale.sintra.document manager,model_sale_sintra_document,group_sintra_manager,1,1,1,1
+access_sale_order_sintra_user,sale.order Sintra user,sale.model_sale_order,group_sintra_user,1,0,0,0
+access_sale_sintra_assign_manager,sale.sintra.assign manager,model_sale_sintra_assign,group_sintra_manager,1,1,1,1

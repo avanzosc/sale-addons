@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="view_order_form" model="ir.ui.view">
+    <field name="name">sale.order.form.sintra</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+      <group name="partner_details" position="inside">
+        <field name="sintra_id" groups="sale_sintra.group_sintra_user" />
+      </group>
+      <xpath
+        expr="//field[@name='order_line']/list/field[@name='price_unit']"
+        position="before"
+      >
+        <field name="ib_code" optional="show" />
+        <field
+          name="sintra_state"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_partner_id"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_project"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_registration"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_work"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_installation_code"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_installation"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_features"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_purchase_id"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_delivery_date"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_planned_date"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_note"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_region"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_zone"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_utd"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_sales_notified"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_ib_delivery_date"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_installer"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_ib_manager"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_sim"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+      </xpath>
+      <notebook position="inside">
+        <page
+          name="sintra"
+          string="Sintra"
+          invisible="not sintra_id"
+          groups="sale_sintra.group_sintra_user"
+        >
+          <group>
+            <group name="sintra_general" string="General Data">
+              <field name="sintra_state" string="Status" />
+              <field name="sintra_partner_id" string="Customer" />
+              <field name="sintra_project" string="Project" />
+              <field name="sintra_registration" string="Registration" />
+              <field name="sintra_work" string="Work" />
+              <field name="sintra_installation_code" string="Installation Code" />
+              <field name="sintra_installation" string="Installation" />
+              <field name="sintra_features" string="Features" />
+              <field name="sintra_purchase_id" string="Cabinet Purchase Order" />
+            </group>
+            <group name="sintra_other" string="Other">
+              <field name="sintra_delivery_date" string="Delivery Date" />
+              <field name="sintra_planned_date" string="Planned Date" />
+              <field name="sintra_note" string="Note" />
+            </group>
+            <group name="sintra_zone" string="Zone">
+              <field name="sintra_region" string="Region" />
+              <field name="sintra_zone" string="Zone" />
+              <field name="sintra_utd" string="UTD" />
+              <field name="sintra_sales_notified" string="Email Sent to Sales" />
+            </group>
+            <group name="sintra_ib" string="IB">
+              <field name="sintra_ib_delivery_date" string="IB Delivery Date" />
+              <field name="sintra_installer" string="Installer" />
+              <field name="sintra_ib_manager" string="IB Manager" />
+              <field name="sintra_sim" string="SIM" />
+            </group>
+          </group>
+          <field name="sintra_document_ids">
+            <list>
+              <field name="name" />
+              <field name="folder" />
+              <field name="note" />
+            </list>
+          </field>
+        </page>
+      </notebook>
+    </field>
+  </record>
+
+  <record id="sale_order_tree" model="ir.ui.view">
+    <field name="name">sale.order.list.sintra</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.sale_order_tree" />
+    <field name="arch" type="xml">
+      <field name="partner_id" position="after">
+        <field
+          name="sintra_id"
+          groups="sale_sintra.group_sintra_user"
+          optional="show"
+        />
+      </field>
+    </field>
+  </record>
+</odoo>
