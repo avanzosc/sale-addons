@@ -17,13 +17,13 @@ Features
 ========
 
 * Adds a **Delivery Lead Time** field (in days) to the product catalog.
-* When a sale order has a catalog assigned and its delivery lead time is
-  greater than 0, every order line takes that value as its lead time.
+* When a sale order line has a catalog assigned and its delivery lead time is
+  greater than 0, the line takes that value as its lead time.
 * When the catalog is empty or its delivery lead time is 0, the line keeps the
   standard value coming from the product's customer lead time.
-* Assigning or changing the catalog on the order header updates all the lines,
-  and it also works for orders created from the website or through the API
-  (the logic runs in the ``customer_lead`` computation, not in an onchange).
+* Assigning or changing the catalog on the line updates its lead time, and it
+  also works for orders created from the website or through the API (the logic
+  runs in the ``customer_lead`` computation, not in an onchange).
 
 Configuration
 =============
