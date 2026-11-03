@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="view_sale_sintra_assign_form" model="ir.ui.view">
+    <field name="name">sale.sintra.assign.form</field>
+    <field name="model">sale.sintra.assign</field>
+    <field name="arch" type="xml">
+      <form string="Assign to Sintra">
+        <group>
+          <field name="sintra_id" />
+        </group>
+        <field name="sale_order_ids">
+          <list>
+            <field name="name" />
+            <field name="partner_id" />
+            <field name="sintra_id" />
+            <field name="state" />
+          </list>
+        </field>
+        <footer>
+          <button
+            name="action_assign"
+            type="object"
+            string="Assign"
+            class="btn-primary"
+          />
+          <button string="Cancel" class="btn-secondary" special="cancel" />
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_sale_sintra_assign" model="ir.actions.act_window">
+    <field name="name">Assign to Sintra</field>
+    <field name="res_model">sale.sintra.assign</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="binding_model_id" ref="sale.model_sale_order" />
+    <field name="binding_view_types">list</field>
+    <field
+      name="groups_id"
+      eval="[Command.link(ref('sale_sintra.group_sintra_manager'))]"
+    />
+  </record>
+</odoo>

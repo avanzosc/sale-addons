@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="module_category_sintra" model="ir.module.category">
+    <field name="name">Sintra</field>
+    <field name="sequence">61</field>
+  </record>
+
+  <record id="group_sintra_user" model="res.groups">
+    <field name="name">User</field>
+    <field name="category_id" ref="module_category_sintra" />
+    <field name="comment">Sees the Sintras and the Sintra fields of sale orders.</field>
+  </record>
+
+  <record id="group_sintra_manager" model="res.groups">
+    <field name="name">Manager</field>
+    <field name="category_id" ref="module_category_sintra" />
+    <field name="implied_ids" eval="[Command.link(ref('group_sintra_user'))]" />
+    <field
+      name="users"
+      eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
+    />
+    <field
+      name="comment"
+    >Also creates and edits Sintras and assigns sale orders to them.</field>
+  </record>
+
+  <record id="module_category_sintra_sales_notice" model="ir.module.category">
+    <field name="name">Sintra Notice to Sales</field>
+    <field name="sequence">62</field>
+  </record>
+
+  <record id="group_sintra_sales_notice" model="res.groups">
+    <field name="name">Receive Sintra Notice to Sales</field>
+    <field name="category_id" ref="module_category_sintra_sales_notice" />
+    <field name="implied_ids" eval="[Command.link(ref('group_sintra_user'))]" />
+    <field name="comment">Receives the email sent to Sales from a Sintra.</field>
+  </record>
+</odoo>
