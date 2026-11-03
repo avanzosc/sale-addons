@@ -6,14 +6,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-28 10:41+0000\n"
-"PO-Revision-Date: 2026-10-28 10:41+0000\n"
+"POT-Creation-Date: 2026-11-03 10:07+0000\n"
+"PO-Revision-Date: 2026-11-03 10:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
+msgid ""
+"<span class=\"o_stat_text\" invisible=\"pricelist_item_count == 1\">\n"
+"                        Rules\n"
+"                    </span>\n"
+"                  <span class=\"o_stat_text\" invisible=\"pricelist_item_count != 1\">\n"
+"                        Rule\n"
+"                    </span>"
+msgstr ""
+"<span class=\"o_stat_text\" invisible=\"pricelist_item_count == 1\">\n"
+"                        Rules\n"
+"                    </span>\n"
+"              <span class=\"o_stat_text\" invisible=\"pricelist_item_count != 1\">\n"
+"                        Rule\n"
+"                    </span>"
+
+#. module: sale_product_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
+msgid ""
+"<span class=\"o_stat_text\" invisible=\"pricelist_item_count == 1\">\n"
+"                    Pricelists\n"
+"                </span>\n"
+"                <span class=\"o_stat_text\" invisible=\"pricelist_item_count != 1\">\n"
+"                    Pricelist\n"
+"                </span>"
+msgstr ""
+"<span class=\"o_stat_text\" invisible=\"pricelist_item_count == 1\">\n"
+"                    Pricelists\n"
+"                </span>\n"
+"            <span class=\"o_stat_text\" invisible=\"pricelist_item_count != 1\">\n"
+"                    Pricelist\n"
+"                </span>"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__active
@@ -137,18 +171,7 @@ msgid "Export XLSX Catalog Product Records"
 msgstr ""
 
 #. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
-msgid "Fixed Price"
-msgstr "Prix fixe"
-
-#. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
-msgid "Formula"
-msgstr "Formule"
-
-#. module: sale_product_catalog
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "Group By"
 msgstr "Regrouper par"
 
@@ -215,22 +238,12 @@ msgid "Partner"
 msgstr ""
 
 #. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
-msgid "Percentage"
-msgstr "Pourcentage"
-
-#. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__is_prebook
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog_type__is_prebook
 #: model:product.catalog.type,name:sale_product_catalog.product_catalog_type_prebook
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_search
 msgid "Prebook"
 msgstr "Précommande"
-
-#. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
-msgid "Price Type"
-msgstr "Type de prix"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__pricelist_ids
@@ -243,8 +256,6 @@ msgid "Pricelist Item Count"
 msgstr "Nombre d'éléments de liste de prix"
 
 #. module: sale_product_catalog
-#. odoo-python
-#: code:addons/sale_product_catalog/models/product_catalog.py:0
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__pricelist_item_ids
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
 msgid "Pricelist Items"
@@ -266,11 +277,6 @@ msgid "Product Catalog Type"
 msgstr "Type de catalogue de produits"
 
 #. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
-msgid "Product Category"
-msgstr "Catégorie de produit"
-
-#. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__product_tmpl_ids
 msgid "Product Tmpl"
 msgstr "Modèle de produit"
@@ -283,7 +289,7 @@ msgstr "Nombre de modèles de produit"
 #. module: sale_product_catalog
 #: model:ir.model,name:sale_product_catalog.model_product_product
 msgid "Product Variant"
-msgstr "Article"
+msgstr "Variante de produit"
 
 #. module: sale_product_catalog
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_catalog_view_form
@@ -310,12 +316,12 @@ msgstr "Date de début de vente"
 #. module: sale_product_catalog
 #: model:ir.model,name:sale_product_catalog.model_sale_order
 msgid "Sales Order"
-msgstr "Bon de commande"
+msgstr "Commande client"
 
 #. module: sale_product_catalog
 #: model:ir.model,name:sale_product_catalog.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Ligne de bons de commande"
+msgstr "Ligne de commande"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__sequence
@@ -326,11 +332,6 @@ msgstr ""
 #: model:res.groups,name:sale_product_catalog.group_show_product_catalog
 msgid "Show Product Catalog"
 msgstr "Afficher le catalogue de produits"
-
-#. module: sale_product_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
-msgid "Valid Today"
-msgstr "Valable aujourd'hui"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_product_catalog__warehouse_id

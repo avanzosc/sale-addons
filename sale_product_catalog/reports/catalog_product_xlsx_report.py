@@ -49,9 +49,10 @@ class CatalogProductXlsx(models.AbstractModel):
             worksheet.write(0, 7, "Price", table_header)
             worksheet.write(0, 8, "RRP", table_header)
             worksheet.write(0, 9, "B2B stock", table_header)
-            all_attributes = catalog.mapped(
-                "product_tmpl_ids.attribute_line_ids.attribute_id"
+            catalog_products = catalog._get_product_templates(
+                partner.property_product_pricelist
             )
+            all_attributes = catalog_products.mapped("attribute_line_ids.attribute_id")
             n = 10
             for attribute in all_attributes:
                 worksheet.write(0, n, attribute.display_name, table_header)
@@ -59,7 +60,7 @@ class CatalogProductXlsx(models.AbstractModel):
 
             # Order Lines
             n = 1
-            for product in catalog.mapped("product_tmpl_ids.product_variant_ids"):
+            for product in catalog_products.mapped("product_variant_ids"):
                 product_pricelist_item = self.with_company(
                     catalog.company_id
                 ).get_product_pricelist_item(product, catalog, partner)
@@ -94,10 +95,10 @@ class CatalogProductXlsx(models.AbstractModel):
                         pvp_price = (
                             product_pricelist_item.pvp_price
                             if product_pricelist_item
-                            else product.list_price_tax
+                            else product.lst_price
                         )
                     except Exception:
-                        pvp_price = product.list_price_tax
+                        pvp_price = product.lst_price
                     worksheet.write(n, 8, pvp_price)
                     try:
                         virtual_available = product.with_company(
