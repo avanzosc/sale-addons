@@ -90,28 +90,8 @@ class ProductCatalog(models.Model):
 
     @api.depends("pricelist_item_ids")
     def _compute_products(self):
-        today = fields.Date.today()
-        template_model = self.env["product.template"]
         for rec in self:
-            price_items = rec.pricelist_item_ids.filtered(
-                lambda pi: (
-                    (not pi.date_start or pi.date_start.date() <= today)
-                    and (not pi.date_end or pi.date_end.date() >= today)
-                )
-            )
-            templates = template_model
-            for item in price_items:
-                if item.applied_on == "0_product_variant":
-                    templates |= item.product_id.product_tmpl_id
-                elif item.applied_on == "1_product":
-                    templates |= item.product_tmpl_id
-                elif item.applied_on == "2_product_category":
-                    templates |= template_model.search(
-                        [("categ_id", "child_of", item.categ_id.id)]
-                    )
-                elif item.applied_on == "3_global":
-                    templates |= template_model.search([])
-            templates = templates.filtered(lambda p: p.active)
+            templates = rec._get_product_templates()
             rec.product_tmpl_ids = templates
             rec.product_tmpl_count = len(templates)
 
@@ -121,16 +101,56 @@ class ProductCatalog(models.Model):
                 (6, 0, rec.mapped("pricelist_item_ids.pricelist_id").ids)
             ]
 
+    def _get_product_templates(self, pricelist=False):
+        today = fields.Date.today()
+        template_model = self.env["product.template"]
+        pricelist_items = self.mapped("pricelist_item_ids")
+        if pricelist:
+            pricelist_items = pricelist_items.filtered(
+                lambda pi: pi.pricelist_id == pricelist
+            )
+        price_items = pricelist_items.filtered(
+            lambda pi: (
+                (not pi.date_start or pi.date_start.date() <= today)
+                and (not pi.date_end or pi.date_end.date() >= today)
+            )
+        )
+        templates = template_model
+        for item in price_items:
+            if item.applied_on == "0_product_variant":
+                templates |= item.product_id.product_tmpl_id
+            elif item.applied_on == "1_product":
+                templates |= item.product_tmpl_id
+            elif item.applied_on == "2_product_category":
+                templates |= template_model.search(
+                    [("categ_id", "child_of", item.categ_id.id)]
+                )
+            elif item.applied_on == "3_global":
+                templates |= template_model.search([])
+        return templates.filtered(lambda p: p.active)
+
     def action_open_pricelist_items(self):
         self.ensure_one()
         action = self.env["ir.actions.actions"]._for_xml_id(
             "product.product_pricelist_item_action"
         )
-        action["domain"] = expression.AND(
+        domain = expression.AND(
             [
                 [("id", "in", self.pricelist_item_ids.ids)],
                 safe_eval(action.get("domain") or "[]"),
             ]
+        )
+        context = safe_eval(action.get("context") or "{}")
+        context.update(
+            {
+                "search_default_ongoing_price": 1,
+            }
+        )
+        action.update(
+            {
+                "domain": domain,
+                "context": context,
+            }
         )
         return action
 
