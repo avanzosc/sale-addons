@@ -623,6 +623,8 @@ class SaleOrderImportLine(models.Model):
             values["client_order_ref"] = self.client_order_ref
         if self.total_order_amount:
             values["total_amount_from_import"] = self.total_order_amount
+        if self.import_id.warehouse_id:
+            values["warehouse_id"] = self.import_id.warehouse_id.id
         return values
 
     def _create_sale_order_line(self, sale):
