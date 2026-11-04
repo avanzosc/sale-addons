@@ -7,7 +7,6 @@ class AccountMove(models.Model):
     subscription_auto_validate_draft = fields.Boolean(
         string="Subscription automatic draft",
         copy=False,
-        readonly=True,
     )
 
     def _post(self, soft=True):
