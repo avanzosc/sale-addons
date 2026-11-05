@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="view_sales_order_filter" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_sales_order_filter" />
+    <field name="arch" type="xml">
+      <field name="team_id" position="after">
+        <field name="customer_industry_id" />
+        <field name="customer_principal_activity_id" />
+      </field>
+      <xpath expr="//filter[@name='order_month']" position="after">
+        <separator />
+        <filter
+          string="Customer Sector"
+          name="group_customer_industry"
+          domain="[]"
+          context="{'group_by': 'customer_industry_id'}"
+        />
+        <filter
+          string="Customer Principal Activity"
+          name="group_customer_principal_activity"
+          domain="[]"
+          context="{'group_by': 'customer_principal_activity_id'}"
+        />
+      </xpath>
+    </field>
+  </record>
+</odoo>
