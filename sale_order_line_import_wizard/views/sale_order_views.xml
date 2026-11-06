@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="view_order_form" model="ir.ui.view">
+    <field name="name">sale.order.form.line.import</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//div[@name='button_box']" position="inside">
+        <button
+          name="action_view_line_imports"
+          type="object"
+          class="oe_stat_button"
+          icon="fa-file-excel-o"
+          invisible="line_import_count == 0"
+        >
+          <field name="line_import_count" widget="statinfo" string="Line Imports" />
+        </button>
+      </xpath>
+      <xpath expr="//field[@name='order_line']" position="before">
+        <button
+          name="action_new_line_import"
+          type="object"
+          string="Import Lines"
+          class="btn btn-secondary"
+          invisible="state not in ('draft', 'sent')"
+        />
+      </xpath>
+    </field>
+  </record>
+</odoo>
