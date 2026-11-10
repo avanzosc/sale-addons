@@ -151,6 +151,6 @@ class CatalogProductXlsx(models.AbstractModel):
         product_context = dict(force_pricelist_date=force_pricelist_date)
         price, rule_id = pricelist.with_context(
             **product_context
-        )._get_product_price_rule(product, 1.0, partner)
+        )._get_product_price_rule(product=product, quantity=1.0, partner=partner)
         pricelist_item = self.env["product.pricelist.item"].browse(rule_id)
         return pricelist_item
