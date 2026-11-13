@@ -7,6 +7,7 @@
       <list decoration-muted="state == 'done'" decoration-danger="state == 'error'">
         <field name="name" />
         <field name="order_id" />
+        <field name="import_type" optional="show" />
         <field name="file_date" />
         <field name="company_id" groups="base.group_multi_company" />
         <field name="state" />
@@ -72,6 +73,7 @@
                 options="{'no_create': True}"
                 readonly="state == 'done'"
               />
+              <field name="import_type" readonly="state != 'draft'" />
               <field name="file_date" />
             </group>
             <group>

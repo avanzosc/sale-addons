@@ -39,6 +39,15 @@
         <field name="sticker_name" optional="hide" />
         <field name="warranty" optional="show" />
         <field name="warranty_name" optional="show" />
+        <field name="wheel_mould" optional="show" />
+        <field name="wheel_hardness" optional="show" />
+        <field name="wheel_formula" optional="show" />
+        <field name="wheel_label" optional="hide" />
+        <field name="wheel_sticker" optional="hide" />
+        <field name="wheel_packaging" optional="hide" />
+        <field name="wheel_graphic_setup" optional="hide" />
+        <field name="truck_type" optional="show" />
+        <field name="truck_print" optional="hide" />
         <field name="product_id" optional="show" />
         <field name="sale_order_line_id" optional="show" />
         <field name="state" />
@@ -120,6 +129,21 @@
             <group>
               <field name="warranty" />
               <field name="warranty_name" />
+            </group>
+          </group>
+          <group string="Complete skateboard">
+            <group string="Wheels">
+              <field name="wheel_mould" />
+              <field name="wheel_hardness" />
+              <field name="wheel_formula" />
+              <field name="wheel_label" />
+              <field name="wheel_sticker" />
+              <field name="wheel_packaging" />
+              <field name="wheel_graphic_setup" />
+            </group>
+            <group string="Truck">
+              <field name="truck_type" />
+              <field name="truck_print" />
             </group>
           </group>
           <field name="custom_values" />

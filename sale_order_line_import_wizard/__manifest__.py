@@ -10,6 +10,7 @@
     "website": "https://github.com/avanzosc/sale-addons",
     "depends": [
         "base_import_wizard",
+        "product_configurator_sale",
         "sale_management",
     ],
     "data": [

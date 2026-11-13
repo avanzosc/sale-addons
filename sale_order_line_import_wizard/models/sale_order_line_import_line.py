@@ -27,6 +27,15 @@ ATTRIBUTE_FIELDS = {
     "DECK SRINKWRAP": "deck_shrinkwrap",
     "Sticker OEM": "sticker",
     "Warranty OEM": "warranty",
+    "MOULD": "wheel_mould",
+    "HARDNESS": "wheel_hardness",
+    "FORMULA": "wheel_formula",
+    "Wheels Label": "wheel_label",
+    "Wheels Sticker": "wheel_sticker",
+    "Wheels Packaging": "wheel_packaging",
+    "Wheels Graphic SetUp": "wheel_graphic_setup",
+    "Trucks": "truck_type",
+    "Truck Print": "truck_print",
 }
 
 CUSTOM_FIELDS = {
@@ -93,6 +102,15 @@ class SaleOrderLineImportLine(models.Model):
     sticker_name = fields.Char()
     warranty = fields.Char()
     warranty_name = fields.Char()
+    wheel_mould = fields.Char(string="Wheel mould")
+    wheel_hardness = fields.Char(string="Wheel hardness")
+    wheel_formula = fields.Char(string="Wheel formula")
+    wheel_label = fields.Char()
+    wheel_sticker = fields.Char()
+    wheel_packaging = fields.Char()
+    wheel_graphic_setup = fields.Char()
+    truck_type = fields.Char(string="Truck OEM")
+    truck_print = fields.Char()
     attribute_value_ids = fields.Many2many(
         comodel_name="product.attribute.value", copy=False, readonly=True
     )

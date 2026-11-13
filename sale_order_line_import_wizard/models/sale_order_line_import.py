@@ -2,20 +2,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
-import re
-import unicodedata
 
 import xlrd
 
 from odoo import _, api, fields, models
 
 from odoo.addons.base_import_wizard.models.base_import import convert2str
-
-
-def normalize_header(value):
-    value = unicodedata.normalize("NFKD", str(value or ""))
-    value = "".join(char for char in value if not unicodedata.combining(char))
-    return re.sub(r"[^A-Z0-9]", "", value.upper())
 
 
 def normalize_code(value):
@@ -33,21 +25,6 @@ class SaleOrderLineImport(models.Model):
     _name = "sale.order.line.import"
     _inherit = "base.import"
     _description = "Sale order line import"
-
-    order_id = fields.Many2one(
-        comodel_name="sale.order",
-        string="Sale Order",
-        required=True,
-        index=True,
-        copy=False,
-        ondelete="cascade",
-    )
-    company_id = fields.Many2one(related="order_id.company_id", store=True)
-    import_line_ids = fields.One2many(
-        comodel_name="sale.order.line.import.line",
-        inverse_name="import_id",
-    )
-    sale_order_line_count = fields.Integer(compute="_compute_sale_order_line_count")
 
     _import_columns = (
         "QTY",
@@ -78,6 +55,38 @@ class SaleOrderLineImport(models.Model):
         "WARRANTY",
         "WARRANTY NAME",
     )
+    _complete_import_columns = _import_columns + (
+        "WHEEL MOULD",
+        "WHEEL HARDNESS",
+        "WHEEL FORMULA",
+        "WHEEL LABEL",
+        "WHEEL STICKER",
+        "WHEEL PACKAGING",
+        "WHEEL GRAPHIC SETUP",
+        "TRUCK TYPE",
+        "TRUCK PRINT",
+    )
+
+    order_id = fields.Many2one(
+        comodel_name="sale.order",
+        string="Sale Order",
+        required=True,
+        index=True,
+        copy=False,
+        ondelete="cascade",
+    )
+    company_id = fields.Many2one(related="order_id.company_id", store=True)
+    import_type = fields.Selection(
+        selection=[("deck", "Deck"), ("complete", "Complete")],
+        required=True,
+        default="deck",
+        copy=False,
+    )
+    import_line_ids = fields.One2many(
+        comodel_name="sale.order.line.import.line",
+        inverse_name="import_id",
+    )
+    sale_order_line_count = fields.Integer(compute="_compute_sale_order_line_count")
 
     @api.depends("import_line_ids.sale_order_line_id")
     def _compute_sale_order_line_count(self):
@@ -87,28 +96,39 @@ class SaleOrderLineImport(models.Model):
             )
 
     def _row_value(self, row_values, *names):
-        normalized = {normalize_header(key): value for key, value in row_values.items()}
         for name in names:
-            key = normalize_header(name)
-            if key in normalized:
-                return normalized[key]
+            if name in row_values:
+                return row_values[name]
         return ""
 
     def _read_xls(self):
-        """Read the two-level header used by the production workbook."""
         self.ensure_one()
         workbook = xlrd.open_workbook(file_contents=base64.decodebytes(self.data))
-        sheet = workbook.sheet_by_index(0)
+        sheet_name = "DECK" if self.import_type == "deck" else "Complete"
+        sheet = (
+            workbook.sheet_by_name(sheet_name)
+            if sheet_name in workbook.sheet_names()
+            else workbook.sheet_by_index(0)
+        )
+        columns = (
+            self._complete_import_columns
+            if self.import_type == "complete"
+            else self._import_columns
+        )
         lines = []
         product_template_name = ""
         for row_number in range(2, sheet.nrows):
-            row = sheet.row_values(row_number, 0, end_colx=len(self._import_columns))
-            row += [""] * (len(self._import_columns) - len(row))
-            row_values = dict(zip(self._import_columns, row, strict=True))
-            if not row_values["QTY"] and not row_values["SHAPE"]:
+            row = sheet.row_values(row_number, 0, end_colx=len(columns))
+            row_values = dict(zip(columns, row, strict=True))
+            if not self._row_value(row_values, "QTY") and not self._row_value(
+                row_values, "SHAPE"
+            ):
                 continue
-            if row_values["PRODUCTO/ARTICULO"]:
-                product_template_name = row_values["PRODUCTO/ARTICULO"]
+            row_product = self._row_value(
+                row_values, "PRODUCTO/ARTICULO", "PRODUCTO ARTICULO", "PRODUCT"
+            )
+            if row_product:
+                product_template_name = row_product
             else:
                 row_values["PRODUCTO/ARTICULO"] = product_template_name
             line_values = self._get_line_values(row_values, datemode=workbook.datemode)
@@ -184,6 +204,31 @@ class SaleOrderLineImport(models.Model):
                 "warranty_name": str(
                     self._row_value(row_values, "WARRANTY NAME") or ""
                 ).strip(),
+                "wheel_mould": normalize_code(
+                    self._row_value(row_values, "WHEEL MOULD")
+                ),
+                "wheel_hardness": normalize_code(
+                    self._row_value(row_values, "WHEEL HARDNESS")
+                ),
+                "wheel_formula": normalize_code(
+                    self._row_value(row_values, "WHEEL FORMULA")
+                ),
+                "wheel_label": normalize_code(
+                    self._row_value(row_values, "WHEEL LABEL")
+                ),
+                "wheel_sticker": normalize_code(
+                    self._row_value(row_values, "WHEEL STICKER")
+                ),
+                "wheel_packaging": normalize_code(
+                    self._row_value(row_values, "WHEEL PACKAGING")
+                ),
+                "wheel_graphic_setup": normalize_code(
+                    self._row_value(row_values, "WHEEL GRAPHIC SETUP")
+                ),
+                "truck_type": normalize_code(self._row_value(row_values, "TRUCK TYPE")),
+                "truck_print": normalize_code(
+                    self._row_value(row_values, "TRUCK PRINT")
+                ),
             }
         )
         return values
