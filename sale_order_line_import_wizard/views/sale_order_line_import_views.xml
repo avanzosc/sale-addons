@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="sale_order_line_import_view_list" model="ir.ui.view">
+    <field name="name">sale.order.line.import.list</field>
+    <field name="model">sale.order.line.import</field>
+    <field name="arch" type="xml">
+      <list decoration-muted="state == 'done'" decoration-danger="state == 'error'">
+        <field name="name" />
+        <field name="order_id" />
+        <field name="import_type" optional="show" />
+        <field name="file_date" />
+        <field name="company_id" groups="base.group_multi_company" />
+        <field name="state" />
+      </list>
+    </field>
+  </record>
+
+  <record id="sale_order_line_import_view_form" model="ir.ui.view">
+    <field name="name">sale.order.line.import.form</field>
+    <field name="model">sale.order.line.import</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <button
+            name="action_import_file"
+            string="Import"
+            type="object"
+            invisible="state == 'done'"
+          />
+          <button
+            name="action_validate"
+            string="Validate"
+            type="object"
+            invisible="state not in ('2validate', 'error')"
+          />
+          <button
+            name="action_process"
+            string="Process"
+            type="object"
+            class="oe_highlight"
+            invisible="state != 'pass'"
+          />
+          <field name="state" widget="statusbar" />
+        </header>
+        <sheet>
+          <div class="oe_button_box" name="button_box">
+            <button
+              name="button_open_import_line"
+              type="object"
+              class="oe_stat_button"
+              icon="fa-bars"
+              invisible="not import_line_ids"
+              string="Import Lines"
+            />
+            <button
+              name="action_open_sale_order_lines"
+              type="object"
+              class="oe_stat_button"
+              icon="fa-list"
+              invisible="sale_order_line_count == 0"
+            >
+              <field
+                name="sale_order_line_count"
+                widget="statinfo"
+                string="Sale Lines"
+              />
+            </button>
+          </div>
+          <group>
+            <group>
+              <field
+                name="order_id"
+                options="{'no_create': True}"
+                readonly="state == 'done'"
+              />
+              <field name="import_type" readonly="state != 'draft'" />
+              <field name="file_date" />
+            </group>
+            <group>
+              <field name="filename" />
+              <field name="data" filename="filename" />
+              <field name="company_id" groups="base.group_multi_company" />
+            </group>
+          </group>
+          <notebook>
+            <page string="Imported Lines">
+              <field name="import_line_ids" />
+            </page>
+            <page string="Error Log" invisible="not log_info">
+              <field name="log_info" />
+            </page>
+          </notebook>
+        </sheet>
+        <chatter />
+      </form>
+    </field>
+  </record>
+
+  <record id="sale_order_line_import_action" model="ir.actions.act_window">
+    <field name="name">Sale Order Line Imports</field>
+    <field name="res_model">sale.order.line.import</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <menuitem
+    id="sale_order_line_import_menu"
+    name="Line Imports"
+    action="sale_order_line_import_action"
+    parent="sale.sale_order_menu"
+    sequence="30"
+  />
+</odoo>

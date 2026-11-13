@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="sale_order_line_import_line_view_list" model="ir.ui.view">
+    <field name="name">sale.order.line.import.line.list</field>
+    <field name="model">sale.order.line.import.line</field>
+    <field name="arch" type="xml">
+      <list
+        decoration-danger="state == 'error'"
+        decoration-muted="state == 'done'"
+        editable="bottom"
+      >
+        <field name="action" />
+        <field name="product_template_name" />
+        <field name="shape" />
+        <field name="color_top" optional="hide" />
+        <field name="color_m2" optional="hide" />
+        <field name="color_m3" optional="hide" />
+        <field name="color_m4" optional="hide" />
+        <field name="color_m5" optional="hide" />
+        <field name="color_m6" optional="hide" />
+        <field name="color_bottom" optional="hide" />
+        <field name="finish" optional="show" />
+        <field name="ral" optional="show" />
+        <field name="quantity" />
+        <field name="price_unit" />
+        <field name="total" optional="show" />
+        <field name="top_graphic_type" optional="show" />
+        <field name="top_graphic_name" optional="show" />
+        <field name="top_foil" optional="show" />
+        <field name="top_laser" optional="hide" />
+        <field name="top_laser_name" optional="hide" />
+        <field name="bottom_graphic_type" optional="show" />
+        <field name="bottom_graphic_name" optional="show" />
+        <field name="bottom_foil" optional="show" />
+        <field name="bottom_laser" optional="hide" />
+        <field name="bottom_laser_name" optional="hide" />
+        <field name="deck_shrinkwrap" optional="show" />
+        <field name="sticker" optional="hide" />
+        <field name="sticker_name" optional="hide" />
+        <field name="warranty" optional="show" />
+        <field name="warranty_name" optional="show" />
+        <field name="wheel_mould" optional="show" />
+        <field name="wheel_hardness" optional="show" />
+        <field name="wheel_formula" optional="show" />
+        <field name="wheel_label" optional="hide" />
+        <field name="wheel_sticker" optional="hide" />
+        <field name="wheel_packaging" optional="hide" />
+        <field name="wheel_graphic_setup" optional="hide" />
+        <field name="truck_type" optional="show" />
+        <field name="truck_print" optional="hide" />
+        <field name="product_id" optional="show" />
+        <field name="sale_order_line_id" optional="show" />
+        <field name="state" />
+        <field name="log_info" optional="show" />
+      </list>
+    </field>
+  </record>
+
+  <record id="sale_order_line_import_line_view_form" model="ir.ui.view">
+    <field name="name">sale.order.line.import.line.form</field>
+    <field name="model">sale.order.line.import.line</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <button
+            name="button_validate"
+            string="Validate"
+            type="object"
+            invisible="state == 'done'"
+          />
+          <button
+            name="button_process"
+            string="Process"
+            type="object"
+            invisible="state != 'pass'"
+          />
+          <field name="state" widget="statusbar" />
+        </header>
+        <sheet>
+          <group>
+            <group>
+              <field name="import_id" />
+              <field name="product_template_name" />
+              <field name="product_tmpl_id" />
+              <field name="quantity" />
+              <field name="price_unit" />
+              <field name="total" />
+              <field name="shape" />
+            </group>
+            <group>
+              <field name="product_id" />
+              <field name="sale_order_line_id" />
+              <field name="attribute_value_ids" widget="many2many_tags" />
+            </group>
+          </group>
+          <group string="Colors" col="4">
+            <field name="color_top" />
+            <field name="color_m2" />
+            <field name="color_m3" />
+            <field name="color_m4" />
+            <field name="color_m5" />
+            <field name="color_m6" />
+            <field name="color_bottom" />
+            <field name="finish" />
+            <field name="ral" />
+          </group>
+          <group string="Graphics and operations">
+            <group>
+              <field name="top_graphic_type" />
+              <field name="top_graphic_name" />
+              <field name="top_foil" />
+              <field name="top_laser" />
+              <field name="top_laser_name" />
+            </group>
+            <group>
+              <field name="bottom_graphic_type" />
+              <field name="bottom_graphic_name" />
+              <field name="bottom_foil" />
+              <field name="bottom_laser" />
+              <field name="bottom_laser_name" />
+            </group>
+          </group>
+          <group string="Packaging">
+            <group>
+              <field name="deck_shrinkwrap" />
+              <field name="sticker" />
+              <field name="sticker_name" />
+            </group>
+            <group>
+              <field name="warranty" />
+              <field name="warranty_name" />
+            </group>
+          </group>
+          <group string="Complete skateboard">
+            <group string="Wheels">
+              <field name="wheel_mould" />
+              <field name="wheel_hardness" />
+              <field name="wheel_formula" />
+              <field name="wheel_label" />
+              <field name="wheel_sticker" />
+              <field name="wheel_packaging" />
+              <field name="wheel_graphic_setup" />
+            </group>
+            <group string="Truck">
+              <field name="truck_type" />
+              <field name="truck_print" />
+            </group>
+          </group>
+          <field name="custom_values" />
+          <field name="log_info" />
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>
