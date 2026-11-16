@@ -18,7 +18,7 @@
         "views/sale_order_line_views.xml",
     ],
     "installable": True,
-    "auto_install": True,
+    "auto_install": False,
     "pre_init_hook": "_pre_init_sale_stock_move_cost",
     "post_init_hook": "_post_init_sale_stock_move_cost",
 }
