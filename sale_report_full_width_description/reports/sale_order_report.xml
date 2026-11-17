@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <template
+    id="report_saleorder_document"
+    inherit_id="sale.report_saleorder_document"
+    priority="100"
+  >
+    <td name="td_name" position="before">
+      <t t-if="line.product_id.default_code">
+        <t
+          t-set="product_name"
+          t-value="'[' + line.product_id.default_code + '] ' + line.product_id.name"
+        />
+      </t>
+      <t t-else="">
+        <t t-set="product_name" t-value="line.product_id.name" />
+      </t>
+    </td>
+    <span t-field="line.name" position="replace">
+      <span t-field="line.product_id.name" />
+    </span>
+    <td t-if="not line.is_downpayment" name="td_subtotal" position="after">
+      <tr
+        t-if="not line.display_type and line.product_type != 'combo' and line.product_id.display_name != line.name"
+      >
+        <td name="td_name_full" colspan="99">
+          <span
+            t-esc="line.name.replace(line.product_id.display_name, '', 1)"
+            style="white-space: pre-line;"
+          />
+        </td>
+      </tr>
+    </td>
+  </template>
+</odoo>
