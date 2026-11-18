@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="view_order_form" model="ir.ui.view">
+    <field name="name">sale.order.form.sintra</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+      <group name="partner_details" position="inside">
+        <field name="sintra_id" groups="sale_sintra.group_sintra_user" />
+        <field name="sintra_editable" invisible="1" />
+      </group>
+      <xpath
+        expr="//field[@name='order_line']/list/field[@name='price_unit']"
+        position="before"
+      >
+        <field name="ib_code" optional="show" />
+        <field
+          name="sintra_state"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_partner_id"
+          widget="many2one"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_project"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_registration"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_work"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_installation_code"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_installation"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_features"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_purchase_id"
+          widget="many2one"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_delivery_date"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_planned_date"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_note"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_region"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_zone"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_utd"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_sales_notified"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_ib_delivery_date"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_installer"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_ib_manager"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+        <field
+          name="sintra_sim"
+          groups="sale_sintra.group_sintra_user"
+          optional="hide"
+        />
+      </xpath>
+      <notebook position="inside">
+        <page
+          name="sintra"
+          string="Sintra"
+          invisible="not sintra_id"
+          groups="sale_sintra.group_sintra_user"
+        >
+          <group>
+            <group name="sintra_general" string="General Data">
+              <field
+                name="sintra_state"
+                string="Status"
+                readonly="not sintra_editable"
+              />
+              <field
+                name="sintra_partner_id"
+                string="Customer"
+                readonly="not sintra_editable"
+              />
+              <field
+                name="sintra_project"
+                string="Project"
+                readonly="not sintra_editable"
+              />
+              <field
+                name="sintra_registration"
+                string="Registration"
+                readonly="not sintra_editable"
+              />
+              <field name="sintra_work" string="Work" readonly="not sintra_editable" />
+              <field
+                name="sintra_installation_code"
+                string="Installation Code"
+                readonly="not sintra_editable"
+              />
+              <field
+                name="sintra_installation"
+                string="Installation"
+                readonly="not sintra_editable"
+              />
+              <field
+                name="sintra_features"
+                string="Features"
+                readonly="not sintra_editable"
+              />
+              <field
+                name="sintra_purchase_id"
+                string="Cabinet Purchase Order"
+                readonly="not sintra_editable"
+              />
+            </group>
+            <group name="sintra_other" string="Other">
+              <field
+                name="sintra_delivery_date"
+                string="Delivery Date"
+                readonly="not sintra_editable"
+              />
+              <field
+                name="sintra_planned_date"
+                string="Planned Date"
+                readonly="not sintra_editable"
+              />
+              <field name="sintra_note" string="Note" readonly="not sintra_editable" />
+            </group>
+            <group name="sintra_zone" string="Zone">
+              <field
+                name="sintra_region"
+                string="Region"
+                readonly="not sintra_editable"
+              />
+              <field name="sintra_zone" string="Zone" readonly="not sintra_editable" />
+              <field name="sintra_utd" string="UTD" readonly="not sintra_editable" />
+              <field
+                name="sintra_sales_notified"
+                string="Email Sent to Sales"
+                readonly="not sintra_editable"
+              />
+            </group>
+            <group name="sintra_ib" string="IB">
+              <field
+                name="sintra_ib_delivery_date"
+                string="IB Delivery Date"
+                readonly="not sintra_editable"
+              />
+              <field
+                name="sintra_installer"
+                string="Installer"
+                readonly="not sintra_editable"
+              />
+              <field
+                name="sintra_ib_manager"
+                string="IB Manager"
+                readonly="not sintra_editable"
+              />
+              <field name="sintra_sim" string="SIM" readonly="not sintra_editable" />
+            </group>
+          </group>
+          <field name="sintra_document_ids" readonly="not sintra_editable">
+            <list editable="bottom">
+              <field name="name" />
+              <field name="folder" readonly="1" />
+              <field name="note" />
+            </list>
+          </field>
+        </page>
+      </notebook>
+    </field>
+  </record>
+
+  <record id="sale_order_tree" model="ir.ui.view">
+    <field name="name">sale.order.list.sintra</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.sale_order_tree" />
+    <field name="arch" type="xml">
+      <field name="partner_id" position="after">
+        <field
+          name="sintra_id"
+          widget="many2one"
+          groups="sale_sintra.group_sintra_user"
+          optional="show"
+        />
+      </field>
+    </field>
+  </record>
+
+  <record id="view_sales_order_filter" model="ir.ui.view">
+    <field name="name">sale.order.search.sintra</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_sales_order_filter" />
+    <field name="arch" type="xml">
+      <field name="partner_id" position="after">
+        <field name="sintra_id" groups="sale_sintra.group_sintra_user" />
+      </field>
+      <filter name="my_sale_orders_filter" position="after">
+        <filter
+          name="with_sintra"
+          string="With Sintra"
+          domain="[('sintra_id', '!=', False)]"
+          groups="sale_sintra.group_sintra_user"
+        />
+      </filter>
+      <filter name="order_month" position="after">
+        <filter
+          name="group_by_sintra"
+          string="Sintra"
+          context="{'group_by': 'sintra_id'}"
+          groups="sale_sintra.group_sintra_user"
+        />
+      </filter>
+    </field>
+  </record>
+
+  <record id="action_sale_order_sintra" model="ir.actions.act_window">
+    <field name="name">Sintra Sales</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">list,form</field>
+    <field name="search_view_id" ref="sale.view_sales_order_filter" />
+    <field
+      name="context"
+    >{'search_default_with_sintra': 1, 'search_default_group_by_sintra': 1}</field>
+  </record>
+</odoo>

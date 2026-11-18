@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="view_sale_order_line_sintra_list" model="ir.ui.view">
+    <field name="name">sale.order.line.list.sintra</field>
+    <field name="model">sale.order.line</field>
+    <field name="priority">100</field>
+    <field name="arch" type="xml">
+      <list string="Sintra Products" editable="bottom" create="0" delete="0">
+        <field name="sintra_editable" column_invisible="1" />
+        <field name="sintra_id" widget="many2one" readonly="1" />
+        <field name="order_id" widget="many2one" readonly="1" />
+        <field name="product_default_code" string="Reference" />
+        <field name="product_id" widget="many2one" readonly="1" />
+        <field name="name" readonly="1" optional="hide" />
+        <field name="product_uom_qty" readonly="1" />
+        <field name="ib_code" readonly="not sintra_editable" />
+        <field name="sintra_state" />
+        <field name="sintra_ib_delivery_date" widget="date" />
+        <field name="state" readonly="1" optional="hide" />
+      </list>
+    </field>
+  </record>
+
+  <record id="view_sale_order_line_sintra_search" model="ir.ui.view">
+    <field name="name">sale.order.line.search.sintra</field>
+    <field name="model">sale.order.line</field>
+    <field name="priority">100</field>
+    <field name="arch" type="xml">
+      <search string="Sintra Products">
+        <field name="sintra_id" />
+        <field name="order_id" />
+        <field name="ib_code" />
+        <field name="product_id" />
+        <field name="product_default_code" string="Reference" />
+        <separator />
+        <filter
+          name="without_ib_code"
+          string="Without IB Code"
+          domain="[('ib_code', '=', False)]"
+        />
+        <group expand="0" string="Group By">
+          <filter
+            name="group_by_sintra"
+            string="Sintra"
+            context="{'group_by': 'sintra_id'}"
+          />
+          <filter
+            name="group_by_product"
+            string="Product"
+            context="{'group_by': 'product_id'}"
+          />
+          <filter
+            name="group_by_sintra_state"
+            string="Sintra Status"
+            context="{'group_by': 'sintra_state'}"
+          />
+          <filter
+            name="group_by_sintra_ib_delivery_date"
+            string="IB Delivery Date"
+            context="{'group_by': 'sintra_ib_delivery_date'}"
+          />
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record id="action_sale_order_line_sintra" model="ir.actions.act_window">
+    <field name="name">Sintra Products</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">list</field>
+    <field name="view_id" ref="view_sale_order_line_sintra_list" />
+    <field name="search_view_id" ref="view_sale_order_line_sintra_search" />
+    <field name="domain">[
+      ('sintra_id', '!=', False),
+      ('display_type', '=', False),
+      ('product_type', '!=', 'service'),
+    ]</field>
+  </record>
+</odoo>

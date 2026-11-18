@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <menuitem
+    id="menu_sale_sintra_root"
+    name="Sintra"
+    action="action_sale_sintra"
+    web_icon="sale_sintra,static/description/icon.png"
+    groups="group_sintra_user"
+    sequence="13"
+  />
+  <menuitem
+    id="menu_sale_sintra_objectives"
+    name="Sintra"
+    action="action_sale_sintra"
+    parent="menu_sale_sintra_root"
+    sequence="10"
+  />
+  <menuitem
+    id="menu_sale_sintra_sales"
+    name="Sintra Sales"
+    action="action_sale_order_sintra"
+    parent="menu_sale_sintra_root"
+    sequence="20"
+  />
+  <menuitem
+    id="menu_sale_sintra_products"
+    name="Sintra Products"
+    action="action_sale_order_line_sintra"
+    parent="menu_sale_sintra_root"
+    sequence="30"
+  />
+
+  <menuitem
+    id="menu_sale_sintra"
+    name="Sintra"
+    action="action_sale_sintra"
+    parent="sale.sale_order_menu"
+    groups="group_sintra_user"
+    sequence="12"
+  />
+  <menuitem
+    id="menu_sale_sintra_products_sale"
+    name="Sintra Products"
+    action="action_sale_order_line_sintra"
+    parent="sale.sale_order_menu"
+    groups="group_sintra_user"
+    sequence="13"
+  />
+</odoo>
