@@ -2,10 +2,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
+import os
+import re
+import unicodedata
 
 import xlrd
 
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 from odoo.addons.base_import_wizard.models.base_import import convert2str
 
@@ -14,6 +18,73 @@ def normalize_code(value):
     if value in (False, None, ""):
         return ""
     return convert2str(value).strip()
+
+
+def normalize_header(value):
+    value = unicodedata.normalize("NFKD", str(value or ""))
+    value = "".join(char for char in value if not unicodedata.combining(char))
+    return re.sub(r"[^A-Z0-9]", "", value.upper())
+
+
+HEADER_ALIASES = {
+    "QTY": "QTY",
+    "QUANTITY": "QTY",
+    "PRICE": "PRICE",
+    "UNITPRICE": "PRICE",
+    "TOTAL": "TOTAL",
+    "SHAPE": "SHAPE",
+    "PRODUCTOARTICULO": "PRODUCTO/ARTICULO",
+    "PRODUCT": "PRODUCTO/ARTICULO",
+    "TP": "TP",
+    "TOP": "TP",
+    "M2": "M2",
+    "M3": "M3",
+    "M4": "M4",
+    "M5": "M5",
+    "M6": "M6",
+    "BT": "BT",
+    "BOTTOM": "BT",
+    "FINISH": "FINISH",
+    "RAL": "RAL",
+    "TOPLASER": "TOP LASER",
+    "BOTTOMLASER": "BOTTOM LASER",
+    "TOPGRAPHICTYPE": "TOP GRAPHIC TYPE",
+    "TOPGRAPHICNAME": "TOP GRAPHIC NAME",
+    "TOPFOIL": "TOP FOIL",
+    "BOTTOMGRAPHICTYPE": "BOTTOM GRAPHIC TYPE",
+    "BOTTOMGRAPHICNAME": "BOTTOM GRAPHIC NAME",
+    "BOTTOMFOIL": "BOTTOM FOIL",
+    "DECKSRINKWRAP": "DECK SRINKWRAP",
+    "DECKSHRINKWRAP": "DECK SRINKWRAP",
+    "STICKER": "STICKER",
+    "STICKERNAME": "STICKER NAME",
+    "WARRANTY": "WARRANTY",
+    "WARRANTYNAME": "WARRANTY NAME",
+    "PACKAGING": "PACKAGING",
+    "PACKAGINGNAME": "PACKAGING NAME",
+    "TEXTOCUSTOM": "PACKAGING NAME",
+    "WHEELMOULD": "WHEEL MOULD",
+    "WHEELHARDNESS": "WHEEL HARDNESS",
+    "WHEELFORMULA": "WHEEL FORMULA",
+    "WHEELPRINT": "WHEEL PRINT",
+    "WHEELSPRINT": "WHEEL PRINT",
+    "WHEELPRINTNAME": "WHEEL PRINT NAME",
+    "WHEELSPRINTNAME": "WHEEL PRINT NAME",
+    "WHEELGRAPHICSETUP": "WHEEL GRAPHIC SETUP",
+    "WHEELSGRAPHICSETUP": "WHEEL GRAPHIC SETUP",
+    "WHEELLABEL": "WHEEL LABEL",
+    "WHEELSLABEL": "WHEEL LABEL",
+    "WHEELSTICKER": "WHEEL STICKER",
+    "WHEELSSTICKER": "WHEEL STICKER",
+    "WHEELPACKAGING": "WHEEL PACKAGING",
+    "WHEELSPACKAGING": "WHEEL PACKAGING",
+    "TRUCKTYPE": "TRUCK TYPE",
+    "TRUCKPRINT": "TRUCK PRINT",
+    "GRIPTAPE": "GRIPTAPE",
+    "GRIPTAPEOEMTIPE": "GRIPTAPE",
+    "GRIPTAPEOEMTYPE": "GRIPTAPE",
+    "RISERS": "RISERS",
+}
 
 
 def laser_values(value):
@@ -25,47 +96,6 @@ class SaleOrderLineImport(models.Model):
     _name = "sale.order.line.import"
     _inherit = "base.import"
     _description = "Sale order line import"
-
-    _import_columns = (
-        "QTY",
-        "PRICE",
-        "TOTAL",
-        "SHAPE",
-        "PRODUCTO/ARTICULO",
-        "TP",
-        "M2",
-        "M3",
-        "M4",
-        "M5",
-        "M6",
-        "BT",
-        "FINISH",
-        "RAL",
-        "TOP LASER",
-        "BOTTOM LASER",
-        "TOP GRAPHIC TYPE",
-        "TOP GRAPHIC NAME",
-        "TOP FOIL",
-        "BOTTOM GRAPHIC TYPE",
-        "BOTTOM GRAPHIC NAME",
-        "BOTTOM FOIL",
-        "DECK SRINKWRAP",
-        "STICKER",
-        "STICKER NAME",
-        "WARRANTY",
-        "WARRANTY NAME",
-    )
-    _complete_import_columns = _import_columns + (
-        "WHEEL MOULD",
-        "WHEEL HARDNESS",
-        "WHEEL FORMULA",
-        "WHEEL LABEL",
-        "WHEEL STICKER",
-        "WHEEL PACKAGING",
-        "WHEEL GRAPHIC SETUP",
-        "TRUCK TYPE",
-        "TRUCK PRINT",
-    )
 
     order_id = fields.Many2one(
         comodel_name="sale.order",
@@ -101,6 +131,33 @@ class SaleOrderLineImport(models.Model):
                 return row_values[name]
         return ""
 
+    def _get_column_name(self, group_header, subheader, column_number):
+        group_key = normalize_header(group_header)
+        subheader_key = normalize_header(subheader)
+        if group_key == "COLOREDPLIES":
+            header_key = subheader_key
+        elif group_key in ("TOPGRAPHIC", "BOTTOMGRAPHIC"):
+            header_key = f"{group_key}{subheader_key}"
+        elif group_key.startswith("WHEELSOEM"):
+            header_key = (
+                subheader_key
+                if subheader_key.startswith("WHEEL")
+                else f"WHEEL{subheader_key}"
+            )
+        elif group_key.startswith("TRUCKOEM"):
+            header_key = (
+                subheader_key
+                if subheader_key.startswith("TRUCK")
+                else f"TRUCK{subheader_key}"
+            )
+        elif group_key == "GRIPTAPEOEM":
+            header_key = f"{group_key}{subheader_key}"
+        elif group_key == "OTROSELEMENTOS" and subheader_key == "RAISERS":
+            header_key = subheader_key
+        else:
+            header_key = group_key or subheader_key
+        return HEADER_ALIASES.get(header_key, f"__COLUMN_{column_number}")
+
     def _read_xls(self):
         self.ensure_one()
         workbook = xlrd.open_workbook(file_contents=base64.decodebytes(self.data))
@@ -110,15 +167,30 @@ class SaleOrderLineImport(models.Model):
             if sheet_name in workbook.sheet_names()
             else workbook.sheet_by_index(0)
         )
-        columns = (
-            self._complete_import_columns
-            if self.import_type == "complete"
-            else self._import_columns
-        )
+        columns = []
+        group_header = ""
+        for column_number in range(sheet.ncols):
+            header = str(sheet.cell_value(0, column_number) or "").strip()
+            subheader = str(sheet.cell_value(1, column_number) or "").strip()
+            if header:
+                group_header = header
+            if not header and not subheader:
+                columns.append(f"__COLUMN_{column_number}")
+            else:
+                columns.append(
+                    self._get_column_name(group_header, subheader, column_number)
+                )
+        required_columns = {"QTY", "SHAPE", "PRODUCTO/ARTICULO"}
+        missing_columns = required_columns.difference(columns)
+        if missing_columns:
+            raise ValidationError(
+                _("Missing required Excel columns: %s")
+                % ", ".join(sorted(missing_columns))
+            )
         lines = []
         product_template_name = ""
         for row_number in range(2, sheet.nrows):
-            row = sheet.row_values(row_number, 0, end_colx=len(columns))
+            row = sheet.row_values(row_number, 0, end_colx=sheet.ncols)
             row_values = dict(zip(columns, row, strict=True))
             if not self._row_value(row_values, "QTY") and not self._row_value(
                 row_values, "SHAPE"
@@ -138,6 +210,13 @@ class SaleOrderLineImport(models.Model):
 
     _read_xlsx = _read_xls
 
+    def _read_file(self):
+        self.ensure_one()
+        extension = os.path.splitext(self.filename or "")[1].lower()
+        if extension in (".xls", ".xlsx"):
+            return self._read_xls()
+        return super()._read_file()
+
     def _get_line_values(self, row_values, datemode=False):
         values = super()._get_line_values(row_values, datemode=datemode)
         if not values or not row_values:
@@ -154,6 +233,7 @@ class SaleOrderLineImport(models.Model):
         bottom_laser, bottom_laser_name = laser_values(
             self._row_value(row_values, "BOTTOM LASER")
         )
+        wheel_default = "No" if self.import_type == "complete" else ""
         if not any((product_template_name, shape, quantity, price_unit)):
             return False
         values.update(
@@ -204,6 +284,10 @@ class SaleOrderLineImport(models.Model):
                 "warranty_name": str(
                     self._row_value(row_values, "WARRANTY NAME") or ""
                 ).strip(),
+                "packaging": normalize_code(self._row_value(row_values, "PACKAGING")),
+                "packaging_name": str(
+                    self._row_value(row_values, "PACKAGING NAME") or ""
+                ).strip(),
                 "wheel_mould": normalize_code(
                     self._row_value(row_values, "WHEEL MOULD")
                 ),
@@ -212,6 +296,15 @@ class SaleOrderLineImport(models.Model):
                 ),
                 "wheel_formula": normalize_code(
                     self._row_value(row_values, "WHEEL FORMULA")
+                ),
+                "wheel_print": normalize_code(
+                    self._row_value(row_values, "WHEEL PRINT")
+                ),
+                "wheel_print_name": str(
+                    self._row_value(row_values, "WHEEL PRINT NAME") or ""
+                ).strip(),
+                "wheel_graphic_setup": normalize_code(
+                    self._row_value(row_values, "WHEEL GRAPHIC SETUP")
                 ),
                 "wheel_label": normalize_code(
                     self._row_value(row_values, "WHEEL LABEL")
@@ -222,15 +315,16 @@ class SaleOrderLineImport(models.Model):
                 "wheel_packaging": normalize_code(
                     self._row_value(row_values, "WHEEL PACKAGING")
                 ),
-                "wheel_graphic_setup": normalize_code(
-                    self._row_value(row_values, "WHEEL GRAPHIC SETUP")
-                ),
                 "truck_type": normalize_code(self._row_value(row_values, "TRUCK TYPE")),
                 "truck_print": normalize_code(
                     self._row_value(row_values, "TRUCK PRINT")
                 ),
+                "griptape": normalize_code(self._row_value(row_values, "GRIPTAPE")),
+                "risers": normalize_code(self._row_value(row_values, "RISERS")),
             }
         )
+        for field_name in ("wheel_label", "wheel_sticker", "wheel_packaging"):
+            values[field_name] = values[field_name] or wheel_default
         return values
 
     def action_open_sale_order_lines(self):

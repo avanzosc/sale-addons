@@ -36,6 +36,12 @@
       <button name="action_config_start" position="attributes">
         <attribute name="invisible">1</attribute>
       </button>
+      <xpath
+        expr="//field[@name='order_line']/list//field[@name='config_session_id']"
+        position="attributes"
+      >
+        <attribute name="column_invisible">1</attribute>
+      </xpath>
     </field>
   </record>
 </odoo>
