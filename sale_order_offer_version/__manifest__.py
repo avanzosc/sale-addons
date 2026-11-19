@@ -16,6 +16,7 @@
         "data/sale_order_offer_version.xml",
         "views/sale_order_type_views.xml",
         "views/sale_order_views.xml",
+        "views/res_config_settings_views.xml",
         "reports/sale_order_report_template.xml",
     ],
     "installable": True,
