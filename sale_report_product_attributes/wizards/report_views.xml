@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <!--
+    <record id="action_report_catalog_attributes_xmlx" model="ir.actions.report">
+        <field name="name">Partner attributes xlsx</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">catalog.attribute.partner.report</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">sale_report_product_attributes.attributes_xlsx</field>
+        <field name="report_file">sale_report_product_attributes.attributes_xlsx</field>
+        <field name="binding_model_id" ref="acysos_hlc.model_product_catalog_web"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <report id="action_catalog_attributes_report_xlsx"
+            string="Catalog Partner Report"
+            model="catalog.attribute.partner.report"
+            binding_model_id="acysos_hlc.model_product_catalog_web"
+            report_type="xlsx"
+            name="sale_report_product_attributes.attributes_xlsx"
+            file = "sale_report_product_attributes.attributes_xlsx"
+    />
+    <report id="action_catalog_attributes_report_xlsx"
+            string="Catalog Partner Report"
+            model="catalog.attribute.partner.report"
+            report_type="xlsx"
+            name="sale_report_product_attributes.attributes_xlsx"
+            file = "sale_report_product_attributes.attributes_xlsx"
+    />-->
+</odoo>
