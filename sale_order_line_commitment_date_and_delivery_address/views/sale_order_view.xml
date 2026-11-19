@@ -11,6 +11,11 @@
                 <field name="commitment_date" optional="show" />
                 <field name="delivery_address_id" optional="show" />
             </xpath>
+            <field name="order_line" position="attributes">
+                <attribute
+          name="context"
+        >{'default_commitment_date': commitment_date}</attribute>
+            </field>
         </field>
     </record>
 </odoo>

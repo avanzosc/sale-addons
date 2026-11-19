@@ -16,7 +16,7 @@ Features
 
 - **Commitment Date**:
   
-  - Adds a *Commitment Date* field to sale order lines, which is linked to the commitment date of the sale order.
+  - Adds a *Commitment Date* field to sale order lines, by default, it will take the "Commitment Date" of the sales order.
 
 - **Delivery Address**:
   
