@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-19 08:45+0000\n"
-"PO-Revision-Date: 2024-02-19 08:45+0000\n"
+"POT-Creation-Date: 2024-04-17 12:12+0000\n"
+"PO-Revision-Date: 2024-04-17 12:12+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgid "<span class=\"o_stat_text\">Sale Template Lines</span>"
 msgstr ""
 
 #. module: sale_order_template_space
+#: model_terms:ir.ui.view,arch_db:sale_order_template_space.wiz_duplicate_sale_line_form_view
+msgid "Cancel"
+msgstr ""
+
+#. module: sale_order_template_space
 #: model_terms:ir.ui.view,arch_db:sale_order_template_space.view_order_form
 msgid "Create sale lines"
 msgstr ""
@@ -33,12 +38,14 @@ msgstr ""
 #. module: sale_order_template_space
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_space__create_uid
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_template_space__create_uid
+#: model:ir.model.fields,field_description:sale_order_template_space.field_wiz_duplicate_sale_line__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: sale_order_template_space
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_space__create_date
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_template_space__create_date
+#: model:ir.model.fields,field_description:sale_order_template_space.field_wiz_duplicate_sale_line__create_date
 msgid "Created on"
 msgstr ""
 
@@ -50,7 +57,20 @@ msgstr ""
 #. module: sale_order_template_space
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_space__display_name
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_template_space__display_name
+#: model:ir.model.fields,field_description:sale_order_template_space.field_wiz_duplicate_sale_line__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_template_space
+#: model:ir.actions.server,name:sale_order_template_space.model_sale_order_line_action_duplicate
+#: model_terms:ir.ui.view,arch_db:sale_order_template_space.wiz_duplicate_sale_line_form_view
+msgid "Duplicate Line"
+msgstr ""
+
+#. module: sale_order_template_space
+#: model:ir.actions.act_window,name:sale_order_template_space.wiz_duplicate_sale_line_action
+#: model_terms:ir.ui.view,arch_db:sale_order_template_space.wiz_duplicate_sale_line_form_view
+msgid "Duplicate Sale Order Line"
 msgstr ""
 
 #. module: sale_order_template_space
@@ -61,24 +81,28 @@ msgstr ""
 #. module: sale_order_template_space
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_space__id
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_template_space__id
+#: model:ir.model.fields,field_description:sale_order_template_space.field_wiz_duplicate_sale_line__id
 msgid "ID"
 msgstr ""
 
 #. module: sale_order_template_space
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_space____last_update
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_template_space____last_update
+#: model:ir.model.fields,field_description:sale_order_template_space.field_wiz_duplicate_sale_line____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_order_template_space
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_space__write_uid
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_template_space__write_uid
+#: model:ir.model.fields,field_description:sale_order_template_space.field_wiz_duplicate_sale_line__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: sale_order_template_space
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_space__write_date
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_template_space__write_date
+#: model:ir.model.fields,field_description:sale_order_template_space.field_wiz_duplicate_sale_line__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -128,6 +152,11 @@ msgstr ""
 #. module: sale_order_template_space
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_space__sale_order_id
 msgid "Sale Order"
+msgstr ""
+
+#. module: sale_order_template_space
+#: model:ir.model.fields,field_description:sale_order_template_space.field_wiz_duplicate_sale_line__sale_line_id
+msgid "Sale Order Line"
 msgstr ""
 
 #. module: sale_order_template_space
@@ -192,8 +221,18 @@ msgid "Sequence"
 msgstr ""
 
 #. module: sale_order_template_space
+#: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_line__sequence_to_view
+msgid "Sequence to view"
+msgstr ""
+
+#. module: sale_order_template_space
 #: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_space__space_id
 msgid "Space"
+msgstr ""
+
+#. module: sale_order_template_space
+#: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_line__space_sequence
+msgid "Space Sequence"
 msgstr ""
 
 #. module: sale_order_template_space
@@ -217,6 +256,25 @@ msgid "Spaces For Sale Orders"
 msgstr ""
 
 #. module: sale_order_template_space
+#: model:ir.model.fields,field_description:sale_order_template_space.field_sale_order_line__sale_order_template_line_sequence
+msgid "Template Line Sequence"
+msgstr ""
+
+#. module: sale_order_template_space
 #: model:ir.actions.act_window,name:sale_order_template_space.action_editabable_template_orders_lines
 msgid "Template Order Lines"
+msgstr ""
+
+#. module: sale_order_template_space
+#: model:ir.model,name:sale_order_template_space.model_wiz_duplicate_sale_line
+msgid "Wizard for duplicate sale line"
+msgstr ""
+
+#. module: sale_order_template_space
+#. odoo-python
+#: code:addons/sale_order_template_space/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"You can only duplicate 1 at a time, because then the screenmust be "
+"refreshed."
 msgstr ""

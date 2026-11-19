@@ -42,6 +42,14 @@
                 <field name="sale_order_space_id" readonly="1" />
             </xpath>
             <xpath
+        expr="//field[@name='order_line']/tree/field[@name='sequence']"
+        position="after"
+      >
+                <field name="space_sequence" optional="show" />
+                <field name="sale_order_template_line_sequence" optional="show" />
+                <field name="sequence_to_view" optional="show" />
+            </xpath>
+            <xpath
         expr="//field[@name='order_line']/tree/field[@name='analytic_distribution']"
         position="after"
       >
