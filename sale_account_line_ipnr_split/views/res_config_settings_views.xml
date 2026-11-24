@@ -9,27 +9,24 @@
                 <div class="col-12 col-lg-6 o_setting_box">
                     <div class="o_setting_left_pane" />
                     <div class="o_setting_right_pane">
-                        <label for="x_ipnr_product_id" string="IPNR Product" />
+                        <label for="ipnr_product_id" string="IPNR Product" />
                         <div class="text-muted">
                             Product used for IPNR breakdown lines.
                         </div>
                         <div class="content-group mt8">
-                            <field name="x_ipnr_product_id" />
+                            <field name="ipnr_product_id" />
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 o_setting_box">
                     <div class="o_setting_left_pane" />
                     <div class="o_setting_right_pane">
-                        <label
-                for="x_ipnr_rounding_digits"
-                string="Rounding decimals"
-              />
+                        <label for="ipnr_rounding_digits" string="Rounding decimals" />
                         <div class="text-muted">
                             Decimal places used when rounding IPNR prices.
                         </div>
                         <div class="content-group mt8">
-                            <field name="x_ipnr_rounding_digits" />
+                            <field name="ipnr_rounding_digits" />
                         </div>
                     </div>
                 </div>
