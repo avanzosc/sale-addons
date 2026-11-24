@@ -86,17 +86,34 @@ class AccountMove(models.Model):
 
     def _sync_gross_from_so(self, source_lines, ipnr_product, rounding):
         for line in source_lines:
-            if line.x_ipnr_gross_price_unit:
+            if line.ipnr_gross_price_unit:
                 continue
             sale_parent = self._find_sale_parent_line(line, ipnr_product)
-            if sale_parent and sale_parent.x_ipnr_gross_price_unit:
+            if sale_parent and sale_parent.ipnr_gross_price_unit:
                 line.write(
                     {
-                        "x_ipnr_gross_price_unit": round(
-                            sale_parent.x_ipnr_gross_price_unit, rounding
+                        "ipnr_gross_price_unit": round(
+                            sale_parent.ipnr_gross_price_unit, rounding
                         )
                     }
                 )
+
+    def _ipnr_link_parent_lines_from_sale(self):
+        """Translate the IPNR parent link of the sale order lines into the
+        equivalent invoice lines of the same invoice."""
+        for move in self:
+            lines = move.invoice_line_ids.filtered("sale_line_ids")
+            inv_line_by_sale_line = {}
+            for line in lines:
+                for sale_line in line.sale_line_ids:
+                    inv_line_by_sale_line.setdefault(sale_line.id, line)
+            for line in lines:
+                if line.ipnr_parent_line_id:
+                    continue
+                sale_parent = line.sale_line_ids.ipnr_parent_line_id[:1]
+                parent_line = inv_line_by_sale_line.get(sale_parent.id)
+                if parent_line and parent_line != line:
+                    line.ipnr_parent_line_id = parent_line
 
     def _resequence_lines(self, source_lines):
         for seq, line in enumerate(source_lines, start=1):
@@ -130,17 +147,17 @@ class AccountMove(models.Model):
             ipnr_unit_price = round(rate * non_recyclable_kg, rounding)
 
             if ipnr_unit_price <= 0:
-                if line.x_ipnr_gross_price_unit:
+                if line.ipnr_gross_price_unit:
                     line.write(
                         {
-                            "price_unit": round(line.x_ipnr_gross_price_unit, rounding),
-                            "x_ipnr_gross_price_unit": 0.0,
+                            "price_unit": round(line.ipnr_gross_price_unit, rounding),
+                            "ipnr_gross_price_unit": 0.0,
                         }
                     )
                 continue
 
             gross_visible = round(
-                line.x_ipnr_gross_price_unit or line.price_unit, rounding
+                line.ipnr_gross_price_unit or line.price_unit, rounding
             )
 
             discount = line.discount or 0.0
@@ -165,7 +182,7 @@ class AccountMove(models.Model):
 
             line.write(
                 {
-                    "x_ipnr_gross_price_unit": gross_visible,
+                    "ipnr_gross_price_unit": gross_visible,
                     "price_unit": net_visible,
                 }
             )
@@ -179,7 +196,7 @@ class AccountMove(models.Model):
                 "price_unit": ipnr_unit_price,
                 "discount": 0.0,
                 "tax_ids": [(6, 0, line.tax_ids.ids)],
-                "x_ipnr_parent_line_id": line.id,
+                "ipnr_parent_line_id": line.id,
             }
             if line.account_id:
                 ipnr_vals["account_id"] = line.account_id.id
@@ -205,15 +222,13 @@ class AccountMove(models.Model):
         copied_from_so = 0
 
         for line in self._source_lines(ipnr_product):
-            gross_saved = line.x_ipnr_gross_price_unit
+            gross_saved = line.ipnr_gross_price_unit
 
             if not gross_saved:
                 sale_parent = self._find_sale_parent_line(line, ipnr_product)
-                if sale_parent and sale_parent.x_ipnr_gross_price_unit:
-                    gross_saved = sale_parent.x_ipnr_gross_price_unit
-                    line.write(
-                        {"x_ipnr_gross_price_unit": round(gross_saved, rounding)}
-                    )
+                if sale_parent and sale_parent.ipnr_gross_price_unit:
+                    gross_saved = sale_parent.ipnr_gross_price_unit
+                    line.write({"ipnr_gross_price_unit": round(gross_saved, rounding)})
                     copied_from_so += 1
 
             if gross_saved:

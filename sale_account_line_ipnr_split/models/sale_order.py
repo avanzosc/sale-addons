@@ -91,11 +91,11 @@ class SaleOrder(models.Model):
             ipnr_unit_price = round(rate * non_recyclable_kg, rounding)
 
             if ipnr_unit_price <= 0:
-                if line.x_ipnr_gross_price_unit:
+                if line.ipnr_gross_price_unit:
                     line.write(
                         {
-                            "price_unit": round(line.x_ipnr_gross_price_unit, rounding),
-                            "x_ipnr_gross_price_unit": 0.0,
+                            "price_unit": round(line.ipnr_gross_price_unit, rounding),
+                            "ipnr_gross_price_unit": 0.0,
                         }
                     )
                 continue
@@ -109,7 +109,7 @@ class SaleOrder(models.Model):
                 )
 
             gross_visible = round(
-                line.x_ipnr_gross_price_unit or line.price_unit, rounding
+                line.ipnr_gross_price_unit or line.price_unit, rounding
             )
             price_after_discount = round(gross_visible * discount_factor, rounding)
             net_after_discount = round(price_after_discount - ipnr_unit_price, rounding)
@@ -124,7 +124,7 @@ class SaleOrder(models.Model):
             new_price_unit = round(net_after_discount / discount_factor, rounding)
             line.write(
                 {
-                    "x_ipnr_gross_price_unit": gross_visible,
+                    "ipnr_gross_price_unit": gross_visible,
                     "price_unit": new_price_unit,
                 }
             )
@@ -137,7 +137,7 @@ class SaleOrder(models.Model):
                 "product_uom": line.product_uom.id,
                 "price_unit": ipnr_unit_price,
                 "discount": 0.0,
-                "x_ipnr_parent_line_id": line.id,
+                "ipnr_parent_line_id": line.id,
             }
             if "tax_id" in line._fields:
                 ipnr_vals["tax_id"] = [(6, 0, line.tax_id.ids)]
@@ -159,16 +159,21 @@ class SaleOrder(models.Model):
         self._remove_ipnr_lines(ipnr_product)
 
         for line in self._source_lines(ipnr_product):
-            if not line.x_ipnr_gross_price_unit:
+            if not line.ipnr_gross_price_unit:
                 continue
-            line.write({"price_unit": round(line.x_ipnr_gross_price_unit, rounding)})
+            line.write({"price_unit": round(line.ipnr_gross_price_unit, rounding)})
+
+    def _create_invoices(self, grouped=False, final=False, date=None):
+        moves = super()._create_invoices(grouped=grouped, final=final, date=date)
+        moves._ipnr_link_parent_lines_from_sale()
+        return moves
 
     def _resequence_lines(self, ipnr_product):
         lines = self.order_line.sorted(key=lambda line: (line.sequence, line.id))
         ipnr_by_parent = {}
         for line in lines:
             if line.product_id == ipnr_product:
-                parent = line.x_ipnr_parent_line_id
+                parent = line.ipnr_parent_line_id
                 if parent:
                     ipnr_by_parent.setdefault(parent.id, []).append(line)
         base_lines = [line for line in lines if line.product_id != ipnr_product]

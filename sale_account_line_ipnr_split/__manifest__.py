@@ -3,7 +3,7 @@
 {
     "name": "Sale Account Line IPNR Split",
     "summary": "Breakdown of IPNR into separate lines on invoices and sales orders",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "category": "Accounting/Invoicing",
     "license": "AGPL-3",
     "author": "AvanzOSC",
