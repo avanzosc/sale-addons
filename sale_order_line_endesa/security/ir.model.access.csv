@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_endesa_user,sale.order Endesa user,sale.model_sale_order,group_endesa_user,1,0,0,0
+access_sale_order_line_endesa_user,sale.order.line Endesa user,sale.model_sale_order_line,group_endesa_user,1,0,0,0
+access_sale_order_line_endesa_manager,sale.order.line Endesa manager,sale.model_sale_order_line,group_endesa_manager,1,1,0,0
+access_mrp_production_endesa_user,mrp.production Endesa user,mrp.model_mrp_production,group_endesa_user,1,0,0,0

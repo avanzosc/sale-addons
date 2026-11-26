@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <menuitem
+    id="menu_sale_order_line_endesa_root"
+    name="Endesa Deliveries"
+    action="action_sale_order_line_endesa"
+    web_icon="sale_order_line_endesa,static/description/icon.png"
+    groups="group_endesa_user"
+    sequence="12"
+  />
+
+  <menuitem
+    id="menu_sale_order_line_endesa"
+    name="Endesa Deliveries"
+    action="action_sale_order_line_endesa"
+    parent="sale.sale_order_menu"
+    groups="group_endesa_user"
+    sequence="11"
+  />
+</odoo>

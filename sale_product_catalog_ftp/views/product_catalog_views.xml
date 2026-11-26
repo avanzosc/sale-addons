@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="product_catalog_view_form" model="ir.ui.view">
+    <field name="model">product.catalog</field>
+    <field name="inherit_id" ref="sale_product_catalog.product_catalog_view_form" />
+    <field name="arch" type="xml">
+      <notebook position="inside">
+        <page string="Upload to FTP" name="upload_ftp_configuration">
+          <div class="alert alert-info" role="alert">
+                        Technical field showing which customers have a FTP server upload configuration.
+                    </div>
+          <field name="upload_ftp_ids" readonly="1" />
+        </page>
+      </notebook>
+    </field>
+  </record>
+</odoo>

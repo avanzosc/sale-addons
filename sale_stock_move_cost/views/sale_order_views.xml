@@ -5,15 +5,31 @@
     <field name="inherit_id" ref="sale.view_order_form" />
     <field name="arch" type="xml">
       <field name="payment_term_id" position="before">
-        <field name="sale_order_cost" />
-        <field name="sale_order_margin" />
+        <field
+          name="sale_order_cost"
+          groups="product_cost_security.group_product_cost"
+        />
+        <field
+          name="sale_order_margin"
+          groups="product_cost_security.group_product_cost"
+        />
       </field>
       <xpath
         expr="//field[@name='order_line']/list/field[@name='company_id']"
         position="after"
       >
-        <field name="sale_line_cost" optional="show" sum="Total lines costs" />
-        <field name="sale_line_margin" optional="show" sum="Total lines margin" />
+        <field
+          name="sale_line_cost"
+          groups="product_cost_security.group_product_cost"
+          optional="show"
+          sum="Total lines costs"
+        />
+        <field
+          name="sale_line_margin"
+          groups="product_cost_security.group_product_cost"
+          optional="show"
+          sum="Total lines margin"
+        />
       </xpath>
     </field>
   </record>
@@ -23,8 +39,18 @@
     <field name="inherit_id" ref="sale.view_order_tree" />
     <field name="arch" type="xml">
       <field name="amount_untaxed" position="after">
-        <field name="sale_order_cost" optional="show" sum="Total orders costs" />
-        <field name="sale_order_margin" optional="show" sum="Total orders margin" />
+        <field
+          name="sale_order_cost"
+          groups="product_cost_security.group_product_cost"
+          optional="show"
+          sum="Total orders costs"
+        />
+        <field
+          name="sale_order_margin"
+          groups="product_cost_security.group_product_cost"
+          optional="show"
+          sum="Total orders margin"
+        />
       </field>
     </field>
   </record>
@@ -34,8 +60,18 @@
     <field name="inherit_id" ref="sale.view_quotation_tree" />
     <field name="arch" type="xml">
       <field name="amount_untaxed" position="after">
-        <field name="sale_order_cost" optional="show" sum="Total orders costs" />
-        <field name="sale_order_margin" optional="show" sum="Total orders margin" />
+        <field
+          name="sale_order_cost"
+          groups="product_cost_security.group_product_cost"
+          optional="show"
+          sum="Total orders costs"
+        />
+        <field
+          name="sale_order_margin"
+          groups="product_cost_security.group_product_cost"
+          optional="show"
+          sum="Total orders margin"
+        />
       </field>
     </field>
   </record>

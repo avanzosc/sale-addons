@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="view_sale_order_line_endesa_list" model="ir.ui.view">
+    <field name="name">sale.order.line.endesa.list</field>
+    <field name="model">sale.order.line</field>
+    <field name="priority">100</field>
+    <field name="arch" type="xml">
+      <list
+        string="Endesa Deliveries"
+        editable="bottom"
+        create="0"
+        delete="0"
+        open_form_view="1"
+      >
+        <field name="endesa_can_edit" column_invisible="1" />
+        <field name="endesa_date_color" column_invisible="1" />
+        <field name="name" string="SO Line" readonly="1" optional="show" />
+        <field name="product_default_code" optional="hide" />
+        <field name="product_id" widget="many2one" readonly="1" optional="hide" />
+        <field
+          name="order_id"
+          string="SO"
+          widget="many2one"
+          readonly="1"
+          optional="show"
+        />
+        <field name="endesa_code" readonly="not endesa_can_edit" optional="show" />
+        <field name="order_client_order_ref" optional="show" />
+        <field name="product_uom_qty" readonly="1" optional="show" />
+        <field
+          name="qty_delivered"
+          string="Delivered Qty"
+          readonly="1"
+          optional="show"
+        />
+        <field
+          name="endesa_partner_short"
+          string="Destination"
+          widget="endesa_char_link"
+          options="{'link_field': 'order_partner_shipping_id'}"
+          optional="show"
+        />
+        <field name="order_partner_shipping_id" column_invisible="1" />
+        <field name="order_origin" optional="show" />
+        <field name="endesa_planned_date" widget="date" optional="show" />
+        <field
+          name="endesa_need_date"
+          widget="date"
+          readonly="not endesa_can_edit"
+          options='{"bg_color": "red: endesa_date_color == &apos;red&apos;; orange: endesa_date_color == &apos;orange&apos;; yellow: endesa_date_color == &apos;yellow&apos;"}'
+          optional="show"
+        />
+        <field
+          name="endesa_review"
+          readonly="not endesa_can_edit"
+          groups="sale_order_line_endesa.group_endesa_manager"
+          optional="show"
+        />
+        <field name="endesa_serial" readonly="not endesa_can_edit" optional="show" />
+        <field name="endesa_state" readonly="not endesa_can_edit" optional="show" />
+        <field name="endesa_id" readonly="not endesa_can_edit" optional="show" />
+        <field name="endesa_production_date" widget="date" optional="show" />
+        <field
+          name="endesa_production_ids"
+          widget="endesa_many2many_tags_open"
+          readonly="1"
+          optional="show"
+        />
+      </list>
+    </field>
+  </record>
+
+  <record id="view_sale_order_line_endesa_search" model="ir.ui.view">
+    <field name="name">sale.order.line.endesa.search</field>
+    <field name="model">sale.order.line</field>
+    <field name="priority">100</field>
+    <field name="arch" type="xml">
+      <search string="Endesa Deliveries">
+        <field name="order_id" />
+        <field name="product_id" />
+        <field name="endesa_code" />
+        <field name="order_client_order_ref" />
+        <field name="order_origin" />
+        <field name="order_partner_shipping_id" />
+        <field name="endesa_id" />
+        <field name="endesa_serial" />
+        <separator />
+        <filter
+          name="confirmed"
+          string="Sales Orders"
+          domain="[('state', '=', 'sale')]"
+        />
+        <filter
+          name="quotations"
+          string="Quotations"
+          domain="[('state', 'in', ('draft', 'sent'))]"
+        />
+        <separator />
+        <filter
+          name="to_review"
+          string="To Review"
+          domain="[('endesa_review', '=', True)]"
+        />
+        <group expand="0" string="Group By">
+          <filter
+            name="group_by_order"
+            string="Sales Order"
+            context="{'group_by': 'order_id'}"
+          />
+          <filter
+            name="group_by_destination"
+            string="Destination"
+            context="{'group_by': 'order_partner_shipping_id'}"
+          />
+          <filter
+            name="group_by_product"
+            string="Product"
+            context="{'group_by': 'product_id'}"
+          />
+          <filter
+            name="group_by_endesa_code"
+            string="Endesa Code"
+            context="{'group_by': 'endesa_code'}"
+          />
+          <filter
+            name="group_by_endesa_state"
+            string="Endesa State"
+            context="{'group_by': 'endesa_state'}"
+          />
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record id="action_sale_order_line_endesa" model="ir.actions.act_window">
+    <field name="name">Endesa Deliveries</field>
+    <field name="res_model">sale.order.line</field>
+    <field name="view_mode">list,form</field>
+    <field name="view_id" ref="view_sale_order_line_endesa_list" />
+    <field name="search_view_id" ref="view_sale_order_line_endesa_search" />
+    <field name="domain">[
+            ('is_endesa', '=', True),
+            ('display_type', '=', False),
+            ('state', '!=', 'cancel'),
+            ('product_type', '!=', 'service'),
+        ]</field>
+    <field name="context">{}</field>
+  </record>
+</odoo>

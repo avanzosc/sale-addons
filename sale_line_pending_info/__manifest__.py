@@ -17,4 +17,6 @@
         "views/sale_order_line_view.xml",
     ],
     "installable": True,
+    "pre_init_hook": "_pre_init_sale_pending_info",
+    "post_init_hook": "_post_init_sale_pending_info",
 }

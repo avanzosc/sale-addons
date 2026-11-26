@@ -125,7 +125,7 @@ class SaleOrderLineHistoryReport(models.Model):
                 pt.categ_id AS product_categ_id,
                 COALESCE(rcp.country_id, rp.country_id) AS customer_country_id,
                 si.company_id AS company_id,
-                company.currency_id AS currency_id,
+                COALESCE(currency.id, company.currency_id) AS currency_id,
                 sil.date_order AS date_order,
                 CASE
                     WHEN sil.date_order IS NULL THEN 1
@@ -173,6 +173,9 @@ class SaleOrderLineHistoryReport(models.Model):
             FROM sale_order_import_line sil
             JOIN sale_order_import si ON si.id = sil.import_id
             JOIN res_company company ON company.id = si.company_id
+            LEFT JOIN res_currency currency
+                ON UPPER(TRIM(currency.name)) =
+                UPPER(TRIM(sil.currency_code_import))
             LEFT JOIN res_partner rp ON rp.id = sil.customer_id
             LEFT JOIN res_partner rcp ON rcp.id = rp.commercial_partner_id
             LEFT JOIN product_product pp ON pp.id = sil.product_id

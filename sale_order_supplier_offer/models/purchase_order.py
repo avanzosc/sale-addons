@@ -28,9 +28,7 @@ class PurchaseOrder(models.Model):
         sale_obj = self.env["sale.order"]
         for vals in vals_list:
             if vals.get("origin", False):
-                sale_order = sale_obj.search(
-                    [("name", "=", vals["origin"])], limit=1
-                ).id
+                sale_order = sale_obj.search([("name", "=", vals["origin"])], limit=1)
                 if sale_order:
                     vals["sale_order_id"] = sale_order.id
         purchases = super().create(vals_list)

@@ -11,6 +11,7 @@
 
     <record id="product_catalog_type_prebook" model="product.catalog.type">
       <field name="name">Prebook</field>
+      <field name="is_prebook" eval="True" />
     </record>
   </data>
 

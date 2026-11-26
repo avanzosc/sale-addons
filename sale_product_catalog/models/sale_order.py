@@ -14,12 +14,16 @@ class SaleOrder(models.Model):
     )
     is_prebook = fields.Boolean(
         compute="_compute_catalog_ids",
-        string="Prebook",
         store=True,
     )
 
     @api.depends("order_line.catalog_id")
     def _compute_catalog_ids(self):
         for order in self:
-            order.catalog_ids = order.order_line.catalog_id
-            order.is_prebook = any(order.catalog_ids.mapped("is_prebook"))
+            catalogs = order.mapped("order_line.catalog_id")
+            order.update(
+                {
+                    "catalog_ids": catalogs.ids,
+                    "is_prebook": any(catalogs.mapped("is_prebook")),
+                }
+            )

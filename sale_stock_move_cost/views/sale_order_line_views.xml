@@ -7,12 +7,14 @@
       <field name="price_subtotal" position="after">
         <field
           name="sale_line_cost"
+          groups="product_cost_security.group_product_cost"
           optional="show"
           sum="Total Cost"
           widget="monetary"
         />
         <field
           name="sale_line_margin"
+          groups="product_cost_security.group_product_cost"
           optional="show"
           sum="Total Margin"
           widget="monetary"

@@ -1,0 +1,311 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_endesa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-27 11:40+0000\n"
+"PO-Revision-Date: 2026-10-27 11:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_endesa
+#: model:res.groups,comment:sale_order_line_endesa.group_endesa_manager
+msgid "Also edits the Endesa fields."
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields.selection,name:sale_order_line_endesa.selection__sale_order_line__endesa_state__csv
+msgid "CSV"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,help:sale_order_line_endesa.field_sale_order_line__endesa_code
+msgid "Code of the product in the Endesa catalog."
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,help:sale_order_line_endesa.field_sale_order_line__endesa_date_color
+msgid ""
+"Color of the need date: red if it is due, orange if it is due in 7 days or "
+"less and yellow in 15 days or less. QA lines are not colored."
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model,name:sale_order_line_endesa.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__order_origin
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_order_form
+msgid "Contract"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_list
+msgid "Delivered Qty"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__order_partner_shipping_id
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_list
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_search
+msgid "Destination"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_order_form
+msgid "Endesa"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_can_edit
+msgid "Endesa Can Edit"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_code
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_search
+msgid "Endesa Code"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_date_color
+msgid "Endesa Date Color"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.actions.act_window,name:sale_order_line_endesa.action_sale_order_line_endesa
+#: model:ir.module.category,name:sale_order_line_endesa.module_category_endesa_deliveries
+#: model:ir.ui.menu,name:sale_order_line_endesa.menu_sale_order_line_endesa
+#: model:ir.ui.menu,name:sale_order_line_endesa.menu_sale_order_line_endesa_root
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_list
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_search
+msgid "Endesa Deliveries"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_id
+msgid "Endesa ID"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_need_date
+msgid "Endesa Need Date"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__order_client_order_ref
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_order_form
+msgid "Endesa Order"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_review
+msgid "Endesa Review"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_serial
+msgid "Endesa S/N"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_state
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_search
+msgid "Endesa State"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_search
+msgid "Group By"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__product_default_code
+msgid "Internal Reference"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_res_partner__is_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_res_users__is_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order__is_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__is_endesa
+msgid "Is Endesa"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,help:sale_order_line_endesa.field_sale_order_line__endesa_production_date
+msgid "Latest end date of the manufacturing orders of the line."
+msgstr ""
+
+#. module: sale_order_line_endesa
+#. odoo-javascript
+#: code:addons/sale_order_line_endesa/static/src/fields/endesa_char_link.esm.js:0
+msgid "Link to another field"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:res.groups,name:sale_order_line_endesa.group_endesa_manager
+msgid "Manager"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_production_date
+msgid "Manufacturing Date"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_production_ids
+msgid "Manufacturing Orders"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,help:sale_order_line_endesa.field_sale_order_line__endesa_production_ids
+msgid ""
+"Manufacturing orders that supply the line: the ones its stock moves come "
+"from (make to order) and the ones with the line as origin."
+msgstr ""
+
+#. module: sale_order_line_endesa
+#. odoo-javascript
+#: code:addons/sale_order_line_endesa/static/src/fields/endesa_char_link.esm.js:0
+msgid "Many2one field to open"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields.selection,name:sale_order_line_endesa.selection__sale_order_line__endesa_date_color__ok
+msgid "OK"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#. odoo-python
+#: code:addons/sale_order_line_endesa/models/sale_order_line.py:0
+msgid "Only Endesa delivery managers can change the Endesa fields."
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields.selection,name:sale_order_line_endesa.selection__sale_order_line__endesa_date_color__orange
+msgid "Orange"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields.selection,name:sale_order_line_endesa.selection__sale_order_line__endesa_state__pdi
+msgid "PDI"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields.selection,name:sale_order_line_endesa.selection__sale_order_line__endesa_state__pdp
+msgid "PDP"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_planned_date
+msgid "Planned Date"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_search
+msgid "Product"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields.selection,name:sale_order_line_endesa.selection__sale_order_line__endesa_state__qa
+msgid "QA"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_search
+msgid "Quotations"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields.selection,name:sale_order_line_endesa.selection__sale_order_line__endesa_date_color__red
+msgid "Red"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,help:sale_order_line_endesa.field_sale_order_line__order_origin
+msgid "Reference of the document that generated this sales order request"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_list
+msgid "SO"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_list
+msgid "SO Line"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,help:sale_order_line_endesa.field_res_partner__is_endesa
+#: model:ir.model.fields,help:sale_order_line_endesa.field_res_users__is_endesa
+#: model:ir.model.fields,help:sale_order_line_endesa.field_sale_order__is_endesa
+#: model:ir.model.fields,help:sale_order_line_endesa.field_sale_order_line__is_endesa
+msgid ""
+"Sale orders of this customer are delivered through the Endesa platform. Set "
+"it on the company: its contacts follow it."
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model,name:sale_order_line_endesa.model_sale_order
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_search
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model,name:sale_order_line_endesa.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_search
+msgid "Sales Orders"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:res.groups,comment:sale_order_line_endesa.group_endesa_user
+msgid "Sees the Endesa deliveries and the Endesa fields of sale orders."
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,field_description:sale_order_line_endesa.field_sale_order_line__endesa_partner_short
+msgid "Short Destination"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields,help:sale_order_line_endesa.field_sale_order_line__endesa_planned_date
+msgid ""
+"This is the delivery date promised to the customer. If set, the delivery "
+"order will be scheduled based on this date rather than product lead times."
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model_terms:ir.ui.view,arch_db:sale_order_line_endesa.view_sale_order_line_endesa_search
+msgid "To Review"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:res.groups,name:sale_order_line_endesa.group_endesa_user
+msgid "User"
+msgstr ""
+
+#. module: sale_order_line_endesa
+#. odoo-python
+#: code:addons/sale_order_line_endesa/models/sale_order_line.py:0
+msgid "Without access to Sales you can only change the Endesa fields."
+msgstr ""
+
+#. module: sale_order_line_endesa
+#: model:ir.model.fields.selection,name:sale_order_line_endesa.selection__sale_order_line__endesa_date_color__yellow
+msgid "Yellow"
+msgstr ""

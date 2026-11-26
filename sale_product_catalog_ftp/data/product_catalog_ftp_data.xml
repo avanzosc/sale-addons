@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="True">
+  <record id="ir_cron_product_catalog_ftp" model="ir.cron">
+    <field name="name">Create / Upload catalog to FTPs</field>
+    <field name="interval_number">1</field>
+    <field name="interval_type">days</field>
+    <field name="model_id" ref="model_product_catalog_ftp" />
+    <field name="code">model._create_catalog_file_cron()</field>
+    <field name="state">code</field>
+    <field
+      name="nextcall"
+      eval="(datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d 01:00:00')"
+    />
+  </record>
+  <record id="portal_catalog_ftp_folder_parameter" model="ir.config_parameter">
+    <field name="key">product_catalog_ftp.base_ftp_folder</field>
+    <field name="value">ftp_catalog</field>
+  </record>
+</odoo>
