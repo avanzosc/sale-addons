@@ -6,6 +6,10 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    catalog_id = fields.Many2one(
+        comodel_name="product.catalog",
+        string="Catalog",
+    )
     catalog_ids = fields.Many2many(
         comodel_name="product.catalog",
         compute="_compute_catalog_ids",
@@ -27,3 +31,14 @@ class SaleOrder(models.Model):
                     "is_prebook": any(catalogs.mapped("is_prebook")),
                 }
             )
+
+    @api.onchange("catalog_id")
+    def _onchange_catalog_id(self):
+        for order in self:
+            order.order_line.catalog_id = order.catalog_id
+
+    def write(self, vals):
+        result = super().write(vals)
+        if "catalog_id" in vals:
+            self.order_line.write({"catalog_id": vals["catalog_id"]})
+        return result
