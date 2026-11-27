@@ -72,6 +72,7 @@ msgstr "Arrastre"
 
 #. module: sale_product_catalog
 #: model:ir.model.fields,field_description:sale_product_catalog.field_report_catalog_product_xlsx_export__catalog_id
+#: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order__catalog_id
 #: model:ir.model.fields,field_description:sale_product_catalog.field_sale_order_line__catalog_id
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog.product_pricelist_item_view_search
 msgid "Catalog"
