@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record
+    id="paperformat_sale_line_product_attribute_report"
+    model="report.paperformat"
+  >
+    <field name="name">OEM sale line product attributes</field>
+    <field name="default" eval="False" />
+    <field name="format">A4</field>
+    <field name="page_height">0</field>
+    <field name="page_width">0</field>
+    <field name="orientation">Portrait</field>
+    <field name="margin_top">0</field>
+    <field name="margin_bottom">0</field>
+    <field name="margin_left">0</field>
+    <field name="margin_right">0</field>
+    <field name="header_line" eval="False" />
+    <field name="header_spacing">0</field>
+    <field name="dpi">90</field>
+  </record>
+
+  <record id="action_sale_order_product_attribute_report" model="ir.actions.report">
+    <field name="name">OEM product attribute sheets</field>
+    <field name="model">sale.order</field>
+    <field name="report_type">qweb-pdf</field>
+    <field
+      name="report_name"
+    >sale_order_line_product_attribute_report.sale_order_product_attribute_report</field>
+    <field
+      name="report_file"
+    >sale_order_line_product_attribute_report.sale_order_product_attribute_report</field>
+    <field name="print_report_name">'OEM sheets - %s' % object.name</field>
+    <field name="binding_model_id" ref="sale.model_sale_order" />
+    <field name="binding_type">report</field>
+    <field name="paperformat_id" ref="paperformat_sale_line_product_attribute_report" />
+  </record>
+
+  <record id="action_sale_line_product_attribute_report" model="ir.actions.report">
+    <field name="name">OEM product attribute sheet</field>
+    <field name="model">sale.order.line</field>
+    <field name="report_type">qweb-pdf</field>
+    <field
+      name="report_name"
+    >sale_order_line_product_attribute_report.sale_line_product_attribute_report</field>
+    <field
+      name="report_file"
+    >sale_order_line_product_attribute_report.sale_line_product_attribute_report</field>
+    <field name="print_report_name">'OEM sheet - %s' % object.order_id.name</field>
+    <field name="binding_model_id" ref="sale.model_sale_order_line" />
+    <field name="binding_type">report</field>
+    <field name="paperformat_id" ref="paperformat_sale_line_product_attribute_report" />
+  </record>
+
+  <template id="sale_line_product_attribute_report_page">
+    <t t-set="product" t-value="line.product_id" />
+    <t t-set="top_transfer" t-value="product.top_transfer_product_id" />
+    <t t-set="bottom_transfer" t-value="product.bottom_transfer_product_id" />
+    <div class="page oem-sheet">
+      <style>
+        .oem-sheet {
+          position: relative;
+          width: 210mm;
+          height: 297mm;
+          overflow: hidden;
+          box-sizing: border-box;
+          font-family: Arial, sans-serif;
+          font-size: 10pt;
+        }
+        .oem-sheet .sheet-background {
+          position: absolute;
+          z-index: 0;
+          left: 0;
+          top: 0;
+          width: 210mm;
+          height: 297mm;
+        }
+        .oem-sheet .value { position: absolute; z-index: 1; color: #ef202d; font-weight: bold; }
+        .oem-sheet .customer { left: 61mm; top: 4mm; width: 76mm; }
+        .oem-sheet .order { left: 181mm; top: 4mm; width: 25mm; }
+        .oem-sheet .top-name { left: 96mm; top: 14mm; width: 106mm; }
+        .oem-sheet .bottom-name { left: 105mm; top: 24mm; width: 97mm; }
+        .oem-sheet .quantity-shape { left: 131mm; top: 38mm; width: 72mm; color: #111; }
+        .oem-sheet .graphic-image { position: absolute; z-index: 1; object-fit: contain; }
+        .oem-sheet .bottom-image { left: 8mm; top: 86mm; width: 48mm; height: 115mm; }
+        .oem-sheet .top-image { left: 68mm; top: 86mm; width: 48mm; height: 115mm; }
+        .oem-sheet .plies { position: absolute; z-index: 1; left: 128mm; top: 97mm; width: 75mm; font-size: 8pt; }
+        .oem-sheet .ply-row { height: 6mm; }
+        .oem-sheet .ply-name { display: inline-block; width: 18mm; font-weight: bold; }
+        .oem-sheet .ply-value { color: #3498db; }
+        .oem-sheet .finish { left: 173mm; top: 123mm; width: 33mm; color: #e98b00; }
+      </style>
+
+      <img
+        t-att-src="image_data_uri(line.get_oem_report_background())"
+        class="sheet-background"
+      />
+      <span class="value customer" t-esc="line.order_id.partner_id.name or ''" />
+      <span class="value order" t-esc="line.order_id.name or ''" />
+      <span class="value top-name" t-esc="top_transfer.display_name or ''" />
+      <span class="value bottom-name" t-esc="bottom_transfer.display_name or ''" />
+      <span class="value quantity-shape" t-esc="line.get_oem_quantities_shapes()" />
+
+      <img
+        t-if="bottom_transfer.image_1920"
+        t-att-src="image_data_uri(bottom_transfer.image_1920)"
+        class="graphic-image bottom-image"
+      />
+      <img
+        t-if="top_transfer.image_1920"
+        t-att-src="image_data_uri(top_transfer.image_1920)"
+        class="graphic-image top-image"
+      />
+
+      <div class="plies">
+        <div class="ply-row" t-foreach="line.get_oem_plies()" t-as="ply">
+          <span class="ply-name" t-esc="ply[0]" />
+          <span class="ply-value" t-esc="ply[1].name" />
+        </div>
+      </div>
+      <span
+        t-if="line.get_oem_finish()"
+        class="value finish"
+        t-esc="line.get_oem_finish().name"
+      />
+    </div>
+  </template>
+
+  <template id="sale_order_product_attribute_report">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="order">
+        <t
+          t-foreach="order.order_line.filtered(lambda sale_line: not sale_line.display_type and sale_line.product_id)"
+          t-as="line"
+        >
+          <t
+            t-call="sale_order_line_product_attribute_report.sale_line_product_attribute_report_page"
+          />
+        </t>
+      </t>
+    </t>
+  </template>
+
+  <template id="sale_line_product_attribute_report">
+    <t t-call="web.html_container">
+      <t
+        t-foreach="docs.filtered(lambda sale_line: not sale_line.display_type and sale_line.product_id)"
+        t-as="line"
+      >
+        <t
+          t-call="sale_order_line_product_attribute_report.sale_line_product_attribute_report_page"
+        />
+      </t>
+    </t>
+  </template>
+</odoo>
